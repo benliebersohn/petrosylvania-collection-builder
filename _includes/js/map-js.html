@@ -52,6 +52,7 @@
 }).addTo(map)
 
 //add reference layer
+var Aerial_1928 = L.tileLayer('https://mapwarper.net/maps/tile/88306/{z}/{x}/{y}.png')//
 
 var Waterfront_1892 = L.tileLayer('https://mapwarper.net/maps/tile/91523/{z}/{x}/{y}.png', {
     attribution: '<i>1892 USGS Map</i> courtesy of [insert credits]'
@@ -124,6 +125,9 @@ var petro1965 = L.tileLayer('https://mapwarper.net/maps/tile/83445/{z}/{x}/{y}.p
 var PASDA2019 = L.tileLayer.wms('https://imagery.pasda.psu.edu/arcgis/services/pasda/PhiladelphiaImagery2019/MapServer/WMSServer?', {
     layers: '1' 
     });
+var HOLC_1937 = L.tileLayer('https://mapwarper.net/maps/tile/90758/{z}/{x}/{y}.png')//
+var Aerial_1959 = L.tileLayer('https://mapwarper.net/maps/tile/88304/{z}/{x}/{y}.png')//
+
     /* add base map switcher */
 
 var baseMaps = {
@@ -136,10 +140,10 @@ var overlayMaps = {
     "1895 Bromley street atlas": Bromley_1895,
     "1910 Bromley street atlas" : Bromley_1910,
     "1920 USGS map" : USGS_1920,
-  //  "1928 aerial photograph" : Aerial_1928,
-  //  "1937 Redlining map" : HOLC_1937,
+    "1928 aerial photograph" : Aerial_1928,
+    "1937 Redlining map" : HOLC_1937,
     "1949 USGS map" : USGS_1949,
-  //  "1959 aerial photograph" : Aerial_1959,
+    "1959 aerial photograph" : Aerial_1959,
     "1965 aerial photograph" : Aerial_1965,
     "1967 USGS map" : USGS_1967,
     "1975 aerial photograph" : Aerial_1975,
