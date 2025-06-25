@@ -55,15 +55,16 @@
 
 var Waterfront_1892 = L.tileLayer('https://mapwarper.net/maps/tile/91523/{z}/{x}/{y}.png', {
     attribution: '<i>1892 USGS Map</i> courtesy of [insert credits]'
-});
+})
 
 //add reference layer
 var USGS_1894 = L.tileLayer('https://mapwarper.net/maps/tile/88571/{z}/{x}/{y}.png', {
     attribution: '<i>1894 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
-});
+})
 var USGS_1920 = L.tileLayer('https://mapwarper.net/maps/tile/88561/{z}/{x}/{y}.png', {
     attribution: '<i>1920 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
 })
+    
 var USGS_1949 = L.tileLayer('https://mapwarper.net/maps/tile/88564/{z}/{x}/{y}.png', {
     attribution: '<i>1949 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
 }).addTo(map);
@@ -124,41 +125,37 @@ var ArmyPlume_4 = L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}
     layers: '1' 
     });
     /* add base map switcher */
-  /*  var baseMaps = {
-        "Esri World StreetMap": Esri_WorldStreetMap,
-        "Esri National Geo": Esri_NatGeoWorldMap,
-        "Esri Imagery": Esri_WorldImagery,
-        "1965": petro1965,
-        "2019": PASDA2019
-    };*/
+
     var baseMaps = {
     "OSM": OSMLayer
     };
+    
     var overlayMaps = {
-    "1894 USGS Map" : USGS_1894,
-    "1920 USGS Map" : USGS_1920,
-    "1949 USGS Map" : USGS_1949,
-    "1967 USGS Map" : USGS_1967,
-    "1995 USGS Map" : USGS_1995,
-    "2019 USGS Map" : USGS_2019,
-    "2023 USGS Map" : USGS_2023,
-        
+    "1892 Philadelphia waterfront" : Waterfront_1892,
+    "1894 USGS map" : USGS_1894,
+    "1895 Bromley street atlas": Bromley_1895,
+    "1910 Bromley street atlas" : Bromley_1910,
+    "1920 USGS map" : USGS_1920,
+    "1928 aerial photograph" : Aerial_1928,
     "1937 Redlining map" : HOLC_1937,
-
-    "1910 Bromley Street Atlas" : Bromley_1910,
-    "1928 Aerial Photograph" : Aerial_1928,
-    "1965 Aerial Photograph" : Aerial_1965,
-    "1975 Aerial Photograph" : Aerial_1975,
-    "1980 Aerial Photograph" : Aerial_1980,
-    "1985 Aerial Photograph" : Aerial_1985,
+    "1949 USGS map" : USGS_1949,
+    "1959 aerial photograph" : Aerial_1959,
+    "1965 aerial photograph" : Aerial_1965,
+    "1967 USGS map" : USGS_1967,
+    "1975 aerial photograph" : Aerial_1975,
+    "1980 aerial photograph" : Aerial_1980,
+    "1985 aerial photograph": Aerial_1985,
+    "1990 aerial photograph" : Aerial_1990,
+    "1995 USGS map" : USGS_1995,
     "1997 LNAPL plume map 1" : ArmyPlume_1,
     "1997 LNAPL plume map 2" : ArmyPlume_2,
     "1997 LNAPL plume map 3" : ArmyPlume_3,
     "1997 LNAPL plume map 4" : ArmyPlume_4,
-//    "1990 Aerial Photograph" : Aerial_1995,
-    "2019 Aerial Photograph": PASDA2019
+    "2019 USGS map" : USGS_2019,
+    "2019 aerial photograph": PASDA2019,
+    "2023 USGS map" : USGS_2023,
     "Current satellite view" : Google_sat,
-
+    "Areas of Interest" : Google_sat,
     };
     
 //    var layerControl = L.control.layers(overlayMaps, null, {collapsed:false}).addTo(map);
