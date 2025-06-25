@@ -16,7 +16,7 @@
 {% if site.data.theme.map-cluster == true %}<script src="{{ '/assets/lib/leaflet/leaflet.markercluster.js' | relative_url }}"></script>{% endif %}
 {% if site.data.theme.map-search == true and site.data.theme.map-cluster == true %}<script src="{{ '/assets/lib/leaflet/leaflet.markercluster.freezable.js' | relative_url }}"></script>{% endif %}
     <!-- import the Area of Interest GeoJSON file -->
-<script src="./AOI_features_01.json"></script>
+<script src="{{ '/assets/data/AOI_features.json' | relative_url }}"></script>
 
 <script>
     let jsondata;    
