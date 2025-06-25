@@ -91,12 +91,12 @@ var OSMLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services
     layers: '1' 
 }).addTo(map);
 
-    var Aerial_1928 = L.tileLayer('https://mapwarper.net/maps/tile/88306/{z}/{x}/{y}.png')//
-    var Aerial_1965 = L.tileLayer('https://mapwarper.net/maps/tile/88299/{z}/{x}/{y}.png')//
-    var Aerial_1975 = L.tileLayer('https://mapwarper.net/maps/tile/88571/{z}/{x}/{y}.png')
-    var Aerial_1980 = L.tileLayer('https://mapwarper.net/maps/tile/88301/{z}/{x}/{y}.png')//
-    var Aerial_1985 = L.tileLayer('https://mapwarper.net/maps/tile/88304/{z}/{x}/{y}.png')//.addTo(map);
-    var Aerial_1990 = L.tileLayer('https://mapwarper.net/maps/tile/90707/{z}/{x}/{y}.png')//
+var Aerial_1928 = L.tileLayer('https://mapwarper.net/maps/tile/88306/{z}/{x}/{y}.png')//
+var Aerial_1965 = L.tileLayer('https://mapwarper.net/maps/tile/88299/{z}/{x}/{y}.png')//
+var Aerial_1975 = L.tileLayer('https://mapwarper.net/maps/tile/88571/{z}/{x}/{y}.png')
+var Aerial_1980 = L.tileLayer('https://mapwarper.net/maps/tile/88301/{z}/{x}/{y}.png')//
+var Aerial_1985 = L.tileLayer('https://mapwarper.net/maps/tile/88304/{z}/{x}/{y}.png')//.addTo(map);
+var Aerial_1990 = L.tileLayer('https://mapwarper.net/maps/tile/90707/{z}/{x}/{y}.png')//
 
 //var Aerial_1995 = L.tileLayer('https://mapwarper.net/maps/tile/88304/{z}/{x}/{y}.png')
 
@@ -107,39 +107,39 @@ var ArmyPlume_3 = L.tileLayer('https://mapwarper.net/maps/tile/88816/{z}/{x}/{y}
 var ArmyPlume_4 = L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}.png') //
 
     /* add map layer options */
-    var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
     });
-    var Esri_NatGeoWorldMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
+var Esri_NatGeoWorldMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC',
         maxZoom: 16
     });
-    var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
     });
-    var petro1965 = L.tileLayer('https://mapwarper.net/maps/tile/83445/{z}/{x}/{y}.png ', {
+var petro1965 = L.tileLayer('https://mapwarper.net/maps/tile/83445/{z}/{x}/{y}.png ', {
         maxZoom: 19,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     });
-    var PASDA2019 = L.tileLayer.wms('https://imagery.pasda.psu.edu/arcgis/services/pasda/PhiladelphiaImagery2019/MapServer/WMSServer?', {
+var PASDA2019 = L.tileLayer.wms('https://imagery.pasda.psu.edu/arcgis/services/pasda/PhiladelphiaImagery2019/MapServer/WMSServer?', {
     layers: '1' 
     });
     /* add base map switcher */
 
-    var baseMaps = {
+var baseMaps = {
     "OSM": OSMLayer
     };
     
-    var overlayMaps = {
+var overlayMaps = {
     "1892 Philadelphia waterfront" : Waterfront_1892,
     "1894 USGS map" : USGS_1894,
     "1895 Bromley street atlas": Bromley_1895,
     "1910 Bromley street atlas" : Bromley_1910,
     "1920 USGS map" : USGS_1920,
-    "1928 aerial photograph" : Aerial_1928,
-    "1937 Redlining map" : HOLC_1937,
+  //  "1928 aerial photograph" : Aerial_1928,
+  //  "1937 Redlining map" : HOLC_1937,
     "1949 USGS map" : USGS_1949,
-    "1959 aerial photograph" : Aerial_1959,
+  //  "1959 aerial photograph" : Aerial_1959,
     "1965 aerial photograph" : Aerial_1965,
     "1967 USGS map" : USGS_1967,
     "1975 aerial photograph" : Aerial_1975,
@@ -154,8 +154,7 @@ var ArmyPlume_4 = L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}
     "2019 USGS map" : USGS_2019,
     "2019 aerial photograph": PASDA2019,
     "2023 USGS map" : USGS_2023,
-    "Current satellite view" : Google_sat,
-    "Areas of Interest" : Google_sat,
+    //"Current satellite view" : Google_sat,
     };
     
 //    var layerControl = L.control.layers(overlayMaps, null, {collapsed:false}).addTo(map);
