@@ -134,11 +134,11 @@ var AOI_Layer2 = L.geoJSON(AOI, {
 
 var AOI_Layer = L.geoJSON(AOI)//.addTo(map)
 
-var overlayMaps = {
-    "1892 Philadelphia waterfront" : Waterfront_1892,
+var overlayMaps2 = {
+    "1892 Philadelphia Waterfront" : Waterfront_1892,
     "1894 USGS map" : USGS_1894,
-    "1895 Bromley street atlas": Bromley_1895,
-    "1910 Bromley street atlas" : Bromley_1910,
+    "1895 Bromley Street Atlas": Bromley_1895,
+    "1910 Bromley Street Atlas" : Bromley_1910,
     "1920 USGS map" : USGS_1920,
     "1928 aerial photograph" : Aerial_1928,
     "1937 Redlining map" : HOLC_1937,
@@ -159,11 +159,12 @@ var overlayMaps = {
     "2019 aerial photograph": PASDA2019,
     "2023 USGS map" : USGS_2023,
     "Current satellite view" : Google_sat,
-    "Areas of Interest" : AOI_Layer2,
+    "AOI Zone Label" : pointLayer,
+    "AOI Polygon" : AOI_Polygon,
+    "AOI_Polygon" : AOI_Polys,
 };
 
-//change basemaps
-var layerControl = L.control.layers(null, overlayMaps, {collapsed:false}).addTo(map);
+var layerControl2 = L.control.layers(null, overlayMaps2, {collapsed:false}).addTo(map);
     
     {% if site.data.theme.map-search == true %}
     /* add leaflet-fusesearch */
