@@ -104,21 +104,21 @@ var ArmyPlume_3 = L.tileLayer('https://mapwarper.net/maps/tile/88816/{z}/{x}/{y}
 var ArmyPlume_4 = L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}.png') //
 
     /* add map layer options */
-    var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
     });
-    var Esri_NatGeoWorldMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
+var Esri_NatGeoWorldMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC',
         maxZoom: 16
     });
-    var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
     });
-    var petro1965 = L.tileLayer('https://mapwarper.net/maps/tile/83445/{z}/{x}/{y}.png ', {
+var petro1965 = L.tileLayer('https://mapwarper.net/maps/tile/83445/{z}/{x}/{y}.png ', {
         maxZoom: 19,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     });
-    var PASDA2019 = L.tileLayer.wms('https://imagery.pasda.psu.edu/arcgis/services/pasda/PhiladelphiaImagery2019/MapServer/WMSServer?', {
+var PASDA2019 = L.tileLayer.wms('https://imagery.pasda.psu.edu/arcgis/services/pasda/PhiladelphiaImagery2019/MapServer/WMSServer?', {
     layers: '1' 
     });
     /* add base map switcher */
@@ -129,11 +129,12 @@ var ArmyPlume_4 = L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}
         "1965": petro1965,
         "2019": PASDA2019
     };*/
-    var baseMaps = {
+var baseMaps = {
     "OSM": OSMLayer
     };
-    var overlayMaps = {
-    "1892 Philadelphia waterfront" : Waterfront_1892,
+var overlayMaps = {
+    "1892 Philadelphia waterfront" : Waterfront_1892
+    };
 
 //    "1894 USGS Map" : USGS_1894,
     "1920 USGS Map" : USGS_1920,
@@ -155,10 +156,8 @@ var ArmyPlume_4 = L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}
 //    "1990 Aerial Photograph" : Aerial_1995,
     "2019 Aerial Photograph": PASDA2019,
     "Current satellite view" : Google_sat,
-    "Areas of Interest" : Google_sat,
-
-
-    };
+    "Areas of Interest" : Google_sat
+};
     
 //    var layerControl = L.control.layers(overlayMaps, null, {collapsed:false}).addTo(map);
     
