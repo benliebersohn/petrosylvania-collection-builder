@@ -129,7 +129,12 @@ var PASDA2019 = L.tileLayer.wms('https://imagery.pasda.psu.edu/arcgis/services/p
     });
 var HOLC_1937 = L.tileLayer('https://mapwarper.net/maps/tile/90758/{z}/{x}/{y}.png')//
 var Aerial_1959 = L.tileLayer('https://mapwarper.net/maps/tile/88304/{z}/{x}/{y}.png')//
-var AOI_Polys = 'https://github.com/benliebersohn/data_bin/blob/main/AOI_features_01.json'
+var AOI_Layer2 = L.geoJSON(AOI, {
+  style: setStyle,
+  onEachFeature: function (feature, layer) {
+    layer.bindPopup('<h1>'+feature.properties.Name+'</h1><p>ID: '+feature.properties.AOI_ID+'</p>'+feature.properties.Event_1+'</p>'+feature.properties.Event_2+'</p>'+feature.properties.Event_3+'</p>'+feature.properties.Event_4+'</p>'+feature.properties.Event_5+'</p>'+feature.properties.Event_6+'</p>'+feature.properties.Event_7+'</p>'+feature.properties.Event_8+'</p>'+feature.properties.Event_9+'</p>'+feature.properties.Event_10+'</p>'+feature.properties.Event_11+'</p>'+feature.properties.Event_12+'</p>'+feature.properties.Event_13+'</p>'+feature.properties.Event_14+'</p>'+feature.properties.Event_15+'</p>'+feature.properties.Event_16+'</p>'+feature.properties.Event_17+'</p>'+feature.properties.Event_18+'</p>'+feature.properties.Event_19+'</p>'+feature.properties.Event_20+'</p>');
+  }
+})
 var geojsonPolygon2 = L.geoJSON(AOI_Polys, {
 //  style: setStyle,
   onEachFeature: function (feature, layer) {
@@ -166,7 +171,7 @@ var overlayMaps = {
     "2019 USGS map" : USGS_2019,
     "2019 aerial photograph": PASDA2019,
     "2023 USGS map" : USGS_2023,
-    //"Current satellite view" : Google_sat,
+    "AOI" : geojsonPolygon2,
     };
     
 //    var layerControl = L.control.layers(overlayMaps, null, {collapsed:false}).addTo(map);
