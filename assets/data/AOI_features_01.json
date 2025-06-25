@@ -1,4 +1,4 @@
-{
+var AOI={
   "type": "FeatureCollection",
   "features": [
     {
