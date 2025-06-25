@@ -8,6 +8,7 @@
 {% endif %}
 {%- assign items = items | where_exp: 'item', 'item.objectid != nil' | where_exp: 'item','item.latitude' -%}
 {%- assign fields = site.data.config-map -%}
+<script src="{{ '/assets/data/AOI_features.json' | relative_url }}"></script>
 <!-- load leaflet dependencies -->
 <script src="{{ '/assets/lib/leaflet/leaflet.js' | relative_url }}"></script>
 <script src="{{ '/assets/lib/leaflet/Leaflet.fullscreen.min.js' | relative_url }}"></script>
@@ -16,7 +17,6 @@
 {% if site.data.theme.map-cluster == true %}<script src="{{ '/assets/lib/leaflet/leaflet.markercluster.js' | relative_url }}"></script>{% endif %}
 {% if site.data.theme.map-search == true and site.data.theme.map-cluster == true %}<script src="{{ '/assets/lib/leaflet/leaflet.markercluster.freezable.js' | relative_url }}"></script>{% endif %}
     <!-- import the Area of Interest GeoJSON file -->
-<script src="{{ '/assets/data/AOI_features.json' | relative_url }}"></script>
 
 <script>
     let jsondata;    
