@@ -146,7 +146,7 @@ fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-
     .then(response => response.json())
     .then(data => {
                 // Create a GeoJSON layer and add to map
-        const geojsonLayer = L.geoJSON(data /*, {
+        const geojsonLayer = L.geoJSON(data, {
                     // You can style your features here
             style: function(feature) {
                 return {
@@ -162,7 +162,7 @@ fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-
                       layer.bindPopup(feature.properties.name);
                   }
               }
-        }*/).addTo(map);
+        }).addTo(map);
                 
                 // Fit the map to the GeoJSON bounds
         map.fitBounds(geojsonLayer.getBounds());
