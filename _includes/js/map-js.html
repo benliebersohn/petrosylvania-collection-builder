@@ -147,7 +147,8 @@ fetch('https://raw.githubusercontent.com/benliebersohn/data_bin/refs/heads/main/
     .then(response => response.json())
     .then(data => {
                 // Create a GeoJSON layer and add to map
-    const geojsonLayer = L.geoJSON(data, {
+    const geojsonLayer = L.geoJSON(data);
+    })
                     // You can style your features here
 
         /*
