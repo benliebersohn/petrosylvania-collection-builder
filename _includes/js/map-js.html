@@ -139,6 +139,9 @@ function setStyle(feature) {
       opacity: feature.properties.strokeOpacity
   }
 }
+
+const layerControl = L.control.layers(layers.baseLayers, layers.overlays).addTo(map);
+
 var baseMaps = {
     "OSM": OSMLayer
     };
