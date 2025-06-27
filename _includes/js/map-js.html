@@ -135,8 +135,8 @@ function setStyle(feature) {
   return {
     fillColor: feature.properties.fill,
     color: feature.properties.stroke,
-    fillOpacity: .5,
-    opacity: .75
+    fillOpacity: feature.properties.fill-opacity,
+    opacity: feature.properties.stroke-opacity
   }
 }
 
@@ -152,8 +152,8 @@ fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-
                 return {
                     fillColor: feature.properties.fill,
                     color: feature.properties.stroke,
-                    fillOpacity: .75,
-                    opacity: .25
+                    fillOpacity: feature.properties.fill-opacity,
+                    opacity: feature.properties.stroke-opacity
                 };
             },
                     // You can add popups for each feature
@@ -162,7 +162,7 @@ fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-
                       layer.bindPopup(feature.properties.name);
                   }
               }
-        })//.addTo(map);
+        }).addTo(map);
                 
                 // Fit the map to the GeoJSON bounds
         map.fitBounds(geojsonLayer.getBounds());
@@ -215,7 +215,7 @@ var overlayMaps = {
     "2019 USGS map" : USGS_2019,
     "2019 aerial photograph": PASDA2019,
     "2023 USGS map" : USGS_2023,
-    "AOI" : geojsonLayer,
+   //"AOI" : geojsonLayer,
     };
     
 //    var layerControl = L.control.layers(overlayMaps, null, {collapsed:false}).addTo(map);
