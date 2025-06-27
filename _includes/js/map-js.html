@@ -165,7 +165,7 @@ fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-
                       layer.bindPopup(feature.properties.name);
                   }
               }
-        })//.addTo(map);
+        }).addTo(map);
                 
                 // Fit the map to the GeoJSON bounds
         map.fitBounds(geojsonLayer.getBounds());
