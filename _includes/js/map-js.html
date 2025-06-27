@@ -133,10 +133,10 @@ var Aerial_1959 = L.tileLayer('https://mapwarper.net/maps/tile/88304/{z}/{x}/{y}
 
 function setStyle(feature) {
   return {
-    fillColor: feature.properties.fill,
-    color: feature.properties.stroke,
-    fillOpacity: feature.properties.fill-opacity,
-    opacity: feature.properties.stroke-opacity
+      fillColor: feature.properties.fill,
+      color: feature.properties.stroke,
+      fillOpacity: feature.properties.stroke,
+      opacity: feature.properties.strokeOpacity
   }
 }
 
@@ -152,8 +152,8 @@ fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-
                 return {
                     fillColor: feature.properties.fill,
                     color: feature.properties.stroke,
-                    fillOpacity: feature.properties.fill-opacity,
-                    opacity: feature.properties.stroke-opacity
+                    fillOpacity: feature.properties.stroke,
+                    opacity: feature.properties.strokeOpacity
                 };
             },
                     // You can add popups for each feature
