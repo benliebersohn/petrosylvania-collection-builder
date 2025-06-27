@@ -139,7 +139,9 @@ function setStyle(feature) {
       opacity: feature.properties.strokeOpacity
   }
 }
-
+/////////////
+let geojsonLayer;
+/////////////
         // Fetch and add the GeoJSON
 fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson')
     
@@ -162,10 +164,17 @@ fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-
                       layer.bindPopup(feature.properties.name);
                   }
               }
-        })//.addTo(map);
-                
-                // Fit the map to the GeoJSON bounds
+        });//.addTo(map);
+
+        geojsonLayer.addTo(map);
+
         map.fitBounds(geojsonLayer.getBounds());
+
+        overlays["GeoJSON Features"] = geojsonLayer;
+
+        layerControl.addOverlay(geojsonLayer, "GeoJSON Features");
+                // Fit the map to the GeoJSON bounds
+        //map.fitBounds(geojsonLayer.getBounds());
     })
     .catch(error => {
         console.error('Error loading GeoJSON:', error);
@@ -215,7 +224,7 @@ var overlayMaps = {
     "2019 USGS map" : USGS_2019,
     "2019 aerial photograph": PASDA2019,
     "2023 USGS map" : USGS_2023,
-    "AOI" : geojsonLayer,
+    //"AOI" : geojsonLayer,
     };
     
 //    var layerControl = L.control.layers(overlayMaps, null, {collapsed:false}).addTo(map);
