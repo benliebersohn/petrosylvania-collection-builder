@@ -140,7 +140,7 @@ function setStyle(feature) {
   }
 }
 
-const layerControl = L.control.layers(layers.baseLayers, layers.overlays).addTo(map);
+//var layerControl = L.control.layers(layers.baseLayers, layers.overlays).addTo(map);
 
 var baseMaps = {
     "OSM": OSMLayer
@@ -185,7 +185,7 @@ fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-
     .then(response => response.json())
     .then(data => {
                 // Create a GeoJSON layer and add to map
-        const geojsonLayer = L.geoJSON(data, {
+        var geojsonLayer = L.geoJSON(data, {
                     // You can style your features here
             style: function(feature) {
                 return {
