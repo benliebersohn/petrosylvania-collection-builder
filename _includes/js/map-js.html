@@ -147,7 +147,7 @@ fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-
     .then(response => response.json())
     .then(data => {
                 // Create a GeoJSON layer and add to map
-    const geojsonLayer = L.geoJSON(data).addTo(map);
+    const geojsonLayer = L.geoJSON(AOI).addTo(map);
     })
                     // You can style your features here
 
