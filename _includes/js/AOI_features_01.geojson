@@ -12,7 +12,12 @@
       "type": "Feature",
       "properties": {
         "AOI_ID": "AOI-1",
-        "Name": "Point Breeze No. 1 Tank Farm"
+        "Name": "Point Breeze No. 1 Tank Farm",
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#cab2d6",
+        "fill-opacity": 0.5
       },
       "geometry": {
         "0": {
@@ -197,13 +202,19 @@
             ]
           ]
         ]
-      }
+      },
+      "id": 0
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_ID": "AOI-2",
-        "Name": "Point Breeze Processing Area"
+        "Name": "Point Breeze Processing Area",
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#543005",
+        "fill-opacity": 0.5
       },
       "geometry": {
         "0": {
@@ -476,13 +487,19 @@
             ]
           ]
         ]
-      }
+      },
+      "id": 1
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_ID": "AOI-3",
-        "Name": "Point Breeze Impoundment Area"
+        "Name": "Point Breeze Impoundment Area",
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#01665e",
+        "fill-opacity": 0.5
       },
       "geometry": {
         "0": {
@@ -691,13 +708,19 @@
             ]
           ]
         ]
-      }
+      },
+      "id": 2
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_ID": "AOI-4",
-        "Name": "No. 4 Tank Farm"
+        "Name": "No. 4 Tank Farm",
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#e31a1c",
+        "fill-opacity": 0.5
       },
       "geometry": {
         "0": {
@@ -986,13 +1009,19 @@
             ]
           ]
         ]
-      }
+      },
+      "id": 3
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_ID": "AOI-5",
-        "Name": "Girard Point South Tank Field"
+        "Name": "Girard Point South Tank Field",
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#fdbf6f",
+        "fill-opacity": 0.5
       },
       "geometry": {
         "0": {
@@ -1209,13 +1238,19 @@
             ]
           ]
         ]
-      }
+      },
+      "id": 4
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_ID": "AOI-6",
-        "Name": "Girard Point Chemicals Area"
+        "Name": "Girard Point Chemicals Area",
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#1f78b4",
+        "fill-opacity": 0.5
       },
       "geometry": {
         "0": {
@@ -1392,13 +1427,19 @@
             ]
           ]
         ]
-      }
+      },
+      "id": 5
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_ID": "AOI-7",
-        "Name": "Girard Point Fuels Area"
+        "Name": "Girard Point Fuels Area",
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#f6e8c3",
+        "fill-opacity": 0.5
       },
       "geometry": {
         "0": {
@@ -1591,13 +1632,19 @@
             ]
           ]
         ]
-      }
+      },
+      "id": 6
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_ID": "AOI-8",
-        "Name": "North Yard"
+        "Name": "North Yard",
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#80cdc1",
+        "fill-opacity": 0.5
       },
       "geometry": {
         "0": {
@@ -1990,13 +2037,19 @@
             ]
           ]
         ]
-      }
+      },
+      "id": 7
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_ID": "AOI-8",
-        "Name": "North Yard"
+        "Name": "North Yard",
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#80cdc1",
+        "fill-opacity": 0.5
       },
       "geometry": {
         "0": {
@@ -2245,13 +2298,19 @@
             ]
           ]
         ]
-      }
+      },
+      "id": 8
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_ID": "AOI-9",
-        "Name": "Schuylkill River Tank Farm"
+        "Name": "Schuylkill River Tank Farm",
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#6a3d9a",
+        "fill-opacity": 0.5
       },
       "geometry": {
         "0": {
@@ -2356,13 +2415,19 @@
             ]
           ]
         ]
-      }
+      },
+      "id": 9
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_ID": "AOI-10",
-        "Name": "West yard"
+        "Name": "West yard",
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#b2df8a",
+        "fill-opacity": 0.5
       },
       "geometry": {
         "0": {
@@ -2603,13 +2668,19 @@
             ]
           ]
         ]
-      }
+      },
+      "id": 10
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_ID": "AOI-1",
-        "Name": "Bellmont Terminal"
+        "Name": "Bellmont Terminal",
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#33a02c",
+        "fill-opacity": 0.5
       },
       "geometry": {
         "0": {
@@ -2666,13 +2737,19 @@
             ]
           ]
         ]
-      }
+      },
+      "id": 11
     },
     {
       "type": "Feature",
       "properties": {
-        "AOI_ID": null,
-        "Name": "PGW Property"
+        "AOI_ID": "null",
+        "Name": "PGW Property",
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#33a02c",
+        "fill-opacity": 0.5
       },
       "geometry": {
         "0": {
@@ -2729,7 +2806,8 @@
             ]
           ]
         ]
-      }
+      },
+      "id": 12
     }
   ]
 }
