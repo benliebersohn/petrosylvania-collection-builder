@@ -143,11 +143,10 @@ function setStyle(feature) {
         // Fetch and add the GeoJSON
 fetch('https://raw.githubusercontent.com/benliebersohn/data_bin/refs/heads/main/AOI_features_01.geojson')
     
-    
     .then(response => response.json())
     .then(data => {
                 // Create a GeoJSON layer and add to map
-        const geojsonLayer = L.geoJSON(data, {
+        const geojsonLayer = L.geoJSON(AOI, {
                     // You can style your features here
 
         
