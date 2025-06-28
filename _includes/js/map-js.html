@@ -209,7 +209,7 @@ fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-
 
         overlays["GeoJSON Features"] = geojsonLayer;
 
-        layerControl.addOverlay(geojsonLayer, "GeoJSON Features");
+        layerControl.addOverlay(geojsonLayer, "GeoJSON Features").addTo(map);
                 // Fit the map to the GeoJSON bounds
         //map.fitBounds(geojsonLayer.getBounds());
     })
