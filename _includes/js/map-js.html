@@ -141,7 +141,7 @@ function setStyle(feature) {
 }
 
 //var layerControl = L.control.layers(layers.baseLayers, layers.overlays).addTo(map);
-
+/*
 var baseMaps = {
     "OSM": OSMLayer
     };
@@ -174,7 +174,7 @@ var overlayMaps = {
     };
     var layerControl = L.control.layers(null, overlayMaps, {collapsed: false}).addTo(map);
     //var layerControl = L.control.layers(null, overlayMaps, {collapsed:false}).addTo(map)
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////
+//!!!!*///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////
 
 /////////////
 let geojsonLayer;
@@ -202,6 +202,38 @@ fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-
                   }
               }
     });//.addTo(map);
+
+var baseMaps = {
+    "OSM": OSMLayer
+    };
+
+var overlayMaps = {
+    "1892 Philadelphia waterfront" : Waterfront_1892,
+    "1894 USGS map" : USGS_1894,
+    "1895 Bromley street atlas": Bromley_1895,
+    "1910 Bromley street atlas" : Bromley_1910,
+    "1920 USGS map" : USGS_1920,
+    "1928 aerial photograph" : Aerial_1928,
+    "1937 Redlining map" : HOLC_1937,
+    "1949 USGS map" : USGS_1949,
+    "1959 aerial photograph" : Aerial_1959,
+    "1965 aerial photograph" : Aerial_1965,
+    "1967 USGS map" : USGS_1967,
+    "1975 aerial photograph" : Aerial_1975,
+    "1980 aerial photograph" : Aerial_1980,
+    "1985 aerial photograph": Aerial_1985,
+    "1990 aerial photograph" : Aerial_1990,
+    "1995 USGS map" : USGS_1995,
+    "1997 LNAPL plume map 1" : ArmyPlume_1,
+    "1997 LNAPL plume map 2" : ArmyPlume_2,
+    "1997 LNAPL plume map 3" : ArmyPlume_3,
+    "1997 LNAPL plume map 4" : ArmyPlume_4,
+    "2019 USGS map" : USGS_2019,
+    "2019 aerial photograph": PASDA2019,
+    "2023 USGS map" : USGS_2023,
+    //"AOI" : geojsonLayer,    
+    };
+    var layerControl = L.control.layers(null, overlayMaps, {collapsed: false}).addTo(map);
 
         geojsonLayer.addTo(map);
 
