@@ -170,7 +170,7 @@ var overlayMaps = {
     "2019 USGS map" : USGS_2019,
     "2019 aerial photograph": PASDA2019,
     "2023 USGS map" : USGS_2023,
-    //"AOI" : geojsonLayer,    
+    //"AOI" : AOI_Layer,    
     };
     var layerControl = L.control.layers(null, overlayMaps, {collapsed: false}).addTo(map);
     //var layerControl = L.control.layers(null, overlayMaps, {collapsed:false}).addTo(map)
@@ -179,7 +179,7 @@ var overlayMaps = {
 /////////////
 let AOI;
 let FEMA;
-let geojsonLayer;
+let AOI_Layer;
 /////////////
         // Fetch and add the GeoJSON
 fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson')
@@ -187,7 +187,7 @@ fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-
     .then(response => response.json())
     .then(data => {
                 // Create a GeoJSON layer and add to map
-        var geojsonLayer = L.geoJSON(data, {
+        var AOI_Layer = L.geoJSON(data, {
                     // You can style your features here
             style: function(feature) {
                 return {
@@ -258,20 +258,20 @@ var overlayMaps = {
     "2019 USGS map" : USGS_2019,
     "2019 aerial photograph": PASDA2019,
     "2023 USGS map" : USGS_2023,
-    "AOI overlay" : geojsonLayer,
+    "AOI overlay" : AOI_Layer,
 //    "100-year floodplain overlay" : FEMA
     };
     var layerControl = L.control.layers(null, overlayMaps, {collapsed: false}).addTo(map);
 
-        geojsonLayer.addTo(map);
+        AOI_Layer.addTo(map);
 
-        map.fitBounds(geojsonLayer.getBounds());
+        map.fitBounds(AOI_Layer.getBounds());
 
-        overlays["GeoJSON Features"] = geojsonLayer;
+        overlays["GeoJSON Features"] = AOI_Layer;
 
-        layerControl.addOverlay(geojsonLayer, "GeoJSON Features").addTo(map);
+        layerControl.addOverlay(AOI_Layer, "GeoJSON Features").addTo(map);
                 // Fit the map to the GeoJSON bounds
-        //map.fitBounds(geojsonLayer.getBounds());
+        //map.fitBounds(AOI_Layer.getBounds());
     })
     .catch(error => {
         console.error('Error loading GeoJSON:', error);
