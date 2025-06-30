@@ -99,7 +99,7 @@ var Aerial_1928 = L.tileLayer('https://mapwarper.net/maps/tile/88306/{z}/{x}/{y}
 var Aerial_1965 = L.tileLayer('https://mapwarper.net/maps/tile/88299/{z}/{x}/{y}.png')//
 var Aerial_1975 = L.tileLayer('https://mapwarper.net/maps/tile/88571/{z}/{x}/{y}.png')
 var Aerial_1980 = L.tileLayer('https://mapwarper.net/maps/tile/88301/{z}/{x}/{y}.png')//
-var Aerial_1985 = L.tileLayer('https://mapwarper.net/maps/tile/88304/{z}/{x}/{y}.png')//.addTo(map);
+var Aerial_1985 = L.tileLayer('https://mapwarper.net/maps/tile/88295/{z}/{x}/{y}.png')//.addTo(map);
 var Aerial_1990 = L.tileLayer('https://mapwarper.net/maps/tile/90707/{z}/{x}/{y}.png')//
 
 //var Aerial_1995 = L.tileLayer('https://mapwarper.net/maps/tile/88304/{z}/{x}/{y}.png')
@@ -177,7 +177,8 @@ var overlayMaps = {
 //!!!!*///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////
 //https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson
 /////////////
-let geojsonLayer;
+let AOI;
+let FEMA;
 /////////////
         // Fetch and add the GeoJSON
 fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson')
