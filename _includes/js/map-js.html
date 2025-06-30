@@ -179,6 +179,7 @@ var overlayMaps = {
 /////////////
 let AOI;
 let FEMA;
+let geojsonLayer;
 /////////////
         // Fetch and add the GeoJSON
 fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson')
@@ -186,7 +187,7 @@ fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-
     .then(response => response.json())
     .then(data => {
                 // Create a GeoJSON layer and add to map
-        var AOI = L.geoJSON(data, {
+        var geojsonLayer = L.geoJSON(data, {
                     // You can style your features here
             style: function(feature) {
                 return {
@@ -203,6 +204,7 @@ fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-
                   }
               }
     });//.addTo(map);
+        /*
 fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson')
     
     .then(response => response.json())
@@ -225,6 +227,7 @@ fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-
                   }
               }
     });
+    */
 //var aoiPolygons = {
     
 var baseMaps = {
@@ -255,8 +258,8 @@ var overlayMaps = {
     "2019 USGS map" : USGS_2019,
     "2019 aerial photograph": PASDA2019,
     "2023 USGS map" : USGS_2023,
-    "AOI overlay" : AOI,
-    "100-year floodplain overlay" : FEMA
+    "AOI overlay" : geojsonLayer,
+//    "100-year floodplain overlay" : FEMA
     };
     var layerControl = L.control.layers(null, overlayMaps, {collapsed: false}).addTo(map);
 
