@@ -175,7 +175,7 @@ var overlayMaps = {
     var layerControl = L.control.layers(null, overlayMaps, {collapsed: false}).addTo(map);
     //var layerControl = L.control.layers(null, overlayMaps, {collapsed:false}).addTo(map)
 //!!!!*///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////
-
+//https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson
 /////////////
 let geojsonLayer;
 /////////////
@@ -185,7 +185,7 @@ fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-
     .then(response => response.json())
     .then(data => {
                 // Create a GeoJSON layer and add to map
-        var geojsonLayer = L.geoJSON(data, {
+        var AOI = L.geoJSON(data, {
                     // You can style your features here
             style: function(feature) {
                 return {
@@ -202,7 +202,28 @@ fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-
                   }
               }
     });//.addTo(map);
-
+fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson')
+    
+    .then(response => response.json())
+    .then(data => {
+                // Create a GeoJSON layer and add to map
+        var FEMA = L.geoJSON(data, {
+                    // You can style your features here
+            style: function(feature) {
+                return {
+                    fillColor: feature.properties.fill,
+                    color: feature.properties.stroke,
+                    fillOpacity: feature.properties.fill-opacity,
+                    opacity: feature.properties.stroke-opacity
+                };
+            },
+                    // You can add popups for each feature
+              onEachFeature: function(feature, layer) {
+                  if (feature.properties && feature.properties.name) {
+                      layer.bindPopup(feature.properties.name);
+                  }
+              }
+    });
 //var aoiPolygons = {
     
 var baseMaps = {
@@ -233,7 +254,8 @@ var overlayMaps = {
     "2019 USGS map" : USGS_2019,
     "2019 aerial photograph": PASDA2019,
     "2023 USGS map" : USGS_2023,
-    "AOI" : geojsonLayer,    
+    "AOI overlay" : AOI,
+    "100-year floodplain overlay" : FEMA
     };
     var layerControl = L.control.layers(null, overlayMaps, {collapsed: false}).addTo(map);
 
