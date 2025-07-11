@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dual Layer Control Leaflet Map</title>
+    <title>Historical Map Collection</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -11,8 +11,8 @@
             padding: 0;
         }
         #map {
-            width: 60%;
-            height: 60vh;
+            width: 80%;
+            height: 80vh;
         }
         
         /* Custom control styling */
@@ -21,6 +21,8 @@
             padding: 10px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            max-height: 80vh;
+            overflow-y: auto;
         }
         
         /* Left control specific styling */
@@ -49,6 +51,14 @@
         .leaflet-control-layers {
             margin-top: 10px;
         }
+        
+        /* Layer group headers */
+        .layer-group-header {
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+        }
     </style>
 </head>
 <body>
@@ -56,110 +66,109 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Initialize the map
-        const map = L.map('map').setView([39.8283, -98.5795], 4); // Center on USA
+        // Initialize the map centered on Philadelphia
+        const map = L.map('map').setView([39.9526, -75.1652], 12);
 
-        // Define basemaps (WMS layers)
+        // Define all basemaps organized by category
         const basemaps = {
-            "1867 Incorporated City map": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1876 Hopkins City Atlas": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1892 Philadelphia waterfront": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1894 USGS map": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1895 Bromley street atlas": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1901 Bromley street atlas": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1910 Bromley street atlas": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1920 USGS map": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1928 aerial photo": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1937 redlining map": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1942 land use map": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1949 USGS map": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1959 aerial photo": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1962 land use map": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1965 aerial photo": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1967 USGS map": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1975 aerial photo": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1980 aerial photo": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1985 aerial photo": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1990 aerial photo": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1995 USGS map": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1997 LNAPL plume map 1": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1997 LNAPL plume map 2": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1997 LNAPL plume map 3": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "1997 LNAPL plume map 4": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "2019 USGS map": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "2019 aerial photo": L.tileLayer.wms('https://imagery.pasda.psu.edu/arcgis/services/pasda/PhiladelphiaImagery2019/MapServer/WMSServer?', {
-                layers: '1',
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "2023 USGS map": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-            "Current Satellite View": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }),
-
-        }
+            // Modern Reference Maps
+            "Modern Reference": {
+                "OSM Streets": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }),
+                "ESRI StreetMap": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+                    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+                }),
+                "ESRI Imagery": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                }),
+                "Google Satellite": L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}')
+            },
+            
+            // USGS Historical Maps
+            "USGS Maps": {
+                "USGS 1894": L.tileLayer('https://mapwarper.net/maps/tile/88571/{z}/{x}/{y}.png', {
+                    attribution: '<i>1894 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
+                }),
+                "USGS 1920": L.tileLayer('https://mapwarper.net/maps/tile/88561/{z}/{x}/{y}.png', {
+                    attribution: '<i>1920 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
+                }),
+                "USGS 1949": L.tileLayer('https://mapwarper.net/maps/tile/88564/{z}/{x}/{y}.png', {
+                    attribution: '<i>1949 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
+                }),
+                "USGS 1967": L.tileLayer('https://mapwarper.net/maps/tile/88567/{z}/{x}/{y}.png', {
+                    attribution: '<i>1967 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
+                }),
+                "USGS 1995": L.tileLayer('https://mapwarper.net/maps/tile/88568/{z}/{x}/{y}.png', {
+                    attribution: '<i>1995 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
+                }),
+                "USGS 2019": L.tileLayer('https://mapwarper.net/maps/tile/88569/{z}/{x}/{y}.png', {
+                    attribution: '<i>2019 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
+                }),
+                "USGS 2023": L.tileLayer('https://mapwarper.net/maps/tile/88570/{z}/{x}/{y}.png', {
+                    attribution: '<i>2023 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
+                })
+            },
+            
+            // Historical Atlas Maps
+            "Historical Atlases": {
+                "Barnes 1867": L.tileLayer('https://mapwarper.net/mosaics/tile/2278/{z}/{x}/{y}.png'),
+                "Hopkins 1876": L.tileLayer('https://mapwarper.net/mosaics/tile/2272/{z}/{x}/{y}.png'),
+                "Bromley 1895": L.tileLayer('https://mapwarper.net/mosaics/tile/2184/{z}/{x}/{y}.png'),
+                "Bromley 1901": L.tileLayer('https://mapwarper.net/mosaics/tile/2272/{z}/{x}/{y}.png'),
+                "Bromley 1910": L.tileLayer('https://mapwarper.net/mosaics/tile/2271/{z}/{x}/{y}.png')
+            },
+            
+            // Aerial Imagery
+            "Aerial Imagery": {
+                "Aerial 1928": L.tileLayer('https://mapwarper.net/maps/tile/88306/{z}/{x}/{y}.png'),
+                "Aerial 1959": L.tileLayer('https://mapwarper.net/maps/tile/88304/{z}/{x}/{y}.png'),
+                "Aerial 1965": L.tileLayer('https://mapwarper.net/maps/tile/88299/{z}/{x}/{y}.png'),
+                "Aerial 1975": L.tileLayer('https://mapwarper.net/maps/tile/88571/{z}/{x}/{y}.png'),
+                "Aerial 1980": L.tileLayer('https://mapwarper.net/maps/tile/88301/{z}/{x}/{y}.png'),
+                "Aerial 1985": L.tileLayer('https://mapwarper.net/maps/tile/88295/{z}/{x}/{y}.png'),
+                "Aerial 1990": L.tileLayer('https://mapwarper.net/maps/tile/90707/{z}/{x}/{y}.png')
+            },
+            
+            // Special Collection Maps
+            "Special Collections": {
+                "Waterfront 1892": L.tileLayer('https://mapwarper.net/maps/tile/91523/{z}/{x}/{y}.png'),
+                "Landuse 1942": L.tileLayer('https://mapwarper.net/maps/tile/94403/{z}/{x}/{y}.png'),
+                "Landuse 1962": L.tileLayer('https://mapwarper.net/maps/tile/94678/{z}/{x}/{y}.png'),
+                "HOLC 1937": L.tileLayer('https://mapwarper.net/maps/tile/90758/{z}/{x}/{y}.png'),
+                "Petro 1965": L.tileLayer('https://mapwarper.net/maps/tile/83445/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }),
+                "Army Plume 1": L.tileLayer('https://mapwarper.net/maps/tile/88772/{z}/{x}/{y}.png'),
+                "Army Plume 2": L.tileLayer('https://mapwarper.net/maps/tile/88779/{z}/{x}/{y}.png'),
+                "Army Plume 3": L.tileLayer('https://mapwarper.net/maps/tile/88816/{z}/{x}/{y}.png'),
+                "Army Plume 4": L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}.png')
+            },
+            
+            // WMS Services
+            "WMS Services": {
+                "Philadelphia 2019 Imagery": L.tileLayer.wms('https://imagery.pasda.psu.edu/arcgis/services/pasda/PhiladelphiaImagery2019/MapServer/WMSServer?', {
+                    layers: '1',
+                    format: 'image/png',
+                    transparent: true,
+                    attribution: 'Pennsylvania Spatial Data Access (PASDA)'
+                }),
+                "ESRI NatGeo": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
+                    attribution: 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC',
+                    maxZoom: 16
+                })
+            }
+        };
 
         // Add default basemap
-        basemaps.OpenStreetMap.addTo(map);
+        basemaps["Modern Reference"]["OSM Streets"].addTo(map);
 
-        // Create overlay layers (initially empty, will be populated with GeoJSON)
+        // Create overlay layers
         const overlays = {
-            "States": L.layerGroup(),
-            "Cities": L.layerGroup(),
-            "Rivers": L.layerGroup()
+            "City Boundaries": L.layerGroup(),
+            "Landmarks": L.layerGroup(),
+            "Transportation": L.layerGroup()
         };
 
         // Function to load GeoJSON data
@@ -175,15 +184,15 @@
             }
         }
 
-        // Load sample GeoJSON data
-        loadGeoJSON('https://raw.githubusercontent.com/PublicaMundi/MappingAPI/master/data/geojson/us-states.json', 
-                   overlays.States, {color: 'blue', weight: 2, fillOpacity: 0.1});
+        // Load sample Philadelphia GeoJSON data
+        loadGeoJSON('https://raw.githubusercontent.com/azavea/geo-data/master/Neighborhoods_Philadelphia/Neighborhoods_Philadelphia.geojson', 
+                   overlays["City Boundaries"], {color: 'blue', weight: 2, fillOpacity: 0.1});
         
-        loadGeoJSON('https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_populated_places.geojson', 
-                   overlays.Cities, {color: 'red', radius: 5, fillOpacity: 0.8});
+        loadGeoJSON('https://opendata.arcgis.com/datasets/4bf20a4b5eeb4f2f85e35a6ecc2a3c11_0.geojson', 
+                   overlays["Landmarks"], {color: 'red', radius: 5, fillOpacity: 0.8});
         
-        loadGeoJSON('https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_rivers_lake_centerlines.geojson', 
-                   overlays.Rivers, {color: 'navy', weight: 2});
+        loadGeoJSON('https://opendata.arcgis.com/datasets/b54ec5210cee41c3a884c9086f7af1be_0.geojson', 
+                   overlays["Transportation"], {color: 'navy', weight: 2});
 
         // Create overlay control (left side)
         const overlayControl = L.control.layers(null, overlays, {
@@ -191,8 +200,17 @@
             position: 'topleft'
         }).addTo(map);
 
-        // Create basemap control (right side)
-        const basemapControl = L.control.layers(null, basemaps, {
+        // Create basemap control (right side) with grouped layers
+        const baseLayers = {};
+        
+        // Flatten the basemaps structure for Leaflet's layer control
+        Object.keys(basemaps).forEach(group => {
+            Object.keys(basemaps[group]).forEach(layerName => {
+                baseLayers[`${group}: ${layerName}`] = basemaps[group][layerName];
+            });
+        });
+
+        const basemapControl = L.control.layers(null, baseLayers, {
             collapsed: false,
             position: 'topright'
         }).addTo(map);
@@ -200,6 +218,15 @@
         // Add custom class to the control containers
         document.querySelector('.leaflet-control-layers').classList.add('custom-control');
         document.querySelectorAll('.leaflet-control-layers')[1].classList.add('custom-control');
+        
+        // Add scrollable functionality to controls if they get too tall
+        const controls = document.querySelectorAll('.custom-control');
+        controls.forEach(control => {
+            if (control.scrollHeight > window.innerHeight * 0.8) {
+                control.style.maxHeight = '80vh';
+                control.style.overflowY = 'auto';
+            }
+        });
     </script>
 </body>
 </html>
