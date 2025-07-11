@@ -14,50 +14,17 @@
             width: 100%;
             height: 80vh;
         }
-        
-        /* Custom control styling */
-        .custom-control {
+        .leaflet-control {
             background: white;
             padding: 10px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            max-height: 80vh;
-            overflow-y: auto;
         }
-        
-        /* Left control specific styling */
         .leaflet-left .leaflet-control {
             margin-left: 10px;
         }
-        
-        /* Right control specific styling */
         .leaflet-right .leaflet-control {
             margin-right: 10px;
-        }
-        
-        /* Ensure the control panels have proper z-index */
-        .leaflet-top {
-            z-index: 1000;
-        }
-        
-        /* Style the layer control lists */
-        .leaflet-control-layers-list {
-            background: white;
-            padding: 5px;
-            border-radius: 4px;
-        }
-        
-        /* Add some spacing between controls */
-        .leaflet-control-layers {
-            margin-top: 10px;
-        }
-        
-        /* Layer group headers */
-        .layer-group-header {
-            font-weight: bold;
-            margin-top: 10px;
-            margin-bottom: 5px;
-            border-bottom: 1px solid #ccc;
         }
     </style>
 </head>
@@ -69,91 +36,83 @@
         // Initialize the map centered on Philadelphia
         const map = L.map('map').setView([39.9526, -75.1652], 12);
 
-        // Define all basemaps organized by category
-        const basemaps = {
-            // Modern Reference Maps
-            "Modern Reference": {
-                "OSM Streets": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                }),
-                "ESRI StreetMap": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
-                    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
-                }),
-                "ESRI Imagery": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-                }),
-                "Google Satellite": L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}')
+        // Define all basemaps with year information
+        const basemaps = [
+            // Historical maps sorted by year
+            { name: "Barnes 1867", layer: L.tileLayer('https://mapwarper.net/mosaics/tile/2278/{z}/{x}/{y}.png'), year: 1867 },
+            { name: "Hopkins 1876", layer: L.tileLayer('https://mapwarper.net/mosaics/tile/2272/{z}/{x}/{y}.png'), year: 1876 },
+            { name: "Waterfront 1892", layer: L.tileLayer('https://mapwarper.net/maps/tile/91523/{z}/{x}/{y}.png'), year: 1892 },
+            { name: "USGS 1894", layer: L.tileLayer('https://mapwarper.net/maps/tile/88571/{z}/{x}/{y}.png', {
+                attribution: '1894 USGS Map courtesy of USGS'
+            }), year: 1894 },
+            { name: "Bromley 1895", layer: L.tileLayer('https://mapwarper.net/mosaics/tile/2184/{z}/{x}/{y}.png'), year: 1895 },
+            { name: "Bromley 1901", layer: L.tileLayer('https://mapwarper.net/mosaics/tile/2272/{z}/{x}/{y}.png'), year: 1901 },
+            { name: "Bromley 1910", layer: L.tileLayer('https://mapwarper.net/mosaics/tile/2271/{z}/{x}/{y}.png'), year: 1910 },
+            { name: "USGS 1920", layer: L.tileLayer('https://mapwarper.net/maps/tile/88561/{z}/{x}/{y}.png', {
+                attribution: '1920 USGS Map courtesy of USGS'
+            }), year: 1920 },
+            { name: "Aerial 1928", layer: L.tileLayer('https://mapwarper.net/maps/tile/88306/{z}/{x}/{y}.png'), year: 1928 },
+            { name: "HOLC 1937", layer: L.tileLayer('https://mapwarper.net/maps/tile/90758/{z}/{x}/{y}.png'), year: 1937 },
+            { name: "Landuse 1942", layer: L.tileLayer('https://mapwarper.net/maps/tile/94403/{z}/{x}/{y}.png'), year: 1942 },
+            { name: "USGS 1949", layer: L.tileLayer('https://mapwarper.net/maps/tile/88564/{z}/{x}/{y}.png', {
+                attribution: '1949 USGS Map courtesy of USGS'
+            }), year: 1949 },
+            { name: "Aerial 1959", layer: L.tileLayer('https://mapwarper.net/maps/tile/88304/{z}/{x}/{y}.png'), year: 1959 },
+            { name: "Landuse 1962", layer: L.tileLayer('https://mapwarper.net/maps/tile/94678/{z}/{x}/{y}.png'), year: 1962 },
+            { name: "Aerial 1965", layer: L.tileLayer('https://mapwarper.net/maps/tile/88299/{z}/{x}/{y}.png'), year: 1965 },
+            { name: "Petro 1965", layer: L.tileLayer('https://mapwarper.net/maps/tile/83445/{z}/{x}/{y}.png', {
+                maxZoom: 19
+            }), year: 1965 },
+            { name: "USGS 1967", layer: L.tileLayer('https://mapwarper.net/maps/tile/88567/{z}/{x}/{y}.png', {
+                attribution: '1967 USGS Map courtesy of USGS'
+            }), year: 1967 },
+            { name: "Aerial 1975", layer: L.tileLayer('https://mapwarper.net/maps/tile/88571/{z}/{x}/{y}.png'), year: 1975 },
+            { name: "Aerial 1980", layer: L.tileLayer('https://mapwarper.net/maps/tile/88301/{z}/{x}/{y}.png'), year: 1980 },
+            { name: "Aerial 1985", layer: L.tileLayer('https://mapwarper.net/maps/tile/88295/{z}/{x}/{y}.png'), year: 1985 },
+            { name: "Aerial 1990", layer: L.tileLayer('https://mapwarper.net/maps/tile/90707/{z}/{x}/{y}.png'), year: 1990 },
+            { name: "USGS 1995", layer: L.tileLayer('https://mapwarper.net/maps/tile/88568/{z}/{x}/{y}.png', {
+                attribution: '1995 USGS Map courtesy of USGS'
+            }), year: 1995 },
+            { name: "Philadelphia 2019 Imagery", layer: L.tileLayer.wms('https://imagery.pasda.psu.edu/arcgis/services/pasda/PhiladelphiaImagery2019/MapServer/WMSServer?', {
+                layers: '1',
+                format: 'image/png',
+                transparent: true
+            }), year: 2019 },
+            { name: "USGS 2019", layer: L.tileLayer('https://mapwarper.net/maps/tile/88569/{z}/{x}/{y}.png', {
+                attribution: '2019 USGS Map courtesy of USGS'
+            }), year: 2019 },
+            { name: "USGS 2023", layer: L.tileLayer('https://mapwarper.net/maps/tile/88570/{z}/{x}/{y}.png', {
+                attribution: '2023 USGS Map courtesy of USGS'
+            }), year: 2023 },
             
-            
-            // USGS Historical Maps
-                "USGS 1894": L.tileLayer('https://mapwarper.net/maps/tile/88571/{z}/{x}/{y}.png', {
-                    attribution: '<i>1894 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
-                }),
-                "USGS 1920": L.tileLayer('https://mapwarper.net/maps/tile/88561/{z}/{x}/{y}.png', {
-                    attribution: '<i>1920 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
-                }),
-                "USGS 1949": L.tileLayer('https://mapwarper.net/maps/tile/88564/{z}/{x}/{y}.png', {
-                    attribution: '<i>1949 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
-                }),
-                "USGS 1967": L.tileLayer('https://mapwarper.net/maps/tile/88567/{z}/{x}/{y}.png', {
-                    attribution: '<i>1967 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
-                }),
-                "USGS 1995": L.tileLayer('https://mapwarper.net/maps/tile/88568/{z}/{x}/{y}.png', {
-                    attribution: '<i>1995 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
-                }),
-                "USGS 2019": L.tileLayer('https://mapwarper.net/maps/tile/88569/{z}/{x}/{y}.png', {
-                    attribution: '<i>2019 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
-                }),
-                "USGS 2023": L.tileLayer('https://mapwarper.net/maps/tile/88570/{z}/{x}/{y}.png', {
-                    attribution: '<i>2023 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
-                })
-            
-            // Historical Atlas Maps
-                "Barnes 1867": L.tileLayer('https://mapwarper.net/mosaics/tile/2278/{z}/{x}/{y}.png'),
-                "Hopkins 1876": L.tileLayer('https://mapwarper.net/mosaics/tile/2272/{z}/{x}/{y}.png'),
-                "Bromley 1895": L.tileLayer('https://mapwarper.net/mosaics/tile/2184/{z}/{x}/{y}.png'),
-                "Bromley 1901": L.tileLayer('https://mapwarper.net/mosaics/tile/2272/{z}/{x}/{y}.png'),
-                "Bromley 1910": L.tileLayer('https://mapwarper.net/mosaics/tile/2271/{z}/{x}/{y}.png')
-            
-            // Aerial Imagery
-                "Aerial 1928": L.tileLayer('https://mapwarper.net/maps/tile/88306/{z}/{x}/{y}.png'),
-                "Aerial 1959": L.tileLayer('https://mapwarper.net/maps/tile/88304/{z}/{x}/{y}.png'),
-                "Aerial 1965": L.tileLayer('https://mapwarper.net/maps/tile/88299/{z}/{x}/{y}.png'),
-                "Aerial 1975": L.tileLayer('https://mapwarper.net/maps/tile/88571/{z}/{x}/{y}.png'),
-                "Aerial 1980": L.tileLayer('https://mapwarper.net/maps/tile/88301/{z}/{x}/{y}.png'),
-                "Aerial 1985": L.tileLayer('https://mapwarper.net/maps/tile/88295/{z}/{x}/{y}.png'),
-                "Aerial 1990": L.tileLayer('https://mapwarper.net/maps/tile/90707/{z}/{x}/{y}.png')
-            
-            // Special Collection Maps
-                "Waterfront 1892": L.tileLayer('https://mapwarper.net/maps/tile/91523/{z}/{x}/{y}.png'),
-                "Landuse 1942": L.tileLayer('https://mapwarper.net/maps/tile/94403/{z}/{x}/{y}.png'),
-                "Landuse 1962": L.tileLayer('https://mapwarper.net/maps/tile/94678/{z}/{x}/{y}.png'),
-                "HOLC 1937": L.tileLayer('https://mapwarper.net/maps/tile/90758/{z}/{x}/{y}.png'),
-                "Petro 1965": L.tileLayer('https://mapwarper.net/maps/tile/83445/{z}/{x}/{y}.png', {
-                    maxZoom: 19,
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                }),
-                "Army Plume 1": L.tileLayer('https://mapwarper.net/maps/tile/88772/{z}/{x}/{y}.png'),
-                "Army Plume 2": L.tileLayer('https://mapwarper.net/maps/tile/88779/{z}/{x}/{y}.png'),
-                "Army Plume 3": L.tileLayer('https://mapwarper.net/maps/tile/88816/{z}/{x}/{y}.png'),
-                "Army Plume 4": L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}.png')
-            
-            // WMS Services
-                "Philadelphia 2019 Imagery": L.tileLayer.wms('https://imagery.pasda.psu.edu/arcgis/services/pasda/PhiladelphiaImagery2019/MapServer/WMSServer?', {
-                    layers: '1',
-                    format: 'image/png',
-                    transparent: true,
-                    attribution: 'Pennsylvania Spatial Data Access (PASDA)'
-                }),
-                "ESRI NatGeo": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
-                    attribution: 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC',
-                    maxZoom: 16
-                })
-            }
-        };
+            // Modern reference maps (no year)
+            { name: "OSM Streets", layer: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png') },
+            { name: "ESRI StreetMap", layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}') },
+            { name: "ESRI Imagery", layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}') },
+            { name: "Google Satellite", layer: L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}') },
+            { name: "ESRI NatGeo", layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}') },
+            { name: "Army Plume 1", layer: L.tileLayer('https://mapwarper.net/maps/tile/88772/{z}/{x}/{y}.png') },
+            { name: "Army Plume 2", layer: L.tileLayer('https://mapwarper.net/maps/tile/88779/{z}/{x}/{y}.png') },
+            { name: "Army Plume 3", layer: L.tileLayer('https://mapwarper.net/maps/tile/88816/{z}/{x}/{y}.png') },
+            { name: "Army Plume 4", layer: L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}.png') }
+        ];
+
+        // Sort basemaps by year (those without years at the bottom)
+        basemaps.sort((a, b) => {
+            if (a.year && b.year) return a.year - b.year;
+            if (a.year) return -1;
+            if (b.year) return 1;
+            return a.name.localeCompare(b.name);
+        });
+
+        // Create an object for the layer control
+        const baseLayers = {};
+        basemaps.forEach(bm => {
+            baseLayers[bm.name] = bm.layer;
+        });
 
         // Add default basemap
-        basemaps["Modern Reference"]["OSM Streets"].addTo(map);
+        baseLayers["OSM Streets"].addTo(map);
 
         // Create overlay layers
         const overlays = {
@@ -191,33 +150,11 @@
             position: 'topleft'
         }).addTo(map);
 
-        // Create basemap control (right side) with grouped layers
-        const baseLayers = {};
-        
-        // Flatten the basemaps structure for Leaflet's layer control
-        Object.keys(basemaps).forEach(group => {
-            Object.keys(basemaps[group]).forEach(layerName => {
-                baseLayers[`${group}: ${layerName}`] = basemaps[group][layerName];
-            });
-        });
-
+        // Create basemap control (right side)
         const basemapControl = L.control.layers(baseLayers, null, {
             collapsed: false,
             position: 'topright'
         }).addTo(map);
-
-        // Add custom class to the control containers
-        document.querySelector('.leaflet-control-layers').classList.add('custom-control');
-        document.querySelectorAll('.leaflet-control-layers')[1].classList.add('custom-control');
-        
-        // Add scrollable functionality to controls if they get too tall
-        const controls = document.querySelectorAll('.custom-control');
-        controls.forEach(control => {
-            if (control.scrollHeight > window.innerHeight * 0.8) {
-                control.style.maxHeight = '80vh';
-                control.style.overflowY = 'auto';
-            }
-        });
     </script>
 </body>
 </html>
