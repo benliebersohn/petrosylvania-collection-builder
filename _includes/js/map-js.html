@@ -135,8 +135,8 @@
         }
 
         // Load sample Philadelphia GeoJSON data
-        loadGeoJSON('https://raw.githubusercontent.com/azavea/geo-data/master/Neighborhoods_Philadelphia/Neighborhoods_Philadelphia.geojson', 
-                   overlays["City Boundaries"], {color: 'blue', weight: 2, fillOpacity: 0.1});
+        loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/main/_includes/js/FEMA_100yr_floodplain.geojson', 
+                   overlays["FEMA 100 year floodplain"], {color: 'blue', weight: 2, fillOpacity: 0.1});
         
         loadGeoJSON('https://opendata.arcgis.com/datasets/4bf20a4b5eeb4f2f85e35a6ecc2a3c11_0.geojson', 
                    overlays["Landmarks"], {color: 'red', radius: 5, fillOpacity: 0.8});
