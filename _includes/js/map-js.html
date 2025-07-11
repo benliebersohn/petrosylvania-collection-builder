@@ -384,8 +384,9 @@ fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-c
 
 var baseMaps = {
 
-    "OSM": OSMLayer
-
+    "Areas of Interest" : AOI_Layer,
+    "FEMA 100 year flood" : femaFloodLayer,
+    "Significantly industrial census tracts" : industrialLayer,
     };
 
 
@@ -455,6 +456,8 @@ var overlayMaps = {
     };
 
     var layerControl = L.control.layers(null, overlayMaps, {collapsed: false}).addTo(map);
+    var layerControl = L.control.layers(baseMaps, {collapsed: false}).addTo(map);
+        
 /*    var layerControl = L
 var groupedOverlays = {
         "Dept of Health":{
