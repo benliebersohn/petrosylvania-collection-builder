@@ -167,33 +167,46 @@
                    overlays["Census tracts predominantly zoned for industrial use, 2025"], {color: 'red', weight: 2});
 
         // Create overlay control (left side)
-            const aoiLabel = L.marker([39.9210070, -75.1928358], {
+        const aoiLabels = L.layerGroup();
+        
+        const aoi1 = L.marker([39.9210070, -75.1928358], {
         pane: 'labelPane',
         icon: L.divIcon({
             className: 'aoi-label',
             html: '<div>AOI-1</div>',
             iconSize: [40, 20]  // Width, height
         }),
-        interactive: false  // Makes the label non-clickable
-    })//.addTo(map);
+            interactive: false  // Makes the label non-clickable
+        })//.addTo(map);
         
-
+        const aoi2 = L.marker([39.9158887, -75.1991711], {  // Fixed coordinate order
+        pane: 'labelPane',
+        icon: L.divIcon({
+            className: 'aoi-label',
+            html: '<div>AOI-2</div>',
+            iconSize: [40, 20]
+        }),
+        interactive: false
+        });
+        aoiLabels.addLayer(aoi1);
+        aoiLabels.addLayer(aoi2);
+                
         overlays["AOI Boundaries"].on('add', function() {
-            if (!map.hasLayer(aoiLabel)) {
-                aoiLabel.addTo(map);
+            if (!map.hasLayer(aoiLabels)) {
+                aoiLabels.addTo(map);
                 // More aggressive refresh approach
                 setTimeout(() => {
                     map.invalidateSize({animate: false});
-                    aoiLabel._reset();
-                    aoiLabel.redraw();
+                    aoiLabels._reset();
+                    aoiLabels.redraw();
                     map.fire('moveend');
                 }, 300);
             }
         });
         
         overlays["AOI Boundaries"].on('remove', function() {
-            if (map.hasLayer(aoiLabel)) {
-                aoiLabel.removeFrom(map);
+            if (map.hasLayer(aoiLabels)) {
+                aoiLabels.removeFrom(map);
             }
         });
         
