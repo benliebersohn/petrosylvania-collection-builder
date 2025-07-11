@@ -159,11 +159,11 @@
                    overlays["Census tracts predominantly zoned for industrial use, 2025"], {color: 'red', weight: 2});
 
         overlays["AOI Boundaries"].on('add', function() {
-            AOIlabels.addTo(map);
+            aoiLabels.addTo(map);
         });
         
         overlays["AOI Boundaries"].on('remove', function() {
-            AOIlabels.removeFrom(map);
+            aoiLabels.removeFrom(map);
         });
         // Create overlay control (left side)
         const overlayControl = L.control.layers(null, overlays, {
