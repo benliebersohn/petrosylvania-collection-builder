@@ -136,6 +136,19 @@
 
         // Load sample Philadelphia GeoJSON data
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson', 
+                    overlays["City Boundaries"], 
+                    function(feature) {
+                        return {
+                            color: feature.properties.stroke || '#555555', // Default color if not specified
+                            weight: feature.properties['stroke-width'] || 2,
+                            opacity: feature.properties['stroke-opacity'] || 1,
+                            fillColor: feature.properties.fill || '#cab2d6',
+                            fillOpacity: feature.properties['fill-opacity'] || 0.5
+                        };
+                    }
+                   );
+        
+        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson', 
                    overlays["City Boundaries"], {color: 'blue', radius: 5, fillOpacity: 0.8});
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson', 
