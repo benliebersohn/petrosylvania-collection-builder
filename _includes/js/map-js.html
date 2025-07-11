@@ -136,26 +136,23 @@
 
         // Load sample Philadelphia GeoJSON data
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson', 
-                    overlays["City Boundaries"], 
+                    overlays["AOI Boundaries"], 
                     function(feature) {
                         return {
                             color: feature.properties.stroke || '#555555', // Default color if not specified
                             weight: feature.properties['stroke-width'] || 2,
                             opacity: feature.properties['stroke-opacity'] || 1,
                             fillColor: feature.properties.fill || '#cab2d6',
-                            fillOpacity: 1//feature.properties['fill-opacity'] || 0.5
+                            fillOpacity: feature.properties['fill-opacity'] || 0.5
                         };
                     }
                    );
-        
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson', 
-                   overlays["City Boundaries"], {color: 'blue', radius: 5, fillOpacity: 0.8});
-        
+                
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson', 
-                   overlays["Landmarks"], {color: 'red', radius: 5, fillOpacity: 0.8});
+                   overlays["100-year floodplain"], {color: 'blue', radius: 2, fillOpacity: 0.3});
         
         loadGeoJSON('https://opendata.arcgis.com/datasets/b54ec5210cee41c3a884c9086f7af1be_0.geojson', 
-                   overlays["Transportation"], {color: 'navy', weight: 2});
+                   overlays["Industrial census tracts"], {color: 'navy', weight: 2});
 
         // Create overlay control (left side)
         const overlayControl = L.control.layers(null, overlays, {
