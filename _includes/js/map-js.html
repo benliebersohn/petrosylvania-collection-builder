@@ -35,7 +35,19 @@
     <script>
         // Initialize the map centered on Philadelphia
         const map = L.map('map').setView([39.9526, -75.1652], 12);
+        //create a top pane for the AOI labels
+        map.createPane('topPane').style.zIndex = 650;
 
+        const historicalMap = L.tileLayer('https://mapwarper.net/maps/tile/94844/{z}/{x}/{y}.png', {
+            attribution: 'Historical map from <a href="https://mapwarper.net">MapWarper</a>',
+            maxZoom: 18,
+            minZoom: 10,
+            pane: 'topPane', // this is what makes it stay on top
+            tms: false,
+            crossOrigin: true,
+            detectRetina: false,
+            noWrap: true
+        });
         // Define all basemaps with year information
         const basemaps = [
             // Historical maps sorted by year
@@ -120,17 +132,6 @@
             "FEMA 100-year flood zone": L.layerGroup(),
             "Census tracts predominantly zoned for industrial use, 2025": L.layerGroup()
         };
-
-        // Historical map tiles configuration
-        const historicalMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Historical map from <a href="https://mapwarper.net">MapWarper</a>',
-            maxZoom: 18,
-            minZoom: 10,
-            tms: false,  // Changed from true to false (MapWarper typically doesn't use TMS)
-            crossOrigin: true,
-            detectRetina: false,  // Added to prevent retina scaling issues
-            noWrap: true  // Added to prevent tile wrapping
-        });
 
         // Function to load GeoJSON data
         async function loadGeoJSON(url, layerGroup, style) {
