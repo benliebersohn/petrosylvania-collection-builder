@@ -72,7 +72,7 @@
         // Define all basemaps organized by category
         const basemaps = {
             // Modern Reference Maps
-            "Modern Reference": {
+
                 "OSM Streets": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 }),
@@ -83,10 +83,9 @@
                     attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
                 }),
                 "Google Satellite": L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}')
-            },
+            
             
             // USGS Historical Maps
-            "USGS Maps": {
                 "USGS 1894": L.tileLayer('https://mapwarper.net/maps/tile/88571/{z}/{x}/{y}.png', {
                     attribution: '<i>1894 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
                 }),
@@ -108,19 +107,15 @@
                 "USGS 2023": L.tileLayer('https://mapwarper.net/maps/tile/88570/{z}/{x}/{y}.png', {
                     attribution: '<i>2023 USGS Map</i> courtesy of <a href="https://www.usgs.gov/">US Geological Survey</a>'
                 })
-            },
             
             // Historical Atlas Maps
-            "Historical Atlases": {
                 "Barnes 1867": L.tileLayer('https://mapwarper.net/mosaics/tile/2278/{z}/{x}/{y}.png'),
                 "Hopkins 1876": L.tileLayer('https://mapwarper.net/mosaics/tile/2272/{z}/{x}/{y}.png'),
                 "Bromley 1895": L.tileLayer('https://mapwarper.net/mosaics/tile/2184/{z}/{x}/{y}.png'),
                 "Bromley 1901": L.tileLayer('https://mapwarper.net/mosaics/tile/2272/{z}/{x}/{y}.png'),
                 "Bromley 1910": L.tileLayer('https://mapwarper.net/mosaics/tile/2271/{z}/{x}/{y}.png')
-            },
             
             // Aerial Imagery
-            "Aerial Imagery": {
                 "Aerial 1928": L.tileLayer('https://mapwarper.net/maps/tile/88306/{z}/{x}/{y}.png'),
                 "Aerial 1959": L.tileLayer('https://mapwarper.net/maps/tile/88304/{z}/{x}/{y}.png'),
                 "Aerial 1965": L.tileLayer('https://mapwarper.net/maps/tile/88299/{z}/{x}/{y}.png'),
@@ -128,10 +123,8 @@
                 "Aerial 1980": L.tileLayer('https://mapwarper.net/maps/tile/88301/{z}/{x}/{y}.png'),
                 "Aerial 1985": L.tileLayer('https://mapwarper.net/maps/tile/88295/{z}/{x}/{y}.png'),
                 "Aerial 1990": L.tileLayer('https://mapwarper.net/maps/tile/90707/{z}/{x}/{y}.png')
-            },
             
             // Special Collection Maps
-            "Special Collections": {
                 "Waterfront 1892": L.tileLayer('https://mapwarper.net/maps/tile/91523/{z}/{x}/{y}.png'),
                 "Landuse 1942": L.tileLayer('https://mapwarper.net/maps/tile/94403/{z}/{x}/{y}.png'),
                 "Landuse 1962": L.tileLayer('https://mapwarper.net/maps/tile/94678/{z}/{x}/{y}.png'),
@@ -144,10 +137,8 @@
                 "Army Plume 2": L.tileLayer('https://mapwarper.net/maps/tile/88779/{z}/{x}/{y}.png'),
                 "Army Plume 3": L.tileLayer('https://mapwarper.net/maps/tile/88816/{z}/{x}/{y}.png'),
                 "Army Plume 4": L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}.png')
-            },
             
             // WMS Services
-            "WMS Services": {
                 "Philadelphia 2019 Imagery": L.tileLayer.wms('https://imagery.pasda.psu.edu/arcgis/services/pasda/PhiladelphiaImagery2019/MapServer/WMSServer?', {
                     layers: '1',
                     format: 'image/png',
@@ -158,7 +149,6 @@
                     attribution: 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC',
                     maxZoom: 16
                 })
-            }
         };
 
         // Add default basemap
