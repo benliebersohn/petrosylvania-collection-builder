@@ -149,10 +149,10 @@
                    );
                 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson', 
-                   overlays["100-year floodplain"], {color: 'blue', radius: 2, fillOpacity: 0.3});
+                   overlays["FEMA 100-year flood zone"], {color: 'blue', radius: 2, fillOpacity: 0.3});
         
         loadGeoJSON('https://opendata.arcgis.com/datasets/b54ec5210cee41c3a884c9086f7af1be_0.geojson', 
-                   overlays["Industrial census tracts"], {color: 'navy', weight: 2});
+                   overlays["Census tracts predominantly zoned for industrial use, 2025"], {color: 'navy', weight: 2});
 
         // Create overlay control (left side)
         const overlayControl = L.control.layers(null, overlays, {
