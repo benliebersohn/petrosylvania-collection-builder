@@ -167,30 +167,7 @@
                    overlays["Census tracts predominantly zoned for industrial use, 2025"], {color: 'red', weight: 2});
 
         // Create overlay control (left side)
-
-        overlays["AOI Boundaries"].on('add', function() {
-            if (!map.hasLayer(historicalMap)) {
-                historicalMap.addTo(map);
-                // More aggressive refresh approach
-                setTimeout(() => {
-                    map.invalidateSize({animate: false});
-                    historicalMap._reset();
-                    historicalMap.redraw();
-                    map.fire('moveend');
-                }, 300);
-            }
-        });
-        
-        overlays["AOI Boundaries"].on('remove', function() {
-            if (map.hasLayer(historicalMap)) {
-                historicalMap.removeFrom(map);
-            }
-        });
-        
-    map.createPane('labelPane').style.zIndex = 700; // Higher than tile layers
-    
-    // Create the label
-    const aoiLabel = L.marker([39.9210070, -75.1928358], {
+            const aoiLabel = L.marker([39.9210070, -75.1928358], {
         pane: 'labelPane',
         icon: L.divIcon({
             className: 'aoi-label',
@@ -198,8 +175,32 @@
             iconSize: [40, 20]  // Width, height
         }),
         interactive: false  // Makes the label non-clickable
-    }).addTo(map);
+    })//.addTo(map);
         
+
+        overlays["AOI Boundaries"].on('add', function() {
+            if (!map.hasLayer(aoiLabel)) {
+                aoiLabel.addTo(map);
+                // More aggressive refresh approach
+                setTimeout(() => {
+                    map.invalidateSize({animate: false});
+                    aoiLabel._reset();
+                    aoiLabel.redraw();
+                    map.fire('moveend');
+                }, 300);
+            }
+        });
+        
+        overlays["AOI Boundaries"].on('remove', function() {
+            if (map.hasLayer(aoiLabel)) {
+                aoiLabel.removeFrom(map);
+            }
+        });
+        
+    map.createPane('labelPane').style.zIndex = 700; // Higher than tile layers
+    
+    // Create the label
+
         const overlayControl = L.control.layers(null, overlays, {
             collapsed: false,
             position: 'topleft'
