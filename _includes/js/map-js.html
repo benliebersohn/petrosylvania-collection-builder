@@ -455,7 +455,28 @@ var overlayMaps = {
     };
 
     var layerControl = L.control.layers(null, overlayMaps, {collapsed: false}).addTo(map);
+var groupedOverlays = {
+        "Dept of Health":{
+            "Regions":regions,
+            "Coalitions":subregions,
+            "County":county,
+            "Zip Code":zipcode,
+            "State":state
+        }
+    }
+};
 
+    var options = {
+      // Make the "Landmarks" group exclusive (use radio inputs)
+      exclusiveGroups: ["Dept of Health"],
+      // Show a checkbox next to non-exclusive group labels for toggling all
+      groupCheckboxes: true
+    };
+
+    // Use the custom grouped layer control, not "L.control.layers"
+    var layerControl = L.control.groupedLayers(baseMaps, groupedOverlays, options);
+    map.addControl(layerControl);   
+    
 
 
         AOI_Layer.addTo(map);
