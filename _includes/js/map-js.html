@@ -120,6 +120,10 @@
             "FEMA 100-year flood zone": L.layerGroup(),
             "Census tracts predominantly zoned for industrial use, 2025": L.layerGroup()
         };
+        
+        const aoiLabels = L.tileLayer('https://mapwarper.net/maps/tile/94844/{z}/{x}/{y}.png', {
+            attribution: 'AOI boundaries and labels are approximate'
+        });
 
         // Function to load GeoJSON data
         async function loadGeoJSON(url, layerGroup, style) {
@@ -154,6 +158,13 @@
         loadGeoJSON('https://opendata.arcgis.com/datasets/b54ec5210cee41c3a884c9086f7af1be_0.geojson', 
                    overlays["Census tracts predominantly zoned for industrial use, 2025"], {color: 'red', weight: 2});
 
+        overlays["AOI Boundaries"].on('add', function() {
+            AOIlabels.addTo(map);
+        });
+        
+        overlays["AOI Boundaries"].on('remove', function() {
+            AOIlabels.removeFrom(map);
+        });
         // Create overlay control (left side)
         const overlayControl = L.control.layers(null, overlays, {
             collapsed: false,
