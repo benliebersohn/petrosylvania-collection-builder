@@ -186,6 +186,20 @@
                 historicalMap.removeFrom(map);
             }
         });
+        
+    map.createPane('labelPane').style.zIndex = 700; // Higher than tile layers
+    
+    // Create the label
+    const aoiLabel = L.marker([39.9210070, -75.1928358], {
+        pane: 'labelPane',
+        icon: L.divIcon({
+            className: 'aoi-label',
+            html: '<div>AOI-1</div>',
+            iconSize: [40, 20]  // Width, height
+        }),
+        interactive: false  // Makes the label non-clickable
+    }).addTo(map);
+        
         const overlayControl = L.control.layers(null, overlays, {
             collapsed: false,
             position: 'topleft'
