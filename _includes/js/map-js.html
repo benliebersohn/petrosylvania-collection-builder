@@ -117,8 +117,8 @@
         // Create overlay layers
         const overlays = {
             "FEMA 100 year floodplain": L.layerGroup(),
-            "Landmarks": L.layerGroup(),
-            "Transportation": L.layerGroup()
+            "Areas of interest": L.layerGroup(),
+            "Industrial census tracts": L.layerGroup()
         };
 
         // Function to load GeoJSON data
@@ -138,11 +138,11 @@
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/main/_includes/js/FEMA_100yr_floodplain.geojson', 
                    overlays["FEMA 100 year floodplain"], {color: 'blue', weight: 2, fillOpacity: 0.1});
         
-        loadGeoJSON('https://opendata.arcgis.com/datasets/4bf20a4b5eeb4f2f85e35a6ecc2a3c11_0.geojson', 
-                   overlays["Landmarks"], {color: 'red', radius: 5, fillOpacity: 0.8});
+        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson', 
+                   overlays["Areas of interest"], {color: 'red', radius: 5, fillOpacity: 0.8});
         
-        loadGeoJSON('https://opendata.arcgis.com/datasets/b54ec5210cee41c3a884c9086f7af1be_0.geojson', 
-                   overlays["Transportation"], {color: 'navy', weight: 2});
+        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/industrial_tracts.json')', 
+                   overlays["Industrial census tracts"], {color: 'navy', weight: 2});
 
         // Create overlay control (left side)
         const overlayControl = L.control.layers(null, overlays, {
@@ -151,7 +151,7 @@
         }).addTo(map);
 
         // Create basemap control (right side)
-        const basemapControl = L.control.layers(baseLayers, null, {
+        const basemapControl = L.control.layers(null, baseLayers, {
             collapsed: false,
             position: 'topright'
         }).addTo(map);
