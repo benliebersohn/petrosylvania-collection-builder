@@ -20,12 +20,26 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.2);
         }
+
+        /* Right control (top position) */
+        .leaflet-right .leaflet-control {
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+
+        /* Left control (positioned below right control) */
+        .leaflet-left .leaflet-control {
+            margin-left: 10px;
+            margin-top: 160px; /* Adjust this value based on right control's height */
+            clear: both; /* Ensures it stays below */
+        }
+        /*
         .leaflet-left .leaflet-control {
             margin-left: 10px;
         }
         .leaflet-right .leaflet-control {
             margin-right: 10px;
-        }
+        }*/
         .aoi-label {
             color: black;
             font-weight: bold;
@@ -185,17 +199,7 @@
 
         // Create overlay control (left side)
         const aoiLabels = L.layerGroup();
-        /*
-        const aoi1 = L.marker([39.9210070, -75.1928358], {
-        pane: 'labelPane',
-        icon: L.divIcon({
-            className: 'aoi-label',
-            html: '<div>AOI-1</div>',
-            iconSize: [40, 20]  // Width, height
-        }),
-            interactive: false  // Makes the label non-clickable
-        })//.addTo(map);
-*/
+        
         const aoi1 = L.marker([39.9210070, -75.1928358], {
         pane: 'labelPane',
         icon: L.divIcon({
