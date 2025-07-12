@@ -26,6 +26,26 @@
         .leaflet-right .leaflet-control {
             margin-right: 10px;
         }
+        .aoi-label {
+            color: black;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            /* White text stroke */
+            -webkit-text-stroke: 1px white;
+            text-stroke: 1px white;
+            /* Fallback for browsers that don't support text-stroke */
+            text-shadow: 
+                -1px -1px 0 white,
+                 0   -1px 0 white,
+                 1px -1px 0 white,
+                -1px  0   0 white,
+                 1px  0   0 white,
+                -1px  1px 0 white,
+                 0    1px 0 white,
+                 1px  1px 0 white;
+        }
+
     </style>
 </head>
 <body>
@@ -165,7 +185,7 @@
 
         // Create overlay control (left side)
         const aoiLabels = L.layerGroup();
-        
+        /*
         const aoi1 = L.marker([39.9210070, -75.1928358], {
         pane: 'labelPane',
         icon: L.divIcon({
@@ -175,6 +195,16 @@
         }),
             interactive: false  // Makes the label non-clickable
         })//.addTo(map);
+*/
+        const aoi1 = L.marker([39.9210070, -75.1928358], {
+        pane: 'labelPane',
+        icon: L.divIcon({
+            className: 'aoi-label',
+            html: '<div style="position:relative; top:-10px;">AOI-1</div>', // Adjust vertical position
+            iconSize: [40, 20]
+        }),
+        interactive: false
+        });
         
         const aoi2 = L.marker([39.9158887, -75.1991711], {  // Fixed coordinate order
         pane: 'labelPane',
