@@ -134,10 +134,10 @@
             { name: "ESRI Imagery", layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}') },
             { name: "Google Satellite", layer: L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}') },
             { name: "ESRI NatGeo", layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}') },
-            { name: "Army Plume 1", layer: L.tileLayer('https://mapwarper.net/maps/tile/88772/{z}/{x}/{y}.png') },
-            { name: "Army Plume 2", layer: L.tileLayer('https://mapwarper.net/maps/tile/88779/{z}/{x}/{y}.png') },
-            { name: "Army Plume 3", layer: L.tileLayer('https://mapwarper.net/maps/tile/88816/{z}/{x}/{y}.png') },
-            { name: "Army Plume 4", layer: L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}.png') },
+            { name: "LNAPL Plume 1", layer: L.tileLayer('https://mapwarper.net/maps/tile/88772/{z}/{x}/{y}.png') },
+            { name: "LNAPL Plume 2", layer: L.tileLayer('https://mapwarper.net/maps/tile/88779/{z}/{x}/{y}.png') },
+            { name: "LNAPL Plume 3", layer: L.tileLayer('https://mapwarper.net/maps/tile/88816/{z}/{x}/{y}.png') },
+            { name: "LNAPL Plume 4", layer: L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}.png') },
         ];
 
         // Sort basemaps by year (those without years at the bottom)
@@ -332,17 +332,19 @@
     map.createPane('labelPane').style.zIndex = 700; // Higher than tile layers
     
     // Create the label
-
-        const overlayControl = L.control.layers(null, overlays, {
-            collapsed: false,
-            position: 'topright'
-        }).addTo(map);
-
         // Create basemap control (right side)
         const basemapControl = L.control.layers(baseLayers, null, {
             collapsed: false,
             position: 'topright'
         }).addTo(map);
+        //add overlay control beneath (right side) 
+        
+        const overlayControl = L.control.layers(null, overlays, {
+            collapsed: false,
+            position: 'topright'
+        }).addTo(map);
+
+
     </script>
 </body>
 </html>
