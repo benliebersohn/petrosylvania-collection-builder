@@ -332,14 +332,13 @@
     map.createPane('labelPane').style.zIndex = 700; // Higher than tile layers
     
     // Create the label
-        // Create basemap control (right side)
-        const basemapControl = L.control.layers(baseLayers, null, {
+        // Create basemap control (right side)        
+        const overlayControl = L.control.layers(null, overlays, {
             collapsed: false,
             position: 'topright'
         }).addTo(map);
-        //add overlay control beneath (right side) 
         
-        const overlayControl = L.control.layers(null, overlays, {
+        const basemapControl = L.control.layers(baseLayers, null, {
             collapsed: false,
             position: 'topright'
         }).addTo(map);
