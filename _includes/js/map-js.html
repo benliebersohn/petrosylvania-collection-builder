@@ -65,16 +65,13 @@
             }), year: 1920 },
             { name: "Aerial 1928", layer: L.tileLayer('https://mapwarper.net/maps/tile/88306/{z}/{x}/{y}.png'), year: 1928 },
             { name: "HOLC 1937", layer: L.tileLayer('https://mapwarper.net/maps/tile/90758/{z}/{x}/{y}.png'), year: 1937 },
-            { name: "Landuse 1942", layer: L.tileLayer('https://mapwarper.net/maps/tile/94403/{z}/{x}/{y}.png'), year: 1942 },
+            { name: "Land use 1942", layer: L.tileLayer('https://mapwarper.net/maps/tile/94403/{z}/{x}/{y}.png'), year: 1942 },
             { name: "USGS 1949", layer: L.tileLayer('https://mapwarper.net/maps/tile/88564/{z}/{x}/{y}.png', {
                 attribution: '1949 USGS Map courtesy of USGS'
             }), year: 1949 },
             { name: "Aerial 1959", layer: L.tileLayer('https://mapwarper.net/maps/tile/88304/{z}/{x}/{y}.png'), year: 1959 },
-            { name: "Landuse 1962", layer: L.tileLayer('https://mapwarper.net/maps/tile/94678/{z}/{x}/{y}.png'), year: 1962 },
+            { name: "Land use 1962", layer: L.tileLayer('https://mapwarper.net/maps/tile/94678/{z}/{x}/{y}.png'), year: 1962 },
             { name: "Aerial 1965", layer: L.tileLayer('https://mapwarper.net/maps/tile/88299/{z}/{x}/{y}.png'), year: 1965 },
-            { name: "Petro 1965", layer: L.tileLayer('https://mapwarper.net/maps/tile/83445/{z}/{x}/{y}.png', {
-                maxZoom: 19
-            }), year: 1965 },
             { name: "USGS 1967", layer: L.tileLayer('https://mapwarper.net/maps/tile/88567/{z}/{x}/{y}.png', {
                 attribution: '1967 USGS Map courtesy of USGS'
             }), year: 1967 },
@@ -85,7 +82,7 @@
             { name: "USGS 1995", layer: L.tileLayer('https://mapwarper.net/maps/tile/88568/{z}/{x}/{y}.png', {
                 attribution: '1995 USGS Map courtesy of USGS'
             }), year: 1995 },
-            { name: "Philadelphia 2019 Imagery", layer: L.tileLayer.wms('https://imagery.pasda.psu.edu/arcgis/services/pasda/PhiladelphiaImagery2019/MapServer/WMSServer?', {
+            { name: "Satellite 2019", layer: L.tileLayer.wms('https://imagery.pasda.psu.edu/arcgis/services/pasda/PhiladelphiaImagery2019/MapServer/WMSServer?', {
                 layers: '1',
                 format: 'image/png',
                 transparent: true
@@ -188,8 +185,96 @@
         }),
         interactive: false
         });
+
+        const aoi3 = L.marker([39.910614, -75.202499], {  // Fixed coordinate order
+        pane: 'labelPane',
+        icon: L.divIcon({
+            className: 'aoi-label',
+            html: '<div>AOI-3</div>',
+            iconSize: [40, 20]
+        }),
+        interactive: false
+        });
+
+        const aoi4 = L.marker([39.907964, -75.197192], {  // Fixed coordinate order
+        pane: 'labelPane',
+        icon: L.divIcon({
+            className: 'aoi-label',
+            html: '<div>AOI-4</div>',
+            iconSize: [40, 20]
+        }),
+        interactive: false
+        });
+        const aoi5 = L.marker([39.898970, -75.204967], {  // Fixed coordinate order
+        pane: 'labelPane',
+        icon: L.divIcon({
+            className: 'aoi-label',
+            html: '<div>AOI-5</div>',
+            iconSize: [40, 20]
+        }),
+        interactive: false
+        });
+        
+        const aoi6 = L.marker([39.902663, -75.208978], {  // Fixed coordinate order
+        pane: 'labelPane',
+        icon: L.divIcon({
+            className: 'aoi-label',
+            html: '<div>AOI-6</div>',
+            iconSize: [40, 20]
+        }),
+        interactive: false
+        });
+        
+        const aoi7 = L.marker([39.907680, -75.209039], {  // Fixed coordinate order
+        pane: 'labelPane',
+        icon: L.divIcon({
+            className: 'aoi-label',
+            html: '<div>AOI-7</div>',
+            iconSize: [40, 20]
+        }),
+        interactive: false
+        });
+        
+        const aoi8 = L.marker([39.926396, -75.202180], {  // Fixed coordinate order
+        pane: 'labelPane',
+        icon: L.divIcon({
+            className: 'aoi-label',
+            html: '<div>AOI-8</div>',
+            iconSize: [40, 20]
+        }),
+        interactive: false
+        });
+        
+        const aoi9 = L.marker([39.900134, -75.220973], {  // Fixed coordinate order
+        pane: 'labelPane',
+        icon: L.divIcon({
+            className: 'aoi-label',
+            html: '<div>AOI-9</div>',
+            iconSize: [40, 20]
+        }),
+        interactive: false
+        });
+        
+        const aoi10 = L.marker([39.917825, -75.205526], {  // Fixed coordinate order
+        pane: 'labelPane',
+        icon: L.divIcon({
+            className: 'aoi-label',
+            html: '<div>AOI-10</div>',
+            iconSize: [40, 20]
+        }),
+        interactive: false
+        });
+
         aoiLabels.addLayer(aoi1);
         aoiLabels.addLayer(aoi2);
+        aoiLabels.addLayer(aoi3);
+        aoiLabels.addLayer(aoi4);
+        aoiLabels.addLayer(aoi5);
+        aoiLabels.addLayer(aoi6);
+        aoiLabels.addLayer(aoi7);
+        aoiLabels.addLayer(aoi8);
+        aoiLabels.addLayer(aoi9);
+        aoiLabels.addLayer(aoi10);
                 
         overlays["AOI Boundaries"].on('add', function() {
             if (!map.hasLayer(aoiLabels)) {
