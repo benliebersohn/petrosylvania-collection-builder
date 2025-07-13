@@ -237,8 +237,8 @@
         }),
         interactive: false
         });
-        
-        const aoi1 = L.marker([39.916402, -75.193503], {
+        //-75.193778,39.915633
+        const aoi1 = L.marker([39.9160, -75.193503], {
         pane: 'labelPane',
         icon: L.divIcon({
             className: 'aoi-label',/*
@@ -344,6 +344,8 @@
         interactive: false
         });
 
+        //add the labels to the map
+        aoiLabels.addLayer(PGW)
         aoiLabels.addLayer(aoi1);
         aoiLabels.addLayer(aoi2);
         aoiLabels.addLayer(aoi3);
