@@ -220,8 +220,25 @@
 
         // Create overlay control (left side)
         const aoiLabels = L.layerGroup();
+        //labels with only area names, no AOI label
+        const PGW = L.marker([39.921989, -75.197541], {
+        pane: 'labelPane',
+        icon: L.divIcon({
+            className: 'aoi-label',/*not an actual AOI label, we are just using inherited properties for area-name
+            html: '<div style="position:relative; top:-10px;">AOI-1</div>', // Adjust vertical position
+            iconSize: [40, 20]*/
+                
+            html: `<div class="label-container">
+            <div class=""></div>
+            <div class="area-name">PGW Property</div>
+            </div>`,
+        iconSize: [60, 120]  
+            
+        }),
+        interactive: false
+        });
         
-        const aoi1 = L.marker([39.917752, -75.193263], {
+        const aoi1 = L.marker([39.916402, -75.193503], {
         pane: 'labelPane',
         icon: L.divIcon({
             className: 'aoi-label',/*
