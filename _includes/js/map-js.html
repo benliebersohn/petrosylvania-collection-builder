@@ -343,14 +343,16 @@
             position: 'topright'
         }).addTo(map);
         
-// (adding the text on the layer control boxes)
-        function addControlLabel(control, title) {
-            const container = control.getContainer();
-            const label = L.DomUtil.create('h4', 'control-label', container);
-            label.textContent = title;
-            L.DomUtil.addClass(container, 'labeled-control');
-            return container;
-        }
+function addControlLabel(control, title) {
+    const container = control.getContainer();
+    const label = L.DomUtil.create('h4', 'control-label', container);
+    label.textContent = title;
+    L.DomUtil.addClass(container, 'labeled-control');
+    
+    // Move the label to be the first child of the container
+    container.insertBefore(label, container.firstChild);
+    
+    return container;
 
 // 
 addControlLabel(overlayControl, 'Overlays');
@@ -360,7 +362,7 @@ addControlLabel(basemapControl, 'Base Maps');
 const labelStyle = document.createElement('style');
 labelStyle.textContent = `
     .labeled-control {
-        margin-top: 10px;
+        margin-bottom: 20px;
     }
     
     .control-label {
