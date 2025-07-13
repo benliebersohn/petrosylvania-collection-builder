@@ -14,6 +14,26 @@
             width: 100%;
             height: 80vh;
         }
+        .aoi-multiline-label {
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .label-container {
+            background: rgba(255,255,255,0.7);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .aoi-number {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .area-name {
+            font-size: 11px;
+            color: #555;
+        }
         .leaflet-control {
             background: white;
             padding: 10px;
@@ -203,9 +223,16 @@
         const aoi1 = L.marker([39.917752, -75.193263], {
         pane: 'labelPane',
         icon: L.divIcon({
-            className: 'aoi-label',
+            className: 'aoi-label',/*
             html: '<div style="position:relative; top:-10px;">AOI-1</div>', // Adjust vertical position
-            iconSize: [40, 20]
+            iconSize: [40, 20]*/
+                
+            html: `<div class="label-container">
+            <div class="aoi-number">AOI-1</div>
+            <div class="area-name">Point Breeze tank farms 1 & 2</div>
+            </div>`,
+        iconSize: [60, 40]  
+            
         }),
         interactive: false
         });
