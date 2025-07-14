@@ -61,8 +61,10 @@
         .leaflet-right .leaflet-control {
             margin-right: 10px;
         }*/
+        /* Add a scrollbar and limit the size of the basemap control. */
+        
         .scrollable-basemap-control {
-            max-height: 600px; /* Adjust this value as needed */
+            max-height: 600px; /* Adjust height value as needed */
             overflow-y: auto;
             overflow-x: hidden;
             scrollbar-width: thin; /* For Firefox */
@@ -82,6 +84,15 @@
         .scrollable-basemap-control::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
+        .scrollable-basemap-control { /* This is the hint that the scrollbar exists */
+            mask-image: linear-gradient(
+            to bottom, 
+            transparent 0%, 
+            black 20px, 
+            black calc(100% - 20px), 
+            transparent 100%
+    );
+}
 
 /* Ensure the control header stays fixed */
 .scrollable-basemap-control .leaflet-control-layers-list {
