@@ -61,6 +61,41 @@
         .leaflet-right .leaflet-control {
             margin-right: 10px;
         }*/
+        .scrollable-basemap-control {
+            max-height: 300px; /* Adjust this value as needed */
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: thin; /* For Firefox */
+        }
+        /* Scrollbar styling for WebKit browsers */
+        .scrollable-basemap-control::-webkit-scrollbar {
+            width: 8px;
+        }
+        .scrollable-basemap-control::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        .scrollable-basemap-control::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        .scrollable-basemap-control::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+/* Ensure the control header stays fixed */
+.scrollable-basemap-control .leaflet-control-layers-list {
+    max-height: calc(300px - 40px); /* Account for header */
+    overflow-y: auto;
+}
+
+/* Keep the expand/collapse button accessible */
+.scrollable-basemap-control .leaflet-control-layers-toggle {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1;
+}
         .aoi-label {
             color: black;
             font-weight: bold;
@@ -402,25 +437,28 @@
         
         const basemapControl = L.control.layers(baseLayers, null, {
             collapsed: false,
-            position: 'topright'
+            position: 'topright',
+            autoZIndex: false // Prevents z-index shuffling
         }).addTo(map);
+        const basemapContainer = basemapControl.getContainer();
+        L.DomUtil.addClass(basemapContainer, 'scrollable-basemap-control');   
         
-function addControlLabel(control, title) {
-    const container = control.getContainer();
-    const label = L.DomUtil.create('h4', 'control-label', container);
-    label.textContent = title;
-    L.DomUtil.addClass(container, 'labeled-control');
+        function addControlLabel(control, title) {
+            const container = control.getContainer();
+            const label = L.DomUtil.create('h4', 'control-label', container);
+            label.textContent = title;
+            L.DomUtil.addClass(container, 'labeled-control');
     
     // Move the label to be the first child of the container
-    container.insertBefore(label, container.firstChild);
+            container.insertBefore(label, container.firstChild);
     
-    return container;
-}
+        return container;
+        }
 // 
-addControlLabel(overlayControl, 'Overlays');
-addControlLabel(basemapControl, 'Base Maps');
+        addControlLabel(overlayControl, 'Overlays');
+        addControlLabel(basemapControl, 'Base Maps');
 
-// Add corresponding CSS (move to top)
+// Add corresponding CSS (move to top eventually)
 const labelStyle = document.createElement('style');
 labelStyle.textContent = `
     .labeled-control {
