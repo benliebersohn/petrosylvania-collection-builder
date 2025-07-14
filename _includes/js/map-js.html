@@ -67,18 +67,29 @@
     max-height: 55vh;
     overflow-y: scroll; /* Always show scrollbar */
     overflow-x: hidden;
-    scrollbar-width: thick; /* Firefox */
-    
+    scrollbar-width: auto; /* Firefox */
+    scrollbar-color: #666 #f1f1f1;
+        
     /* For WebKit browsers (Chrome, Safari) */
     &::-webkit-scrollbar {
-        width: 8px;
-        background: rgba(0,0,0,0.05);
+        width: 12px;
+        height: 12px;
+    }
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 8px;
+        border: 2px solid #ddd;
     }
     &::-webkit-scrollbar-thumb {
-        background: rgba(0,0,0,0.2);
-        border-radius: 4px;
+        background: #666;
+        border-radius: 8px;
+        border: 2px solid #f1f1f1;
+    }   
+    &::-webkit-scrollbar-thumn:hover {
+        background: 444;
     }
 }
+        
     
 /* Ensure the control header stays fixed */
 .scrollable-basemap-control .leaflet-control-layers-list {
