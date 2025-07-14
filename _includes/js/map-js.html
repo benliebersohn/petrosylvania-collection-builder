@@ -96,25 +96,45 @@
     background: white;
     z-index: 1;
 }
-        .aoi-label {
-            color: black;
-            font-weight: bold;
-            font-size: 14px;
-            text-align: center;
-            /* White text stroke */
-            -webkit-text-stroke: .5px white;
-            text-stroke: .5px white;
-            /* Fallback for browsers that don't support text-stroke */
-            text-shadow: 
-                -.5px -.5px 0 white,
-                 0   -.5px 0 white,
-                 .5px -.5px 0 white,
-                -.5px  0   0 white,
-                 .5px  0   0 white,
-                -.5px  .5px 0 white,
-                 0    .5px 0 white,
-                 .5px  .5px 0 white;
-        }
+.aoi-label {
+        color: black;
+        font-weight: bold;
+        font-size: 14px;
+        text-align: center;
+        /* White text stroke */
+        -webkit-text-stroke: .5px white;
+        text-stroke: .5px white;
+        /* Fallback for browsers that don't support text-stroke */
+        text-shadow: 
+            -.5px -.5px 0 white,
+             0   -.5px 0 white,
+             .5px -.5px 0 white,
+            -.5px  0   0 white,
+             .5px  0   0 white,
+            -.5px  .5px 0 white,
+             0    .5px 0 white,
+             .5px  .5px 0 white;
+    }
+.aoi-label-name {
+        color: black;
+        font-weight: bold;
+        font-size: 10px;
+        text-align: center;
+        text-style: oblique;
+        /* White text stroke */
+        -webkit-text-stroke: .5px white;
+        text-stroke: .5px white;
+        /* Fallback for browsers that don't support text-stroke */
+        text-shadow: 
+            -.5px -.5px 0 white,
+             0   -.5px 0 white,
+             .5px -.5px 0 white,
+            -.5px  0   0 white,
+             .5px  0   0 white,
+            -.5px  .5px 0 white,
+             0    .5px 0 white,
+             .5px  .5px 0 white;
+    }
 
     </style>
 </head>
@@ -259,7 +279,7 @@
         const Belmont = L.marker([39.920498, -75.192467], {
         pane: 'labelPane',
         icon: L.divIcon({
-            className: 'aoi-label',/*not an actual AOI label, we are just using inherited properties for area-name
+            className: 'aoi-label-name',/*not an actual AOI label, we are just using inherited properties for area-name
             html: '<div style="position:relative; top:-10px;">AOI-1</div>', // Adjust vertical position
             iconSize: [40, 20]*/
                 
@@ -274,7 +294,7 @@
         const PGW = L.marker([39.921957, -75.197372], {//-75.197626,39.921957
         pane: 'labelPane',
         icon: L.divIcon({
-            className: 'aoi-label',/*not an actual AOI label, we are just using inherited properties for area-name
+            className: 'aoi-label-name',/*not an actual AOI label, we are just using inherited properties for area-name
             html: '<div style="position:relative; top:-10px;">AOI-1</div>', // Adjust vertical position
             iconSize: [40, 20]*/
                 
