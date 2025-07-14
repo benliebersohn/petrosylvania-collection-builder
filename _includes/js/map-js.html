@@ -64,10 +64,10 @@
         /* Add a scrollbar and limit the size of the basemap control. */
         
 .scrollable-basemap-control {
-    max-height: 300px;
+    max-height: 55vh;
     overflow-y: scroll; /* Always show scrollbar */
     overflow-x: hidden;
-    scrollbar-width: thin; /* Firefox */
+    scrollbar-width: thick; /* Firefox */
     
     /* For WebKit browsers (Chrome, Safari) */
     &::-webkit-scrollbar {
@@ -83,7 +83,7 @@
 /* Ensure the control header stays fixed */
 .scrollable-basemap-control .leaflet-control-layers-list {
     max-height: calc(300px - 40px); /* Account for header */
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 /* Keep the expand/collapse button accessible */
