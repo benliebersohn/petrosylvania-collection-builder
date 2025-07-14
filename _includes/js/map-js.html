@@ -63,27 +63,22 @@
         }*/
         /* Add a scrollbar and limit the size of the basemap control. */
         
-        .scrollable-basemap-control {
-            max-height: 40vh; /* Adjust height value as needed */
-            overflow-y: auto;
-            overflow-x: hidden;
-            scrollbar-width: thick; /* For Firefox */
-        }
-        /* Scrollbar styling for WebKit browsers */
-        .scrollable-basemap-control::-webkit-scrollbar {
-            width: 10px;
-        }
-        .scrollable-basemap-control::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-        }
-        .scrollable-basemap-control::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 4px;
-        }
-        .scrollable-basemap-control::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
+.scrollable-basemap-control {
+    max-height: 300px;
+    overflow-y: scroll; /* Always show scrollbar */
+    overflow-x: hidden;
+    scrollbar-width: thin; /* Firefox */
+    
+    /* For WebKit browsers (Chrome, Safari) */
+    &::-webkit-scrollbar {
+        width: 8px;
+        background: rgba(0,0,0,0.05);
+    }
+    &::-webkit-scrollbar-thumb {
+        background: rgba(0,0,0,0.2);
+        border-radius: 4px;
+    }
+}
     
 /* Ensure the control header stays fixed */
 .scrollable-basemap-control .leaflet-control-layers-list {
