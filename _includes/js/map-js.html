@@ -390,13 +390,20 @@
         }),
         interactive: false
         });
-        
-        const aoi8 = L.marker([39.926396, -75.202180], {  // Fixed coordinate order
+
+        const aoi8 = L.marker([39.926396, -75.202180], {
         pane: 'labelPane',
         icon: L.divIcon({
-            className: 'aoi-label',
-            html: '<div>AOI-8</div>',
-            iconSize: [40, 20]
+            className: 'aoi-label',/*
+            html: '<div style="position:relative; top:-10px;">AOI-1</div>', // Adjust vertical position
+            iconSize: [40, 20]*/
+                
+            html: `<div class="label-container">
+            <div class="aoi-number">AOI-8</div>
+            <div class="area-name">Point Breeze refinery\nnorth yard</div>
+            </div>`,
+        iconSize: [200, 120]  
+            
         }),
         interactive: false
         });
