@@ -64,30 +64,33 @@
         /* Add a scrollbar and limit the size of the basemap control. */
         
 .scrollable-basemap-control {
-    max-height: 55vh;
-    overflow-y: scroll; /* Always show scrollbar */
-    overflow-x: hidden;
-    scrollbar-width: auto; /* Firefox */
+  /* Parent container - NO overflow here */
+  overflow: visible;
+}
+
+.scrollable-basemap-control .leaflet-control-layers-list {
+  max-height: 60vh;
+  overflow-y: scroll;
+  padding-right: 5px; /* Prevent text clipping */
+
+  /* WebKit Scrollbar */
+  &::-webkit-scrollbar {
+    width: 12px;
+    background: rgba(0,0,0,0.05);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 8px;
+    border: 2px solid #f1f1f1;
+  }
+}
+
+/* Firefox fallback */
+@supports (scrollbar-width: auto) {
+  .scrollable-basemap-control .leaflet-control-layers-list {
+    scrollbar-width: auto;
     scrollbar-color: #666 #f1f1f1;
-        
-    /* For WebKit browsers (Chrome, Safari) */
-    &::-webkit-scrollbar {
-        width: 12px;
-        height: 12px;
-    }
-    &::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 8px;
-        border: 2px solid #ddd;
-    }
-    &::-webkit-scrollbar-thumb {
-        background: #666;
-        border-radius: 8px;
-        border: 2px solid #f1f1f1;
-    }   
-    &::-webkit-scrollbar-thumn:hover {
-        background: 444;
-    }
+  }
 }
         
     
