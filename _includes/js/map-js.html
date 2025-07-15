@@ -397,8 +397,11 @@
         pane: 'labelPane',
         icon: L.divIcon({
             className: 'aoi-label',
-            html: '<div>AOI-6</div>',
-            iconSize: [40, 20]
+            html: `<div class="label-container">
+            <div class="aoi-number">AOI-6</div>
+            <div class="area-name">Girard Point, chemicals processing area</div>
+            </div>`,
+        iconSize: [100, 120]  
         }),
         interactive: false
         });
@@ -407,21 +410,27 @@
         pane: 'labelPane',
         icon: L.divIcon({
             className: 'aoi-label',
-            html: '<div>AOI-7</div>',
-            iconSize: [40, 20]
+            html: `<div class="label-container">
+            <div class="aoi-number">AOI-7</div>
+            <div class="area-name">Girard Point, fuels processing area</div>
+            </div>`,
+        iconSize: [100, 120]  
         }),
         interactive: false
         });
 
-        const aoi8 = L.marker([39.926270, -75.202180], {
+        const aoi8 = L.marker([39.926270, -75.202180], {  // Fixed coordinate order
         pane: 'labelPane',
         icon: L.divIcon({
             className: 'aoi-label',
             html: `<div class="label-container">
-            <div class="aoi-number">AOI-8</div>
-            <div class="area-name">Point Breeze refinery<br>north yard</div>
+            <div class="aoi-number">AOI-9</div>
+            <div class="area-name">Point Breeze, North Yard</div>
             </div>`,
-        iconSize: [200, 120]  
+        iconSize: [200, 20]  
+        }),
+        interactive: false
+        });
             
         }),
         interactive: false
