@@ -337,25 +337,26 @@
         interactive: false
         });
         
-        const aoi2 = L.marker([39.9158887, -75.1991711], {  // Fixed coordinate order
+        const aoi2 = L.marker([39.915279, -75.199142], {  // Fixed coordinate order-75.199142,39.915279
         pane: 'labelPane',
         icon: L.divIcon({
-            className: 'aoi-label',
             html: `<div class="label-container">
-            div class="aoi-number">AOI-2</div>',
-            <div class="area-name">Point Breeze, processing area</div>
-            </div>',
-            iconSize: [100, 20]
+            <div class="aoi-number">AOI-2</div>
+            <div class="area-name">Point Breeze processing area</div>
+            </div>`,
+        iconSize: [60, 120]  
         }),
         interactive: false
         });
 
-        const aoi3 = L.marker([39.910614, -75.202499], {  // Fixed coordinate order
+        const aoi3 = L.marker([39.909995, -75.202350], {  // Fixed coordinate order-75.202350,39.909995
         pane: 'labelPane',
         icon: L.divIcon({
-            className: 'aoi-label',
-            html: '<div>AOI-3</div>',
-            iconSize: [40, 20]
+            html: `<div class="label-container">
+            <div class="aoi-number">AOI-3</div>
+            <div class="area-name">Point Breeze impoundment area</div>
+            </div>`,
+        iconSize: [60, 120]  
         }),
         interactive: false
         });
