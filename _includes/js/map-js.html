@@ -283,7 +283,7 @@
                    overlays["FEMA 100-year flood zone"], {color: 'blue', radius: .5, fillOpacity: 0.1});
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/industrial_tracts.geojson', 
-                   overlays["Census tracts predominantly zoned for industrial use, 2025"], {color: 'red', weight: 2});
+                   overlays["Census tracts predominantly zoned for industrial use, 2025"], {color: 'gray', weight: 2});
 
         // Create overlay control (left side)
         const aoiLabels = L.layerGroup();
@@ -354,6 +354,7 @@
         const aoi3 = L.marker([39.909995, -75.202350], {  // Fixed coordinate order-75.202350,39.909995
         pane: 'labelPane',
         icon: L.divIcon({
+            className: 'aoi-label',
             html: `<div class="label-container">
             <div class="aoi-number">AOI-3</div>
             <div class="area-name">Point Breeze impoundment area</div>
@@ -362,16 +363,20 @@
         }),
         interactive: false
         });
-
-        const aoi4 = L.marker([39.907964, -75.197192], {  // Fixed coordinate order
+        
+        const aoi4 = L.marker([39.907964, -75.197192], {  // Fixed coordinate order-75.202350,39.909995
         pane: 'labelPane',
         icon: L.divIcon({
             className: 'aoi-label',
-            html: '<div>AOI-4</div>',
-            iconSize: [40, 20]
+            html: `<div class="label-container">
+            <div class="aoi-number">AOI-4</div>
+            <div class="area-name">Point Breeze tank farm 4</div>
+            </div>`,
+        iconSize: [60, 120]  
         }),
         interactive: false
         });
+        
         const aoi5 = L.marker([39.898970, -75.204967], {  // Fixed coordinate order
         pane: 'labelPane',
         icon: L.divIcon({
