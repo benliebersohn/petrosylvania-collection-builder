@@ -303,6 +303,7 @@
         }),
         interactive: false
         });
+        
         const PGW = L.marker([39.921957, -75.197372], {//-75.197626,39.921957
         pane: 'labelPane',
         icon: L.divIcon({
@@ -340,8 +341,11 @@
         pane: 'labelPane',
         icon: L.divIcon({
             className: 'aoi-label',
+            html: `<div class="label-container">
             html: '<div>AOI-2</div>',
-            iconSize: [40, 20]
+            <div class="area-name">Point Breeze, processing area</div>
+            </div>',
+            iconSize: [100, 20]
         }),
         interactive: false
         });
