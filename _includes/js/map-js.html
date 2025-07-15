@@ -431,27 +431,29 @@
         }),
         interactive: false
         });
-            
-        }),
-        interactive: false
-        });
-        
+
         const aoi9 = L.marker([39.900134, -75.220973], {  // Fixed coordinate order
         pane: 'labelPane',
         icon: L.divIcon({
             className: 'aoi-label',
-            html: '<div>AOI-9</div>',
-            iconSize: [40, 20]
+            html: `<div class="label-container">
+            <div class="aoi-number">AOI-9</div>
+            <div class="area-name">Schuylkill River tank farm</div>
+            </div>`,
+        iconSize: [200, 20]  
         }),
         interactive: false
         });
-        
+
         const aoi10 = L.marker([39.917825, -75.205526], {  // Fixed coordinate order
         pane: 'labelPane',
         icon: L.divIcon({
             className: 'aoi-label',
-            html: '<div>AOI-10</div>',
-            iconSize: [40, 20]
+            html: `<div class="label-container">
+            <div class="aoi-number">AOI-10</div>
+            <div class="area-name">Point Breeze, west yard</div>
+            </div>`,
+        iconSize: [200, 20]  
         }),
         interactive: false
         });
