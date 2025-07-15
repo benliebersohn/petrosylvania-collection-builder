@@ -249,7 +249,8 @@
         const overlays = {
             "AOI Boundaries": L.layerGroup(),
             "FEMA 100-year flood zone": L.layerGroup(),
-            "Census tracts predominantly zoned for industrial use, 2025": L.layerGroup()
+            "Census tracts predominantly zoned for industrial use, 2025": L.layerGroup(),
+            "ZIP codes, 2025": L.layerGroup()
         };
 
         // Function to load GeoJSON data
@@ -284,7 +285,9 @@
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/industrial_tracts.geojson', 
                    overlays["Census tracts predominantly zoned for industrial use, 2025"], {color: 'gray', weight: 2});
-
+        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
+                    overlays["ZIP codes, 2025"], {color: 'black', weight:1});
+        
         // Create overlay control (left side)
         const aoiLabels = L.layerGroup();
         //labels with only area names, no AOI label
