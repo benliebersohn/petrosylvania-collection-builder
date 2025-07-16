@@ -44,7 +44,7 @@
     
     <script>
         // Initialize map with a view that will fit the GeoJSON data
-        const map = L.map('map').setView([39.9526, -75.1652], 11); // Centered on Philadelphia
+        const map = L.map('map').setView([39.918624, -75.197141], 13); // Centered on Philadelphia-75.197141,39.918624
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
@@ -53,7 +53,7 @@
         const pointsLayer = L.layerGroup().addTo(map);
 
         // Fetch the external GeoJSON
-        fetch('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/main/_includes/js/AOIgeoData.geojson')
+        fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOIgeoData.geojson')
             .then(response => response.json())
             .then(data => {
                 document.getElementById('loading').style.display = 'none';
