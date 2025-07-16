@@ -250,9 +250,9 @@
             "AOI Boundaries": L.layerGroup(),
             "FEMA 100-year flood zone": L.layerGroup(),
             "Census tracts predominantly zoned for industrial use, 2025": L.layerGroup(),
-            "ZIP codes, 2025": L.layerGroup()
-            "Keystone Opprotunity Zones": L.layerGroup()
-            "Census tracts predominantly African American": L.layerGroup()
+            "ZIP codes, 2025": L.layerGroup(),
+            "Keystone Opprotunity Zones": L.layerGroup(),
+            "Census tracts predominantly African American": L.layerGroup(),
         };
 
         // Function to load GeoJSON data
@@ -296,10 +296,6 @@
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/1960_predominantly_AfAm.geojson',
                     overlays["Census tracts predominantly African American"], {color: 'black', weight:1});
-
-
-        
-        
         
         // Create overlay control (left side)
         const aoiLabels = L.layerGroup();
