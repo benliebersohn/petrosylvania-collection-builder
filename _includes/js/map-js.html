@@ -152,18 +152,21 @@
              .5px  .5px 0 white;
     }
 
-    .zip-code-label {
-        background: white;
-        padding: 3px 8px;
-        border: 1px solid black;
-        border-radius: 3px;
-        font-weight: bold;
-        text-shadow: 
-            -1px -1px 0 white,
-            1px -1px 0 white,
-            -1px 1px 0 white,
-            1px 1px 0 white;
-    }
+.zip-code-label {
+    background: white;
+    padding: 3px 8px;
+    border: 1px solid black;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    text-shadow: 
+        -1px -1px 0 white,
+        1px -1px 0 white,
+        -1px 1px 0 white,
+        1px 1px 0 white;
+}
 
     </style>
 </head>
@@ -315,42 +318,44 @@
             }
         }
         
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson')
-            overlays["ZIP codes, 2025"], 
-            {
-                color: 'black', 
-                weight: 1,
-                fillOpacity: 0.2  // Make polygons slightly transparent
-            },
-            function(feature, layer) {
-                // Add click event to each ZIP code polygon
-                layer.on('click', function(e) {
-                    // Remove any existing labels
-                    map.eachLayer(function(layer) {
-                        if (layer._zipLabel) {
-                            map.removeLayer(layer);
-                        }
-                    });
+// Fix the loadGeoJSON call for ZIP codes
+loadGeoJSON(
+    'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
+    overlays["ZIP codes, 2025"], 
+    {
+        color: 'black', 
+        weight: 1,
+        fillOpacity: 0.2
+    },
+    function(feature, layer) {
+        // Add click event to each ZIP code polygon
+        layer.on('click', function(e) {
+            // Remove any existing labels
+            map.eachLayer(function(layer) {
+                if (layer._zipLabel) {
+                    map.removeLayer(layer);
+                }
+            });
 
-                    // Get the polygon's center point
-                    const center = e.target.getBounds().getCenter();
-                    // Create and add the label at the center
-                    const label = L.marker(center, {
-                        icon: L.divIcon({
-                            className: 'zip-code-label',
-                            html: `<div>${feature.properties.CODE}</div>`,
-                            iconSize: null
-                        }),
-                        interactive: false  // Make label non-clickable
-                    }).addTo(map);
+            // Get the polygon's center point
+            const center = e.target.getBounds().getCenter();
             
+            // Create and add the label at the center
+            const label = L.marker(center, {
+                icon: L.divIcon({
+                    className: 'zip-code-label',
+                    html: `<div>${feature.properties.CODE}</div>`,
+                    iconSize: [50, 20] // Set a fixed size
+                }),
+                interactive: false,
+                zIndexOffset: 1000 // Ensure it appears above other layers
+            }).addTo(map);
             
-                    // Mark this layer as a ZIP code label
-            
-                    label._zipLabel = true;
-                });
-            }
-        );
+            // Mark this layer as a ZIP code label
+            label._zipLabel = true;
+        });
+    }
+);
         
         // Load sample Philadelphia GeoJSON data
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson', 
