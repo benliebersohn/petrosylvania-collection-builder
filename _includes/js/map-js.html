@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
     <title>Historical Map Collection</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,7 +53,6 @@
             margin-top: 10px; /* Adjust this value based on right control's height */
             clear: both; /* Ensures it stays below */
         }
-        
         /* Add a scrollbar and limit the size of the basemap control. */
         .scrollable-basemap-control {
             /* Parent container - NO overflow here */
@@ -64,17 +62,16 @@
           max-height: 80vh;
           overflow-y: scroll;
           padding-right: 5px; /* Prevent text clipping */
-
-          /* Chrome WebKit Scrollbar */
-          &::-webkit-scrollbar {
+            /* Chrome WebKit Scrollbar */
+            &::-webkit-scrollbar {
             width: 12px;
             background: rgba(0,0,0,0.05);
-          }
-          &::-webkit-scrollbar-thumb {
-            background: #666;
-            border-radius: 8px;
-            border: 2px solid #f1f1f1;
-          }
+            }
+            &::-webkit-scrollbar-thumb {
+                background: #666;
+                border-radius: 8px;
+                border: 2px solid #f1f1f1;
+            }
         }
 
         /* Firefox fallback makes a second scrollbar which is not needed */
@@ -99,18 +96,18 @@
             background: white;
             z-index: 1;
         }
-.aoi-label {
-        color: black;
-        font-weight: bold;
-        font-size: 14px;
-        text-align: center;
-        /* White text stroke */
-        -webkit-text-stroke: .3px white;
-        text-stroke: .3px white;
-        /* Fallback for browsers that don't support text-stroke */
-        text-shadow: 
-            -.3px -.3px 0 white,
-             0   -.3px 0 white,
+        .aoi-label {
+                color: black;
+                font-weight: bold;
+                font-size: 14px;
+                text-align: center;
+                /* White text stroke */
+                -webkit-text-stroke: .3px white;
+                text-stroke: .3px white;
+                /* Fallback for browsers that don't support text-stroke */
+                text-shadow: 
+                    -.3px -.3px 0 white,
+                     0   -.3px 0 white,
              .3px -.3px 0 white,
             -.3px  0   0 white,
              .3px  0   0 white,
@@ -329,6 +326,7 @@ loadGeoJSON(
     function(feature, layer) {
         // Add click event to each ZIP code polygon
         layer.on('click', function(e) {
+            console.log('ZIP code clicked', feature.properties.CODE);
             // Remove any existing labels
             map.eachLayer(function(layer) {
                 if (layer._zipLabel) {
