@@ -152,6 +152,19 @@
              .5px  .5px 0 white;
     }
 
+    .zip-code-label div {
+        background: white;
+        padding: 3px 8px;
+        border: 1px solid black;
+        border-radius: 3px;
+        font-weight: bold;
+        text-shadow: 
+            -1px -1px 0 white,
+            1px -1px 0 white,
+            -1px 1px 0 white,
+            1px 1px 0 white;
+    }
+
     </style>
 </head>
 <body>
@@ -301,8 +314,9 @@
                 console.error('Error loading GeoJSON:', error);
             }
         }
+        
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson')
-            overlays["ZIP codes, 2025"], 
+            overlays["AOI Boundaries"], 
             {
                 color: 'black', 
                 weight: 1,
