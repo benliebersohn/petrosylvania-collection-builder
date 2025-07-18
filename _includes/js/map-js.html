@@ -23,18 +23,15 @@
             text-align: center;
             line-height: 1.2;
         }
-        
         .label-container {
             background: rgba(255,255,255,0);
             padding: 2px 5px;
             border-radius: 1px;
         }
-
         .aoi-number {
             font-weight: 700;
             font-size: 14px;
         }
-
         .area-name {
             font-size: 10px;
             font-weight: 800;
@@ -46,39 +43,29 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.2);
         }
-
         /* Right control (top position) */
         .leaflet-right .leaflet-control {
             margin-right: 10px;
             margin-top: 10px;
         }
-
         /* Left control (positioned below right control) */
         .leaflet-left .leaflet-control {
             margin-right: 50px;
             margin-top: 10px; /* Adjust this value based on right control's height */
             clear: both; /* Ensures it stays below */
         }
-        /*
-        .leaflet-left .leaflet-control {
-            margin-left: 10px;
-        }
-        .leaflet-right .leaflet-control {
-            margin-right: 10px;
-        }*/
-        /* Add a scrollbar and limit the size of the basemap control. */
         
+        /* Add a scrollbar and limit the size of the basemap control. */
         .scrollable-basemap-control {
             /* Parent container - NO overflow here */
             overflow: visible;
         }
-
         .scrollable-basemap-control .leaflet-control-layers-list {
           max-height: 80vh;
           overflow-y: scroll;
           padding-right: 5px; /* Prevent text clipping */
 
-          /* WebKit Scrollbar */
+          /* Chrome WebKit Scrollbar */
           &::-webkit-scrollbar {
             width: 12px;
             background: rgba(0,0,0,0.05);
@@ -90,28 +77,28 @@
           }
         }
 
-/* Firefox fallback isn't working and seems to be unneeeded */
-/*@supports (scrollbar-width: auto) {
-  .scrollable-basemap-control .leaflet-control-layers-list {
-    scrollbar-width: auto;
-    scrollbar-color: #666 #f1f1f1;
-  }
-}*/
+        /* Firefox fallback makes a second scrollbar which is not needed */
+        /*@supports (scrollbar-width: auto) {
+          .scrollable-basemap-control .leaflet-control-layers-list {
+            scrollbar-width: auto;
+            scrollbar-color: #666 #f1f1f1;
+          }
+        }*/
         
     
-/* Ensure the control header stays fixed */
-.scrollable-basemap-control .leaflet-control-layers-list {
-    max-height: calc(500px - 40px); /* Account for header */
-    overflow-y: scroll;
-}
+        /* Ensure the control header stays fixed */
+        .scrollable-basemap-control .leaflet-control-layers-list {
+            max-height: calc(500px - 40px); /* Account for header */
+            overflow-y: scroll;
+        }
 
-/* Keep the expand/collapse button accessible */
-.scrollable-basemap-control .leaflet-control-layers-toggle {
-    position: sticky;
-    top: 0;
-    background: white;
-    z-index: 1;
-}
+        /* Keep the expand/collapse button accessible */
+        .scrollable-basemap-control .leaflet-control-layers-toggle {
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 1;
+        }
 .aoi-label {
         color: black;
         font-weight: bold;
