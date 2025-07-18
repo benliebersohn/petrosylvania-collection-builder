@@ -68,29 +68,29 @@
         }*/
         /* Add a scrollbar and limit the size of the basemap control. */
         
-.scrollable-basemap-control {
-  /* Parent container - NO overflow here */
-  overflow: visible;
-}
+        .scrollable-basemap-control {
+            /* Parent container - NO overflow here */
+            overflow: visible;
+        }
 
-.scrollable-basemap-control .leaflet-control-layers-list {
-  max-height: 80vh;
-  overflow-y: scroll;
-  padding-right: 5px; /* Prevent text clipping */
+        .scrollable-basemap-control .leaflet-control-layers-list {
+          max-height: 80vh;
+          overflow-y: scroll;
+          padding-right: 5px; /* Prevent text clipping */
 
-  /* WebKit Scrollbar */
-  &::-webkit-scrollbar {
-    width: 12px;
-    background: rgba(0,0,0,0.05);
-  }
-  &::-webkit-scrollbar-thumb {
-    background: #666;
-    border-radius: 8px;
-    border: 2px solid #f1f1f1;
-  }
-}
+          /* WebKit Scrollbar */
+          &::-webkit-scrollbar {
+            width: 12px;
+            background: rgba(0,0,0,0.05);
+          }
+          &::-webkit-scrollbar-thumb {
+            background: #666;
+            border-radius: 8px;
+            border: 2px solid #f1f1f1;
+          }
+        }
 
-/* Firefox fallback */
+/* Firefox fallback isn't working and seems to be unneeeded */
 /*@supports (scrollbar-width: auto) {
   .scrollable-basemap-control .leaflet-control-layers-list {
     scrollbar-width: auto;
@@ -316,7 +316,7 @@
         }
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson')
-            overlays["AOI Boundaries"], 
+            overlays["ZIP codes, 2025"], 
             {
                 color: 'black', 
                 weight: 1,
@@ -324,32 +324,33 @@
             },
             function(feature, layer) {
                 // Add click event to each ZIP code polygon
-        layer.on('click', function(e) {
-            // Remove any existing labels
-            map.eachLayer(function(layer) {
-                if (layer._zipLabel) {
-                    map.removeLayer(layer);
-                }
-            });
+                layer.on('click', function(e) {
+                    // Remove any existing labels
+                    map.eachLayer(function(layer) {
+                        if (layer._zipLabel) {
+                            map.removeLayer(layer);
+                        }
+                    });
+
+                    // Get the polygon's center point
+                    const center = e.target.getBounds().getCenter();
+                    // Create and add the label at the center
+                    const label = L.marker(center, {
+                        icon: L.divIcon({
+                            className: 'zip-code-label',
+                            html: `<div>${feature.properties.CODE}</div>`,
+                            iconSize: null
+                        }),
+                        interactive: false  // Make label non-clickable
+                    }).addTo(map);
             
-            // Get the polygon's center point
-            const center = e.target.getBounds().getCenter();
             
-            // Create and add the label at the center
-            const label = L.marker(center, {
-                icon: L.divIcon({
-                    className: 'zip-code-label',
-                    html: `<div>${feature.properties.CODE}</div>`,
-                    iconSize: null
-                }),
-                interactive: false  // Make label non-clickable
-            }).addTo(map);
+                    // Mark this layer as a ZIP code label
             
-            // Mark this layer as a ZIP code label
-            label._zipLabel = true;
-        });
-    }
-);
+                    label._zipLabel = true;
+                });
+            }
+        );
         
         // Load sample Philadelphia GeoJSON data
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson', 
