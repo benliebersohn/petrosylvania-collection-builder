@@ -324,6 +324,7 @@ loadGeoJSON(
         fillOpacity: 0.2
     },
     function(feature, layer) {
+        console.log('Feature loaded:', feature.properties.CODE);
         // Add click event to each ZIP code polygon
         layer.on('click', function(e) {
             console.log('ZIP code clicked', feature.properties.CODE);
