@@ -82,14 +82,11 @@
             scrollbar-color: #666 #f1f1f1;
           }
         }*/
-        
-    
         /* Ensure the control header stays fixed */
         .scrollable-basemap-control .leaflet-control-layers-list {
             max-height: calc(500px - 40px); /* Account for header */
             overflow-y: scroll;
         }
-
         /* Keep the expand/collapse button accessible */
         .scrollable-basemap-control .leaflet-control-layers-toggle {
             position: sticky;
@@ -98,65 +95,63 @@
             z-index: 1;
         }
         .aoi-label {
-                color: black;
-                font-weight: bold;
-                font-size: 14px;
-                text-align: center;
-                /* White text stroke */
-                -webkit-text-stroke: .3px white;
-                text-stroke: .3px white;
-                /* Fallback for browsers that don't support text-stroke */
-                text-shadow: 
-                    -.3px -.3px 0 white,
-                     0   -.3px 0 white,
+            color: black;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            /* White text stroke */
+            -webkit-text-stroke: .3px white;
+            text-stroke: .3px white;
+            /* Fallback for browsers that don't support text-stroke */
+            text-shadow: 
+            -.3px -.3px 0 white,
+             0   -.3px 0 white,
              .3px -.3px 0 white,
             -.3px  0   0 white,
              .3px  0   0 white,
             -.3px  .3px 0 white,
              0    .3px 0 white,
              .3px  .3px 0 white;
-    }
-.aoi-label-name {
-        color: black;
-        font-weight: bold;
-        font-size: 14px;
-        text-align: center;
-        text-style: oblique;
-        /* White text stroke */
-        -webkit-text-stroke: .5px white;
-        text-stroke: .5px white;
-        /* Fallback for browsers that don't support text-stroke */
-        text-shadow: 
-            -.5px -.5px 0 white,
-             0   -.5px 0 white,
-             .5px -.5px 0 white,
-            -.5px  0   0 white,
-             .5px  0   0 white,
-            -.5px  .5px 0 white,
-             0    .5px 0 white,
-             .5px  .5px 0 white;
-    }
-        
-.zip-code-label {
-    font-family: 'Roboto', sans-serif; /* Modern sans-serif */
-    font-size: 12px;
-    font-weight: 600;
-    color: #333; /* Dark gray for better contrast */
-    background: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
-    padding: 4px 6px;
-    border-radius: 12px; /* Pill shape */
-    border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    text-align: center;
-    backdrop-filter: blur(2px); /* Frosted glass effect (modern browsers) */
-    transition: all 0.2s ease-out; /* Smooth transitions */
-    letter-spacing: 0.5px; /* Better readability */
-}
-.zip-code-label:hover {
-    transform: scale(1.05); /* Slight zoom */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Deeper shadow */
-}
-
+        }
+        .aoi-label-name {
+            color: black;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            text-style: oblique;
+            /* White text stroke */
+            -webkit-text-stroke: .5px white;
+            text-stroke: .5px white;
+            /* Fallback for browsers that don't support text-stroke */
+            text-shadow: 
+                -.5px -.5px 0 white,
+                 0   -.5px 0 white,
+                 .5px -.5px 0 white,
+                -.5px  0   0 white,
+                 .5px  0   0 white,
+                -.5px  .5px 0 white,
+                 0    .5px 0 white,
+                 .5px  .5px 0 white;
+        }    
+        .zip-code-label {
+            font-family: 'Roboto', sans-serif; /* Modern sans-serif */
+            font-size: 12px;
+            font-weight: 600;
+            color: #333; /* Dark gray for better contrast */
+            background: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+            padding: 4px 6px;
+            border-radius: 12px; /* Pill shape */
+            border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            text-align: center;
+            backdrop-filter: blur(2px); /* Frosted glass effect (modern browsers) */
+            transition: all 0.2s ease-out; /* Smooth transitions */
+            letter-spacing: 0.5px; /* Better readability */
+        }
+        .zip-code-label:hover {
+            transform: scale(1.05); /* Slight zoom */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+        }
     </style>
 </head>
 <body>
@@ -357,6 +352,13 @@ loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petros
         });
     }
 );
+map.on('zoomend', function() {
+    const zoom = map.getZoom();
+    document.querySelectorAll('.zip-code-label')
+        .forEach(label => {
+            label.style.display = zoom >= 10 ? 'block' : 'none';
+        });
+});
         // Load sample Philadelphia GeoJSON data
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson', 
                     
