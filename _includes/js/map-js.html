@@ -145,13 +145,9 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
             text-align: center;
             backdrop-filter: blur(2px); /* Frosted glass effect (modern browsers) */
-            transition: all 0.2s ease-out; /* Smooth transitions */
             letter-spacing: 0.5px; /* Better readability */
         }
-        .zip-code-label:hover {
-            transform: scale(1.05); /* Slight zoom */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Deeper shadow */
-        }
+
     </style>
 </head>
 <body>
@@ -334,7 +330,7 @@ loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petros
                 html: `<div>${feature.properties.CODE}</div>`,
                 iconSize: [50, 20]
             }),
-            interactive: true,
+            interactive: false,
             zIndexOffset: 1000
         });
         
