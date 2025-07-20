@@ -314,56 +314,48 @@
                 console.error('Error loading GeoJSON:', error);
             }
         }
-        console.log("Script is running!"); // Check if this appears in the console
-        console.log("Is loadGeoJSON defined?", typeof loadGeoJSON);
-        // Wrap everything in map.on('load') to ensure the map is ready
-map.on('load', function() {
-    console.log("Map is ready!"); // Debug: Confirm this appears in the console
+console.log('reached this part');
+        
+loadGeoJSON(
+    'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
+    overlays["ZIP codes, 2025"], 
+    {
+        color: 'black', 
+        weight: 1,
+        fillOpacity: 0.2
+    },
+    function(feature, layer) {
+        console.log('ZIP code reached', feature.properties.CODE);
 
-    // Replace loadGeoJSON with Leaflet's L.geoJSON + fetch
-    fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson')
-        .then(response => response.json())
-        .then(geojsonData => {
-            console.log("GeoJSON loaded successfully!"); // Debug: Check data loads
-            const zipLayer = L.geoJSON(geojsonData, {
-                style: {
-                    color: 'black',
-                    weight: 1,
-                    fillOpacity: 0.2
-                },
-                onEachFeature: function(feature, layer) {
-                    console.log("Feature loaded:", feature.properties.CODE); // Debug: Check features
-                    
-                    // Your click handler for labels
-                    layer.on('click', function(e) {
-                        console.log("ZIP clicked:", feature.properties.CODE); // Debug: Confirm clicks work
-                        
-                        // Remove existing labels
-                        map.eachLayer(function(layer) {
-                            if (layer._zipLabel) map.removeLayer(layer);
-                        });
-
-                        // Add new label
-                        const label = L.marker(e.latlng, { // Use clicked point for simplicity
-                            icon: L.divIcon({
-                                className: 'zip-code-label',
-                                html: feature.properties.CODE,
-                                iconSize: [50, 20]
-                            }),
-                            interactive: false,
-                            zIndexOffset: 1000
-                        }).addTo(map);
-                        
-                        label._zipLabel = true;
-                    });
+        // Add click event to each ZIP code polygon
+        layer.on('click', function(e) {
+            console.log('ZIP code clicked', feature.properties.CODE);
+            // Remove any existing labels
+            map.eachLayer(function(layer) {
+                if (layer._zipLabel) {
+                    map.removeLayer(layer);
                 }
-            }).addTo(map);
+            });
 
-            // Optional: Add to your overlays control
-            overlays["ZIP codes, 2025"] = zipLayer;
-        })
-        .catch(error => console.error("Failed to load GeoJSON:", error)); // Debug: Network/parse errors
-});
+            // Get the polygon's center point
+            const center = e.target.getBounds().getCenter();
+            
+            // Create and add the label at the center
+            const label = L.marker(center, {
+                icon: L.divIcon({
+                    className: 'zip-code-label',
+                    html: `<div>${feature.properties.CODE}</div>`,
+                    iconSize: [50, 20] // Set a fixed size
+                }),
+                interactive: false,
+                zIndexOffset: 1000 // Ensure it appears above other layers
+            }).addTo(map);
+            
+            // Mark this layer as a ZIP code label
+            label._zipLabel = true;
+        });
+    }
+);        
         // Load sample Philadelphia GeoJSON data
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson', 
                     
