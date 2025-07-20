@@ -355,10 +355,6 @@ loadGeoJSON(
         });
     }
 );        
-    overlays["ZIP codes, 2025"].on('add', function() {
-        console.log('ZIP code layer added to map');
-        console.log('Layer contains:', overlays["ZIP codes, 2025"].getLayers().length, 'features');
-    });
 
         // Load sample Philadelphia GeoJSON data
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson', 
