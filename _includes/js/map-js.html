@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.css" /> <!-- For the fullscreen effekt (optional) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet"> <!-- Fun Font For the modern effekt -->
     <style>
         body {
             margin: 0;
@@ -135,21 +136,19 @@
              0    .5px 0 white,
              .5px  .5px 0 white;
     }
-
+        
 .zip-code-label {
-    background: white;
-    padding: 3px 8px;
-    border: 1px solid black;
-    border-radius: 3px;
-    font-weight: bold;
-    font-size: 14px;
+    font-family: 'Roboto', sans-serif; /* Modern sans-serif */
+    font-size: 12px;
+    font-weight: 600;
+    color: #333; /* Dark gray for better contrast */
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    padding: 4px 8px;
+    border-radius: 12px; /* Pill shape */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
     text-align: center;
-    box-shadow: 0 0 5px rgba(0,0,0,0.3);
-    text-shadow: 
-        -1px -1px 0 white,
-        1px -1px 0 white,
-        -1px 1px 0 white,
-        1px 1px 0 white;
+    backdrop-filter: blur(2px); /* Frosted glass effect (modern browsers) */
 }
 
     </style>
