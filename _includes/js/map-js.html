@@ -325,37 +325,25 @@ loadZipGeoJSON(
         fillOpacity: 0.2
     },
     function(feature, layer) {
-        console.log('ZIP code reached', feature.properties.CODE);
+        console.log('ZIP code loaded:', feature.properties.CODE);
 
-        // Add click event to each ZIP code polygon
-        layer.on('click', function(e) {
-            console.log('ZIP code clicked', feature.properties.CODE);
-            // Remove any existing labels
-            map.eachLayer(function(layer) {
-                if (layer._zipLabel) {
-                    map.removeLayer(layer);
-                }
-            });
-
-            // Get the polygon's center point
-            const center = e.target.getBounds().getCenter();
-            
-            // Create and add the label at the center
-            const label = L.marker(center, {
-                icon: L.divIcon({
-                    className: 'zip-code-label',
-                    html: `<div>${feature.properties.CODE}</div>`,
-                    iconSize: [50, 20] // Set a fixed size
-                }),
-                interactive: false,
-                zIndexOffset: 1000 // Ensure it appears above other layers
-            }).addTo(map);
-            
-            // Mark this layer as a ZIP code label
-            label._zipLabel = true;
-        });
+        // Create a label for each ZIP code polygon on load
+        const center = layer.getBounds().getCenter(); // Get polygon center
+        
+        const label = L.marker(center, {
+            icon: L.divIcon({
+                className: 'zip-code-label',
+                html: `<div>${feature.properties.CODE}</div>`,
+                iconSize: [50, 20] // Fixed size
+            }),
+            interactive: false, // Disable clicks on the label itself
+            zIndexOffset: 1000   // Ensure labels appear above polygons
+        }).addTo(map);
+        
+        // Optional: Store reference to the label
+        layer._zipLabel = label;
     }
-);        
+);
         // Load sample Philadelphia GeoJSON data
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson', 
                     
