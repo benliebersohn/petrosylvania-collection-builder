@@ -318,11 +318,13 @@
 loadGeoJSON(
     'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
     overlays["ZIP codes, 2025"], 
-    {
-        color: 'black', 
-        weight: 1,
-        fillOpacity: 0.2
-    },
+    
+{
+    color: 'red',  // Changed to red for visibility
+    weight: 3,     // Thicker border
+    fillColor: 'yellow',
+    fillOpacity: 0.5
+}
     function(feature, layer) {
         // Add click event to each ZIP code polygon
         layer.on('click', function(e) {
@@ -353,6 +355,11 @@ loadGeoJSON(
         });
     }
 );        
+    overlays["ZIP codes, 2025"].on('add', function() {
+        console.log('ZIP code layer added to map');
+        console.log('Layer contains:', overlays["ZIP codes, 2025"].getLayers().length, 'features');
+    });
+
         // Load sample Philadelphia GeoJSON data
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson', 
                     
