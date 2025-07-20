@@ -357,7 +357,7 @@ map.on('zoomend', function() {
     const zoom = map.getZoom();
     document.querySelectorAll('.zip-code-label')
         .forEach(label => {
-            label.style.display = zoom >= 10 ? 'block' : 'none';
+            label.style.display = zoom >= 12 ? 'block' : 'none';
         });
 });
         // Load sample Philadelphia GeoJSON data
