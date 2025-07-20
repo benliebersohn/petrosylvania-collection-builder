@@ -316,32 +316,41 @@
         }
 console.log('reached this part');
         
+const zipCodeLabels = L.layerGroup().addTo(map);
+
 loadZipGeoJSON(
-    'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
+    'https://raw.githubusercontent.com/.../zip_codes.geojson',
     overlays["ZIP codes, 2025"], 
     {
-        color: 'black', 
+        color: 'black',
         weight: 1,
         fillOpacity: 0.2
     },
     function(feature, layer) {
-        console.log('ZIP code loaded:', feature.properties.CODE);
-
-        // Create a label for each ZIP code polygon on load
-        const center = layer.getBounds().getCenter(); // Get polygon center
-        
+        // Create label for each ZIP code
+        const center = layer.getBounds().getCenter();
         const label = L.marker(center, {
             icon: L.divIcon({
                 className: 'zip-code-label',
                 html: `<div>${feature.properties.CODE}</div>`,
-                iconSize: [50, 20] // Fixed size
+                iconSize: [50, 20]
             }),
-            interactive: false, // Disable clicks on the label itself
-            zIndexOffset: 1000   // Ensure labels appear above polygons
-        }).addTo(map);
+            interactive: false,
+            zIndexOffset: 1000
+        });
         
-        // Optional: Store reference to the label
-        layer._zipLabel = label;
+        // Store reference to the label on the layer
+        layer._label = label;
+        
+        // When layer is added to map (turned on), add its label
+        layer.on('add', function() {
+            label.addTo(zipCodeLabels);
+        });
+        
+        // When layer is removed from map (turned off), remove its label
+        layer.on('remove', function() {
+            zipCodeLabels.removeLayer(label);
+        });
     }
 );
         // Load sample Philadelphia GeoJSON data
