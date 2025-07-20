@@ -318,8 +318,7 @@ console.log('reached this part');
         
 const zipCodeLabels = L.layerGroup().addTo(map);
 
-loadZipGeoJSON(
-    'https://raw.githubusercontent.com/.../zip_codes.geojson',
+loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
     overlays["ZIP codes, 2025"], 
     {
         color: 'black',
