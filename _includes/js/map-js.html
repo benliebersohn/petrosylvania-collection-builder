@@ -274,13 +274,14 @@
         //https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}.png
         const overlays = {
             "AOI Boundaries": L.layerGroup(),
-            "FEMA 1% annual chance of flooding, 2020": L.layerGroup(),
-            "LNAPL Plume 1": L.tileLayer('https://mapwarper.net/maps/tile/88772/{z}/{x}/{y}.png'),
-            "LNAPL Plume 2": L.tileLayer('https://mapwarper.net/maps/tile/88779/{z}/{x}/{y}.png'),
-            "LNAPL Plume 3": L.tileLayer('https://mapwarper.net/maps/tile/88816/{z}/{x}/{y}.png'),
-            "LNAPL Plume 4": L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}.png'),
-            "ZIP codes, 2025": L.layerGroup(),
-            "Keystone Opprotunity Zones": L.layerGroup(),
+            "2020 FEMA high chance of flooding (100 year flood)": L.layerGroup(),
+            "1996 LNAPL Plume 1": L.tileLayer('https://mapwarper.net/maps/tile/88772/{z}/{x}/{y}.png'),
+            "1996 LNAPL Plume 2": L.tileLayer('https://mapwarper.net/maps/tile/88779/{z}/{x}/{y}.png'),
+            "1996 LNAPL Plume 3": L.tileLayer('https://mapwarper.net/maps/tile/88816/{z}/{x}/{y}.png'),
+            "1996 LNAPL Plume 4": L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}.png'),
+            "2025 ZIP codes": L.layerGroup(),
+            "2025 Keystone Opprotunity Zones": L.layerGroup(),
+            "1937 Redlining": L.layerGroup(),
             "2020 tracts >50% industrial, 2025": L.layerGroup(),
             "1960 census >50% Black": L.layerGroup(),
             "1980 census >50% Black": L.layerGroup(),
@@ -321,7 +322,7 @@ console.log('reached this part');
 const zipCodeLabels = L.layerGroup().addTo(map);
 
 loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
-    overlays["ZIP codes, 2025"], 
+    overlays["2025 ZIP codes"], 
     {
         color: 'black',
         weight: 2,
@@ -376,9 +377,12 @@ map.on('zoomend', function() {
                         };
                     }
                    );
-                
+
+        loadGeoJSON('https://dsl.richmond.edu/panorama/redlining/static/mappinginequality.json',
+                    overlays["1937 Redlining map"], {color: 'red', weight: 2});
+        
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson', 
-                   overlays["FEMA 1% annual chance of flooding, 2020"], {color: 'blue', radius: .5, fillOpacity: 0.1});
+                   overlays["2020 FEMA high chance of flooding (100 year flood)"], {color: 'blue', radius: .5, fillOpacity: 0.1});
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/industrial_tracts.geojson', 
                    overlays["2020 tracts >50% industrial, 2025"], {color: 'gray', weight: 2});
@@ -387,7 +391,7 @@ map.on('zoomend', function() {
       //              overlays["ZIP codes, 2025"], {color: 'black', weight:1});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/KOZ_parcels.geojson',
-                    overlays["Keystone Opprotunity Zones"], {color: 'black', weight:1});
+                    overlays["2025 Keystone Opprotunity Zones"], {color: 'black', weight:1});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/1960_predominantly_AfAm.geojson',
                     overlays["1960 census >50% Black"], {color: 'black', weight:1});
