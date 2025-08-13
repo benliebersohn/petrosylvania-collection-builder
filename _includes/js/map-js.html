@@ -240,7 +240,7 @@
             { name: "ESRI NatGeo", layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}') },
             { name: "ESRI StreetMap", layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}') },
             { name: "OpenStreetMap", layer: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png') },
-// Make OSM Streets a base-base map with no off option? Make it a base-base map somehow...
+// Make OSM Streets a base-base map with no off option? Make it a base-base map somehow... Maybe a second OSM layer that turns on? check performance.
         ];
 
         // Sort basemaps by year (those without years at the bottom)
@@ -258,7 +258,7 @@
         });
 
         // Add default basemap
-        baseLayers["OSM Streets"].addTo(map);
+        baseLayers["OpenStreetMap"].addTo(map);
         
         const overlays = {
             "AOI Boundaries": L.layerGroup(),
