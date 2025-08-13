@@ -240,10 +240,6 @@
             { name: "ESRI Imagery", layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}') },
             { name: "Google Satellite", layer: L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}') },
             { name: "ESRI NatGeo", layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}') },
-//            { name: "LNAPL Plume 1", layer: L.tileLayer('https://mapwarper.net/maps/tile/88772/{z}/{x}/{y}.png') },
-//            { name: "LNAPL Plume 2", layer: L.tileLayer('https://mapwarper.net/maps/tile/88779/{z}/{x}/{y}.png') },
-//            { name: "LNAPL Plume 3", layer: L.tileLayer('https://mapwarper.net/maps/tile/88816/{z}/{x}/{y}.png') },
-//            { name: "LNAPL Plume 4", layer: L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}.png') },
         ];
 
         // Sort basemaps by year (those without years at the bottom)
@@ -379,7 +375,17 @@ map.on('zoomend', function() {
                    );
 
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/redlining.geojson',
-                    overlays["1937 Redlining Map"], {color: 'red', weight: 2});
+                    overlays["1937 Redlining Map"], 
+                    function(feature) {
+                        return {
+                            color: feature.properties.stroke || '#555555', // Default color if not specified
+                            weight: feature.properties['stroke-width'] || 2,
+                            opacity: feature.properties['stroke-opacity'] || 1,
+                            fillColor: feature.properties.fill || '#cab2d6',
+                            fillOpacity: feature.properties['fill-opacity'] || 0.5
+                        };
+                    }
+                   );
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson', 
                    overlays["2020 FEMA high chance of flooding (100 year flood)"], {color: 'blue', radius: .5, fillOpacity: 0.1});
