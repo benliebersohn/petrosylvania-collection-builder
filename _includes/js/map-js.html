@@ -400,14 +400,14 @@ map.on('zoomend', function() {
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/redlining.geojson',
                     overlays["1937 Redlining Map"], 
                     function(feature) {
-                        legend.addTo(map);
-/*                        return {
+//                        legend.addTo(map);
+                        return {
                             color: feature.properties.stroke || '#555555', // Default color if not specified
                             weight: feature.properties['stroke-width'] || 2,
                             opacity: feature.properties['stroke-opacity'] || 1,
                             fillColor: feature.properties.fill || '#cab2d6',
                             fillOpacity: feature.properties['fill-opacity'] || 0.5
-                        };*/
+                        };
                     }
                    );
         
