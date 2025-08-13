@@ -270,22 +270,22 @@
         //https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}.png
         const overlays = {
             "AOI Boundaries": L.layerGroup(),
-            "2020 FEMA high chance of flooding (100 year flood)": L.layerGroup(),
+            "1937 Redlining Map": L.layerGroup(),
+            "1960 census >50% Black": L.layerGroup(),
             "1996 LNAPL Plume 1": L.tileLayer('https://mapwarper.net/maps/tile/88772/{z}/{x}/{y}.png'),
             "1996 LNAPL Plume 2": L.tileLayer('https://mapwarper.net/maps/tile/88779/{z}/{x}/{y}.png'),
             "1996 LNAPL Plume 3": L.tileLayer('https://mapwarper.net/maps/tile/88816/{z}/{x}/{y}.png'),
             "1996 LNAPL Plume 4": L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}.png'),
-            "2025 ZIP codes": L.layerGroup(),
-            "2025 Keystone Opportunity Zones": L.layerGroup(),
-            "1937 Redlining Map": L.layerGroup(),
-            "2020 tracts >50% industrial, 2025": L.layerGroup(),
-            "1960 census >50% Black": L.layerGroup(),
             "1980 census over 50% Black": L.layerGroup(),
             "1980 census over 25% under the poverty line": L.layerGroup(),
             "2000 census >50% Black": L.layerGroup(),
             "2000 census >25% under the poverty line": L.layerGroup(),
             "2020 census >50% Black": L.layerGroup(),
             "2020 census >25% under the poverty line": L.layerGroup(),
+            "2020 tracts >50% industrial, 2025": L.layerGroup(),
+            "2020 FEMA flood zones (100 year flood)": L.layerGroup(),
+            "2025 ZIP codes": L.layerGroup(),
+            "2025 Keystone Opportunity Zones": L.layerGroup(),
         };
         
         // Function to load GeoJSON data
@@ -374,16 +374,47 @@ map.on('zoomend', function() {
                     }
                    );
 
+        // Create the control for the legend
+        var legend = L.control({position: 'bottomright'});
+
+        // Define your color codes and labels
+        var redliningGrades = {
+            'A': '#60bd68',  // Typically green for "best" areas
+            'B': '#b3d1a7',  // Typically blue-green
+            'C': '#f1ea7f',  // Typically yellow
+            'D': '#e8927c',  // Typically orange
+            'Hazardous': '#de6a66'  // Typically red for "hazardous" areas
+        };
+
+        // When the legend is added to the map
+
+        legend.onAdd = function(map) {
+            var div = L.DomUtil.create('div', 'info legend');
+            var labels = ['<strong>Redlining Grades</strong>'];
+    
+        // Loop through our grades and generate a label with a colored square
+            for (var grade in redliningGrades) {
+                labels.push(
+                    '<i style="background:' + redliningGrades[grade] + '; width: 18px; height: 18px; display: inline-block; margin-right: 5px;"></i> ' +
+                    grade
+                );
+            }
+            
+            div.innerHTML = labels.join('<br>');
+            return div;
+        };
+        
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/redlining.geojson',
                     overlays["1937 Redlining Map"], 
                     function(feature) {
+                        legend.addTo(map);/*
                         return {
                             color: feature.properties.stroke || '#555555', // Default color if not specified
                             weight: feature.properties['stroke-width'] || 2,
                             opacity: feature.properties['stroke-opacity'] || 1,
                             fillColor: feature.properties.fill || '#cab2d6',
                             fillOpacity: feature.properties['fill-opacity'] || 0.5
-                        };
+                        };*/
                     }
                    );
         
