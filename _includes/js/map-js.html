@@ -649,7 +649,7 @@ map.on('zoomend', function() {
         // Create basemap control (right side)        
         const overlayControl = L.control.layers(null, overlays, {
             collapsed: false,
-            position: 'topright'
+            position: 'topleft'
         }).addTo(map);
         
         const basemapControl = L.control.layers(baseLayers, null, {
