@@ -280,12 +280,12 @@
             "1996 LNAPL Plume 3": L.tileLayer('https://mapwarper.net/maps/tile/88816/{z}/{x}/{y}.png'),
             "1996 LNAPL Plume 4": L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}.png'),
             "2025 ZIP codes": L.layerGroup(),
-            "2025 Keystone Opprotunity Zones": L.layerGroup(),
-            "1937 Redlining": L.layerGroup(),
+            "2025 Keystone Opportunity Zones": L.layerGroup(),
+            "1937 Redlining Map": L.layerGroup(),
             "2020 tracts >50% industrial, 2025": L.layerGroup(),
             "1960 census >50% Black": L.layerGroup(),
-            "1980 census >50% Black": L.layerGroup(),
-            "1980 census >25% under the poverty line": L.layerGroup(),
+            "1980 census over 50% Black": L.layerGroup(),
+            "1980 census over 25% under the poverty line": L.layerGroup(),
             "2000 census >50% Black": L.layerGroup(),
             "2000 census >25% under the poverty line": L.layerGroup(),
             "2020 census >50% Black": L.layerGroup(),
@@ -379,7 +379,7 @@ map.on('zoomend', function() {
                    );
 
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/redlining.geojson',
-                    overlays["1937 Redlining map"], {color: 'red', weight: 2});
+                    overlays["1937 Redlining Map"], {color: 'red', weight: 2});
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson', 
                    overlays["2020 FEMA high chance of flooding (100 year flood)"], {color: 'blue', radius: .5, fillOpacity: 0.1});
@@ -387,20 +387,17 @@ map.on('zoomend', function() {
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/industrial_tracts.geojson', 
                    overlays["2020 tracts >50% industrial, 2025"], {color: 'gray', weight: 2});
         
-      //  loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
-      //              overlays["ZIP codes, 2025"], {color: 'black', weight:1});
-
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/KOZ_parcels.geojson',
-                    overlays["2025 Keystone Opprotunity Zones"], {color: 'black', weight:1});
+                    overlays["2025 Keystone Opportunity Zones"], {color: 'black', weight:1});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/1960_predominantly_AfAm.geojson',
                     overlays["1960 census >50% Black"], {color: 'black', weight:1});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/1980_predominant_afam.geojson',
-                    overlays["1980 census >50% Black"], {color: 'black', weight:1});
+                    overlays["1980 census over 50% Black"], {color: 'black', weight:1});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/1980_%3E25pctPoverty.geojson',
-                    overlays["2000 census >25% under the poverty line"], {color: 'green', weight:1});
+                    overlays["1980 census over 25% under the poverty line"], {color: 'green', weight:1});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/predominantAfam_2000.geojson',
                     overlays["2000 census >50% Black"], {color: 'black', weight:1});
