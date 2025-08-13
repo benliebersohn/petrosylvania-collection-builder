@@ -360,13 +360,13 @@ map.on('zoomend', function() {
                             weight: feature.properties['stroke-width'] || 2,
                             opacity: feature.properties['stroke-opacity'] || 1,
                             fillColor: feature.properties.fill || '#cab2d6',
-                            fillOpacity: feature.properties['fill-opacity'] || 0.5
+                            fillOpacity: feature.properties['fill-opacity'] || 0.3
                         };
                     }
                    );
 
         // Create the control for the legend
-        var legend = L.control({position: 'bottomright'});
+        var legend = L.control({position: 'bottomleft'});
 
         // Define your color codes and labels
         var redliningGrades = {
@@ -374,6 +374,7 @@ map.on('zoomend', function() {
             'B - Still Desirable': '#7cb5bd',  // blue
             'C - Definitely Declining': '#ffff00',  //  yellow
             'D - Hazardous': '#d9838d',  // reddish orange
+            'Commercial or Industrial': '#000000',
             //other hatchures or cross hatch?
         };
 
