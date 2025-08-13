@@ -168,7 +168,7 @@
         L.control.attribution({position: 'bottomleft'}).addTo(map);
         
         map.addControl(new L.Control.FullScreen({ // Add the button for fullscreen
-            position: 'topleft',
+            position: 'bottomleft',
             title: {
                 'false': 'View Fullscreen',
                 'true': 'Exit Fullscreen'
@@ -401,6 +401,14 @@ map.on('zoomend', function() {
                     overlays["1937 Redlining Map"], 
                     function(feature) {
 //                        legend.addTo(map);
+                        overlays["1937 Redlining Map"].on('add', function() {
+                            legend.addTo(map);
+                        });
+                        
+                        overlays["1937 Redlining Map"].on('remove', function() {
+                            map.removeControl(legend);
+                        });
+                        
                         return {
                             color: feature.properties.stroke || '#555555', // Default color if not specified
                             weight: feature.properties['stroke-width'] || 2,
@@ -410,6 +418,7 @@ map.on('zoomend', function() {
                         };
                     }
                    );
+        
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson', 
                    overlays["2020 FEMA high chance of flooding (100 year flood)"], {color: 'blue', radius: .5, fillOpacity: 0.1});
