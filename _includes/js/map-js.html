@@ -93,16 +93,17 @@
             background: white;
             z-index: 1;
         }
+        /*
         .aoi-label {
-            font-family: 'Roboto', sans-serif; /* Google fonts sans-serif */
+            font-family: 'Roboto', sans-serif; /* Google fonts sans-serif *
             color: black;
             font-weight: 800;
             font-size: 14px;
             text-align: center;
-            /* White text stroke */
+            /* White text stroke *
             -webkit-text-stroke: .65px white;
             text-stroke: .65px white;
-            /* Fallback for browsers that don't support text-stroke */
+            /* Fallback for browsers that don't support text-stroke *
             text-shadow: 
             -.65px -.65px 0 rgba(255,255,255,.75),
              0   -.65px 0 rgba(255,255,255,.75),
@@ -112,7 +113,17 @@
             -.65px  .65px 0 rgba(255,255,255,.75),
              0    .65px 0 rgba(255,255,255,.75),
              .65px  .65px 0 rgba(255,255,255,.75);
+        }*/
+        .aoi-label {
+            font-family: 'Roboto', sans-serif;
+            color: black;
+            font-weight: 800;
+            font-size: 14px;
+            text-align: center;
+            -webkit-text-stroke: 0.65px white; /* Chrome/Safari */
+            text-stroke: 0.65px white;          /* Future standard */
         }
+        
         .aoi-label-name {
             font-family: 'Roboto', sans-serif; /* Google fonts sans-serif */
             color: black;
