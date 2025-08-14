@@ -412,7 +412,11 @@ map.on('zoomend', function() {
 // 1. FIRST initialize your layer groups properly
 const aoiLabels = L.layerGroup();  // Must come BEFORE loadGeoJSON
 const aoiBoundaries = L.layerGroup();
-
+console.log('Layer groups initialized:',
+  aoiLabels instanceof L.LayerGroup,
+  aoiBoundaries instanceof L.LayerGroup
+);
+        
 // 2. Add to map immediately (or to your layer control)
 aoiLabels.addTo(map);  // Or add to overlays if using control
 aoiBoundaries.addTo(map);
