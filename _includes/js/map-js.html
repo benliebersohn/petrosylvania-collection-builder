@@ -354,7 +354,9 @@ loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petros
         });
     }
 );
+
 overlays["2025 ZIP Codes"] = zipCodeLayers;
+L.control.layers(null, overlays).addTo(map);
 
 map.on('zoomend', function() {
     const zoom = map.getZoom();
