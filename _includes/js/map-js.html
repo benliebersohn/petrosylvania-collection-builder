@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.css" /> <!-- For the fullscreen effekt (optional) -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet"> <!-- Fun Font For the modern effekt -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    
     <style>
         body {
             margin: 0;
@@ -98,7 +96,7 @@
         }
         .aoi-label {
             color: black;
-            font-weight: 400;
+            font-weight: bold;
             font-size: 14px;
             text-align: center;
             /* White text stroke */
@@ -117,7 +115,7 @@
         }
         .aoi-label-name {
             color: black;
-            font-weight: 400;
+            font-weight: bold;
             font-size: 14px;
             text-align: center;
             text-style: oblique;
@@ -136,7 +134,7 @@
                  .5px  .5px 0 white;
         }    
         .zip-code-label {
-            font-family: 'Open Sans', sans-serif; /* Google fonts sans-serif */
+            font-family: 'Roboto', sans-serif; /* Google fonts sans-serif */
             font-size: 14px;
             font-weight: 500;
             color: #333; /* Dark gray for better contrast */
@@ -311,14 +309,13 @@
         }
 console.log('reached this part');
         
-const zipCodeLabels = L.layerGroup().addTo(map);     //layer group for the ZIP labels
-const zipCodeLayers = L.layerGroup();                // layer group for the ZIP boundaries
-                                                     // Note Layers and Labels look similar
+const zipCodeLabels = L.layerGroup().addTo(map); //layer group for the ZIP labels
+const zipCodeLayers = L.layerGroup(); // layer group for the ZIP boundaries
 
 loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
     zipCodeLayers, 
     {
-        color: 'white', // Add a thick white line behind the following (blue) line
+        color: 'white',
         weight: 5,
         fillOpacity: 0
     }
