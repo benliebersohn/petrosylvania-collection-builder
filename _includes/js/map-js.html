@@ -312,7 +312,19 @@ const zipCodeLabels = L.layerGroup().addTo(map);
 loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
     overlays["2025 ZIP codes"], 
     {
-        color: 'black',
+        color: 'white',
+        weight: 4,
+        fillOpacity: 0,
+        dashArray: '0, 1000',  // Creates outline only
+        lineCap: 'round',
+        className: 'zip-outline'  // For potential CSS styling
+    }
+);
+        
+loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
+    overlays["2025 ZIP codes"], 
+    {
+        color: '#002F6C',  // USPS BLUE #002F6C
         weight: 2,
         fillOpacity: 0
     },
@@ -351,9 +363,7 @@ map.on('zoomend', function() {
         });
 });
         // Load sample Philadelphia GeoJSON data
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson', 
-                    
-            
+        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson',
                     overlays["AOI Boundaries"], 
                     function(feature) {
                         return {
