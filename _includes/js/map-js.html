@@ -314,10 +314,7 @@ loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petros
     {
         color: 'white',
         weight: 4,
-        fillOpacity: 0,
-        dashArray: '0, 1000',  // Creates outline only
-        lineCap: 'round'
-    }
+        fillOpacity: 0    }
 );
         
 loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
@@ -499,7 +496,6 @@ map.on('zoomend', function() {
             className: 'aoi-label',/*
             html: '<div style="position:relative; top:-10px;">AOI-1</div>', // Adjust vertical position
             iconSize: [40, 20]*/
-                
             html: `<div class="label-container">
             <div class="aoi-number">AOI-1</div>
             <div class="area-name">Point Breeze tank farms <br>1 & 2</div>
