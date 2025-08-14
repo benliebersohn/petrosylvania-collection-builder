@@ -117,13 +117,27 @@
              .65px  .65px 0 rgba(255,255,255,.75);
         }*/
         .aoi-label {
+            position: relative;
+            display: inline-block;
+        }
+        /* White outline layer (behind) */
+
+        .aoi-label::before {
+            content: attr(data-text);
+            position: absolute;
+            -webkit-text-stroke: 0.5px white;
+            text-stroke: 0.5px white;
+            color: transparent; /* Hide fill, show only stroke */
+            z-index: 1;
+        }
+        /* Primary text (on top) */
+        .aoi-label div {
+            position: relative;
+            z-index: 2;
             font-family: 'Roboto', sans-serif;
             color: black;
-            font-weight: 800;
-            font-size: 16px;
-            text-align: center;
-            -webkit-text-stroke: .5px white; /* Chrome/Safari */
-            text-stroke: .5px white;          /* Future standard */
+            font-weight: 400;
+            font-size: 14px;
         }
         
         .aoi-label-name {
@@ -526,15 +540,15 @@ map.on('zoomend', function() {
             className: 'aoi-label',/*
             html: '<div style="position:relative; top:-10px;">AOI-1</div>', // Adjust vertical position
             iconSize: [40, 20]*/
-            html: `<div class="label-container">
-            <div class="aoi-number">AOI-1</div>
+            html: `<div data-text="${feature.properties.name}">
+            <div>$(feature.properties.name}</div>
             </div>`,
-        iconSize: [60, 20]  
+        iconSize: [auto, 20]  
             
         }),
         interactive: false
         });
-        
+        /*
         const aoi2 = L.marker([39.915279, -75.199142], {  // Fixed coordinate order-75.199142,39.915279
         pane: 'labelPane',
         icon: L.divIcon({
@@ -643,11 +657,11 @@ map.on('zoomend', function() {
         }),
         interactive: false
         });
-
+*/
         //add the labels to the map
         aoiLabels.addLayer(PGW);
         aoiLabels.addLayer(Belmont);
-        aoiLabels.addLayer(aoi1);
+        aoiLabels.addLayer(aoi1);/*
         aoiLabels.addLayer(aoi2);
         aoiLabels.addLayer(aoi3);
         aoiLabels.addLayer(aoi4);
@@ -656,7 +670,7 @@ map.on('zoomend', function() {
         aoiLabels.addLayer(aoi7);
         aoiLabels.addLayer(aoi8);
         aoiLabels.addLayer(aoi9);
-        aoiLabels.addLayer(aoi10);
+        aoiLabels.addLayer(aoi10);*/
                 
         overlays["AOI Boundaries"].on('add', function() {
             if (!map.hasLayer(aoiLabels)) {
