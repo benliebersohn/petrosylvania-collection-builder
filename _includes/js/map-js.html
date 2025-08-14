@@ -345,7 +345,6 @@ loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petros
                    weight: 2,
                    fillOpacity: 0
                 },
-    
                 function(feature, layer) { // Create label for each ZIP code
                     const center = layer.getBounds().getCenter();
                     const label = L.marker(center, {
@@ -370,8 +369,9 @@ loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petros
                     layer.on('remove', function() {
                         zipCodeLabels.removeLayer(label);
                     });
-                }
+                    }
           );
+    };
     );
 
 overlays["2025 ZIP Codes"] = zipCodeLayers;
