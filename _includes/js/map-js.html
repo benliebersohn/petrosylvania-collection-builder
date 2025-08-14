@@ -96,22 +96,22 @@
         }
         .aoi-label {
             color: black;
-            font-weight: 600;
+            font-weight: 800;
             font-size: 14px;
             text-align: center;
             /* White text stroke */
-            -webkit-text-stroke: .5px white;
-            text-stroke: .5px white;
+            -webkit-text-stroke: .65px white;
+            text-stroke: .65px white;
             /* Fallback for browsers that don't support text-stroke */
             text-shadow: 
-            -.5px -.5px 0 white,
-             0   -.5px 0 white,
-             .5px -.5px 0 white,
-            -.5px  0   0 white,
-             .5px  0   0 white,
-            -.5px  .5px 0 white,
-             0    .5px 0 white,
-             .5px  .5px 0 white;
+            -.65px -.65px 0 white,
+             0   -.65px 0 white,
+             .65px -.65px 0 white,
+            -.65px  0   0 white,
+             .65px  0   0 white,
+            -.65px  .65px 0 white,
+             0    .65px 0 white,
+             .65px  .65px 0 white;
         }
         .aoi-label-name {
             color: black;
@@ -278,7 +278,7 @@
             "2020 census >25% under the poverty line": L.layerGroup(),
             "2020 tracts >50% industrial, 2025": L.layerGroup(),
             "2020 FEMA flood zones (100 year flood)": L.layerGroup(),
-//            "2025 ZIP codes": L.layerGroup(), // see 2025 ZIP Code, below, group "zipCodeLayers" 
+//            "2025 ZIP codes": L.layerGroup(), // see 2025 ZIP Code, below, group "zipCodeLayers"  // added elsewhere!
             "2025 Keystone Opportunity Zones": L.layerGroup(),
         };
         
@@ -311,51 +311,68 @@ console.log('reached this part');
         
 const zipCodeLabels = L.layerGroup().addTo(map); //layer group for the ZIP labels
 const zipCodeLayers = L.layerGroup(); // layer group for the ZIP boundaries
+/*
+var zipCodeLayers = L.layerGroup();
 
+// 1. Load WHITE line first
+loadZipGeoJSON(
+    'your_geojson_url_here',
+    zipCodeLayers,
+    { color: 'white', weight: 5, fillOpacity: 0 },
+    function() { // Callback after white line loads
+        // 2. Load BLUE line only after white finishes
+        loadZipGeoJSON(
+            'your_geojson_url_here',
+            zipCodeLayers,
+            { color: '#002F6C', weight: 2, fillOpacity: 0 }
+        );
+    }
+);
+*/
+    
 loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
     zipCodeLayers, 
     {
         color: 'white',
         weight: 5,
         fillOpacity: 0
-    }
-);
-        
-loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
-    zipCodeLayers, 
-    {
-        color: '#002F6C',  // USPS BLUE #002F6C
-        weight: 2,
-        fillOpacity: 0
     },
+    function() { //load BLUE line after WHITE line finishes
+        loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
+               zipCodeLayers, 
+               {
+                   color: '#002F6C',  // USPS BLUE #002F6C
+                   weight: 2,
+                   fillOpacity: 0
+                },
     
-    function(feature, layer) {
-        // Create label for each ZIP code
-        const center = layer.getBounds().getCenter();
-        const label = L.marker(center, {
-            icon: L.divIcon({
-                className: 'zip-code-label',
-                html: `<div>${feature.properties.CODE}</div>`,
-                iconSize: [50, 20]
-            }),
-            interactive: false,
-            zIndexOffset: 1000
-        });
+                function(feature, layer) { // Create label for each ZIP code
+                    const center = layer.getBounds().getCenter();
+                    const label = L.marker(center, {
+                        icon: L.divIcon({
+                        className: 'zip-code-label',
+                        html: `<div>${feature.properties.CODE}</div>`,
+                        iconSize: [50, 20]
+                        }),
+                        interactive: false,
+                        zIndexOffset: 1000
+                    });
+                    // Store reference to the label on the layer
+              
+                    layer._label = label;
         
-        // Store reference to the label on the layer
-        layer._label = label;
+                    // When layer is added to map (turned on), add its label
+                    layer.on('add', function() {
+                        label.addTo(zipCodeLabels);
+                    });
         
-        // When layer is added to map (turned on), add its label
-        layer.on('add', function() {
-            label.addTo(zipCodeLabels);
-        });
-        
-        // When layer is removed from map (turned off), remove its label
-        layer.on('remove', function() {
-            zipCodeLabels.removeLayer(label);
-        });
-    }
-);
+                    // When layer is removed from map (turned off), remove its label
+                    layer.on('remove', function() {
+                        zipCodeLabels.removeLayer(label);
+                    });
+                }
+          );
+    );
 
 overlays["2025 ZIP Codes"] = zipCodeLayers;
 //L.control.layers(null, overlays).addTo(map);
