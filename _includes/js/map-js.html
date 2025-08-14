@@ -408,7 +408,7 @@ map.on('zoomend', function() {
             label.style.display = zoom >= 12 ? 'block' : 'none';
         });
 });
-        const aoiLabels = L.layerGroup().addTo(map);
+        const aoiLabels = L.layerGroup()//.addTo(map);
 
         // Load sample Philadelphia GeoJSON data
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson',
@@ -442,7 +442,9 @@ map.on('zoomend', function() {
               layer._label = label;
       
               // Add to label layer group
-              label.addTo(aoiLabels); 
+              //label.addTo(aoiLabels);
+              aoiLabels.addLayer(label);
+
             }
           }
         );
