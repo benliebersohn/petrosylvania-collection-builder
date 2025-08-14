@@ -201,6 +201,14 @@
             detectRetina: false,
             noWrap: true
         });
+        var permanentOSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'OSM contributors,
+            minZoom: 0,
+            maxZoom: 19,
+            // Keep this layer at the very bottom
+            pane: 'tilePane' // Leaflet's lowest-level pane
+        }).addTo(map);
+        
         // Define all basemaps with year information
         const basemaps = [
             // Historical maps sorted by year
@@ -465,7 +473,7 @@ map.on('zoomend', function() {
                         };
                     }
                    );
-        
+        console.log("470s");
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson', 
                    overlays["2020 FEMA high chance of flooding (100 year flood)"], {color: 'blue', radius: .5, fillOpacity: 0.1});
@@ -524,7 +532,6 @@ map.on('zoomend', function() {
             className: 'aoi-label-name',/*not an actual AOI label, we are just using inherited properties for area-name
             html: '<div style="position:relative; top:-10px;">AOI-1</div>', // Adjust vertical position
       //      iconSize: [40, 20]
-                
             html: `<div class="label-container">
             <div class="area-name">PGW Property</div>
             </div>`,
@@ -623,6 +630,10 @@ map.on('zoomend', function() {
 // 
         addControlLabel(overlayControl, 'Overlays');
         addControlLabel(basemapControl, 'Base Maps');
+
+        map.on('baselayerchange', function() {
+            permanentOSM.bringToBack(); // Force OSM behind current basemap
+        });
 
 // Add corresponding CSS (move to top eventually)
 const labelStyle = document.createElement('style');
