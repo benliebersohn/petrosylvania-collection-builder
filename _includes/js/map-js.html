@@ -536,7 +536,7 @@ map.on('zoomend', function() {
 
 //        const aoi1 = L.marker([39.915600, -75.193862], {
         
-
+        
         const aoi1 = L.marker([39.915600, -75.193862], {
           icon: L.divIcon({
             className: 'aoi-label',
@@ -544,7 +544,10 @@ map.on('zoomend', function() {
                      <div>${feature.properties.name}</div>
                    </div>`,
             iconSize: [auto, 20]
-          })
+          }),
+        });
+
+            
         
         const aoi2 = L.marker([39.915279, -75.199142], {  // Fixed coordinate order-75.199142,39.915279
         pane: 'labelPane',
