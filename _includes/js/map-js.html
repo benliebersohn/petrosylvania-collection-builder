@@ -96,22 +96,22 @@
         }
         .aoi-label {
             color: black;
-            font-weight: bold;
+            font-weight: 600;
             font-size: 14px;
             text-align: center;
             /* White text stroke */
-            -webkit-text-stroke: 1px white;
-            text-stroke: 1px white;
+            -webkit-text-stroke: .5px white;
+            text-stroke: .5px white;
             /* Fallback for browsers that don't support text-stroke */
             text-shadow: 
-            -1px -1px 0 white,
-             0   -1px 0 white,
-             1px -1px 0 white,
-            -1px  0   0 white,
-             1px  0   0 white,
-            -1px  1px 0 white,
-             0    1px 0 white,
-             1px  1px 0 white;
+            -.5px -.5px 0 white,
+             0   -.5px 0 white,
+             .5px -.5px 0 white,
+            -.5px  0   0 white,
+             .5px  0   0 white,
+            -.5px  .5px 0 white,
+             0    .5px 0 white,
+             .5px  .5px 0 white;
         }
         .aoi-label-name {
             color: black;
@@ -278,7 +278,7 @@
             "2020 census >25% under the poverty line": L.layerGroup(),
             "2020 tracts >50% industrial, 2025": L.layerGroup(),
             "2020 FEMA flood zones (100 year flood)": L.layerGroup(),
-//            "2025 ZIP codes": L.layerGroup(),
+//            "2025 ZIP codes": L.layerGroup(), // see 2025 ZIP Code, below, group "zipCodeLayers" 
             "2025 Keystone Opportunity Zones": L.layerGroup(),
         };
         
