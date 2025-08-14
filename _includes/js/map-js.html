@@ -307,10 +307,11 @@
         }
 console.log('reached this part');
         
-const zipCodeLabels = L.layerGroup().addTo(map); //layer group for the ZIP boundaries and labels
+const zipCodeLabels = L.layerGroup().addTo(map); //layer group for the ZIP labels
+const zipCodeLayers = L.layerGroup(); // layer group for the ZIP boundaries
 
 loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
-    zipCodeLabels, 
+    zipCodeLayers, 
     {
         color: 'white',
         weight: 5,
@@ -319,12 +320,13 @@ loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petros
 );
         
 loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
-    zipCodeLabels, 
+    zipCodeLayers, 
     {
         color: '#002F6C',  // USPS BLUE #002F6C
         weight: 2,
         fillOpacity: 0
     },
+    
     function(feature, layer) {
         // Create label for each ZIP code
         const center = layer.getBounds().getCenter();
@@ -352,7 +354,7 @@ loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petros
         });
     }
 );
-overlays["2025 ZIP Codes"] = zipCodeLabels;
+overlays["2025 ZIP Codes"] = zipCodeLayers;
 
 map.on('zoomend', function() {
     const zoom = map.getZoom();
