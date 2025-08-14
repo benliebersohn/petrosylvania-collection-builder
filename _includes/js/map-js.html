@@ -549,8 +549,8 @@ map.on('zoomend', function() {
           pane: 'labelPane',
           icon: L.divIcon({
             className: 'aoi-label',
-            html: `<div data-text="${feature.properties.name}">
-                     <div>${feature.properties.name}</div>
+            html: `<div data-text="${feature.properties.AOI_ID}">
+                     <div>${feature.properties.AOI_ID}</div>
                    </div>`,
             iconSize: [auto, 20]
           }),
