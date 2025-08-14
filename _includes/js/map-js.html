@@ -179,7 +179,9 @@
         const map = L.map('map',{attributionControl: false}).setView([39.917359, -75.204920], 14);
         //create a top pane for the AOI labels,
         L.control.attribution({position: 'bottomright'}).addTo(map);
-        
+        const zipCodeLabels = L.layerGroup().addTo(map); //layer group for the ZIP labels
+        const zipCodeLayers = L.layerGroup(); // layer group for the ZIP boundaries
+
         map.attributionControl.setPrefix()
         
         map.addControl(new L.Control.FullScreen({ // Add the button for fullscreen
@@ -305,34 +307,32 @@
         };
         
         // Function to load GeoJSON data
-        async function loadGeoJSON(url, layerGroup, style) {
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                L.geoJSON(data, {
-                    style: style
-                }).addTo(layerGroup);
-            } catch (error) {
-                console.error('Error loading GeoJSON:', error);
-            }
+async function loadGeoJSON(url, targetLayer, options = {}) {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        // Create GeoJSON layer with all provided options
+        const geoJsonLayer = L.geoJSON(data, {
+            style: options.style,
+            onEachFeature: options.onEachFeature
+        });
+        
+        // Safely add to target layer
+        if (targetLayer && targetLayer.addLayer) {
+            targetLayer.addLayer(geoJsonLayer);
+        } else {
+            console.error('Target layer not valid:', targetLayer);
         }
-        // Update the loadGeoJSON function to accept onEachFeature callback
-        async function loadZipGeoJSON(url, layerGroup, style, onEachFeature) {
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                L.geoJSON(data, {
-                    style: style,
-                    onEachFeature: onEachFeature
-                }).addTo(layerGroup);
-            } catch (error) {
-                console.error('Error loading GeoJSON:', error);
-            }
-        }
+        
+        return geoJsonLayer;
+    } catch (error) {
+        console.error('Error loading GeoJSON:', error);
+        return null;
+    }
+}
 console.log('reached this part');
         
-const zipCodeLabels = L.layerGroup().addTo(map); //layer group for the ZIP labels
-const zipCodeLayers = L.layerGroup(); // layer group for the ZIP boundaries
 /*
 var zipCodeLayers = L.layerGroup();
 
@@ -421,40 +421,37 @@ console.log('Layer groups initialized:',
 aoiLabels.addTo(map);  // Or add to overlays if using control
 aoiBoundaries.addTo(map);
 
-// 3. Modified loadGeoJSON call
 loadGeoJSON(
   'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson',
-  aoiBoundaries,  // Target layer for polygons
-  {
-style: function(feature) {
-      console.log("Styling feature:", feature.id);
-      return {
-        color: feature.properties.stroke || '#555555',
-        weight: feature.properties['stroke-width'] || 2,
-        opacity: feature.properties['stroke-opacity'] || 1,
-        fillColor: feature.properties.fill || '#cab2d6',
-        fillOpacity: feature.properties['fill-opacity'] || 0.3
-      };
-    },  // <-- Style function closes here
-      onEachFeature: function(feature, layer) {
-      const label = L.marker(layer.getBounds().getCenter(), {
-        pane: 'labelPane',
-        icon: L.divIcon({
-          className: 'aoi-label',
-          html: `<div>${feature.properties.AOI_ID}</div>`,
-          iconSize: [50, 20]  // Fixed size instead of 'auto'
-        }),
-        interactive: false
-      });
-      
-      // SAFE LAYER ADDITION (with validation)
-      if (aoiLabels && aoiLabels.addLayer) {
-        aoiLabels.addLayer(label);
-      } else {
-        console.error('aoiLabels not initialized!');
-      }
+    aoiBoundaries,
+    {
+        style: function(feature) {
+            return {
+                color: feature.properties.stroke || '#555555',
+                weight: feature.properties['stroke-width'] || 2,
+                opacity: feature.properties['stroke-opacity'] || 1,
+                fillColor: feature.properties.fill || '#cab2d6',
+                fillOpacity: feature.properties['fill-opacity'] || 0.3
+            };
+        },
+        onEachFeature: function(feature, layer) {
+            const label = L.marker(layer.getBounds().getCenter(), {
+                pane: 'labelPane',
+                icon: L.divIcon({
+                    className: 'aoi-label',
+                    html: `<div>${feature.properties.AOI_ID}</div>`,
+                    iconSize: [50, 20]
+                }),
+                interactive: false
+            });
+            
+            // Add to labels group
+            aoiLabels.addLayer(label);
+            
+            // Store reference for cleanup
+            layer._label = label;
+        }
     }
-  }
 );
         
         // Create the control for the legend
