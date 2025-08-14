@@ -408,16 +408,21 @@ map.on('zoomend', function() {
             label.style.display = zoom >= 12 ? 'block' : 'none';
         });
 });
-        
-        const aoiBoundaries = L.layerGroup();
-        const aoiLabels = L.layerGroup();//.addTo(map);
 
-        // Load sample Philadelphia GeoJSON data
+// 1. FIRST initialize your layer groups properly
+const aoiLabels = L.layerGroup();  // Must come BEFORE loadGeoJSON
+const aoiBoundaries = L.layerGroup();
+
+// 2. Add to map immediately (or to your layer control)
+aoiLabels.addTo(map);  // Or add to overlays if using control
+aoiBoundaries.addTo(map);
+
+// 3. Modified loadGeoJSON call
 loadGeoJSON(
   'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson',
-  aoiBoundaries, 
+  aoiBoundaries,  // Target layer for polygons
   {
-    style: function(feature) {
+style: function(feature) {
       console.log("Styling feature:", feature.id);
       return {
         color: feature.properties.stroke || '#555555',
@@ -427,23 +432,26 @@ loadGeoJSON(
         fillOpacity: feature.properties['fill-opacity'] || 0.3
       };
     },  // <-- Style function closes here
-      
-    onEachFeature: function(feature, layer) {
-      const center = layer.getBounds().getCenter();
-      const label = L.marker(center, {
+      onEachFeature: function(feature, layer) {
+      const label = L.marker(layer.getBounds().getCenter(), {
         pane: 'labelPane',
         icon: L.divIcon({
           className: 'aoi-label',
-          html: `<div data-text="${feature.properties.AOI_ID}">
-                   <div>${feature.properties.AOI_ID}</div>
-                 </div>`,
-          iconSize: [auto, 20]
-        })  // <-- Missing parenthesis added here
-      });  // <-- Closing for L.marker()
-      aoiLabels.addLayer(label);
-    }  // <-- onEachFeature closes here
-  }  // <-- Options object closes here
-);  // <-- loadGeoJSON call closes here
+          html: `<div>${feature.properties.AOI_ID}</div>`,
+          iconSize: [50, 20]  // Fixed size instead of 'auto'
+        }),
+        interactive: false
+      });
+      
+      // SAFE LAYER ADDITION (with validation)
+      if (aoiLabels && aoiLabels.addLayer) {
+        aoiLabels.addLayer(label);
+      } else {
+        console.error('aoiLabels not initialized!');
+      }
+    }
+  }
+);
         
         // Create the control for the legend
         var legend = L.control({position: 'bottomleft'});
