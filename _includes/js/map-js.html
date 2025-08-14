@@ -94,6 +94,7 @@
             z-index: 1;
         }
         .aoi-label {
+            font-family: 'Roboto', sans-serif; /* Google fonts sans-serif */
             color: black;
             font-weight: 800;
             font-size: 14px;
@@ -115,7 +116,7 @@
         .aoi-label-name {
             font-family: 'Roboto', sans-serif; /* Google fonts sans-serif */
             color: black;
-            font-weight: bold;
+            font-weight: 800;
             font-size: 14px;
             text-align: center;
             /* White text stroke */
@@ -576,7 +577,7 @@ map.on('zoomend', function() {
             html: `<div class="label-container">
             <div class="aoi-number">AOI-5</div>
             </div>`,
-        iconSize: [30, 120]  
+        iconSize: [60, 40]  
         }),
         interactive: false
         });
