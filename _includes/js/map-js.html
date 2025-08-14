@@ -167,6 +167,8 @@
         //create a top pane for the AOI labels,
         L.control.attribution({position: 'bottomleft'}).addTo(map);
         
+        map.attributionControl.setPrefix()
+        
         map.addControl(new L.Control.FullScreen({ // Add the button for fullscreen
             position: 'bottomleft',
             title: {
