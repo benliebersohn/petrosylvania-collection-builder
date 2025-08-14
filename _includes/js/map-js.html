@@ -280,6 +280,7 @@
             "2020 FEMA flood zones (100 year flood)": L.layerGroup(),
 //            "2025 ZIP codes": L.layerGroup(), // see 2025 ZIP Code, below, group "zipCodeLayers"  // added elsewhere!
             "2025 Keystone Opportunity Zones": L.layerGroup(),
+            "Philadelphia boundaries": L.layerGroup(),
         };
         
         // Function to load GeoJSON data
@@ -330,52 +331,54 @@ loadZipGeoJSON(
 );
 */
     
-loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
+// Load WHITE outline first
+loadZipGeoJSON(
+    'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
     zipCodeLayers, 
     {
         color: 'white',
         weight: 5,
         fillOpacity: 0
     },
-    function() { //load BLUE line after WHITE line finishes
-        loadZipGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
-               zipCodeLayers, 
-               {
-                   color: '#002F6C',  // USPS BLUE #002F6C
-                   weight: 2,
-                   fillOpacity: 0
-                },
-                function(feature, layer) { // Create label for each ZIP code
-                    const center = layer.getBounds().getCenter();
-                    const label = L.marker(center, {
-                        icon: L.divIcon({
+    function() { // Callback after white line loads
+        // Load BLUE line and labels second
+        loadZipGeoJSON(
+            'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
+            zipCodeLayers, 
+            {
+                color: '#002F6C',
+                weight: 2,
+                fillOpacity: 0
+            },
+            function(feature, layer) { // Label creation callback
+                const center = layer.getBounds().getCenter();
+                const label = L.marker(center, {
+                    icon: L.divIcon({
                         className: 'zip-code-label',
                         html: `<div>${feature.properties.CODE}</div>`,
                         iconSize: [50, 20]
-                        }),
-                        interactive: false,
-                        zIndexOffset: 1000
-                    });
-                    // Store reference to the label on the layer
-              
-                    layer._label = label;
-        
-                    // When layer is added to map (turned on), add its label
-                    layer.on('add', function() {
-                        label.addTo(zipCodeLabels);
-                    });
-        
-                    // When layer is removed from map (turned off), remove its label
-                    layer.on('remove', function() {
-                        zipCodeLabels.removeLayer(label);
-                    });
-                    }
-          );
-    };
-    );
+                    }),
+                    interactive: false,
+                    zIndexOffset: 1000
+                });
+                
+                // Store reference to the label
+                layer._label = label;
 
-overlays["2025 ZIP Codes"] = zipCodeLayers;
-//L.control.layers(null, overlays).addTo(map);
+                // Add/remove label when layer is toggled
+                layer.on('add', function() {
+                    label.addTo(zipCodeLabels);
+                });
+                layer.on('remove', function() {
+                    zipCodeLabels.removeLayer(label);
+                });
+            }
+        );
+    }
+);
+
+overlays["2025 ZIP Codes"] = L.layerGroup([zipCodeLayers, zipCodeLabels]);
+        //L.control.layers(null, overlays).addTo(map);
 
 map.on('zoomend', function() {
     const zoom = map.getZoom();
@@ -481,6 +484,9 @@ map.on('zoomend', function() {
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/2020_%3E25pct%20under%20poverty%20line.geojson',
                     overlays["2020 census >25% under the poverty line"], {color: 'green', weight:1});
+
+        loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/city_limits.geojson',
+                    overlays["Philadelphia boundaries"], {color: 'black', weight:4});
         // Create overlay control (left side)
         const aoiLabels = L.layerGroup();
         //labels with only area names, no AOI label
