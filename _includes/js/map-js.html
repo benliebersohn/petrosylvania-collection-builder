@@ -163,8 +163,6 @@
         const map = L.map('map',{attributionControl: false}).setView([39.917359, -75.204920], 14);
         //create a top pane for the AOI labels,
         L.control.attribution({position: 'bottomright'}).addTo(map);
-        const zipCodeLabels = L.layerGroup(); //layer group for the ZIP labels
-        const zipCodeLayers = L.layerGroup(); // layer group for the ZIP boundaries
 
         map.attributionControl.setPrefix()
         
@@ -315,8 +313,11 @@ async function loadGeoJSON(url, targetLayer, options = {}) {
         return null;
     }
 }
-console.log('reached this part');
-        
+console.log('reached zipcodelabels part');
+
+var zipCodeLabels = L.layerGroup(); //layer group for the ZIP labels
+var zipCodeLayers = L.layerGroup(); // layer group for the ZIP boundaries
+
 /*
 var zipCodeLayers = L.layerGroup();
 
