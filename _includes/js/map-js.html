@@ -410,7 +410,7 @@ loadGeoJSON(
   'https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson',
     aoiBoundaries,
     {
-        style: function(feature) {
+        function(feature) {
             return {
                 color: feature.properties.stroke || '#555555',
                 weight: feature.properties['stroke-width'] || 2,
