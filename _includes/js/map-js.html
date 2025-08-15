@@ -439,9 +439,13 @@ loadGeoJSON(
             console.log("ID: ",feature.properties.AOI_ID);
 
             const coords = feature.properties.label_position;// || layer.getBounds().getCenter(); //use the provided XY or fallback
-            console.log("coords: ", coords);
             
-            const label = L.marker(coords, {
+            const bounds = layer.getBounds();
+            const paddingFactor = 0.2; // Adjust (0-1)
+            const paddedCenter = bounds.pad(-paddingFactor).getCenter();
+            console.log("paddedCenter: ", paddedCenter);
+
+            const label = L.marker(paddedCenter, {
                 pane: 'labelPane',
                 icon: L.divIcon({
                     className: 'aoi-label',
