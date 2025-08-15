@@ -353,7 +353,7 @@ loadZipGeoJSON(
 */
     
 // Load WHITE outline first
-loadZipGeoJSON(
+loadGeoJSON(
     'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
     zipCodeLayers, 
     {
@@ -363,7 +363,7 @@ loadZipGeoJSON(
     },
     function() { // Callback after white line loads
         // Load BLUE line and labels second
-        loadZipGeoJSON(
+        loadGeoJSON(
             'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
             zipCodeLayers, 
             {
