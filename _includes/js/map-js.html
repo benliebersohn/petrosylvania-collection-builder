@@ -315,76 +315,60 @@ async function loadGeoJSON(url, targetLayer, options = {}) {
 }
 console.log('reached zipcodelabels part');
 
-var zipCodeLabels = L.layerGroup(); //layer group for the ZIP labels
-var zipCodeLayers = L.layerGroup(); // layer group for the ZIP boundaries
+// 1. Initialize layer groups
+const zipCodeLabels = L.layerGroup().addTo(map); // Add to map immediately
+const zipCodeLayers = L.layerGroup();
 
-/*
-var zipCodeLayers = L.layerGroup();
-
-// 1. Load WHITE line first
-loadZipGeoJSON(
-    'your_geojson_url_here',
-    zipCodeLayers,
-    { color: 'white', weight: 5, fillOpacity: 0 },
-    function() { // Callback after white line loads
-        // 2. Load BLUE line only after white finishes
-        loadZipGeoJSON(
-            'your_geojson_url_here',
-            zipCodeLayers,
-            { color: '#002F6C', weight: 2, fillOpacity: 0 }
-        );
-    }
-);
-*/
-    
-// Load WHITE outline first
-loadGeoJSON(
-    'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
-    zipCodeLayers, 
-    {
+// 2. Unified load function with proper styling
+async function loadZIPLayers() {
+  try {
+    // Load white outlines
+    await loadGeoJSON(
+      'https://raw.githubusercontent.com/.../zip_codes.geojson',
+      zipCodeLayers,
+      {
         color: 'white',
         weight: 5,
         fillOpacity: 0
-    },
-    function() { // Callback after white line loads
-        // Load BLUE line and labels second
-        loadGeoJSON(
-            'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
-            zipCodeLayers, 
-            {
-                color: '#002F6C',
-                weight: 2,
-                fillOpacity: 0
-            },
-            function(feature, layer) { // Label creation callback
-                const center = layer.getBounds().getCenter();
-                const label = L.marker(center, {
-                    icon: L.divIcon({
-                        className: 'zip-code-label',
-                        html: `<div>${feature.properties.CODE}</div>`,
-                        iconSize: [50, 20]
-                    }),
-                    interactive: false,
-                    zIndexOffset: 1000
-                });
-                
-                // Store reference to the label
-                layer._label = label;
+      }
+    );
 
-                // Add/remove label when layer is toggled
-                layer.on('add', function() {
-                    label.addTo(zipCodeLabels);
-                });
-                layer.on('remove', function() {
-                    zipCodeLabels.removeLayer(label);
-                });
-            }
-        );
-    }
-);
+    // Load blue lines and labels
+    await loadGeoJSON(
+      'https://raw.githubusercontent.com/.../zip_codes.geojson',
+      zipCodeLayers,
+      {
+        color: '#002F6C',
+        weight: 2,
+        fillOpacity: 0
+      },
+      function(feature, layer) {
+        const label = L.marker(layer.getBounds().getCenter(), {
+          pane: 'labelPane',
+          icon: L.divIcon({
+            className: 'zip-code-label',
+            html: `<div>${feature.properties.CODE}</div>`,
+            iconSize: [50, 20]
+          }),
+          interactive: false
+        });
+        
+        // IMMEDIATELY add to label group
+        zipCodeLabels.addLayer(label);
+        layer._label = label;
+      }
+    );
 
-overlays["2025 ZIP Codes"] = L.layerGroup([zipCodeLayers, zipCodeLabels]);
-        //L.control.layers(null, overlays).addTo(map);
+    // 3. Combine into overlay
+    overlays["2025 ZIP Codes"] = L.layerGroup([zipCodeLayers, zipCodeLabels]);
+    
+  } catch (error) {
+    console.error("ZIP code loading failed:", error);
+  }
+}
+
+// 4. Execute
+loadZIPLayers();
 
 map.on('zoomend', function() {
     const zoom = map.getZoom();
