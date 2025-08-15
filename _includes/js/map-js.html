@@ -287,7 +287,15 @@
             "2025 Keystone Opportunity Zones": L.layerGroup(),
             "Philadelphia boundaries": L.layerGroup(),
         };
-        
+
+// function to fix styling using geoJSON defined styles
+function getStyle(feature) {
+    // Custom logic per feature
+    return {
+        color: feature.properties.color || 'gray',
+        weight: feature.properties.weight || 2
+    };
+}
         // Function to load GeoJSON data
 async function loadGeoJSON(url, targetLayer, options = {}) {
   try {
@@ -500,10 +508,18 @@ loadGeoJSON(
         console.log("470s");
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson', 
-                   overlays["2020 FEMA high chance of flooding (100 year flood)"], {color: 'blue', radius: .5, fillOpacity: 0.1});
+                   overlays["2020 FEMA high chance of flooding (100 year flood)"], { 
+                       style: {
+                           color: 'blue', radius: .5, fillOpacity: 0.1
+                       }
+                   });
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/industrial_tracts.geojson', 
-                   overlays["2020 tracts >50% industrial, 2025"], {color: 'gray', weight: 2});
+                   overlays["2020 tracts >50% industrial, 2025"], { 
+                       style: {
+                           color: 'gray', weight: 2
+                       }
+                   });
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/KOZ_parcels.geojson',
                     overlays["2025 Keystone Opportunity Zones"], {color: 'black', weight:1});
