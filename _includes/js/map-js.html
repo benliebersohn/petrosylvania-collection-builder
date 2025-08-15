@@ -510,7 +510,7 @@ loadGeoJSON(
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson', 
                    overlays["2020 FEMA high chance of flooding (100 year flood)"], { 
                        style: {
-                           color: 'blue', radius: .5, fillOpacity: 0.1
+                           color: 'blue', fillOpacity: 0.1
                        }
                    });
         
@@ -543,7 +543,7 @@ loadGeoJSON(
                     overlays["2020 census >50% Black"], {style: {color: 'black', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/2020_%3E25pct%20under%20poverty%20line.geojson',
-                    overlays["2020 census >25% under the poverty line"], {style: {color: 'green', weight:1})};
+                    overlays["2020 census >25% under the poverty line"], {style: {color: 'green', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/city_limits.geojson',
                     overlays["Philadelphia boundaries"], {style: {color: 'black', weight:4, fillOpacity: 0}});
