@@ -5,8 +5,8 @@
       "type": "Feature",
       "properties": {
         "AOI_display": "AOI-7",
-        "AOI_ID": "7",
-        "label_position": [39.915600, -75.193862],
+        "AOI_ID": 7,
+        "label_position": "[39.907680, -75.209039]",
         "Name": "Girard Point Fuels Area",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -110,14 +110,18 @@
           ]
         ],
         "type": "MultiPolygon"
-      }
+      },
+      "id": 0
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_display": "PGW Property",
         "AOI_ID": "PGW",
-        "label_position": [39.915600, -75.193862],
+        "label_position": [
+          39.9156,
+          -75.193862
+        ],
         "Name": "PGW Property",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -257,14 +261,15 @@
           ]
         ],
         "type": "MultiPolygon"
-      }
+      },
+      "id": 1
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_display": "AOI-2",
-        "AOI_ID": "2",
-        "label_position": [39.915600, -75.193862],
+        "AOI_ID": 2,
+        "label_position": "[39.915279, -75.199142]",
         "Name": "Point Breeze Processing Area",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -432,14 +437,15 @@
           ]
         ],
         "type": "MultiPolygon"
-      }
+      },
+      "id": 2
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_display": "AOI-3",
-        "AOI_ID": "3",
-        "label_position": [39.915600, -75.193862],
+        "AOI_ID": 3,
+        "label_position": "[39.909995, -75.202350]",
         "Name": "Point Breeze Impoundment Area",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -551,14 +557,15 @@
           ]
         ],
         "type": "MultiPolygon"
-      }
+      },
+      "id": 3
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_display": "AOI-4",
-        "AOI_ID": "4",
-        "label_position": [39.915600, -75.193862],
+        "AOI_ID": 4,
+        "label_position": "[39.907964, -75.197192]",
         "Name": "No. 4 Tank Farm",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -710,14 +717,15 @@
           ]
         ],
         "type": "MultiPolygon"
-      }
+      },
+      "id": 4
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_display": "AOI-5",
-        "AOI_ID": "5",
-        "label_position": [39.915600, -75.193862],
+        "AOI_ID": 5,
+        "label_position": "[39.898970, -75.204967]",
         "Name": "Girard Point South Tank Field",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -833,14 +841,15 @@
           ]
         ],
         "type": "MultiPolygon"
-      }
+      },
+      "id": 5
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_display": "AOI-6",
-        "AOI_ID": "6",
-        "label_position": [39.915600, -75.193862],
+        "AOI_ID": 6,
+        "label_position": "[39.902663, -75.208978]",
         "Name": "Girard Point Chemicals Area",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -936,14 +945,15 @@
           ]
         ],
         "type": "MultiPolygon"
-      }
+      },
+      "id": 6
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_display": "AOI-8",
-        "AOI_ID": "8",
-        "label_position": [39.915600, -75.193862],
+        "AOI_ID": 8,
+        "label_position": "[39.926270, -75.202180]",
         "Name": "North Yard",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -1211,14 +1221,15 @@
           ]
         ],
         "type": "MultiPolygon"
-      }
+      },
+      "id": 7
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_display": "AOI-8",
-        "AOI_ID": "8",
-        "label_position": [39.915600, -75.193862],
+        "AOI_ID": 8,
+        "label_position": "[39.926270, -75.202180]",
         "Name": "North Yard",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -1350,14 +1361,15 @@
           ]
         ],
         "type": "MultiPolygon"
-      }
+      },
+      "id": 8
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_display": "AOI-9",
-        "AOI_ID": "9",
-        "label_position": [39.915600, -75.193862],
+        "AOI_ID": 9,
+        "label_position": "[39.900134, -75.220973]",
         "Name": "Schuylkill River Tank Farm",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -1417,14 +1429,15 @@
           ]
         ],
         "type": "MultiPolygon"
-      }
+      },
+      "id": 9
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_display": "AOI-10",
-        "AOI_ID": "10",
-        "label_position": [39.915600, -75.193862],
+        "AOI_ID": 10,
+        "label_position": "[39.917825, -75.205526]",
         "Name": "West yard",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -1620,14 +1633,15 @@
           ]
         ],
         "type": "MultiPolygon"
-      }
+      },
+      "id": 10
     },
     {
       "type": "Feature",
       "properties": {
-        "AOI_display": "AOI-1 (bellmont terminal)",
-        "AOI_ID": "1 BT",
-        "label_position": [39.915600, -75.193862],
+        "AOI_display": "AOI 1 - Bellmont Terminal",
+        "AOI_ID": "Bellmont Terminal",
+        "label_position": "[39.9156,-75.193862]",
         "Name": "Bellmont Terminal",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -1743,14 +1757,15 @@
           ]
         ],
         "type": "MultiPolygon"
-      }
+      },
+      "id": 11
     },
     {
       "type": "Feature",
       "properties": {
         "AOI_display": "AOI-1",
-        "AOI_ID": "1",
-        "label_position": [39.915600, -75.193862],
+        "AOI_ID": 1,
+        "label_position": "[39.915600, -75.193862]",
         "Name": "Point Breeze No. 1 Tank Farm",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -1870,7 +1885,8 @@
           ]
         ],
         "type": "MultiPolygon"
-      }
+      },
+      "id": 12
     }
   ]
 }
