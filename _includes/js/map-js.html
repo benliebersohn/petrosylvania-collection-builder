@@ -372,7 +372,7 @@ loadGeoJSON(
                 fillOpacity: 0
             },
             function(feature, layer) { // Label creation callback
-                const center = feature.getBounds().getCenter();
+                const center = layer.getBounds().getCenter();
                 const label = L.marker(center, {
                     icon: L.divIcon({
                         className: 'zip-code-label',
@@ -436,12 +436,12 @@ loadGeoJSON(
             };
         },
         onEachFeature: function(feature, layer) {
-            const label = L.marker(layer.getBounds().getCenter(), {
+            const label = L.marker(feature.getBounds().getCenter(), {
                 pane: 'labelPane',
                 icon: L.divIcon({
                     className: 'aoi-label',
                     html: `<div>${feature.properties.AOI_ID}</div>`,
-                    iconSize: [50, 20]
+                    iconSize: [auto, 20]
                 }),
                 interactive: false
             });
