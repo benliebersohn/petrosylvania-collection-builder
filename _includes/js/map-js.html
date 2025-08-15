@@ -522,31 +522,31 @@ loadGeoJSON(
                    });
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/KOZ_parcels.geojson',
-                    overlays["2025 Keystone Opportunity Zones"], {color: 'black', weight:1});
+                    overlays["2025 Keystone Opportunity Zones"], {style: {color: 'black', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/1960_predominantly_AfAm.geojson',
-                    overlays["1960 census >50% Black"], {color: 'black', weight:1});
+                    overlays["1960 census >50% Black"], {style: {color: 'black', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/1980_predominant_afam.geojson',
-                    overlays["1980 census over 50% Black"], {color: 'black', weight:1});
+                    overlays["1980 census over 50% Black"], {style: {color: 'black', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/1980_%3E25pctPoverty.geojson',
-                    overlays["1980 census over 25% under the poverty line"], {color: 'green', weight:1});
+                    overlays["1980 census over 25% under the poverty line"], {style: {color: 'green', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/predominantAfam_2000.geojson',
-                    overlays["2000 census >50% Black"], {color: 'black', weight:1});
+                    overlays["2000 census >50% Black"], {style: {color: 'black', weight:1}});
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/2000_%3E25pctPoverty.geojson',
-                    overlays["2000 census >25% under the poverty line"], {color: 'green', weight:1});
+                    overlays["2000 census >25% under the poverty line"], {style: {color: 'green', weight:1}});
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/2020_pct_Afam.geojson',
-                    overlays["2020 census >50% Black"], {color: 'black', weight:1});
+                    overlays["2020 census >50% Black"], {style: {color: 'black', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/2020_%3E25pct%20under%20poverty%20line.geojson',
-                    overlays["2020 census >25% under the poverty line"], {color: 'green', weight:1});
+                    overlays["2020 census >25% under the poverty line"], {style: {color: 'green', weight:1})};
 
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/city_limits.geojson',
-                    overlays["Philadelphia boundaries"], {color: 'black', weight:4, fillOpacity: 0});
+                    overlays["Philadelphia boundaries"], {style: {color: 'black', weight:4, fillOpacity: 0}});
         // Create overlay control (left side)
         //labels with only area names, no AOI label
     /*    const Belmont = L.marker([39.921308, -75.192636], {
