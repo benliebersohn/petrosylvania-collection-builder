@@ -436,7 +436,7 @@ loadGeoJSON(
             };
         },
         onEachFeature: function(feature, layer) {
-            const label = L.marker(feature.getBounds().getCenter(), {
+            const label = L.marker(layer.getBounds().getCenter(), {
                 pane: 'labelPane',
                 icon: L.divIcon({
                     className: 'aoi-label',
