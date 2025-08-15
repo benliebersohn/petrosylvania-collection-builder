@@ -436,11 +436,12 @@ loadGeoJSON(
             };
         },
         onEachFeature: function(feature, layer) {
-            const label = L.marker(layer.getBounds().getCenter(), {
+            const coords = feature.properties.label_position || layer.getBounds().getCenter(); //use the provided XY or fallback
+            const label = L.marker(coords, {
                 pane: 'labelPane',
                 icon: L.divIcon({
                     className: 'aoi-label',
-                    html: `<div>${feature.properties.AOI_ID}</div>`,
+                    html: `<div>${feature.properties.AOI_ID}</div>`, //optional: AOI_display
                     iconSize: [20, 20]
                 }),
                 interactive: false
@@ -459,7 +460,7 @@ loadGeoJSON(
         // Create the control for the legend
         var legend = L.control({position: 'bottomleft'});
 
-        // Define your color codes and labels
+        // Define color codes and labels
         var redliningGrades = {
             'A - Best': '#76a865',  // Green
             'B - Still Desirable': '#7cb5bd',  // blue
@@ -475,7 +476,7 @@ loadGeoJSON(
             var div = L.DomUtil.create('div', 'info legend');
             var labels = ['<strong>Redlining Grades</strong>'];
     
-        // Loop through our grades and generate a label with a colored square
+        // Loop through the HOLC grades and generate a label with a colored square
             for (var grade in redliningGrades) {
                 labels.push(
                     '<i style="background:' + redliningGrades[grade] + '; width: 18px; height: 18px; display: inline-block; margin-left: 5px;"></i> ' +
@@ -635,7 +636,6 @@ loadGeoJSON(
   */      
     map.createPane('labelPane').style.zIndex = 700; // Higher than tile layers
     
-    // Create the label
         // Create basemap control (right side)        
         const overlayControl = L.control.layers(null, overlays, {
             collapsed: false,
