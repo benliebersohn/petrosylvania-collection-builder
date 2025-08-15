@@ -436,7 +436,13 @@ loadGeoJSON(
             };
         },
         onEachFeature: function(feature, layer) {
+            console.log("position: ",feature.properties.label_position);
+
             const coords = feature.properties.label_position || layer.getBounds().getCenter(); //use the provided XY or fallback
+            console.log("coords: ", coords);
+
+            
+            
             const label = L.marker(coords, {
                 pane: 'labelPane',
                 icon: L.divIcon({
