@@ -331,6 +331,8 @@ async function loadZIPLayers() {
       }
     );
     zipCodeLayers.addLayer(whiteOutlines);
+    console.log('added whiteOutlines');
+
 
       //add blue lines
     const blueLines = await loadGeoJSON(
@@ -358,6 +360,8 @@ async function loadZIPLayers() {
       }
     );
     zipCodeLayers.addLayer(blueLines);
+    console.log('added blueLines');
+
 
     // 3. Add to Overlay controls
     overlays["2025 ZIP Codes"] = L.layerGroup([zipCodeLayers, zipCodeLabels]);
