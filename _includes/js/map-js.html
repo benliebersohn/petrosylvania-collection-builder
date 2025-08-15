@@ -438,7 +438,7 @@ loadGeoJSON(
         onEachFeature: function(feature, layer) {
             console.log("ID: ",feature.properties.AOI_ID);
 
-            const coords = feature.properties.label_position || layer.getBounds().getCenter(); //use the provided XY or fallback
+            const coords = feature.properties.label_position;// || layer.getBounds().getCenter(); //use the provided XY or fallback
             console.log("coords: ", coords);
             
             const label = L.marker(coords, {
