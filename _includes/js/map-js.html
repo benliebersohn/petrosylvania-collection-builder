@@ -336,7 +336,7 @@ async function loadZIPLayers() {
 
       //add blue lines
     const blueLines = await loadGeoJSON(
-      'https://raw.githubusercontent.com/.../zip_codes.geojson',
+      'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
       null, // Don't auto-add to layer
       {
         style: { // Explicit style object
@@ -364,7 +364,7 @@ async function loadZIPLayers() {
 
 
     // 3. Add to Overlay controls
-    overlays["2025 ZIP Codes"] = L.layerGroup([zipCodeLayers, zipCodeLabels]);
+    //overlays["2025 ZIP Codes"] = L.layerGroup([zipCodeLayers, zipCodeLabels]);
     
   } catch (error) {
     console.error("ZIP code loading failed:", error);
@@ -372,8 +372,10 @@ async function loadZIPLayers() {
 }
 
 // 4. Execute
-loadZIPLayers();
-
+map.whenReady(function() {
+  loadZIPLayers(); // Execute after map is ready
+  overlays["2025 ZIP Codes"] = L.layerGroup([zipCodeLayers, zipCodeLabels]);
+});
 
 map.on('zoomend', function() {
     const zoom = map.getZoom();
