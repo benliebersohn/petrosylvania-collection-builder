@@ -393,8 +393,7 @@ map.on('zoomend', function() {
         });
 });
 
-// 1. FIRST initialize your layer groups properly
-const aoiLabels = L.layerGroup();  // Must come BEFORE loadGeoJSON
+const aoiLabels = L.layerGroup();  //
 const aoiBoundaries = L.layerGroup();
 console.log('Layer groups initialized:',
   aoiLabels instanceof L.LayerGroup,
@@ -453,6 +452,62 @@ loadGeoJSON(
 );
         overlays["AOI Boundaries"] = L.layerGroup([aoiLabels, aoiBoundaries]);
 
+        // 1. Define color mapping (keep existing)
+const redliningGrades = {
+    'A - Best': '#76a865',
+    'B - Still Desirable': '#7cb5bd',
+    'C - Definitely Declining': '#ffff00',
+    'D - Hazardous': '#d9838d',
+    'Commercial or Industrial': '#000000'
+};
+
+// 2. Create style function that matches grades to colors
+function getRedliningStyle(feature) {
+    const gradeColor = redliningGrades[feature.properties.grade] || '#cab2d6';
+    
+    return {
+        color: feature.properties.stroke || '#555555',
+        weight: feature.properties['stroke-width'] || 2,
+        opacity: feature.properties['stroke-opacity'] || 1,
+        fillColor: gradeColor, // Use mapped color
+        fillOpacity: feature.properties['fill-opacity'] || 0.5
+    };
+}
+
+const legend = L.control({position: 'bottomleft'});
+legend.onAdd = function(map) {
+    var div = L.DomUtil.create('div', 'info legend');
+    var labels = ['<strong>Redlining Grades</strong>'];
+
+    //make color squares and print text
+    for (var grade in redliningGrades) {
+        labels.push(
+            '<i style="background:' + redliningGrades[grade] + '; width: 18px; height: 18px; display: inline-block; margin-left: 5px;"></i> ' +
+            grade
+        );
+    }
+    
+    div.innerHTML = labels.join('<br>');
+    return div;
+};
+loadGeoJSON(
+    'https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/redlining.geojson',
+    overlays["1937 Redlining Map"],
+    {
+        style: getRedliningStyle, // Applies the color coding
+        onEachFeature: function(feature, layer) {
+            // Toggle legend with layer visibility
+            overlays["1937 Redlining Map"].on('add', function() {
+                legend.addTo(map);
+            });
+            overlays["1937 Redlining Map"].on('remove', function() {
+                map.removeControl(legend);
+            });
+        }
+    }
+);
+        
+        /*
         // Create the control for the legend
         var legend = L.control({position: 'bottomleft'});
 
@@ -482,7 +537,7 @@ loadGeoJSON(
             
             div.innerHTML = labels.join('<br>');
             return div;
-        };
+        };*/
         
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/redlining.geojson',
                     overlays["1937 Redlining Map"], 
