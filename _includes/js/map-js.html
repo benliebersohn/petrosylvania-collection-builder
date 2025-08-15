@@ -283,7 +283,7 @@
             "2020 census >25% under the poverty line": L.layerGroup(),
             "2020 tracts >50% industrial, 2025": L.layerGroup(),
             "2020 FEMA high chance of flooding (100 year flood)": L.layerGroup(),
-            "2025 ZIP codes": L.layerGroup(), // see 2025 ZIP Code, below, group "zipCodeLayers"  // added elsewhere!
+          //  "2025 ZIP codes": L.layerGroup(), // see 2025 ZIP Code, below, group "zipCodeLayers"  // added elsewhere!
             "2025 Keystone Opportunity Zones": L.layerGroup(),
             "Philadelphia boundaries": L.layerGroup(),
         };
@@ -316,7 +316,7 @@ async function loadGeoJSON(url, targetLayer, options = {}) {
 console.log('reached zipcodelabels part');
 
 // 1. Initialize layer groups
-const zipCodeLabels = L.layerGroup(); // Add to map immediately
+const zipCodeLabels = L.layerGroup().addTo(map); // Add to map immediately
 const zipCodeLayers = L.layerGroup();
 
 // 2. Unified load function with proper styling
@@ -426,7 +426,7 @@ loadGeoJSON(
                 }),
                 interactive: false
             });
-            label.addTo(map);
+            // fix this? label.addTo(map);
             // Add to labels group
             layer.on('remote', ()=> label.remote());
             //aoiLabels.addLayer(label);
