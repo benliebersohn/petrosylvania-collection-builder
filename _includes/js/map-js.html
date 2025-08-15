@@ -117,27 +117,11 @@
              .65px  .65px 0 rgba(255,255,255,.75);
         }*/
         .aoi-label {
-            position: relative;
-            display: inline-block;
-        }
-        /* White outline layer (behind) */
-
-        .aoi-label::before {
-            content: attr(data-text);
-            position: absolute;
-            -webkit-text-stroke: 0.5px white;
-            text-stroke: 0.5px white;
-            color: transparent; /* Hide fill, show only stroke */
-            z-index: 1;
-        }
-        /* Primary text (on top) */
-        .aoi-label div {
-            position: relative;
-            z-index: 2;
-            font-family: 'Roboto', sans-serif;
-            color: black;
-            font-weight: 400;
-            font-size: 14px;
+          position: absolute;
+          text-align: center;
+          transform: translate(-50%, -50%); /* Perfect centering */
+          white-space: nowrap; /* Prevents text wrapping */
+          pointer-events: none; /* Eliminates mouse interference */
         }
         
         .aoi-label-name {
@@ -438,15 +422,18 @@ loadGeoJSON(
         onEachFeature: function(feature, layer) {
             console.log("ID: ",feature.properties.AOI_ID);
 
-            const coords = feature.properties.label_position;// || layer.getBounds().getCenter(); //use the provided XY or fallback
-            
+            const coords = feature.properties.label_position 
+              ? L.latLng(feature.properties.label_position[0], feature.properties.label_position[1])
+              : layer.getBounds().getCenter();            
             const bounds = layer.getBounds();
             const paddingFactor = 0.2; // Adjust (0-1)
             const paddedCenter = bounds.pad(-paddingFactor).getCenter();
-            console.log("paddedCenter: ", paddedCenter);
+            console.log("coords: ", coords);
 
-            const label = L.marker(paddedCenter, {
+            const label = L.marker(coords, {
                 pane: 'labelPane',
+                interactive: false,
+                keyboard: false,
                 icon: L.divIcon({
                     className: 'aoi-label',
                     html: `<div>${feature.properties.AOI_ID}</div>`, //optional: AOI_display
@@ -454,9 +441,10 @@ loadGeoJSON(
                 }),
                 interactive: false
             });
-            
+            label.addTo(map);
             // Add to labels group
-            aoiLabels.addLayer(label);
+            layer.on('remote', ()=> label.remote());
+            //aoiLabels.addLayer(label);
             
             // Store reference for cleanup
             layer._label = label;
