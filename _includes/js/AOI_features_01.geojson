@@ -4,7 +4,9 @@
     {
       "type": "Feature",
       "properties": {
-        "AOI_ID": "AOI-7",
+        "AOI_display": "AOI-7",
+        "AOI_ID": "7",
+        "label_position": [39.915600, -75.193862],
         "Name": "Girard Point Fuels Area",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -113,7 +115,9 @@
     {
       "type": "Feature",
       "properties": {
-        "AOI_ID": "null",
+        "AOI_display": "PGW Property",
+        "AOI_ID": "PGW",
+        "label_position": [39.915600, -75.193862],
         "Name": "PGW Property",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -258,7 +262,9 @@
     {
       "type": "Feature",
       "properties": {
-        "AOI_ID": "AOI-2",
+        "AOI_display": "AOI-2",
+        "AOI_ID": "2",
+        "label_position": [39.915600, -75.193862],
         "Name": "Point Breeze Processing Area",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -431,7 +437,9 @@
     {
       "type": "Feature",
       "properties": {
-        "AOI_ID": "AOI-3",
+        "AOI_display": "AOI-3",
+        "AOI_ID": "3",
+        "label_position": [39.915600, -75.193862],
         "Name": "Point Breeze Impoundment Area",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -548,7 +556,9 @@
     {
       "type": "Feature",
       "properties": {
-        "AOI_ID": "AOI-4",
+        "AOI_display": "AOI-4",
+        "AOI_ID": "4",
+        "label_position": [39.915600, -75.193862],
         "Name": "No. 4 Tank Farm",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -705,7 +715,9 @@
     {
       "type": "Feature",
       "properties": {
-        "AOI_ID": "AOI-5",
+        "AOI_display": "AOI-5",
+        "AOI_ID": "5",
+        "label_position": [39.915600, -75.193862],
         "Name": "Girard Point South Tank Field",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -826,7 +838,9 @@
     {
       "type": "Feature",
       "properties": {
-        "AOI_ID": "AOI-6",
+        "AOI_display": "AOI-6",
+        "AOI_ID": "6",
+        "label_position": [39.915600, -75.193862],
         "Name": "Girard Point Chemicals Area",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -927,7 +941,9 @@
     {
       "type": "Feature",
       "properties": {
-        "AOI_ID": "AOI-8",
+        "AOI_display": "AOI-8",
+        "AOI_ID": "8",
+        "label_position": [39.915600, -75.193862],
         "Name": "North Yard",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -1200,7 +1216,9 @@
     {
       "type": "Feature",
       "properties": {
-        "AOI_ID": "AOI-8",
+        "AOI_display": "AOI-8",
+        "AOI_ID": "8",
+        "label_position": [39.915600, -75.193862],
         "Name": "North Yard",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -1337,7 +1355,9 @@
     {
       "type": "Feature",
       "properties": {
-        "AOI_ID": "AOI-9",
+        "AOI_display": "AOI-9",
+        "AOI_ID": "9",
+        "label_position": [39.915600, -75.193862],
         "Name": "Schuylkill River Tank Farm",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -1402,7 +1422,9 @@
     {
       "type": "Feature",
       "properties": {
-        "AOI_ID": "AOI-10",
+        "AOI_display": "AOI-10",
+        "AOI_ID": "10",
+        "label_position": [39.915600, -75.193862],
         "Name": "West yard",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -1603,7 +1625,9 @@
     {
       "type": "Feature",
       "properties": {
-        "AOI_ID": "AOI-1",
+        "AOI_display": "AOI-1 (bellmont terminal)",
+        "AOI_ID": "1 BT",
+        "label_position": [39.915600, -75.193862],
         "Name": "Bellmont Terminal",
         "stroke": "#555555",
         "stroke-width": 2,
@@ -1724,7 +1748,9 @@
     {
       "type": "Feature",
       "properties": {
-        "AOI_ID": "AOI-1",
+        "AOI_display": "AOI-1",
+        "AOI_ID": "1",
+        "label_position": [39.915600, -75.193862],
         "Name": "Point Breeze No. 1 Tank Farm",
         "stroke": "#555555",
         "stroke-width": 2,
