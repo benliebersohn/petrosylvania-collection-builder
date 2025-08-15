@@ -179,7 +179,7 @@
         const map = L.map('map',{attributionControl: false}).setView([39.917359, -75.204920], 14);
         //create a top pane for the AOI labels,
         L.control.attribution({position: 'bottomright'}).addTo(map);
-        const zipCodeLabels = L.layerGroup().addTo(map); //layer group for the ZIP labels
+        const zipCodeLabels = L.layerGroup(); //layer group for the ZIP labels
         const zipCodeLayers = L.layerGroup(); // layer group for the ZIP boundaries
 
         map.attributionControl.setPrefix()
@@ -416,10 +416,11 @@ console.log('Layer groups initialized:',
   aoiLabels instanceof L.LayerGroup,
   aoiBoundaries instanceof L.LayerGroup
 );
-        
+
+
 // 2. Add to map immediately (or to your layer control)
-aoiLabels.addTo(map);  // Or add to overlays if using control
-aoiBoundaries.addTo(map);
+//aoiLabels.addTo(map);  // Or add to overlays if using control
+//aoiBoundaries.addTo(map);
 
 loadGeoJSON(
   'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson',
@@ -453,7 +454,8 @@ loadGeoJSON(
         }
     }
 );
-        
+        overlays["AOI Boundaries"] = L.layerGroup([aoiLabels, aoiBoundaries]);
+
         // Create the control for the legend
         var legend = L.control({position: 'bottomleft'});
 
