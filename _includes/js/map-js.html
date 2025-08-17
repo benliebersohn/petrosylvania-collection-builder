@@ -322,8 +322,8 @@ async function loadGeoJSON(url, targetLayer, options = {}) {
 console.log('reached zipcodelabels part');
 
         // section for rendering ZIP lines (blue lines with white buffer)
-const zipCodeLabels = L.layerGroup().addTo(map); // Add to map immediately
-const zipCodeLayers = L.layerGroup().addTo(map);
+const zipCodeLabels = L.layerGroup()//.addTo(map); // Add to map immediately
+const zipCodeLayers = L.layerGroup()//.addTo(map);
 
 async function loadZIPLayers() {
   try {
