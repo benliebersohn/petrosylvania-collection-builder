@@ -116,12 +116,14 @@
              0    .65px 0 rgba(255,255,255,.75),
              .65px  .65px 0 rgba(255,255,255,.75);
         }*/
-        .aoi-label {
+        .aoi-label {      
           position: absolute;
           text-align: center;
-          transform: translate(-50%, -50%); /* Perfect centering */
-          white-space: nowrap; /* Prevents text wrapping */
-          pointer-events: none; /* Eliminates mouse interference */
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+          font-family: 'Roboto', sans-serif;
+          font-weight: 800;
+          text-shadow: 0 0 2px white; /* Improves readability */
         }
         
         .aoi-label-name {
@@ -391,21 +393,14 @@ map.on('zoomend', function() { // make ZIP code labels disappear when zooming ou
 
         //create AOI layers for areas of interest. Label layer + boundary layer
         
-const aoiLabels = L.layerGroup();  //
+const aoiLabels = L.layerGroup();
 const aoiBoundaries = L.layerGroup();
-console.log('Layer groups initialized:',
-  aoiLabels instanceof L.LayerGroup,
-  aoiBoundaries instanceof L.LayerGroup
-);
-
 
 loadGeoJSON(
   'https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson',
     aoiBoundaries,
     {
-        function(feature) {
-            console.log("ID: ",feature.properties.AOI_ID, "feature.properties.fill = ",feature.properties.fill);
-
+        style: function(feature) {
             return {
                 color: feature.properties.stroke || '#555555',
                 weight: feature.properties['stroke-width'] || 2,
@@ -415,38 +410,28 @@ loadGeoJSON(
             };
         },
         onEachFeature: function(feature, layer) {
-            console.log("ID: ",feature.properties.AOI_ID);
-
             const coords = feature.properties.label_position 
               ? L.latLng(feature.properties.label_position[0], feature.properties.label_position[1])
               : layer.getBounds().getCenter();            
-            const bounds = layer.getBounds();
-            const paddingFactor = 0.2; // Adjust (0-1)
-            const paddedCenter = bounds.pad(-paddingFactor).getCenter();
-            console.log("coords: ", coords);
-
+            
             const label = L.marker(coords, {
                 pane: 'labelPane',
                 interactive: false,
-                keyboard: false,
                 icon: L.divIcon({
                     className: 'aoi-label',
-                    html: `<div>${feature.properties.AOI_ID}</div>`, //optional: AOI_display
+                    html: `<div>${feature.properties.AOI_ID}</div>`,
                     iconSize: [20, 20]
-                }),
-                interactive: false
+                })
             });
-            // fix this? label.addTo(map);
-            // Add to labels group
-            layer.on('remote', ()=> label.remote());
-            //aoiLabels.addLayer(label);
-            
+            label.addTo(aoiLabels);
+            layer.on('remove', ()=> label.remove());
+            //
             // Store reference for cleanup
             layer._label = label;
         }
     }
 );
-        overlays["AOI Boundaries"] = L.layerGroup([aoiLabels, aoiBoundaries]);
+overlays["AOI Boundaries"] = L.layerGroup([aoiBoundaries, aoilabels]);
 
         // 1. Define color mapping (keep existing)
 const redliningGrades = {
