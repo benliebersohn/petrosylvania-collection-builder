@@ -319,14 +319,13 @@ async function loadGeoJSON(url, targetLayer, options = {}) {
 }
 console.log('reached zipcodelabels part');
 
-// 1. Initialize layer groups
+        // section for rendering ZIP lines (blue lines with white buffer)
 const zipCodeLabels = L.layerGroup().addTo(map); // Add to map immediately
 const zipCodeLayers = L.layerGroup().addTo(map);
 
-// 2. Unified load function with proper styling
 async function loadZIPLayers() {
   try {
-    // Load white outlines
+    // add ZIP code white lines (on bottom)
     const whiteOutlines = await loadGeoJSON(
       'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
       null,
@@ -338,11 +337,11 @@ async function loadZIPLayers() {
         }
       }
     );
-    zipCodeLayers.addLayer(whiteOutlines);
+    zipCodeLayers.addLayer(whiteOutlines); // 
     console.log('added whiteOutlines');
 
 
-      //add blue lines
+      //add ZIP code blue lines (on top) 
     const blueLines = await loadGeoJSON(
       'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
       null, // Don't auto-add to layer
@@ -369,23 +368,19 @@ async function loadZIPLayers() {
     );
     zipCodeLayers.addLayer(blueLines);
     console.log('added blueLines');
-
-
-    // 3. Add to Overlay controls
-    //overlays["2025 ZIP Codes"] = L.layerGroup([zipCodeLayers, zipCodeLabels]);
     
   } catch (error) {
     console.error("ZIP code loading failed:", error);
   }
 }
 
-// 4. Execute
+// execute after map is ready
 map.whenReady(function() {
-  loadZIPLayers(); // Execute after map is ready
+  loadZIPLayers();
   overlays["2025 ZIP Codes"] = L.layerGroup([zipCodeLayers, zipCodeLabels]);
 });
 
-map.on('zoomend', function() {
+map.on('zoomend', function() { // make ZIP code labels disappear when zooming out past 12 (city-scale)
     const zoom = map.getZoom();
     document.querySelectorAll('.zip-code-label')
         .forEach(label => {
@@ -393,6 +388,9 @@ map.on('zoomend', function() {
         });
 });
 
+
+        //create AOI layers for areas of interest. Label layer + boundary layer
+        
 const aoiLabels = L.layerGroup();  //
 const aoiBoundaries = L.layerGroup();
 console.log('Layer groups initialized:',
@@ -400,10 +398,6 @@ console.log('Layer groups initialized:',
   aoiBoundaries instanceof L.LayerGroup
 );
 
-
-// 2. Add to map immediately (or to your layer control)
-//aoiLabels.addTo(map);  // Or add to overlays if using control
-//aoiBoundaries.addTo(map);
 
 loadGeoJSON(
   'https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson',
@@ -464,7 +458,8 @@ const redliningGrades = {
 // 2. Create style function that matches grades to colors
 function getRedliningStyle(feature) {
     const gradeColor = redliningGrades[feature.properties.grade] || '#cab2d6';
-    
+    console.log("feature: ", feature, " gradeColor: ", gradeColor, " feature.properties.fill: ", feature.properties.fill);
+
     return {
         color: feature.properties.stroke || '#555555',
         weight: feature.properties['stroke-width'] || 2,
