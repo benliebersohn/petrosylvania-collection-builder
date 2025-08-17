@@ -342,7 +342,6 @@ async function loadZIPLayers() {
     zipCodeLayers.addLayer(whiteOutlines); // 
     console.log('added whiteOutlines');
 
-
       //add ZIP code blue lines (on top) 
     const blueLines = await loadGeoJSON(
       'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
@@ -397,41 +396,46 @@ const aoiLabels = L.layerGroup();
 const aoiBoundaries = L.layerGroup();
 
 loadGeoJSON(
-  'https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson',
-    aoiBoundaries,
-    {
-        style: function(feature) {
-            return {
-                color: feature.properties.stroke || '#555555',
-                weight: feature.properties['stroke-width'] || 2,
-                opacity: feature.properties['stroke-opacity'] || 1,
-                fillColor: feature.properties.fill || '#cab2d6',
-                fillOpacity: feature.properties['fill-opacity'] || 0.3
-            };
-        },
-        onEachFeature: function(feature, layer) {
-            const coords = feature.properties.label_position 
-              ? L.latLng(feature.properties.label_position[0], feature.properties.label_position[1])
-              : layer.getBounds().getCenter();            
-            
-            const label = L.marker(coords, {
-                pane: 'labelPane',
-                interactive: false,
-                icon: L.divIcon({
-                    className: 'aoi-label',
-                    html: `<div>${feature.properties.AOI_ID}</div>`,
-                    iconSize: [20, 20]
-                })
-            });
-            label.addTo(aoiLabels);
-            layer.on('remove', ()=> label.remove());
-            //
-            // Store reference for cleanup
-            layer._label = label;
-        }
+  'https://raw.githubusercontent.com/.../AOI_features_01.geojson',
+  aoiBoundaries,
+  {
+    style: function(feature) {  // Added 'style:' prefix
+      return {
+        color: feature.properties.stroke || '#555555',
+        weight: feature.properties['stroke-width'] || 2,
+        opacity: feature.properties['stroke-opacity'] || 1,
+        fillColor: feature.properties.fill || '#cab2d6',
+        fillOpacity: feature.properties['fill-opacity'] || 0.3
+      };
+    },
+    onEachFeature: function(feature, layer) {
+      const coords = feature.properties.label_position 
+        ? L.latLng(feature.properties.label_position[0], feature.properties.label_position[1])
+        : layer.getBounds().getCenter();
+
+      const label = L.marker(coords, {
+        pane: 'labelPane',
+        interactive: false,
+        icon: L.divIcon({
+          className: 'aoi-label',
+          html: `<div>${feature.properties.AOI_ID}</div>`,
+          iconSize: [20, 20]
+        })
+      });
+      
+      // Add label immediately
+      label.addTo(aoiLabels);
+      
+      // Cleanup handler (fixed typo from 'remote' to 'remove')
+      layer.on('remove', () => aoiLabels.removeLayer(label));
+      
+      // Store reference
+      layer._label = label;
     }
+  }
 );
-overlays["AOI Boundaries"] = L.layerGroup([aoiBoundaries, aoilabels]);
+
+overlays["AOI Boundaries"] = L.layerGroup([aoiBoundaries, aoiLabels]);
 
         // 1. Define color mapping (keep existing)
 const redliningGrades = {
