@@ -461,7 +461,7 @@ function getRedliningStyle(feature) {
     console.log("feature: ", feature, " gradeColor: ", gradeColor, " feature.properties.fill: ", feature.properties.fill);
 
     return {
-        color: feature.properties.fill || '#555555',
+        color: gradeColor,
         weight: feature.properties['stroke-width'] || 2,
         opacity: feature.properties['stroke-opacity'] || 1,
         fillColor: gradeColor, // Use mapped color
