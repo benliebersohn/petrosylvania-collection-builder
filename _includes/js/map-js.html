@@ -322,8 +322,8 @@ async function loadGeoJSON(url, targetLayer, options = {}) {
 console.log('reached zipcodelabels part');
 
         // section for rendering ZIP lines (blue lines with white buffer)
-const zipCodeLabels = L.layerGroup()//.addTo(map); // Add to map immediately
-const zipCodeLayers = L.layerGroup()//.addTo(map);
+const zipCodeLabels = L.layerGroup();//.addTo(map); // Add to map immediately
+const zipCodeLayers = L.layerGroup();//.addTo(map);
 
 async function loadZIPLayers() {
   try {
@@ -392,8 +392,8 @@ map.on('zoomend', function() { // make ZIP code labels disappear when zooming ou
 
         //create AOI layers for areas of interest. Label layer + boundary layer
         
-const aoiLabels = L.layerGroup();
-const aoiBoundaries = L.layerGroup();
+const aoiLabels = L.layerGroup().addTo(map);
+const aoiBoundaries = L.layerGroup().addTo(map);
 
 loadGeoJSON(
   'https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson',
