@@ -457,7 +457,7 @@ const redliningGrades = {
 
 // 2. Create style function that matches grades to colors
 function getRedliningStyle(feature) {
-    const gradeColor = redliningGrades[feature.properties.fill] || '#cab2d6';
+    const gradeColor = feature.properties.fill || '#cab2d6';
     console.log("feature: ", feature, " gradeColor: ", gradeColor, " feature.properties.fill: ", feature.properties.fill);
 
     return {
