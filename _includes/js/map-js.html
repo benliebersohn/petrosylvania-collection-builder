@@ -404,6 +404,8 @@ loadGeoJSON(
     aoiBoundaries,
     {
         function(feature) {
+            console.log("ID: ",feature.properties.AOI_ID, "feature.properties.fill = ",feature.properties.fill);
+
             return {
                 color: feature.properties.stroke || '#555555',
                 weight: feature.properties['stroke-width'] || 2,
