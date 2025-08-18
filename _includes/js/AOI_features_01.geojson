@@ -117,7 +117,7 @@
       "type": "Feature",
       "properties": {
         "AOI_display": "PGW Property",
-        "AOI_ID": "PGW",
+        "AOI_ID": "PGW Property",
         "label_position": [39.922055, -75.198777],
         "Name": "PGW Property",
         "stroke": "#555555",
