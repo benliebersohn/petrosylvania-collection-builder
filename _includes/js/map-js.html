@@ -38,6 +38,19 @@
             font-size: 12px;
             font-weight: 800;
         }
+        
+        .custom-fullscreen {
+            background: white;
+            padding: 5px;
+            border-radius: 4px;
+            border: 2px solid rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+        
+        .custom-fullscreen:hover {
+            background: #f4f4f4;
+        }
+        
         .leaflet-control {
             background: white;
             padding: 10px;
@@ -168,8 +181,8 @@
 
         map.attributionControl.setPrefix()
         
-        map.addControl(new L.Control.FullScreen({ // Add the button for fullscreen
-            position: 'bottomleft',
+        map.addControl(new L.Control.FullScreen({
+            position: 'topleft',
             title: {
                 'false': 'View Fullscreen',
                 'true': 'Exit Fullscreen'
