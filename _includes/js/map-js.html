@@ -275,7 +275,7 @@
             "ZIP Codes, 2025": L.layerGroup(),
             "Zoning, 50+ percent industrial, 2025": L.layerGroup(),
             "Keystone Opportunity Zones, 2025": L.layerGroup(),
-            "HOLC \"redlining map,\" 1937": L.layerGroup(),
+            "HOLC redlining map, 1937": L.layerGroup(),
             "LNAPL plume, 1996A": L.tileLayer('https://mapwarper.net/maps/tile/88772/{z}/{x}/{y}.png'),
             "LNAPL plume, 1996B": L.tileLayer('https://mapwarper.net/maps/tile/88779/{z}/{x}/{y}.png'),
             "LNAPL plume, 1996C": L.tileLayer('https://mapwarper.net/maps/tile/88816/{z}/{x}/{y}.png'),
@@ -479,7 +479,7 @@ legend.onAdd = function(map) {
 };
 loadGeoJSON(
     'https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/redlining.geojson',
-    overlays["HOLC \"redlining map,\" 1937"],
+    overlays["HOLC redlining map, 1937"],
     {
         style: getRedliningStyle, // Applies the color coding
         onEachFeature: function(feature, layer) {
