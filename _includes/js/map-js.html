@@ -272,7 +272,9 @@
         const overlays = {
             "AOI Boundaries": L.layerGroup(),
             "Philadelphia boundaries": L.layerGroup(),
-            "1937 Redlining Map": L.layerGroup(),
+            "Zoning, 50+ percent industrial, 2025": L.layerGroup(),
+            "Keystone Opportunity Zones, 2025": L.layerGroup(),
+            "HOLC \"redlining map,\" 1937": L.layerGroup(),
             "1960 census >50% Black": L.layerGroup(),
             "1996 LNAPL Plume 1": L.tileLayer('https://mapwarper.net/maps/tile/88772/{z}/{x}/{y}.png'),
             "1996 LNAPL Plume 2": L.tileLayer('https://mapwarper.net/maps/tile/88779/{z}/{x}/{y}.png'),
@@ -284,14 +286,12 @@
             "2000 census >25% under the poverty line": L.layerGroup(),
             "2020 census >50% Black": L.layerGroup(),
             "2020 census >25% under the poverty line": L.layerGroup(),
-            "2020 tracts >50% industrial, 2025": L.layerGroup(),
             "2020 FEMA high chance of flooding (100 year flood)": L.layerGroup(),
             "ZIP Codes, 2025": L.layerGroup(),
             "2025 ZIP Codes 3" = L.layerGroup([zipCodeLayers, zipCodeLabels]);
 
 
           //  "2025 ZIP codes": L.layerGroup(), // see 2025 ZIP Code, below, group "zipCodeLayers"  // added elsewhere!
-            "2025 Keystone Opportunity Zones": L.layerGroup(),
         };
 
 // function to fix styling using geoJSON defined styles
@@ -561,14 +561,14 @@ loadGeoJSON(
                    });
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/industrial_tracts.geojson', 
-                   overlays["2020 tracts >50% industrial, 2025"], { 
+                   overlays["Zoning, 50+ percent industrial, 2025"], { 
                        style: {
                            color: 'gray', weight: 2
                        }
                    });
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/KOZ_parcels.geojson',
-                    overlays["2025 Keystone Opportunity Zones"], {style: {color: 'black', weight:1}});
+                    overlays["Keystone Opportunity Zones, 2025"], {style: {color: 'black', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/1960_predominantly_AfAm.geojson',
                     overlays["1960 census >50% Black"], {style: {color: 'black', weight:1}});
