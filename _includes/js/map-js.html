@@ -283,7 +283,7 @@
         baseLayers["OpenStreetMap"].addTo(map);
         
         const overlays = {
-            "Areas of Interest (AOI)": L.layerGroup(),
+            "Areas of Interest (AOI)": L.layerGroup([aoiBoundaries, aoiLabels]),
             "Philadelphia County": L.layerGroup(),
             "ZIP Codes, 2025": L.layerGroup(),
             "Zoning, 50+ percent industrial, 2025": L.layerGroup(),
@@ -408,48 +408,48 @@ map.on('zoomend', function() { // make ZIP code labels disappear when zooming ou
 
         //create AOI layers for areas of interest. Label layer + boundary layer
         
-const aoiLabels = L.layerGroup().addTo(map);
-const aoiBoundaries = L.layerGroup().addTo(map);
+const aoiLabels = L.layerGroup()
+const aoiBoundaries = L.layerGroup()
 
 loadGeoJSON(
-  'https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson',
-  aoiBoundaries,
-  {
-    style: function(feature) {  // Added 'style:' prefix
-      return {
-        color: feature.properties.stroke || '#555555',
-        weight: feature.properties['stroke-width'] || 2,
-        opacity: feature.properties['stroke-opacity'] || 1,
-        fillColor: feature.properties.fill || '#cab2d6',
-        fillOpacity: feature.properties['fill-opacity'] || 0.3
-      };
-    },
-    onEachFeature: function(feature, layer) {
-      const coords = feature.properties.label_position 
-        ? L.latLng(feature.properties.label_position[0], feature.properties.label_position[1])
-        : layer.getBounds().getCenter();
+    'https://raw.githubusercontent.com/.../AOI_features_01.geojson',
+    aoiBoundaries,
+    {
+        style: function(feature) {
+            return {
+                color: feature.properties.stroke || '#555555',
+                weight: feature.properties['stroke-width'] || 2,
+                opacity: feature.properties['stroke-opacity'] || 1,
+                fillColor: feature.properties.fill || '#cab2d6',
+                fillOpacity: feature.properties['fill-opacity'] || 0.3
+            };
+        },
+        onEachFeature: function(feature, layer) {
+            const coords = feature.properties.label_position 
+                ? L.latLng(feature.properties.label_position)
+                : layer.getBounds().getCenter();
 
-      const label = L.marker(coords, {
-        pane: 'labelPane',
-        interactive: false,
-        icon: L.divIcon({
-          className: 'aoi-label',
-          html: `<div>${feature.properties.AOI_ID}</div>`,
-          iconSize: [20, 20]
-        })
-      });
-      
-      // Add label immediately
-      label.addTo(aoiLabels);
-      
-      // Cleanup handler (fixed typo from 'remote' to 'remove')
-      layer.on('remove', () => aoiLabels.removeLayer(label));
-      
-      // Store reference
-      layer._label = label;
+            const label = L.marker(coords, {
+                pane: 'labelPane',
+                icon: L.divIcon({
+                    className: 'aoi-label',
+                    html: `<div>${feature.properties.AOI_ID}</div>`,
+                    iconSize: [20, 20]
+                }),
+                interactive: false
+            });
+
+            // Sync label visibility with parent layer
+            layer.on('add', () => label.addTo(aoiLabels));
+            layer.on('remove', () => label.remove());
+            layer._label = label;
+        }
     }
-  }
-);
+).then(() => {
+    // 5. Add to map AFTER loading (triggers proper control state)
+    aoiBoundaries.addTo(map);
+    aoiLabels.addTo(map);
+});
 
 overlays["Areas of Interest (AOI)"] = L.layerGroup([aoiBoundaries, aoiLabels]);
 
@@ -705,7 +705,7 @@ loadGeoJSON(
     map.createPane('labelPane').style.zIndex = 700; // Higher than tile layers
     
         // Create basemap control (right side)        
-        const overlayControl = L.control.layers(null, overlays, {
+        L.control.layers(null, overlays, {
             collapsed: false,
             position: 'topleft'
         }).addTo(map);
