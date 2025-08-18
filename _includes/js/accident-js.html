@@ -4,19 +4,21 @@
     <title>Accident Sites Year Filter</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.css" />
+    
     <style>
-        #map { height: 600px; }
+        #map { height: 80vh; }
         #year-slider {
-            margin: 20px;
+            margin: 10px;
             width: 400px;
         }
         .slider-container {
             position: absolute;
-            bottom: 30px;
-            left: 30px;
+            top: 410px;
+            right: 380px;
             z-index: 1000;
-            background: white;
-            padding: 15px;
+            background: rgba(255, 255, 255, 0.5); 
+            padding: 10px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
         }
@@ -27,20 +29,36 @@
         .leaflet-popup-content {
             max-width: 300px;
         }
+        .custom-fullscreen {
+            background: white;
+            padding: 5px;
+            border-radius: 4px;
+            border: 2px solid rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+        .custom-fullscreen:hover {
+            background: #f4f4f4;
+        }
     </style>
 </head>
 <body>
     <div id="map"></div>
     <div class="slider-container">
-        <h3>Filter by Year</h3>
         <div id="year-slider"></div>
-        <div id="year-value">Year range: <span id="min-year"></span> - <span id="max-year"></span>
+        <div id="year-value" style="display: none;"> <!-- Remove the text but retain the elements -->
+            <span id="min-year"></span>
+            <span id="max-year"></span>
             <span id="loading" class="loading">Loading data...</span>
         </div>
+        <h4><p style="text-align: center;">Filter by year</p></h4>
+
     </div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- NoUI control JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
+    <!-- Fullscreen control JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.js"></script>
     
     <script>
         // Initialize map with a view that will fit the GeoJSON data
@@ -48,6 +66,17 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
+        
+        //Reinsert the Leaflet text to the top left of the screen, other attribution should show up here too
+        map.attributionControl.setPrefix(false);
+        
+        map.addControl(new L.Control.FullScreen({
+            position: 'topleft',
+            title: {
+                'false': 'View Fullscreen',
+                'true': 'Exit Fullscreen'
+            }
+        }));
 
         // Create a layer group for our points
         const pointsLayer = L.layerGroup().addTo(map);
@@ -113,10 +142,11 @@
                     }
                 }
             });
-
+            document.getElementById('loading').style.display = 'none';
+            
             // Display current year range
-            document.getElementById('min-year').textContent = minYear;
-            document.getElementById('max-year').textContent = maxYear;
+//            document.getElementById('min-year').textContent = minYear;
+//            document.getElementById('max-year').textContent = maxYear;
 
             // Function to filter and display points
             function updatePointsByYear(yearRange) {
@@ -160,23 +190,22 @@
             // Function to create popup content
             function createPopupContent(feature) {
                 const props = feature.properties;
-                let content = `<b>${props.name || 'Unnamed Location'}</b><br>`;
-                content += `<small>AOI ID: ${props.AOI_ID}</small><hr>`;
-                
-                content += `<b>Date:</b> ${props.Date} (Year: ${props.year})<br>`;
+                let content = `<b>Year:</b> ${props.Date}<br>`;
                 content += `<b>Description:</b> ${props.Descript || 'No description'}<br>`;
-                
-                // Add casualty information
-                if (props.Dead === "Y" || props.NumDead > 0) {
-                    content += `<b style="color:red">Fatalities:</b> ${props.NumDead || 'Yes'}<br>`;
-                }
-                if (props.Injury === "Y" || props.NumInjur > 0) {
-                    content += `<b style="color:orange">Injuries:</b> ${props.NumInjur || 'Yes'}<br>`;
-                }
-                
-                content += `<b>Responsible Party:</b> ${props.Responsi || 'Unknown'}<br>`;
                 if (props.Street_D) {
                     content += `<b>Street Address:</b> ${props.Street_D}<br>`;
+                }
+                content += `<b>Responsible Party:</b> ${props.Responsi || 'Unknown'}<br>`;
+
+                //content += `<b>${props.name || 'Unnamed Location'}</b><br>`;
+                //content += `<small>AOI ID: ${props.AOI_ID}</small><hr>`;
+                
+                //content += `<b>Date:</b> ${props.Date} (Year: ${props.year})<br>`;
+                if (props.Injury === "Y" || props.NumInjur > 0) {
+                    content += `<b style="color:orange">Non-fatal injured:</b> ${props.NumInjur || 'Yes'}<br>`;
+                }                // Add casualty information
+                if (props.Dead === "Y" || props.NumDead > 0) {
+                    content += `<b style="color:red">Fatalities:</b> ${props.NumDead || 'Yes'}<br>`;
                 }
                 
                 return content;
@@ -188,11 +217,12 @@
             // Update display when slider changes
             slider.noUiSlider.on('update', function(values) {
                 const yearRange = values.map(Number);
-                document.getElementById('min-year').textContent = yearRange[0];
-                document.getElementById('max-year').textContent = yearRange[1];
+  //              document.getElementById('min-year').textContent = yearRange[0];
+  //              document.getElementById('max-year').textContent = yearRange[1];
                 updatePointsByYear(yearRange);
             });
         }
     </script>
 </body>
 </html>
+
