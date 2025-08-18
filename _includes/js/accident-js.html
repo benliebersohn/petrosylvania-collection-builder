@@ -11,7 +11,6 @@
         #year-slider {
             margin: 10px;
             width: 400px;
-            top: 120%;
         }
         #year-value {
             text-align: center;
@@ -49,16 +48,13 @@
 </head>
 <body>
     <div id="map"></div>
-    <div class="slider-container">
-        <div id="year-slider"></div>
-        <div id="year-value"> <!-- style="display: none;"> <!-- Remove the text but retain the elements -->
-            <span id="min-year"></span> - <span id="max-year"></span>
-            <span id="loading" class="loading">Loading data...</span>
+<!-- In the slider-container div, keep the loading message but remove the initial year display -->
+        <div class="slider-container">
+            <div id="year-slider"></div>
+            <div id="year-value">
+                <span id="loading" class="loading">Loading data...</span>
+            </div>
         </div>
-
-  <!--      <h4><p style="text-align: center;">Filter by year</p></h4>  take out the text element-->
-
-    </div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <!-- NoUI control JS -->
@@ -94,9 +90,9 @@
                 document.getElementById('loading').style.display = 'none';
             // Display current year range
             
-                document.getElementById('min-year').textContent = minYear;
+           //     document.getElementById('min-year').textContent = minYear;
 
-                document.getElementById('max-year').textContent = maxYear;
+          //      document.getElementById('max-year').textContent = maxYear;
                 // Process the GeoJSON data
                 processGeoJSON(data);
             })
@@ -124,6 +120,7 @@
             // Get min and max years from data
             const minYear = Math.min(...years);
             const maxYear = Math.max(...years);
+
             
             // Only proceed if we have valid numeric values
             if (isNaN(minYear) || isNaN(maxYear)) {
@@ -131,6 +128,11 @@
                 document.getElementById('loading').textContent = 'Invalid year data';
                 return;
             }
+
+                // Remove loading message and display years
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('year-value').innerHTML = 
+                `<span id="min-year">${minYear}</span> - <span id="max-year">${maxYear}</span>`;
 
             // Initialize slider with numeric values
             const slider = document.getElementById('year-slider');
@@ -221,12 +223,12 @@
             updatePointsByYear([minYear, maxYear]);
 
             // Update display when slider changes
-            slider.noUiSlider.on('update', function(values) {
-                const yearRange = values.map(Number);
-                document.getElementById('min-year').textContent = yearRange[0];
-                document.getElementById('max-year').textContent = yearRange[1];
-                updatePointsByYear(yearRange);
-            });
+        slider.noUiSlider.on('update', function(values) {
+            const yearRange = values.map(Number);
+            document.getElementById('min-year').textContent = yearRange[0];
+            document.getElementById('max-year').textContent = yearRange[1];
+            updatePointsByYear(yearRange);
+        });
         }
     </script>
 </body>
