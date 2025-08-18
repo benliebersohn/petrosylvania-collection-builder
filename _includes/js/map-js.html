@@ -288,9 +288,6 @@
             "2020 census >25% under the poverty line": L.layerGroup(),
             "2020 FEMA high chance of flooding (100 year flood)": L.layerGroup(),
             "ZIP Codes, 2025": L.layerGroup(),
-            "2025 ZIP Codes 3": L.layerGroup([zipCodeLayers, zipCodeLabels]),
-
-
           //  "2025 ZIP codes": L.layerGroup(), // see 2025 ZIP Code, below, group "zipCodeLayers"  // added elsewhere!
         };
 
@@ -382,7 +379,7 @@ async function loadZIPLayers() {
 // execute after map is ready
 map.whenReady(function() {
   loadZIPLayers();
-  overlays["2025 ZIP Codes"] = L.layerGroup([zipCodeLayers, zipCodeLabels]);
+  overlays["ZIP Codes, 2025"] = L.layerGroup([zipCodeLayers, zipCodeLabels]);
 });
 
 map.on('zoomend', function() { // make ZIP code labels disappear when zooming out past 12 (city-scale)
