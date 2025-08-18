@@ -276,18 +276,18 @@
             "Zoning, 50+ percent industrial, 2025": L.layerGroup(),
             "Keystone Opportunity Zones, 2025": L.layerGroup(),
             "HOLC \"redlining map,\" 1937": L.layerGroup(),
-            "1960 census >50% Black": L.layerGroup(),
             "LNAPL plume, 1996A": L.tileLayer('https://mapwarper.net/maps/tile/88772/{z}/{x}/{y}.png'),
             "LNAPL plume, 1996B": L.tileLayer('https://mapwarper.net/maps/tile/88779/{z}/{x}/{y}.png'),
             "LNAPL plume, 1996C": L.tileLayer('https://mapwarper.net/maps/tile/88816/{z}/{x}/{y}.png'),
             "LNAPL plume, 1996D": L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}.png'),
-            "1980 census over 50% Black": L.layerGroup(),
-            "1980 census over 25% under the poverty line": L.layerGroup(),
-            "2000 census >50% Black": L.layerGroup(),
-            "2000 census >25% under the poverty line": L.layerGroup(),
-            "2020 census >50% Black": L.layerGroup(),
-            "2020 census >25% under the poverty line": L.layerGroup(),
-            "2020 FEMA high chance of flooding (100 year flood)": L.layerGroup(),
+            "Census, 50+ percent Black, 1960": L.layerGroup(),
+            "Census, 50+ percent Black, 1980": L.layerGroup(),
+            "Census, 50+ percent Black, 2000": L.layerGroup(),
+            "Census, 50+ percent Black, 2020": L.layerGroup(),
+            "Census, 25+ percent children in poverty, 1980": L.layerGroup(),
+            "Census, 25+ percent children in poverty, 2000": L.layerGroup(),
+            "Census, 25+ percent children in poverty, 2020": L.layerGroup(),
+            "FEMA, 100-year flood zone, 2025": L.layerGroup(),
           //  "2025 ZIP codes": L.layerGroup(), // see 2025 ZIP Code, below, group "zipCodeLayers"  // added elsewhere!
         };
 
@@ -551,7 +551,7 @@ loadGeoJSON(
         console.log("470s");
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson', 
-                   overlays["2020 FEMA high chance of flooding (100 year flood)"], { 
+                   overlays["FEMA, 100-year flood zone, 2025"], { 
                        style: {
                            color: 'blue', fillOpacity: 0.1
                        }
@@ -568,25 +568,25 @@ loadGeoJSON(
                     overlays["Keystone Opportunity Zones, 2025"], {style: {color: 'black', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/1960_predominantly_AfAm.geojson',
-                    overlays["1960 census >50% Black"], {style: {color: 'black', weight:1}});
+                    overlays["Census, 50+ percent Black, 1960"], {style: {color: 'black', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/1980_predominant_afam.geojson',
-                    overlays["1980 census over 50% Black"], {style: {color: 'black', weight:1}});
+                    overlays["Census, 50+ percent Black, 1980"], {style: {color: 'black', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/1980_%3E25pctPoverty.geojson',
-                    overlays["1980 census over 25% under the poverty line"], {style: {color: 'green', weight:1}});
+                    overlays["Census, 25+ percent children in poverty, 1980"], {style: {color: 'green', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/predominantAfam_2000.geojson',
-                    overlays["2000 census >50% Black"], {style: {color: 'black', weight:1}});
+                    overlays["Census, 50+ percent Black, 2000"], {style: {color: 'black', weight:1}});
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/2000_%3E25pctPoverty.geojson',
-                    overlays["2000 census >25% under the poverty line"], {style: {color: 'green', weight:1}});
+                    overlays["Census, 25+ percent children in poverty, 2000"], {style: {color: 'green', weight:1}});
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/2020_pct_Afam.geojson',
-                    overlays["2020 census >50% Black"], {style: {color: 'black', weight:1}});
+                    overlays["Census, 50+ percent Black, 2020"], {style: {color: 'black', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/2020_%3E25pct%20under%20poverty%20line.geojson',
-                    overlays["2020 census >25% under the poverty line"], {style: {color: 'green', weight:1}});
+                    overlays["Census, 25+ percent children in poverty, 2020"], {style: {color: 'green', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/city_limits.geojson',
                     overlays["Philadelphia County"], {style: {color: 'black', weight:4, fillOpacity: 0}});
