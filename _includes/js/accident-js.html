@@ -13,6 +13,11 @@
             width: 400px;
             top: 120%;
         }
+        #year-value {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+        }
         .slider-container {
             position: absolute;
             top: 410px;
@@ -46,9 +51,8 @@
     <div id="map"></div>
     <div class="slider-container">
         <div id="year-slider"></div>
-        <div id="year-value" style="display: none;"> <!-- Remove the text but retain the elements -->
-            <span id="min-year"></span>
-            <span id="max-year"></span>
+        <div id="year-value"> <!-- style="display: none;"> <!-- Remove the text but retain the elements -->
+            <span id="min-year"></span> - <span id="max-year"></span>
             <span id="loading" class="loading">Loading data...</span>
         </div>
 
@@ -146,10 +150,6 @@
             });
             document.getElementById('loading').style.display = 'none';
             
-            // Display current year range
-//            document.getElementById('min-year').textContent = minYear;
-//            document.getElementById('max-year').textContent = maxYear;
-
             // Function to filter and display points
             function updatePointsByYear(yearRange) {
                 // Clear existing points
@@ -219,8 +219,6 @@
             // Update display when slider changes
             slider.noUiSlider.on('update', function(values) {
                 const yearRange = values.map(Number);
-  //              document.getElementById('min-year').textContent = yearRange[0];
-  //              document.getElementById('max-year').textContent = yearRange[1];
                 updatePointsByYear(yearRange);
             });
         }
