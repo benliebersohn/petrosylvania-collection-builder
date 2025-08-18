@@ -93,27 +93,20 @@
         // Create a layer group for our points
         const pointsLayer = L.layerGroup().addTo(map);
 
-// Fetch the external GeoJSON
-        fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOIgeoData.geojson')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Process the GeoJSON data
-                processGeoJSON(data);
-            })
-            .catch(error => {
-                console.error('Error loading GeoJSON:', error);
-                // Optionally show an error message on the map
-                L.popup()
-                    .setLatLng(map.getCenter())
-                    .setContent('Error loading accident data')
-                    .openOn(map);
-            });
-
+fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOIgeoData.geojson')
+    .then(response => {
+        if (!response.ok) throw new Error('Network response failed');
+        return response.json();
+    })
+    .then(data => processGeoJSON(data))
+    .catch(error => {
+        console.error('Error loading GeoJSON:', error);
+        L.popup()
+            .setLatLng(map.getCenter())
+            .setContent('Error loading accident data')
+            .openOn(map);
+    });
+        
         function processGeoJSON(geojsonData) {
             // Extract all valid years from features
             const years = [];
@@ -142,9 +135,6 @@
             }
 
                 // Remove loading message and display years
-            //document.getElementById('loading').style.display = 'none';
-            //document.getElementById('year-value').innerHTML = 
-              //  `<span id="min-year">${minYear}</span> - <span id="max-year">${maxYear}</span>`;
 
             // Initialize slider with numeric values
             const slider = document.getElementById('year-slider');
@@ -166,7 +156,6 @@
                     }
                 }
             });
-            document.getElementById('loading').style.display = 'none';
             
             // Function to filter and display points
             function updatePointsByYear(yearRange) {
