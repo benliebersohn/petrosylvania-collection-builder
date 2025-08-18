@@ -92,7 +92,11 @@
             .then(response => response.json())
             .then(data => {
                 document.getElementById('loading').style.display = 'none';
-                
+            // Display current year range
+            
+                document.getElementById('min-year').textContent = minYear;
+
+                document.getElementById('max-year').textContent = maxYear;
                 // Process the GeoJSON data
                 processGeoJSON(data);
             })
@@ -219,6 +223,8 @@
             // Update display when slider changes
             slider.noUiSlider.on('update', function(values) {
                 const yearRange = values.map(Number);
+                document.getElementById('min-year').textContent = yearRange[0];
+                document.getElementById('max-year').textContent = yearRange[1];
                 updatePointsByYear(yearRange);
             });
         }
