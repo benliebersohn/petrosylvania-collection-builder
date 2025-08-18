@@ -5,12 +5,12 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     
     <style>
         #map { height: 100vh; }
-        #year-slider {
-            margin: 10px;
-            width: 400px;
+        #year-value {
+            display: none !important;
         }
         #year-value {
             text-align: center;
@@ -29,11 +29,14 @@
 
 /* Optional: Improve tooltip appearance */
         .noUi-tooltip {
+            font-family: 'Roboto', sans-serif;
+            font-size: 12px;
             background: #333;
             color: white;
             padding: 3px 6px;
             border-radius: 3px;
-            font-size: 12px;
+            bottom: -32px;
+            top: auto;
         }
         
         .slider-container {
@@ -70,9 +73,6 @@
 <!-- In the slider-container div, keep the loading message but remove the initial year display -->
         <div class="slider-container">
             <div id="year-slider"></div>
-            <div id="year-value">
-                <span id="loading" class="loading">Loading data...</span>
-            </div>
         </div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
@@ -244,8 +244,8 @@
             // Update display when slider changes
         slider.noUiSlider.on('update', function(values) {
             const yearRange = values.map(Number);
-            document.getElementById('min-year').textContent = yearRange[0];
-            document.getElementById('max-year').textContent = yearRange[1];
+         //   document.getElementById('min-year').textContent = yearRange[0];
+         //   document.getElementById('max-year').textContent = yearRange[1];
             updatePointsByYear(yearRange);
         });
         }
