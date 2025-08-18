@@ -270,8 +270,9 @@
         baseLayers["OpenStreetMap"].addTo(map);
         
         const overlays = {
-            "AOI Boundaries": L.layerGroup(),
-            "Philadelphia boundaries": L.layerGroup(),
+            "Areas of Interest (AOI)": L.layerGroup(),
+            "Philadelphia County": L.layerGroup(),
+            "ZIP Codes, 2025": L.layerGroup(),
             "Zoning, 50+ percent industrial, 2025": L.layerGroup(),
             "Keystone Opportunity Zones, 2025": L.layerGroup(),
             "HOLC \"redlining map,\" 1937": L.layerGroup(),
@@ -287,7 +288,6 @@
             "2020 census >50% Black": L.layerGroup(),
             "2020 census >25% under the poverty line": L.layerGroup(),
             "2020 FEMA high chance of flooding (100 year flood)": L.layerGroup(),
-            "ZIP Codes, 2025": L.layerGroup(),
           //  "2025 ZIP codes": L.layerGroup(), // see 2025 ZIP Code, below, group "zipCodeLayers"  // added elsewhere!
         };
 
@@ -436,7 +436,7 @@ loadGeoJSON(
   }
 );
 
-overlays["AOI Boundaries"] = L.layerGroup([aoiBoundaries, aoiLabels]);
+overlays["Areas of Interest (AOI)"] = L.layerGroup([aoiBoundaries, aoiLabels]);
 
         // 1. Define color mapping (keep existing)
 const redliningGrades = {
@@ -589,7 +589,7 @@ loadGeoJSON(
                     overlays["2020 census >25% under the poverty line"], {style: {color: 'green', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/city_limits.geojson',
-                    overlays["Philadelphia boundaries"], {style: {color: 'black', weight:4, fillOpacity: 0}});
+                    overlays["Philadelphia County"], {style: {color: 'black', weight:4, fillOpacity: 0}});
         // Create overlay control (left side)
         //labels with only area names, no AOI label
     /*    const Belmont = L.marker([39.921308, -75.192636], {
