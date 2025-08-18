@@ -538,7 +538,8 @@ loadGeoJSON(
                         });
                         
                         return {
-                            color: feature.properties.stroke || '#555555', // Default color if not specified
+//                            color: feature.properties.stroke || '#555555', // Default color if not specified
+                            color: '#555555',
                             weight: feature.properties['stroke-width'] || 2,
                             opacity: feature.properties['stroke-opacity'] || 1,
                             fillColor: feature.properties.fill || '#cab2d6',
