@@ -10,7 +10,7 @@
     <style>
         #map { height: 100vh; }
         #year-value {
-            display: none !important;
+            display: none !important; /* we only want years showing on the sliders */
         }
         #year-slider {
             width: 400px;
@@ -93,22 +93,25 @@
         // Create a layer group for our points
         const pointsLayer = L.layerGroup().addTo(map);
 
-        // Fetch the external GeoJSON
+// Fetch the external GeoJSON
         fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOIgeoData.geojson')
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => {
-            //    document.getElementById('loading').style.display = 'none';
-            // Display current year range
-            
-           //     document.getElementById('min-year').textContent = minYear;
-
-          //      document.getElementById('max-year').textContent = maxYear;
                 // Process the GeoJSON data
                 processGeoJSON(data);
             })
             .catch(error => {
                 console.error('Error loading GeoJSON:', error);
-                document.getElementById('loading').textContent = 'Error loading data';
+                // Optionally show an error message on the map
+                L.popup()
+                    .setLatLng(map.getCenter())
+                    .setContent('Error loading accident data')
+                    .openOn(map);
             });
 
         function processGeoJSON(geojsonData) {
