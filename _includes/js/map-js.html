@@ -484,10 +484,10 @@ loadGeoJSON(
         style: getRedliningStyle, // Applies the color coding
         onEachFeature: function(feature, layer) {
             // Toggle legend with layer visibility
-            overlays["HOLC \"redlining map\", 1937"].on('add', function() {
+            overlays["HOLC redlining map, 1937"].on('add', function() {
                 legend.addTo(map);
             });
-            overlays["HOLC \"redlining map\", 1937"].on('remove', function() {
+            overlays["HOLC redlining map, 1937"].on('remove', function() {
                 map.removeControl(legend);
             });
         }
@@ -527,14 +527,14 @@ loadGeoJSON(
         };*/
         
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/redlining.geojson',
-                    overlays["HOLC \"redlining map\", 1937"], 
+                    overlays["HOLC redlining map, 1937"], 
                     function(feature) {
 //                        legend.addTo(map);
-                        overlays["HOLC \"redlining map\", 1937"].on('add', function() {
+                        overlays["HOLC redlining map, 1937"].on('add', function() {
                             legend.addTo(map);
                         });
                         
-                        overlays["HOLC \"redlining map\", 1937"].on('remove', function() {
+                        overlays["HOLC redlining map, 1937"].on('remove', function() {
                             map.removeControl(legend);
                         });
                         
