@@ -17,6 +17,25 @@
             margin-top: 10px;
             font-weight: bold;
         }
+        .noUi-horizontal .noUi-tooltip {
+            bottom: -32px;  /* Position below the handle */
+            top: auto;      /* Override default top positioning */
+        }
+
+/* Adjust slider container height to accommodate tooltips */
+        .slider-container {
+            padding-bottom: 30px; /* Make room for tooltips below */
+        }
+
+/* Optional: Improve tooltip appearance */
+        .noUi-tooltip {
+            background: #333;
+            color: white;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        
         .slider-container {
             position: absolute;
             top: 410px;
