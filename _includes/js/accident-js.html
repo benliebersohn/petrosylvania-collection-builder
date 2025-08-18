@@ -19,9 +19,15 @@
 
 /* Adjust slider container height to accommodate tooltips */
         .slider-container {
-            padding-bottom: 30px; /* Make room for tooltips below */
+            position: absolute;
+            top: 410px;
+            right: 380px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 5px 5px 30px 5px; /* Combined padding (top right bottom left) */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
         }
-
 /* Optional: Improve tooltip appearance */
         .noUi-tooltip {
             font-family: 'Roboto', sans-serif;
@@ -34,20 +40,6 @@
             top: auto;
         }
         
-        .slider-container {
-            position: absolute;
-            top: 410px;
-            right: 380px;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.6); 
-            padding: 5px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-        }
-        .loading {
-            display: inline-block;
-            margin-left: 10px;
-        }
         .leaflet-popup-content {
             max-width: 300px;
         }
@@ -101,7 +93,7 @@
         fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOIgeoData.geojson')
             .then(response => response.json())
             .then(data => {
-                document.getElementById('loading').style.display = 'none';
+            //    document.getElementById('loading').style.display = 'none';
             // Display current year range
             
            //     document.getElementById('min-year').textContent = minYear;
@@ -143,9 +135,9 @@
             }
 
                 // Remove loading message and display years
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('year-value').innerHTML = 
-                `<span id="min-year">${minYear}</span> - <span id="max-year">${maxYear}</span>`;
+            //document.getElementById('loading').style.display = 'none';
+            //document.getElementById('year-value').innerHTML = 
+              //  `<span id="min-year">${minYear}</span> - <span id="max-year">${maxYear}</span>`;
 
             // Initialize slider with numeric values
             const slider = document.getElementById('year-slider');
