@@ -288,6 +288,7 @@
             "Census, 25+ percent children in poverty, 2000": L.layerGroup(),
             "Census, 25+ percent children in poverty, 2020": L.layerGroup(),
             "FEMA, 100-year flood zone, 2025": L.layerGroup(),
+            "NOAA, 2-foot rise in sea level": L.layerGroup(),
           //  "2025 ZIP codes": L.layerGroup(), // see 2025 ZIP Code, below, group "zipCodeLayers"  // added elsewhere!
         };
 
@@ -566,6 +567,9 @@ loadGeoJSON(
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/KOZ_parcels.geojson',
                     overlays["Keystone Opportunity Zones, 2025"], {style: {color: 'black', weight:1}});
+
+        loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/2Ft_SLR.geojson',
+                    overlays["NOAA, 2-foot rise in sea level"], {style: {color: 'blue', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/1960_predominantly_AfAm.geojson',
                     overlays["Census, 50+ percent Black, 1960"], {style: {color: 'black', weight:1}});
