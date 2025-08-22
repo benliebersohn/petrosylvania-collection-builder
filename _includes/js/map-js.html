@@ -292,6 +292,10 @@
             baseLayers[bm.name] = bm.layer;
         });
 
+        
+        const aoiLabels = L.layerGroup()
+        const aoiBoundaries = L.layerGroup()
+
         // Add default basemap
         baseLayers["OpenStreetMap"].addTo(map);
         
@@ -422,8 +426,6 @@ map.on('zoomend', function() { // make ZIP code labels disappear when zooming ou
 
         //create AOI layers for areas of interest. Label layer + boundary layer
         
-const aoiLabels = L.layerGroup()
-const aoiBoundaries = L.layerGroup()
 
 loadGeoJSON(
     'https://github.com/benliebersohn/petrosylvania-collection-builder/edit/main/_includes/js/AOI_features_01.geojson',
