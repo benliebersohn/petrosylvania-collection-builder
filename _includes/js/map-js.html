@@ -219,9 +219,15 @@
         // Define all basemaps with year information
         const basemaps = [
             // Historical maps sorted by year
-            { name: "1867 Barnes", layer: L.tileLayer('https://mapwarper.net/mosaics/tile/2278/{z}/{x}/{y}.png'), year: 1867 },
-            { name: "1876 Hopkins", layer: L.tileLayer('https://mapwarper.net/mosaics/tile/2272/{z}/{x}/{y}.png'), year: 1876 },
-            { name: "1892 Waterfront", layer: L.tileLayer('https://mapwarper.net/maps/tile/91523/{z}/{x}/{y}.png'), year: 1892 },
+            { name: "1867 Barnes", layer: L.tileLayer('https://mapwarper.net/mosaics/tile/2278/{z}/{x}/{y}.png', {
+                 attribution: 'Free Library of Philadelphia'
+            }), year: 1867 },
+            { name: "1876 Hopkins", layer: L.tileLayer('https://mapwarper.net/mosaics/tile/2272/{z}/{x}/{y}.png', {
+                 attribution: 'Free Library of Philadelphia'
+            }), year: 1876 },
+            { name: "1892 Waterfront", layer: L.tileLayer('https://mapwarper.net/maps/tile/91523/{z}/{x}/{y}.png', {
+                 attribution: 'Free Library of Philadelphia'
+            }), year: 1892 },
             { name: "1894 USGS", layer: L.tileLayer('https://mapwarper.net/maps/tile/88560/{z}/{x}/{y}.png', {
                 attribution: '1894 USGS Map courtesy of USGS'
             }), year: 1894 },
