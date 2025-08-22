@@ -1636,7 +1636,7 @@
     {
       "type": "Feature",
       "properties": {
-        "AOI_display": "AOI 1 - Bellmont Terminal",
+        "AOI_display": "AOI 1 - Belmont Terminal",
         "AOI_ID": "Bellmont Terminal",
         "label_position": [39.920478, -75.192988],
         "Name": "Bellmont Terminal",
