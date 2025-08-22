@@ -296,6 +296,7 @@
         baseLayers["OpenStreetMap"].addTo(map);
         
         const overlays = {
+            "Street labels": L.tileLayer('https://a.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png'),
             "Areas of Interest (AOI)": L.layerGroup([aoiBoundaries, aoiLabels]),
             "Philadelphia County": L.layerGroup(),
             "ZIP Codes, 2025": L.layerGroup(),
@@ -425,7 +426,7 @@ const aoiLabels = L.layerGroup()
 const aoiBoundaries = L.layerGroup()
 
 loadGeoJSON(
-    'https://raw.githubusercontent.com/.../AOI_features_01.geojson',
+    'https://github.com/benliebersohn/petrosylvania-collection-builder/edit/main/_includes/js/AOI_features_01.geojson',
     aoiBoundaries,
     {
         style: function(feature) {
