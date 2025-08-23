@@ -154,7 +154,7 @@
         map.attributionControl.setPrefix()
         
         map.addControl(new L.Control.FullScreen({
-            position: 'topleft',
+            position: 'bottomleft',
             title: {
                 'false': 'View Fullscreen',
                 'true': 'Exit Fullscreen'
@@ -295,7 +295,7 @@
         baseLayers["OpenStreetMap"].addTo(map);
         
         const overlays = {
-            "Street labels": L.tileLayer('https://a.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png'),
+            "Street labels": L.tileLayer('https://a.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {pane: 'topPane'}),
             "Areas of Interest (AOI)": L.layerGroup([aoiBoundaries, aoiLabels]),
             "Philadelphia County": L.layerGroup(),
             "ZIP Codes, 2025": L.layerGroup(),
