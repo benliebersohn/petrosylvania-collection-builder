@@ -174,7 +174,6 @@
             noWrap: true
         });
         var permanentOSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'OSM contributors',
             minZoom: 0,
             maxZoom: 19,
             // Keep this layer at the very bottom
@@ -267,10 +266,10 @@
             { name: "Google Earth", layer: L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
                  attribution: 'Google'
             }) },
-            { name: "ESRI satellite", layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}') },
-            { name: "ESRI NatGeo", layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}') },
-            { name: "ESRI StreetMap", layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}') },
-            { name: "OpenStreetMap", layer: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png') },
+            { name: "ESRI satellite", layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution: 'ESRI'}) },
+            { name: "ESRI NatGeo", layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {attribution: 'ESRI'}) },
+            { name: "ESRI StreetMap", layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {attribution: 'ESRI'}) },
+            { name: "OpenStreetMap", layer: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: 'OSM Contributors'}) },
 // Make OSM Streets a base-base map with no off option? Make it a base-base map somehow... Maybe a second OSM layer that turns on? check performance.
         ];
 
