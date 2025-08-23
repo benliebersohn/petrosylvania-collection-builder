@@ -266,7 +266,7 @@
         
         const overlays = {
             "Street labels": L.tileLayer('https://a.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png'),
-            "Areas of Interest (AOI)": L.layerGroup([aoiBoundaries, aoiLabels]).addTo(map);,
+            "Areas of Interest (AOI)": L.layerGroup([aoiBoundaries, aoiLabels]),
             "Philadelphia County": L.layerGroup(),
             "ZIP Codes, 2025": L.layerGroup(),
             "Zoning, 50+ percent industrial, 2025": L.layerGroup(),
@@ -428,8 +428,8 @@ loadGeoJSON(
     }
 ).then(() => {
     // 5. Add to map AFTER loading (triggers proper control state)
-    aoiBoundaries.addTo(map);
-    aoiLabels.addTo(map);
+    //aoiBoundaries.addTo(map);
+    //aoiLabels.addTo(map);
 });
 
 overlays["Areas of Interest (AOI)"] = L.layerGroup([aoiBoundaries, aoiLabels]);
