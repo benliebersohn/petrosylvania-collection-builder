@@ -58,12 +58,6 @@
             background: #f4f4f4;
         }
         
-/*        .leaflet-control {
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        }*/
         /* Right control (top position) */
         .leaflet-right .leaflet-control {
             margin-right: 10px;
@@ -95,14 +89,6 @@
                 border: 2px solid #f1f1f1;
             }
         }
-
-        /* Firefox fallback makes a second scrollbar which is not needed */
-        /*@supports (scrollbar-width: auto) {
-          .scrollable-basemap-control .leaflet-control-layers-list {
-            scrollbar-width: auto;
-            scrollbar-color: #666 #f1f1f1;
-          }
-        }*/
         /* Ensure the control header stays fixed */
         .scrollable-basemap-control .leaflet-control-layers-list {
             max-height: calc(80vh - 40px); /* Account for header */
@@ -115,27 +101,6 @@
             background: white;
             z-index: 1;
         }
-        /*
-        .aoi-label {
-            font-family: 'Roboto', sans-serif; /* Google fonts sans-serif *
-            color: black;
-            font-weight: 800;
-            font-size: 14px;
-            text-align: center;
-            /* White text stroke *
-            -webkit-text-stroke: .65px white;
-            text-stroke: .65px white;
-            /* Fallback for browsers that don't support text-stroke *
-            text-shadow: 
-            -.65px -.65px 0 rgba(255,255,255,.75),
-             0   -.65px 0 rgba(255,255,255,.75),
-             .65px -.65px 0 rgba(255,255,255,.75),
-            -.65px  0   0 rgba(255,255,255,.75),
-             .65px  0   0 rgba(255,255,255,.75),
-            -.65px  .65px 0 rgba(255,255,255,.75),
-             0    .65px 0 rgba(255,255,255,.75),
-             .65px  .65px 0 rgba(255,255,255,.75);
-        }*/
         .aoi-label {      
           position: absolute;
           text-align: center;
@@ -301,7 +266,7 @@
         
         const overlays = {
             "Street labels": L.tileLayer('https://a.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png'),
-            "Areas of Interest (AOI)": L.layerGroup([aoiBoundaries, aoiLabels]),
+            "Areas of Interest (AOI)": L.layerGroup([aoiBoundaries, aoiLabels]).addTo(map);,
             "Philadelphia County": L.layerGroup(),
             "ZIP Codes, 2025": L.layerGroup(),
             "Zoning, 50+ percent industrial, 2025": L.layerGroup(),
@@ -525,37 +490,6 @@ loadGeoJSON(
     }
 );
         
-        /*
-        // Create the control for the legend
-        var legend = L.control({position: 'bottomleft'});
-
-        // Define color codes and labels
-        var redliningGrades = {
-            'A - Best': '#76a865',  // Green
-            'B - Still Desirable': '#7cb5bd',  // blue
-            'C - Definitely Declining': '#ffff00',  //  yellow
-            'D - Hazardous': '#d9838d',  // reddish orange
-            'Commercial or Industrial': '#000000',
-            //other hatchures or cross hatch?
-        };
-
-        // When the legend is added to the map
-
-        legend.onAdd = function(map) {
-            var div = L.DomUtil.create('div', 'info legend');
-            var labels = ['<strong>Redlining Grades</strong>'];
-    
-        // Loop through the HOLC grades and generate a label with a colored square
-            for (var grade in redliningGrades) {
-                labels.push(
-                    '<i style="background:' + redliningGrades[grade] + '; width: 18px; height: 18px; display: inline-block; margin-left: 5px;"></i> ' +
-                    grade
-                );
-            }
-            
-            div.innerHTML = labels.join('<br>');
-            return div;
-        };*/
         
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/redlining.geojson',
                     overlays['HOLC "redlining map," 1937'], 
@@ -627,97 +561,7 @@ loadGeoJSON(
 
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/city_limits.geojson',
                     overlays["Philadelphia County"], {style: {color: 'black', weight:4, fillOpacity: 0}});
-        // Create overlay control (left side)
-        //labels with only area names, no AOI label
-    /*    const Belmont = L.marker([39.921308, -75.192636], {
-        pane: 'labelPane',
-        icon: L.divIcon({
-            className: 'aoi-label-name',/*not an actual AOI label, we are just using inherited properties for area-name
-            html: '<div style="position:relative; top:-10px;">AOI-1</div>', // Adjust vertical position
-        //    iconSize: [40, 20] 
-                
-            html: `<div class="label-container">
-            <div class="area-name">Belmont Terminal</div>
-            </div>`,
-        iconSize: [100, 10]  
-            
-        }),
-        interactive: false
-        });*/
-/*        
-        const PGW = L.marker([39.921957, -75.197372], {//-75.197626,39.921957
-        pane: 'labelPane',
-        icon: L.divIcon({
-            className: 'aoi-label-name',/*not an actual AOI label, we are just using inherited properties for area-name
-            html: '<div style="position:relative; top:-10px;">AOI-1</div>', // Adjust vertical position
-      //      iconSize: [40, 20]
-            html: `<div class="label-container">
-            <div class="area-name">PGW Property</div>
-            </div>`,
-        iconSize: [100, 10]  
-            
-        }),
-        interactive: false
-        });
-*/
-//        const aoi1 = L.marker([39.915600, -75.193862], {
-        
-/*        
-        const aoi1 = L.marker([39.915600, -75.193862], {
-          pane: 'labelPane',
-          icon: L.divIcon({
-            className: 'aoi-label',
-            html: `<div data-text="${feature.properties.AOI_ID}">
-                     <div>${feature.properties.AOI_ID}</div>
-                   </div>`,
-            iconSize: [auto, 20]
-          }),
-        });
-*//*
-1 | 39.915600, -75.193862
-2 | 39.915279, -75.199142
-3 | 39.909995, -75.202350
-4 | 39.907964, -75.197192
-5 | 39.898970, -75.204967
-6 | 39.902663, -75.208978
-7 | 39.907680, -75.209039
-8 | 39.926270, -75.202180
-9 | 39.900134, -75.220973
-10| 39.917825, -75.205526
-*/
-        //add the labels to the map
-     //   aoiLabels.addLayer(PGW);
-     //   aoiLabels.addLayer(Belmont);
-/*        aoiLabels.addLayer(aoi1);/*
-        aoiLabels.addLayer(aoi2);
-        aoiLabels.addLayer(aoi3);
-        aoiLabels.addLayer(aoi4);
-        aoiLabels.addLayer(aoi5);
-        aoiLabels.addLayer(aoi6);
-        aoiLabels.addLayer(aoi7);
-        aoiLabels.addLayer(aoi8);
-        aoiLabels.addLayer(aoi9);
-        aoiLabels.addLayer(aoi10);*/
-/*                
-        overlays["AOI Boundaries"].on('add', function() {
-            if (!map.hasLayer(aoiLabels)) {
-                aoiLabels.addTo(map);
-                // More aggressive refresh approach
-                setTimeout(() => {
-                    map.invalidateSize({animate: false});
-                    aoiLabels._reset();
-                    aoiLabels.redraw();
-                    map.fire('moveend');
-                }, 300);
-            }
-        });
-        
-        overlays["AOI Boundaries"].on('remove', function() {
-            if (map.hasLayer(aoiLabels)) {
-                aoiLabels.removeFrom(map);
-            }
-        });
-  */      
+
     map.createPane('labelPane').style.zIndex = 700; // Higher than tile layers
     
         // Create basemap control (right side)        
