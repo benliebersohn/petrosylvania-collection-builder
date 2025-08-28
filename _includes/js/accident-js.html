@@ -200,9 +200,10 @@ fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-c
             function createPopupContent(feature) {
                 const props = feature.properties;
                 let content = `<b>Date:</b> ${props["Year-Month-Day"] || 'Unknown date'}<br>`;
+                content += `<b>General location:</b> ${props["General location"] || 'Unknown'}<br>`;
                 content += `<b>Description:</b> ${props.Description || 'No description'}<br>`;
                 if (props["Street coordinates"]) {
-                    content += `<b>Street Address:</b> ${props["Street coordinates"]}<br>`;
+                    content += `<b>Street coordinates:</b> ${props["Street coordinates"]}<br>`;
                 }
                 content += `<b>Responsible Party:</b> ${props["Responsible corporate entity"] || 'Unknown'}<br>`;
 
