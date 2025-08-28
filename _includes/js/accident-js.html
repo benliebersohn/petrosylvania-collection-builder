@@ -112,8 +112,8 @@ fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-c
             const years = [];
             
             geojsonData.features.forEach(feature => {
-                if (feature.properties.year && !isNaN(feature.properties.year)) {
-                    years.push(Number(feature.properties.year));
+                if (feature.properties.Year && !isNaN(feature.properties.Year)) {
+                    years.push(Number(feature.properties.Year));
                 }
             });
             
@@ -164,10 +164,10 @@ fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-c
                 
                 // Filter features by year
                 const filteredFeatures = geojsonData.features.filter(feature => {
-                    return feature.properties.year && 
-                           !isNaN(feature.properties.year) &&
-                           feature.properties.year >= yearRange[0] && 
-                           feature.properties.year <= yearRange[1];
+                    return feature.properties.Year && 
+                           !isNaN(feature.properties.Year) &&
+                           feature.properties.Year >= yearRange[0] && 
+                           feature.properties.Year <= yearRange[1];
                 });
                 
                 // Add filtered features to map
@@ -178,9 +178,9 @@ fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-c
                     pointToLayer: function(feature, latlng) {
                         // Customize marker color based on casualties
                         let color = "#3388ff"; // Default blue
-                        if (feature.properties.Dead === "Y" || feature.properties.NumDead > 0) {
+                        if (feature.properties["Deadly?"] === "Y" || parseInt(feature.properties["Dead (minimum)"]) > 0) {
                             color = "#ff0000"; // Red for fatal accidents
-                        } else if (feature.properties.Injury === "Y" || feature.properties.NumInjur > 0) {
+                        } else if (feature.properties["Injurious?"] === "Y" || parseInt(feature.properties["Injured (minimum)"]) > 0) {
                             color = "#ff7800"; // Orange for injuries
                         }
                         
@@ -199,22 +199,19 @@ fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-c
             // Function to create popup content
             function createPopupContent(feature) {
                 const props = feature.properties;
-                let content = `<b>Year:</b> ${props.Date}<br>`;
-                content += `<b>Description:</b> ${props.Descript || 'No description'}<br>`;
-                if (props.Street_D) {
-                    content += `<b>Street Address:</b> ${props.Street_D}<br>`;
+                let content = `<b>Date:</b> ${props["Year-Month-Day"] || 'Unknown date'}<br>`;
+                content += `<b>Description:</b> ${props.Description || 'No description'}<br>`;
+                if (props["Street coordinates"]) {
+                    content += `<b>Street Address:</b> ${props["Street coordinates"]}<br>`;
                 }
-                content += `<b>Responsible Party:</b> ${props.Responsi || 'Unknown'}<br>`;
+                content += `<b>Responsible Party:</b> ${props["Responsible corporate entity"] || 'Unknown'}<br>`;
 
-                //content += `<b>${props.name || 'Unnamed Location'}</b><br>`;
-                //content += `<small>AOI ID: ${props.AOI_ID}</small><hr>`;
-                
-                //content += `<b>Date:</b> ${props.Date} (Year: ${props.year})<br>`;
-                if (props.Injury === "Y" || props.NumInjur > 0) {
-                    content += `<b style="color:orange">Non-fatal injured:</b> ${props.NumInjur || 'Yes'}<br>`;
-                }                // Add casualty information
-                if (props.Dead === "Y" || props.NumDead > 0) {
-                    content += `<b style="color:red">Fatalities:</b> ${props.NumDead || 'Yes'}<br>`;
+                // Add casualty information
+                if (props["Injurious?"] === "Y" || parseInt(props["Injured (minimum)"]) > 0) {
+                    content += `<b style="color:orange">Non-fatal injured:</b> ${props["Injured (minimum)"] || 'Yes'}<br>`;
+                }
+                if (props["Deadly?"] === "Y" || parseInt(props["Dead (minimum)"]) > 0) {
+                    content += `<b style="color:red">Fatalities:</b> ${props["Dead (minimum)"] || 'Yes'}<br>`;
                 }
                 
                 return content;
@@ -226,12 +223,9 @@ fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-c
             // Update display when slider changes
         slider.noUiSlider.on('update', function(values) {
             const yearRange = values.map(Number);
-         //   document.getElementById('min-year').textContent = yearRange[0];
-         //   document.getElementById('max-year').textContent = yearRange[1];
             updatePointsByYear(yearRange);
         });
         }
     </script>
 </body>
 </html>
-
