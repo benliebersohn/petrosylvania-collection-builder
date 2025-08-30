@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> <!-- readable map font !-->
-    <script src="https://unpkg.com/leaflet.pattern@0.3.0/dist/leaflet.pattern.js"></script> <!-- add cross hatches !-->
     
     <style>
         body {
@@ -557,18 +556,44 @@ loadGeoJSON(
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/industrial_tracts.geojson', 
            overlays["Zoning, 50+ percent industrial, 2025"], 
            function(feature) {
+               // Create unique pattern ID
+               const patternId = 'industrial-hatch-' + (feature.id || Math.random().toString(36).substr(2, 9));
+               
+               // Add SVG pattern definition if it doesn't exist
+               if (!document.getElementById(patternId)) {
+                   const svgNS = "http://www.w3.org/2000/svg";
+                   const pattern = document.createElementNS(svgNS, "pattern");
+                   pattern.setAttribute("id", patternId);
+                   pattern.setAttribute("patternUnits", "userSpaceOnUse");
+                   pattern.setAttribute("width", "10");
+                   pattern.setAttribute("height", "10");
+                   pattern.setAttribute("patternTransform", "rotate(45 0 0)");
+                   
+                   const line = document.createElementNS(svgNS, "line");
+                   line.setAttribute("x1", "0");
+                   line.setAttribute("y1", "0");
+                   line.setAttribute("x2", "0");
+                   line.setAttribute("y2", "10");
+                   line.setAttribute("style", "stroke:#666666; stroke-width:2");
+                   
+                   pattern.appendChild(line);
+                   
+                   // Add to existing SVG defs or create new ones
+                   let defs = document.querySelector('defs');
+                   if (!defs) {
+                       defs = document.createElementNS(svgNS, "defs");
+                       const svg = document.createElementNS(svgNS, "svg");
+                       svg.style.display = 'none';
+                       svg.appendChild(defs);
+                       document.body.appendChild(svg);
+                   }
+                   defs.appendChild(pattern);
+               }
+               
                return {
                    color: 'gray',
                    weight: 2,
-                   fillPattern: L.pattern.diagonal({
-                       patternUnits: 'userSpaceOnUse',
-                       patternContentUnits: 'userSpaceOnUse',
-                       stroke: true,
-                       color: '#666666',
-                      weight: 2,
-                      space: 5, // spacing between lines
-                      angle: 45 // angle of the lines
-                   }),
+                   fillColor: 'url(#' + patternId + ')',
                    fillOpacity: 1
                };
            });
