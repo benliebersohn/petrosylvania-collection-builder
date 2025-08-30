@@ -8,7 +8,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     
     <style>
-        #map { height: 100vh; }
+        #map { position: relative; }
+        .slider-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 5px 5px 30px 5px; /* Combined padding (top right bottom left) */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
         #year-value {
             display: none !important; /* we only want years showing on the sliders */
         }
@@ -22,16 +32,7 @@
         }
 
 /* Adjust slider container height to accommodate tooltips */
-        .slider-container {
-            position: absolute;
-            top: 410px;
-            right: 380px;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.6);
-            padding: 5px 5px 30px 5px; /* Combined padding (top right bottom left) */
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-        }
+
 /* Optional: Improve tooltip appearance */
         .noUi-tooltip {
             font-family: 'Roboto', sans-serif;
