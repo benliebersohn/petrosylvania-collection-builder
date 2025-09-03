@@ -20,7 +20,22 @@
             position: relative;
         }
         
-        /* Custom control for the slider */
+        .counter-control {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .counter-number {
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+        }
+        
         .slider-control {
             background: rgba(255, 255, 255, 0.6);
             padding: 5px 5px 30px 5px;
@@ -122,6 +137,39 @@
         const sliderControl = new SliderControl();
         map.addControl(sliderControl);
 
+// function for counting the accidents on the screen
+        const CounterControl = L.Control.extend({
+            options: {
+                position: 'bottomright'
+            },
+        
+            onAdd: function(map) {
+                const container = L.DomUtil.create('div', 'counter-control');
+        
+        // prevent map click events from being intercepted by the counter
+                L.DomEvent.disableClickPropagation(container);
+        
+        // add content to the control
+                container.innerHTML = `
+                    <div>Accidents Displayed: <span id="accident-count" class="counter-number">0</span></div>
+                `;
+        
+                return container;
+            }
+        });
+
+        const counterControl = new CounterControl();
+        map.addControl(counterControl);
+
+        // update count display and print to console for debugging
+        function updateAccidentCount(count) {
+            // Update counter on the map
+            document.getElementById('accident-count').textContent = count;
+    
+            //  log to console
+            console.log(`Accidents displayed: ${count}`);
+        }
+        
         // Fetch the external GeoJSON
         fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOIgeoData.geojson')
             .then(response => {
@@ -195,7 +243,7 @@
                            feature.properties.Year >= yearRange[0] && 
                            feature.properties.Year <= yearRange[1];
                 });
-                
+                updateAccidentCount(filteredFeatures.length); // update accident count on screen
                 // Add filtered features to map
                 L.geoJSON({
                     type: "FeatureCollection",
