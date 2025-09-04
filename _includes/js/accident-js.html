@@ -8,6 +8,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     
     <style>
+        .chart-control {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            font-family: 'Roboto', sans-serif;
+            width: 300px;
+        }
+
+        .chart-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        #accident-chart {
+            width: 100% !important;
+            height: 150px !important;
+        }
+        
         body {
             margin: 0;
             padding: 0;
@@ -83,7 +104,7 @@
 </head>
 <body>
     <div id="map"></div>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- a library for the bar graph -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.js"></script>
@@ -138,7 +159,7 @@
         map.addControl(sliderControl);
 
 // function for counting the accidents on the screen
-        const CounterControl = L.Control.extend({
+        const CounterControl = L.Control.extend({ //
             options: {
                 position: 'bottomright'
             },
@@ -158,17 +179,125 @@
             }
         });
 
-        const counterControl = new CounterControl();
-        map.addControl(counterControl);
+        const ChartControl = L.Control.extend({
+            options: {
+                position: 'bottomleft'
+            },
+    
+            onAdd: function(map) {
+                const container = L.DomUtil.create('div', 'chart-control');
+        
+                // Prevent map click events from being intercepted by the chart
+                L.DomEvent.disableClickPropagation(container);
+        
+                // Add content to the control
+                container.innerHTML = `
+                    <div class="chart-title">Accidents by Type</div>
+                    <canvas id="accident-chart"></canvas>
+                `;
+        
+                return container;
+            }
+        });
 
+        const counterControl = new CounterControl();
+        map.addControl(counterControl); //add counter to screen
+        
+        const chartControl = new ChartControl(); //add bar graph to screen
+        map.addControl(chartControl);
+        
         // update count display and print to console for debugging
-        function updateAccidentCount(count) {
-            // Update counter on the map
+        function updateAccidentCount(filteredFeatures) {
+            const count = filteredFeatures.length;
+    
+            // Count accident types
+            let nonInjuriousCount = 0;
+            let injuriousCount = 0;
+            let deadlyCount = 0;
+    
+            filteredFeatures.forEach(feature => {
+                const props = feature.properties;
+                const isDeadly = props["Deadly?"] === "Y" || parseInt(props["Dead (minimum)"]) > 0;
+                const isInjurious = props["Injurious?"] === "Y" || parseInt(props["Injured (minimum)"]) > 0;
+        
+                if (isDeadly) {
+                    deadlyCount++;
+                } else if (isInjurious) {
+                    injuriousCount++;
+                } else {
+                    nonInjuriousCount++;
+                }
+            });
+    
+            // Update the counter on the map
             document.getElementById('accident-count').textContent = count;
     
-            //  log to console
+            // Update the chart
+            if (accidentChart) {
+                accidentChart.data.datasets[0].data = [nonInjuriousCount, injuriousCount, deadlyCount];
+                accidentChart.update();
+            }
+    
+            // Also log to console
             console.log(`Accidents displayed: ${count}`);
+            console.log(`Non-injurious: ${nonInjuriousCount}, Injurious: ${injuriousCount}, Deadly: ${deadlyCount}`);
         }
+
+        // Initialize chart
+        let accidentChart = null;
+
+        function initializeChart() {
+            const ctx = document.getElementById('accident-chart').getContext('2d');
+            accidentChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Non-Injurious', 'Injurious', 'Deadly'],
+                    datasets: [{
+                        label: 'Number of Accidents',
+                        data: [0, 0, 0],
+                        backgroundColor: [
+                            '#3388ff', // Blue for non-injurious
+                            '#ff7800', // Orange for injurious
+                            '#ff0000'  // Red for deadly
+                        ],
+                        borderColor: [
+                            '#2a6fcc',
+                            '#cc6000', 
+                            '#cc0000'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.raw}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // initialize the chart when the page loads
+        initializeChart();
+        
         
         // Fetch the external GeoJSON
         fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOIgeoData.geojson')
@@ -243,7 +372,7 @@
                            feature.properties.Year >= yearRange[0] && 
                            feature.properties.Year <= yearRange[1];
                 });
-                updateAccidentCount(filteredFeatures.length); // update accident count on screen
+                updateAccidentCount(filteredFeatures); // update accident count on screen
                 // Add filtered features to map
                 L.geoJSON({
                     type: "FeatureCollection",
