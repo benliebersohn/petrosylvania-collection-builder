@@ -1,6 +1,7 @@
 ---
 title: contact
 layout: page
+# see _layouts/page.html for layout
 permalink: /contact.html
 ---
 # Contact us

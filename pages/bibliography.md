@@ -1,6 +1,7 @@
 ---
 title: Bibliography
 layout: page
+# see _layouts/page.html for layout
 permalink: /bibliography.html
 credits: true
 # Look in _includes/feature for options to easily add features to the page
