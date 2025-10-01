@@ -9,17 +9,6 @@ item-meta: true
 
     {% include item/breadcrumbs.html %}
 
-    <div class="alert alert-primary" role="alert">
-        <div>
-            <!-- this is how SVGs are included in CollectionBuilder CSV-->
-            <svg class="bi icon-sprite" aria-hidden="true">
-                <use xlink:href="{{ '/assets/lib/icons/bootstrap-icons.svg' | relative_url }}#info-circle-fill" href="{{ '/assets/lib/icons/bootstrap-icons.svg' | relative_url }}#info-circle-fill"></use>
-            </svg>
-            <span class="visually-hidden">Info icon</span>
-            This site is currently in beta testing. If you encountered an error on this page, <a class="alert-link" href="https://upenn.libwizard.com/id/303adf1736dc164722ae21a1151f51be" target="_blank">report it here</a> and enter the URL <code>{{ page.url | absolute_url }} in the form</code>.
-        </div>
-    </div>
-
     <div class="my-0 h5 small">{{ page.display_template | replace: "_", " " | upcase }} {% if page.display_template == "compound_object" or page.display_template == "multiple" %}{% assign children = site.data[site.metadata] | where_exp: 'item','item.parentid == page.objectid' %} ({{ children | size }} Items){% endif %}</div>
     <h2 class="mb-3">{{ page.title }} 
     </h2>

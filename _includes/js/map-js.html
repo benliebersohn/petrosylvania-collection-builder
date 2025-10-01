@@ -358,7 +358,7 @@ async function loadZIPLayers() {
   try {
     // add ZIP code white lines (on bottom)
     const whiteOutlines = await loadGeoJSON(
-      'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
+      'https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/zip_codes.geojson',
       null,
       {
         style: {
@@ -373,7 +373,7 @@ async function loadZIPLayers() {
 
       //add ZIP code blue lines (on top) 
     const blueLines = await loadGeoJSON(
-      'https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/zip_codes.geojson',
+      'https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/zip_codes.geojson',
       null, // Don't auto-add to layer
       {
         style: { // Explicit style object
@@ -545,21 +545,21 @@ loadGeoJSON(
                    );
         console.log("470s");
         
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson', 
+        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson', 
                    overlays["FEMA, 100-year flood zone, 2025"], { 
                        style: {
                            color: 'blue', fillOpacity: 0.1
                        }
                    });
         
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/industrial_tracts.geojson', 
+        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/industrial_tracts.geojson', 
                    overlays["Zoning, 50+ percent industrial, 2025"], { 
                        style: {
                            color: 'gray', weight: 2
                        }
                    });
         
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/KOZ_parcels.geojson',
+        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/KOZ_parcels.geojson',
                     overlays["Keystone Opportunity Zones, 2025"], {style: {color: 'black', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/2Ft_SLR.geojson',
@@ -568,25 +568,25 @@ loadGeoJSON(
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/4ftSLR.geojson',
                     overlays["NOAA, 4-foot rise in sea level"], {style: {color: 'blue', weight:1}});
         
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/1960_predominantly_AfAm.geojson',
+        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/1960_predominantly_AfAm.geojson',
                     overlays["Census, 50+ percent Black, 1960"], {style: {color: 'black', weight:1}});
 
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/1980_predominant_afam.geojson',
+        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/1980_predominant_afam.geojson',
                     overlays["Census, 50+ percent Black, 1980"], {style: {color: 'black', weight:1}});
 
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/1980_%3E25pctPoverty.geojson',
+        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/1980_%3E25pctPoverty.geojson',
                     overlays["Census, 25+ percent children in poverty, 1980"], {style: {color: 'green', weight:1}});
 
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/predominantAfam_2000.geojson',
+        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/predominantAfam_2000.geojson',
                     overlays["Census, 50+ percent Black, 2000"], {style: {color: 'black', weight:1}});
         
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/2000_%3E25pctPoverty.geojson',
+        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/2000_%3E25pctPoverty.geojson',
                     overlays["Census, 25+ percent children in poverty, 2000"], {style: {color: 'green', weight:1}});
         
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/2020_pct_Afam.geojson',
+        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/2020_pct_Afam.geojson',
                     overlays["Census, 50+ percent Black, 2020"], {style: {color: 'black', weight:1}});
 
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrosylvania-collection-builder/refs/heads/main/_includes/js/2020_%3E25pct%20under%20poverty%20line.geojson',
+        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/2020_%3E25pct%20under%20poverty%20line.geojson',
                     overlays["Census, 25+ percent children in poverty, 2020"], {style: {color: 'green', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/city_limits.geojson',
