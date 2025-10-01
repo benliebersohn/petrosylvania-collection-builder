@@ -10,7 +10,7 @@
 # site domain, full URL to the production location of your collection
 url: https://upenndigitalscholarship.github.io
 # path to location on the domain if necessary e.g. /digital/hjccc
-baseurl: 
+# baseurl: 
 # location of code, the full url to your github repository
 source-code: https://github.com/upenndigitalscholarship/petrodelphia
 
@@ -18,15 +18,15 @@ source-code: https://github.com/upenndigitalscholarship/petrodelphia
 # SITE SETTINGS
 #
 # title of site appears in banner
-title: Petrodelphia: America's First Petrochemical Corridor
+title: "Petrodelphia: America's First Petrochemical Corridor"
 # tagline, a short phrase that will appear throughout the site in the top banner
-tagline:
+# tagline:
 # description appears in meta tags and other locations
 # this description might appear in search result lists, keep around 160 characters max
 description: "This website provides you—and others who care about the past and future of Philadelphia—a rich collection of sources about the South Philadelphia refinery complex and other petrochemical sites along the lower Schuylkill River. Fundamentally, this website is a research tool: a digital archive accompanied by reference works and maps. Stakeholders at various levels—neighborhood, municipal, commonwealth, business, non-profit—should find information of interest among the articles, primary sources, data sheets, and “grey literature” (such as government documents and corporate reports) curated here. Whether you’re a student, teacher, planner, designer, developer, resident, activist, journalist, or simply an infrastructure nerd, you are invited to use this website to learn, to share, and to tell stories about fossil fuel legacies in South and Southwest Philadelphia."
 footer: "An educational website about the history of the South Philadelphia refinery complex and the changing landscapes of the lower Schuylkill River."
 # keywords, a short list of subjects describing the collection, separated by semicolon, to appear in rich markup
-keywords:
+# keywords:
 # creator of the digital collection, to appear in meta tags; we typically use our GitHub usernames but feel free to just use your name
 author: Jared Farmer + Penn Libraries RDDS
 
