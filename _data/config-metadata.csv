@@ -4,11 +4,11 @@ creator,Creator,true,,DCTERMS.creator,creator
 date,Date created,,,DCTERMS.date,dateCreated
 description,Description,,,DCTERMS.description,description
 subject,Subjects,true,,DCTERMS.subject,keywords
-location,Location,,,,contentLocation
 latitude,Latitude,,,,
 longitude,Longitude,,,,
 genre_type,Genre,true,,,
 collection_type,Collection,true,,,
+place_type,Location,true,,,
 institution,,,,,
 source,,,true,,
 source_id,,,,,
