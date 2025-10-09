@@ -1,6 +1,6 @@
 {
   "type": "FeatureCollection",
-  "name": "final_accidents-9-30-25",
+  "name": "accidents_100920205",
   "crs": {
     "type": "name",
     "properties": {
@@ -1307,14 +1307,14 @@
     {
       "type": "Feature",
       "properties": {
-        "Year": 1903,
+        "Year": "1903",
         "Month": "04",
-        "Day": 11,
+        "Day": "11",
         "Description": "Match-lit explosion of railroad tank car (benzene).",
         "Injurious?": "Y",
         "Deadly?": "Y",
-        "Injured (minimum)": 2,
-        "Dead (minimum)": 1,
+        "Injured (minimum)": "2",
+        "Dead (minimum)": "1",
         "Responsible corporate entity": "B&O Railroad",
         "General location": "Lower Passyunk",
         "Street coordinates": "Along 25th St railroad tracks",
@@ -1326,8 +1326,7 @@
           -75.18781450865377,
           39.927059040059305
         ]
-      },
-      "id": 54
+      }
     },
     {
       "type": "Feature",
@@ -4428,14 +4427,14 @@
     {
       "type": "Feature",
       "properties": {
-        "Year": "2016",
-        "Month": "12",
-        "Day": "10",
+        "Year": 2016,
+        "Month": 12,
+        "Day": 10,
         "Description": "One-alarm fire.",
         "Injurious?": "N",
         "Deadly?": "N",
-        "Injured (minimum)": "0",
-        "Dead (minimum)": "0",
+        "Injured (minimum)": 0,
+        "Dead (minimum)": 0,
         "Responsible corporate entity": "Philadelphia Energy Solutions",
         "General location": "AOI-2",
         "Street coordinates": "3144 W Passyunk Avenue",
@@ -4447,7 +4446,8 @@
           -75.1971,
           39.919086
         ]
-      }
+      },
+      "id": 184
     },
     {
       "type": "Feature",
