@@ -1,5 +1,5 @@
 ---
-title: Accident Mapper
+title: Accidents Map
 layout: map
 # see _layouts/map.html for layout
 # see accident-map.html for content
