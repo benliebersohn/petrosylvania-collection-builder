@@ -1163,7 +1163,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Year": "{\n}\n",
+        "Year": "1900",
         "Month": "08",
         "Day": "16",
         "Description": "Explosion of tank (kerosene) leads to fire in illuminating gas factory.",
@@ -2195,7 +2195,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Year": "{\n}\n",
+        "Year": "1929",
         "Month": "12",
         "Day": "13",
         "Description": "Four-alarm fire causes general damage to coal tar distillery.",
@@ -2219,7 +2219,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Year": "{\n}\n",
+        "Year": "1929",
         "Month": "12",
         "Day": "27",
         "Description": "Explosion of tank (oil).",
@@ -4163,7 +4163,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Year": "{\n}\n",
+        "Year": "2000",
         "Month": "02",
         "Day": "02",
         "Description": "Leak of 192,000 gallons (crude oil) into John Heinz National Wildlife Refuge from ruptured pipeline.",
