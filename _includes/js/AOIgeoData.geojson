@@ -1163,7 +1163,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Year": "{\n}\n",
+        "Year": "1900",
         "Month": "08",
         "Day": "16",
         "Description": "Explosion of tank (kerosene) leads to fire in illuminating gas factory.",
@@ -2196,13 +2196,13 @@
     {
       "type": "Feature",
       "properties": {
-        "Year": "{\n}\n",
+        "Year": "1929",
         "Month": "12",
         "Day": "13",
         "Description": "Four-alarm fire causes general damage to coal tar distillery.",
         "Injurious?": "N",
         "Deadly?": "N",
-        "Injured (minimum)": "{\n}\n",
+        "Injured (minimum)": "0",
         "Dead (minimum)": "0",
         "Responsible corporate entity": "Barrett Company (Allied Chemical & Dye Corporation)",
         "General location": "Grays Ferry Crescent",
@@ -2220,7 +2220,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Year": "{\n}\n",
+        "Year": "1929",
         "Month": "12",
         "Day": "27",
         "Description": "Explosion of tank (oil).",
@@ -2922,8 +2922,8 @@
         "Description": "Explosion of fuel line in boiler room; four-alarm fire lasts three hours.",
         "Injurious?": "N",
         "Deadly?": "N",
-        "Injured (minimum)": "{\n}\n",
-        "Dead (minimum)": "{\n}\n",
+        "Injured (minimum)": "0",
+        "Dead (minimum)": "0",
         "Responsible corporate entity": "Gulf",
         "General location": "AOI-5",
         "Street coordinates": "",
@@ -4147,7 +4147,7 @@
         "Injurious?": "N",
         "Deadly?": "N",
         "Injured (minimum)": "0",
-        "Dead (minimum)": "{\n}\n",
+        "Dead (minimum)": "0",
         "Responsible corporate entity": "Sunoco",
         "General location": "AOI-1",
         "Street coordinates": "",
@@ -4164,13 +4164,13 @@
     {
       "type": "Feature",
       "properties": {
-        "Year": "{\n}\n",
+        "Year": "2000",
         "Month": "02",
         "Day": "02",
         "Description": "Leak of 192,000 gallons (crude oil) into John Heinz National Wildlife Refuge from ruptured pipeline.",
         "Injurious?": "N",
         "Deadly?": "N",
-        "Injured (minimum)": "{\n}\n",
+        "Injured (minimum)": "0",
         "Dead (minimum)": "0",
         "Responsible corporate entity": "Sunoco",
         "General location": "Tinicum",
@@ -4194,7 +4194,7 @@
         "Description": "Malfunction causes release of substantial amount of silica alumina catalyst.",
         "Injurious?": "N",
         "Deadly?": "N",
-        "Injured (minimum)": "{\n}\n",
+        "Injured (minimum)": "0",
         "Dead (minimum)": "0",
         "Responsible corporate entity": "Sunoco",
         "General location": "Atlantic at Point Breeze",
