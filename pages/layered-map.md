@@ -1,5 +1,5 @@
 ---
-title: Layered Maps
+title: Layered Map
 layout: map
 # see _layouts/map.html for layout
 # see layered-map.html for content
