@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Accident Sites Year Filter</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-        }
         
         #map { 
             width: 100%;
@@ -140,7 +134,7 @@ function updateAccidentCount(filteredFeatures) {
     console.log(`Non-injurious: ${nonInjuriousCount}, Injurious: ${injuriousCount}, Deadly: ${deadlyCount}`);
 }        
         // Fetch the external GeoJSON
-        fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/v1.1-hotfix/_includes/js/AOIgeoData.geojson')
+        fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/AOIgeoData.geojson')
             .then(response => {
                 if (!response.ok) throw new Error('Network response failed');
                 return response.json();

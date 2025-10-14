@@ -4,6 +4,8 @@ layout: accident-map
 # see _layouts/map.html for layout
 # see accident-map.html for content
 permalink: /accident-map.html
+# see below file for the actual map components
+custom-foot: js/accident-js.html
 ---
 
 # {{ page.title }}
