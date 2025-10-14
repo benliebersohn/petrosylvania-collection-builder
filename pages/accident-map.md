@@ -1,6 +1,6 @@
 ---
 title: Accidents Map
-layout: map
+layout: accident-map
 # see _layouts/map.html for layout
 # see accident-map.html for content
 permalink: /accident-map.html
