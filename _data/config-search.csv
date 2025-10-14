@@ -5,4 +5,4 @@ creator,true,false
 description,true,true
 collection_type,true,true
 genre_type,true,true
-place_type,true,false
+place_type,true,true
