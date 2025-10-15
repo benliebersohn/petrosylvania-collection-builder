@@ -3,6 +3,6 @@ title,true,true
 date,true,true
 creator,true,false
 description,true,true
-subject,true,true
-keyword,true,true
-location,true,false
+collection_type,true,true
+genre_type,true,true
+place_type,true,true

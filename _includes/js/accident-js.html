@@ -1,30 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Accident Sites Year Filter</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-        }
         
         #map { 
             width: 100%;
             height: 100vh;
             position: relative;
         }
-        
-        /* Custom control for the slider */
+
         .slider-control {
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.8);
             padding: 5px 5px 30px 5px;
-            border-radius: 5px;
+            border-radius: 3px;
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
         }
         
@@ -40,7 +33,7 @@
 
         .noUi-tooltip {
             font-family: 'Roboto', sans-serif;
-            font-size: 12px;
+            font-size: 14px;
             background: #333;
             color: white;
             padding: 3px 6px;
@@ -50,34 +43,26 @@
         }
         
         .leaflet-popup-content {
+			font-family: 'Roboto', sans-serif;
             max-width: 300px;
         }
+
         
-        .custom-fullscreen {
-            background: white;
-            padding: 5px;
-            border-radius: 4px;
-            border: 2px solid rgba(0,0,0,0.2);
-            cursor: pointer;
-        }
-        
-        .custom-fullscreen:hover {
-            background: #f4f4f4;
-        }
     </style>
 </head>
 <body>
     <div id="map"></div>
-
+	<!-- libraries are for leaflet, the time-selection slider, and fullscreen mode -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.js"></script>
-    
+ 
+
     <script>
-        // Initialize map with a view set to S Philly and Philadelphia Quadrangle
+        // Initialize a map with a view set to S Philly at city-scale 13
         const map = L.map('map').setView([39.921276, -75.189891], 13);
         
-        // Add OpenStreetMap tiles
+        // Add OSM
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
@@ -86,18 +71,16 @@
         map.attributionControl.setPrefix(false);
         
         // Add fullscreen control
-        map.addControl(new L.Control.FullScreen({
-            position: 'topleft',
-            title: {
-                'false': 'View Fullscreen',
-                'true': 'Exit Fullscreen'
-            }
-        }));
-
-        // Create a layer group for our points
+		map.addControl(new L.Control.FullScreen({
+			position: 'topleft',
+			title: 'View Fullscreen', // Add tooltips
+			titleCancel: 'Exit Fullscreen' //
+		}));
+		
+        // Create a layer group for accident dots
         const pointsLayer = L.layerGroup().addTo(map);
         
-        // Create a custom control for the slider
+        // Define a customized slider for time selection
         const SliderControl = L.Control.extend({
             options: {
                 position: 'topright'
@@ -109,11 +92,10 @@
                 // Prevent map click events from being intercepted by the slider
                 L.DomEvent.disableClickPropagation(container);
                 
-                // Add content to the control
+                // Add content to the control - add summaries of dots on map?
                 container.innerHTML = `
                     <div id="year-slider"></div>
                 `;
-                
                 return container;
             }
         });
@@ -122,6 +104,35 @@
         const sliderControl = new SliderControl();
         map.addControl(sliderControl);
 
+				
+        
+// update count display and print to console for debugging
+function updateAccidentCount(filteredFeatures) {
+    const count = filteredFeatures.length;
+
+    // Count accident types
+    let nonInjuriousCount = 0;
+    let injuriousCount = 0;
+    let deadlyCount = 0;
+
+    filteredFeatures.forEach(feature => {
+        const props = feature.properties;
+        const isDeadly = props["Deadly?"] === "Y" || parseInt(props["Dead (minimum)"]) > 0;
+        const isInjurious = props["Injurious?"] === "Y" || parseInt(props["Injured (minimum)"]) > 0;
+        
+        if (isDeadly) {
+            deadlyCount++;
+        } else if (isInjurious) {
+            injuriousCount++;
+        } else {
+            nonInjuriousCount++;
+        }
+    });
+
+    // Just log to console (no DOM updates since we removed the text summary)
+    console.log(`Accidents displayed: ${count}`);
+    console.log(`Non-injurious: ${nonInjuriousCount}, Injurious: ${injuriousCount}, Deadly: ${deadlyCount}`);
+}        
         // Fetch the external GeoJSON
         fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/AOIgeoData.geojson')
             .then(response => {
@@ -137,8 +148,20 @@
                     .openOn(map);
             });
 
-        function processGeoJSON(geojsonData) {
-            // Extract all valid years from features
+			function processGeoJSON(geojsonData) {
+				// Add unique IDs to each feature for matching
+				geojsonData.features.forEach((feature, index) => {
+					feature.id = `accident-${index}`; // Add a unique ID
+				});
+				
+			    // Calculate center from all data points
+				const tempLayer = L.geoJSON(geojsonData);
+    			const bounds = tempLayer.getBounds();
+    			if (bounds.isValid()) {
+        			const center = bounds.getCenter();
+        			map.setView(center, 13); // Center on data with zoom level 13
+    			}
+				// Extract all valid years from features
             const years = [];
             
             geojsonData.features.forEach(feature => {
@@ -184,44 +207,48 @@
             });
             
             // Function to filter and display points
-            function updatePointsByYear(yearRange) {
-                // Clear existing points
-                pointsLayer.clearLayers();
-                
-                // Filter features by year
-                const filteredFeatures = geojsonData.features.filter(feature => {
-                    return feature.properties.Year && 
-                           !isNaN(feature.properties.Year) &&
-                           feature.properties.Year >= yearRange[0] && 
-                           feature.properties.Year <= yearRange[1];
-                });
-                
-                // Add filtered features to map
-                L.geoJSON({
-                    type: "FeatureCollection",
-                    features: filteredFeatures
-                }, {
-                    pointToLayer: function(feature, latlng) {
-                        // Customize marker color based on casualties
-                        let color = "#3388ff"; // Default blue
-                        if (feature.properties["Deadly?"] === "Y" || parseInt(feature.properties["Dead (minimum)"]) > 0) {
-                            color = "#ff0000"; // Red for fatal accidents
-                        } else if (feature.properties["Injurious?"] === "Y" || parseInt(feature.properties["Injured (minimum)"]) > 0) {
-                            color = "#ff7800"; // Orange for injuries
-                        }
-                        
-                        return L.circleMarker(latlng, {
-                            radius: 6,
-                            fillColor: color,
-                            color: "#000",
-                            weight: 1,
-                            opacity: 0.7,
-                            fillOpacity: 0.8
-                        }).bindPopup(createPopupContent(feature));
-                    }
-                }).addTo(pointsLayer);
+			// Function to filter and display points
+function updatePointsByYear(yearRange) {
+    // Clear existing points
+    pointsLayer.clearLayers();
+    
+    // Filter features by year
+    const filteredFeatures = geojsonData.features.filter(feature => {
+        return feature.properties.Year && 
+               !isNaN(feature.properties.Year) &&
+               feature.properties.Year >= yearRange[0] && 
+               feature.properties.Year <= yearRange[1];
+    });
+    
+    // Update accident count
+    updateAccidentCount(filteredFeatures);
+    
+    // Add filtered features to map
+    L.geoJSON({
+        type: "FeatureCollection",
+        features: filteredFeatures
+    }, {
+        pointToLayer: function(feature, latlng) {
+            // Customize marker color based on casualties
+            let color = "#3388ff"; // Default blue
+            if (feature.properties["Deadly?"] === "Y" || parseInt(feature.properties["Dead (minimum)"]) > 0) {
+                color = "#ff0000"; // Red for fatal accidents
+            } else if (feature.properties["Injurious?"] === "Y" || parseInt(feature.properties["Injured (minimum)"]) > 0) {
+                color = "#ff7800"; // Orange for injuries
             }
-
+            
+            // Create the marker
+            return L.circleMarker(latlng, {
+                radius: 6,
+                fillColor: color,
+                color: "#000",
+                weight: 1,
+                opacity: 0.7,
+                fillOpacity: 0.8
+            }).bindPopup(createPopupContent(feature));
+        }
+    }).addTo(pointsLayer);
+}
             // Function to create popup content
             function createPopupContent(feature) {
                 const props = feature.properties;

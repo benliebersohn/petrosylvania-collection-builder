@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Historical Map Collection</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.css" /> <!-- For the fullscreen effekt (optional) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> <!-- readable map font !-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
+
         #map {
             width: 100%;
             height: 90vh;
@@ -136,6 +132,51 @@
             justify-content: center;
             }
 
+        /* Collapsible control styles */
+        .collapsible-control {
+            transition: all 0.3s ease;
+        }
+        
+        .collapsible-control.collapsed .leaflet-control-layers-list {
+            display: none;
+        }
+        
+        .collapsible-control .collapse-toggle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            z-index: 1000;
+        }
+        
+        .collapsible-control.collapsed .collapse-toggle::after {
+            content: '+';
+        }
+        
+        .collapsible-control:not(.collapsed) .collapse-toggle::after {
+            content: '−';
+        }
+
+        /* Hatch pattern for industrial zoning */
+        .hatch-pattern {
+            background-image: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 5px,
+                black 5px,
+                black 10px
+            );
+        }
     </style>
 </head>
 <body>
@@ -270,7 +311,6 @@
             { name: "ESRI NatGeo", layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {attribution: 'ESRI'}) },
             { name: "ESRI StreetMap", layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {attribution: 'ESRI'}) },
             { name: "OpenStreetMap", layer: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: 'OSM Contributors'}) },
-// Make OSM Streets a base-base map with no off option? Make it a base-base map somehow... Maybe a second OSM layer that turns on? check performance.
         ];
 
         // Sort basemaps by year (those without years at the bottom)
@@ -316,7 +356,6 @@
             "FEMA, 100-year flood zone, 2025": L.layerGroup(),
             "NOAA, 2-foot rise in sea level": L.layerGroup(),
             "NOAA, 4-foot rise in sea level": L.layerGroup(),
-          //  "2025 ZIP codes": L.layerGroup(), // see 2025 ZIP Code, below, group "zipCodeLayers"  // added elsewhere!
         };
 
 // function to fix styling using geoJSON defined styles
@@ -524,7 +563,6 @@ loadGeoJSON(
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/redlining.geojson',
                     overlays['HOLC "redlining map," 1937'], 
                     function(feature) {
-//                        legend.addTo(map);
                         overlays['HOLC "redlining map," 1937'].on('add', function() {
                             legend.addTo(map);
                         });
@@ -534,8 +572,7 @@ loadGeoJSON(
                         });
                         
                         return {
-//                            color: feature.properties.stroke || '#555555', // Default color if not specified
-                            color: '#555555',
+                            stroke: '#555555',
                             weight: feature.properties['stroke-width'] || 2,
                             opacity: feature.properties['stroke-opacity'] || 1,
                             fillColor: feature.properties.fill || '#cab2d6',
@@ -552,15 +589,82 @@ loadGeoJSON(
                        }
                    });
         
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/industrial_tracts.geojson', 
-                   overlays["Zoning, 50+ percent industrial, 2025"], { 
-                       style: {
-                           color: 'gray', weight: 2
-                       }
+// Custom hatch pattern function. CDN issues prevented the use of the leaflet.hatch plugin, so this is a custom SVG implemementation.
+function addHatchPattern(layer, options = {}) {
+    const angle = options.angle || 45;
+    const spacing = options.spacing || 10;
+    const weight = options.weight || 2;
+    const color = options.color || 'black';
+    const opacity = options.opacity || 0.7;
+    
+    // Create SVG pattern
+    const patternId = 'hatch-' + Math.random().toString(36).substr(2, 9);
+    const svgNS = "http://www.w3.org/2000/svg";
+    
+    const pattern = document.createElementNS(svgNS, "pattern");
+    pattern.setAttribute("id", patternId);
+    pattern.setAttribute("patternUnits", "userSpaceOnUse");
+    pattern.setAttribute("width", spacing);
+    pattern.setAttribute("height", spacing);
+    pattern.setAttribute("patternTransform", `rotate(${angle})`);
+    
+    const line = document.createElementNS(svgNS, "line");
+    line.setAttribute("x1", "0");
+    line.setAttribute("y1", "0");
+    line.setAttribute("x2", "0");
+    line.setAttribute("y2", spacing);
+    line.setAttribute("stroke", color);
+    line.setAttribute("stroke-width", weight);
+    line.setAttribute("opacity", opacity);
+    
+    pattern.appendChild(line);
+    
+    // Add to SVG defs or create if doesn't exist
+    let defs = document.getElementById('hatch-defs');
+    if (!defs) {
+        defs = document.createElementNS(svgNS, "defs");
+        defs.setAttribute("id", "hatch-defs");
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("style", "position: absolute; width: 0; height: 0;");
+        svg.appendChild(defs);
+        document.body.appendChild(svg);
+    }
+    defs.appendChild(pattern);
+    
+    // Apply pattern to layer
+    const element = layer.getElement();
+    if (element) {
+        element.style.fill = `url(#${patternId})`;
+    }
+}
+
+// Updated industrial zoning with custom hatch
+loadGeoJSON('https://cdn.jsdelivr.net/gh/upenndigitalscholarship/petrodelphia/_includes/js/industrial_tracts.geojson', 
+           overlays["Zoning, 50+ percent industrial, 2025"], { 
+               style: {
+                   color: 'black',
+                   weight: 1,
+                   fillColor: 'black', // Fallback color
+                   fillOpacity: 1
+               },
+               onEachFeature: function(feature, layer) {
+                   // Add hatch pattern after layer is added to map
+                   layer.on('add', function() {
+                       setTimeout(() => {
+                           addHatchPattern(layer, {
+                               angle: 45,
+                               spacing: 8,
+                               weight: 2,
+                               color: 'black',
+                               opacity: 0.7
+                           });
+                       }, 100);
                    });
+               }
+           });
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/KOZ_parcels.geojson',
-                    overlays["Keystone Opportunity Zones, 2025"], {style: {color: 'black', weight:1}});
+                    overlays["Keystone Opportunity Zones, 2025"], {style: {color: '#7851A9', weight:1}});
 
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/2Ft_SLR.geojson',
                     overlays["NOAA, 2-foot rise in sea level"], {style: {color: 'blue', weight:1}});
@@ -595,7 +699,7 @@ loadGeoJSON(
     map.createPane('labelPane').style.zIndex = 700; // Higher than tile layers
     
         // Create basemap control (right side)        
-        L.control.layers(null, overlays, {
+        const overlayControl = L.control.layers(null, overlays, {
             collapsed: false,
             position: 'topleft'
         }).addTo(map);
@@ -623,9 +727,63 @@ loadGeoJSON(
         addControlLabel(overlayControl, 'Overlays');
         addControlLabel(basemapControl, 'Base Maps');
 
+        // Make controls collapsible
+        function makeCollapsible(control) {
+            const container = control.getContainer();
+            L.DomUtil.addClass(container, 'collapsible-control');
+            
+            // Create toggle button
+            const toggle = L.DomUtil.create('div', 'collapse-toggle', container);
+            
+            // Add click event to toggle collapse
+            L.DomEvent.on(toggle, 'click', function(e) {
+                L.DomEvent.stopPropagation(e);
+                L.DomEvent.preventDefault(e);
+                
+                if (L.DomUtil.hasClass(container, 'collapsed')) {
+                    L.DomUtil.removeClass(container, 'collapsed');
+                } else {
+                    L.DomUtil.addClass(container, 'collapsed');
+                }
+            });
+            
+            return container;
+        }
+
+        // Apply collapsible functionality to both controls
+        makeCollapsible(overlayControl);
+        makeCollapsible(basemapControl);
+
         map.on('baselayerchange', function() {
             permanentOSM.bringToBack(); // Force OSM behind current basemap
         });
+
+// Define layer descriptions (add this new object for info pane or popup)
+const layerDescriptions = {
+    "Zoning, 50+ percent industrial, 2025": "Areas where more than half the land is designated for industrial use according to 2025 zoning regulations.",
+    "HOLC \"redlining map,\" 1937": "Historical maps that color-coded neighborhoods by perceived investment risk.",
+    "FEMA, 100-year flood zone, 2025": "Areas with a 1% annual chance of flooding according to FEMA models.",
+    "ZIP Codes, 2025": "Current US Postal Service ZIP code boundaries.",
+    "Areas of Interest (AOI)": "Key locations selected for detailed study in this research project.",
+    "Philadelphia County": "Philadelphia county boundaries.",
+    "Keystone Opportunity Zones, 2025": "State-designated areas with tax incentives for business development.",
+    "LNAPL plume, 1996A": "Light non-aqueous phase liquid contamination plumes from 1996 surveys.",
+    "LNAPL plume, 1996B": "Light non-aqueous phase liquid contamination plumes from 1996 surveys.",
+    "LNAPL plume, 1996C": "Light non-aqueous phase liquid contamination plumes from 1996 surveys.",
+    "LNAPL plume, 1996D": "Light non-aqueous phase liquid contamination plumes from 1996 surveys.",
+    "Census, 50+ percent Black, 1960": "Census tracts with majority Black population in 1960.",
+    "Census, 50+ percent Black, 1980": "Census tracts with majority Black population in 1980.",
+    "Census, 50+ percent Black, 2000": "Census tracts with majority Black population in 2000.",
+    "Census, 50+ percent Black, 2020": "Census tracts with majority Black population in 2020.",
+    "Census, 25+ percent children in poverty, 1980": "Census tracts with high child poverty rates in 1980.",
+    "Census, 25+ percent children in poverty, 2000": "Census tracts with high child poverty rates in 2000.",
+    "Census, 25+ percent children in poverty, 2020": "Census tracts with high child poverty rates in 2020.",
+    "NOAA, 2-foot rise in sea level": "Areas vulnerable to 2 feet of sea level rise according to NOAA models.",
+    "NOAA, 4-foot rise in sea level": "Areas vulnerable to 4 feet of sea level rise according to NOAA models.",
+    "Street labels": "CartoDB street name labels for reference."
+};
+
+
 
 // Add corresponding CSS (move to top eventually)
 const labelStyle = document.createElement('style');
