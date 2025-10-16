@@ -76,18 +76,18 @@ function makeCard(obj) {
     card += '<p class="card-text">';
     {% for f in fields %}{% unless f.hidden == 'true' %}
     if(obj[{{ f.field | jsonify }}]){
-        {% if f.display_name %}card += '<strong>{{ f.display_name }}:</strong> ';{% endif %}
-        {% if f.btn == 'true' %}
-        const btns = obj[{{ f.field | jsonify }}].split(";");
-        btns.forEach(btn => {
-            if(btn.trim()) {
-                card += `<a class="btn btn-sm btn-secondary m-1 text-wrap" href="{{ page.url | relative_url }}#{{ f.field }}:${encodeURIComponent(btn.trim())}">${btn.trim()}</a>`;
-            }
-        });
-        {% else %}
-        card += obj[{{ f.field | jsonify }}];
-        {% endif %}
-        {% unless forloop.last %}card += '<br>';{% endunless %}
+    {% if f.display_name %}card += '<strong>{{ f.display_name }}:</strong> ';{% endif %}
+    {% if f.btn == 'true' %}
+    var btns = obj[{{ f.field | jsonify }}].split(";");
+    for (var i = 0, len = btns.length; i < len; i++) {
+        if(btns[i] != "") {
+        card += '<a class="btn btn-sm btn-tertiary opacity-75 m-1 text-wrap" href="{{ page.url | relative_url }}#' + encodeURIComponent(btns[i].trim()) + '">' + btns[i].trim() + '</a>';
+        }
+    }
+    {% else %}
+    card += obj[{{ f.field | jsonify }}];
+    {% endif %}
+    {% unless forloop.last %}card += '<br>';{% endunless %}
     }
     {% endunless %}{% endfor %}
     card += '</p>';
