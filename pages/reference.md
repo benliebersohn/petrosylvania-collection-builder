@@ -15,7 +15,7 @@ Author: Jared Farmer
 This reference work condenses the key findings of the multi-year collaborative research project “Petrodelphia” that resulted in the website _America’s First Petrochemical Corridor_. The document comprises six parts: 1) Executive Summary, 2) Interpretive Framework, 3) Major Takeaways, 4) Accident Statistics, 5) Remarkable Facts, and 6) Historical Chronology, 1821–2025.
 
 <div class="btn-group" role="group" aria-label="Item options">
-    <a target="_blank" rel="noopener" class="spotlight gallery-img btn btn-outline-primary" data-download="true" href="https://repository.upenn.edu/bitstreams/a634b10c-fb10-4e76-94ee-ea4ac087307b/download">Download PDF</a>
+    <a target="_blank" rel="noopener" class="spotlight gallery-img btn btn-outline-primary" data-download="true" href="https://repository.upenn.edu/bitstreams/9dca9da1-0fe3-4b54-b2c5-05c2495f7b62/download">Download PDF</a>
 
 </div>
 
