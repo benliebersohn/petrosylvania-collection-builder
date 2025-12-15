@@ -23,7 +23,7 @@
         "General location": "PGW at Point Breeze",
         "Street coordinates": "",
         "Year-Month-Day": "1866-01-04",
-        "Precision level": "Precise"
+        "Symbol": ""
       },
       "geometry": {
         "type": "Point",
@@ -47,7 +47,8 @@
         "Responsible corporate entity": "Phoenix Refinery (Malcolm Lloyd)",
         "General location": "Gibson Point",
         "Street coordinates": "End of 58th St",
-        "Year-Month-Day": "1870-08-18"
+        "Year-Month-Day": "1870-08-18",
+        "Symbol": ""
       },
       "geometry": {
         "type": "Point",
@@ -72,7 +73,7 @@
         "General location": "AOI-1",
         "Street coordinates": "",
         "Year-Month-Day": "1871-06-22",
-        "Precision level": "Precise"
+        "Symbol": ""
       },
       "geometry": {
         "type": "Point",
@@ -121,7 +122,7 @@
         "General location": "Gibson Point",
         "Street coordinates": "West bank of Schuylkill River",
         "Year-Month-Day": "1874-06-13",
-        "Precision level": "Precise"
+        "Symbol": ""
       },
       "geometry": {
         "type": "Point",
@@ -170,7 +171,7 @@
         "General location": "Lower Passyunk",
         "Street coordinates": "24th St and Mifflin St",
         "Year-Month-Day": "1879-03-31",
-        "Precision level": "Precise"
+        "Symbol": ""
       },
       "geometry": {
         "type": "Point",
@@ -219,7 +220,7 @@
         "General location": "Atlantic at Point Breeze",
         "Street coordinates": "",
         "Year-Month-Day": "1879-06-11",
-        "Precision level": "Precise"
+        "Symbol": ""
       },
       "geometry": {
         "type": "Point",
@@ -268,7 +269,7 @@
         "General location": "Gibson Point",
         "Street coordinates": "End of 58th St",
         "Year-Month-Day": "1880-06-19",
-        "Precision level": "Precise"
+        "Symbol": ""
       },
       "geometry": {
         "type": "Point",
@@ -388,7 +389,8 @@
         "Responsible corporate entity": "Unknown",
         "General location": "Schuylkill River",
         "Street coordinates": "Christian Street wharf",
-        "Year-Month-Day": "1881-08-05"
+        "Year-Month-Day": "1881-08-05",
+        "Symbol": "diamond"
       },
       "geometry": {
         "type": "Point",
@@ -461,7 +463,7 @@
         "General location": "AOI-8",
         "Street coordinates": "",
         "Year-Month-Day": "1884-05-23",
-        "Precision level": "Precise"
+        "Symbol": ""
       },
       "geometry": {
         "type": "Point",
@@ -558,7 +560,7 @@
         "General location": "AOI-8",
         "Street coordinates": "",
         "Year-Month-Day": "1886-06-06",
-        "Precision level": "Precise"
+        "Symbol": ""
       },
       "geometry": {
         "type": "Point",
@@ -919,7 +921,7 @@
         "General location": "PGW at Point Breeze",
         "Street coordinates": "",
         "Year-Month-Day": "1894-02-27",
-        "Precision level": "Precise"
+        "Symbol": ""
       },
       "geometry": {
         "type": "Point",
@@ -1172,7 +1174,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Year": "{\n}\n",
+        "Year": 1900,
         "Month": "08",
         "Day": 16,
         "Description": "Explosion of tank (kerosene) leads to fire in illuminating gas factory.",
@@ -1304,7 +1306,7 @@
         "General location": "Atlantic at Point Breeze",
         "Street coordinates": "",
         "Year-Month-Day": "1902-11-03",
-        "Precision level": "Precise"
+        "Symbol": ""
       },
       "geometry": {
         "type": "Point",
@@ -1377,7 +1379,8 @@
         "Responsible corporate entity": "Barber Asphalt Company",
         "General location": "Grays Ferry Crescent",
         "Street coordinates": "Grays Ferry Ave Bridge at east bank",
-        "Year-Month-Day": "1904-08-16"
+        "Year-Month-Day": "1904-08-16",
+        "Symbol": "diamond"
       },
       "geometry": {
         "type": "Point",
@@ -1545,8 +1548,7 @@
         "Responsible corporate entity": "Atlantic (Standard)",
         "General location": "Atlantic at Point Breeze",
         "Street coordinates": "",
-        "Year-Month-Day": "1906-09-07",
-        "Precision level": "Precise"
+        "Year-Month-Day": "1906-09-07"
       },
       "geometry": {
         "type": "Point",
@@ -1763,7 +1765,7 @@
         "General location": "Grays Ferry Crescent",
         "Street coordinates": "35th St and Grays Ferry Ave",
         "Year-Month-Day": "1916-02-15",
-        "Precision level": "Precise"
+        "Symbol": ""
       },
       "geometry": {
         "type": "Point",
@@ -1907,8 +1909,7 @@
         "Responsible corporate entity": "Atlantic Refining",
         "General location": "AOI-8",
         "Street coordinates": "",
-        "Year-Month-Day": "1921-09-14",
-        "Precision level": "Precise"
+        "Year-Month-Day": "1921-09-14"
       },
       "geometry": {
         "type": "Point",
@@ -2053,7 +2054,7 @@
         "General location": "AOI-10",
         "Street coordinates": "Passyunk Ave Bridge at west bank",
         "Year-Month-Day": "1924-04-28",
-        "Precision level": "Precise"
+        "Symbol": "diamond"
       },
       "geometry": {
         "type": "Point",
@@ -2125,7 +2126,8 @@
         "Responsible corporate entity": "Atlantic Refining",
         "General location": "Schuylkill River",
         "Street coordinates": "Atlantic wharves near Passyunk Bridge",
-        "Year-Month-Day": "1925-10-14"
+        "Year-Month-Day": "1925-10-14",
+        "Symbol": "diamond"
       },
       "geometry": {
         "type": "Point",
@@ -2173,8 +2175,7 @@
         "Responsible corporate entity": "Atlantic Refining",
         "General location": "Schuylkill River",
         "Street coordinates": "Near Passyunk Ave",
-        "Year-Month-Day": "1926-11-18",
-        "Precision level": "Precise"
+        "Year-Month-Day": "1926-11-18"
       },
       "geometry": {
         "type": "Point",
@@ -2211,13 +2212,13 @@
     {
       "type": "Feature",
       "properties": {
-        "Year": "{\n}\n",
+        "Year": 1929,
         "Month": 12,
         "Day": 13,
         "Description": "Four-alarm fire causes general damage to coal tar distillery.",
         "Injurious?": "N",
         "Deadly?": "N",
-        "Injured (minimum)": "{\n}\n",
+        "Injured (minimum)": "0",
         "Dead (minimum)": 0,
         "Responsible corporate entity": "Barrett Company (Allied Chemical & Dye Corporation)",
         "General location": "Grays Ferry Crescent",
@@ -2235,7 +2236,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Year": "{\n}\n",
+        "Year": 1929,
         "Month": 12,
         "Day": 27,
         "Description": "Explosion of tank (oil).",
@@ -2487,7 +2488,7 @@
         "General location": "Grays Ferry Crescent",
         "Street coordinates": "36th St and Grays Ferry Ave",
         "Year-Month-Day": "1938-02-14",
-        "Precision level": "Precise"
+        "Symbol": ""
       },
       "geometry": {
         "type": "Point",
@@ -2583,8 +2584,7 @@
         "Responsible corporate entity": "DuPont",
         "General location": "Grays Ferry Crescent",
         "Street coordinates": "35th St and Grays Ferry Ave",
-        "Year-Month-Day": "1941-05-07",
-        "Precision level": "Precise"
+        "Year-Month-Day": "1941-05-07"
       },
       "geometry": {
         "type": "Point",
@@ -2752,8 +2752,7 @@
         "Responsible corporate entity": "Gulf",
         "General location": "AOI-5",
         "Street coordinates": "",
-        "Year-Month-Day": "1950-11-10",
-        "Precision level": "Precise"
+        "Year-Month-Day": "1950-11-10"
       },
       "geometry": {
         "type": "Point",
@@ -2777,8 +2776,7 @@
         "Responsible corporate entity": "Gulf",
         "General location": "AOI-5",
         "Street coordinates": "",
-        "Year-Month-Day": "1960-09-09",
-        "Precision level": "Precise"
+        "Year-Month-Day": "1960-09-09"
       },
       "geometry": {
         "type": "Point",
@@ -2826,8 +2824,7 @@
         "Responsible corporate entity": "Gulf",
         "General location": "AOI-5",
         "Street coordinates": "",
-        "Year-Month-Day": "1961-02-02",
-        "Precision level": "Precise"
+        "Year-Month-Day": "1961-02-02"
       },
       "geometry": {
         "type": "Point",
@@ -2875,8 +2872,7 @@
         "Responsible corporate entity": "Humble",
         "General location": "AOI-9",
         "Street coordinates": "Near 70th St and Essington Ave",
-        "Year-Month-Day": "1964-04-13",
-        "Precision level": "Precise"
+        "Year-Month-Day": "1964-04-13"
       },
       "geometry": {
         "type": "Point",
@@ -2924,8 +2920,7 @@
         "Responsible corporate entity": "Gulf",
         "General location": "AOI-5",
         "Street coordinates": "",
-        "Year-Month-Day": "1966-05-23",
-        "Precision level": "Precise"
+        "Year-Month-Day": "1966-05-23"
       },
       "geometry": {
         "type": "Point",
@@ -2998,7 +2993,7 @@
         "General location": "AOI-5",
         "Street coordinates": "Near Penrose Ave (Platt) Bridge",
         "Year-Month-Day": "1967-12-26",
-        "Precision level": "Precise"
+        "Symbol": ""
       },
       "geometry": {
         "type": "Point",
@@ -3070,8 +3065,7 @@
         "Responsible corporate entity": "Gulf",
         "General location": "AOI-5",
         "Street coordinates": "",
-        "Year-Month-Day": "1969-11-28",
-        "Precision level": "Precise"
+        "Year-Month-Day": "1969-11-28"
       },
       "geometry": {
         "type": "Point",
@@ -3167,8 +3161,7 @@
         "Responsible corporate entity": "ARCO",
         "General location": "Atlantic at Point Breeze",
         "Street coordinates": "",
-        "Year-Month-Day": "1973-11-05",
-        "Precision level": "Precise"
+        "Year-Month-Day": "1973-11-05"
       },
       "geometry": {
         "type": "Point",
@@ -3216,8 +3209,7 @@
         "Responsible corporate entity": "Gray's Ferry Oil Company",
         "General location": "Grays Ferry Crescent",
         "Street coordinates": "31st St and Grays Ferry Ave",
-        "Year-Month-Day": "1973-12-28",
-        "Precision level": "Precise"
+        "Year-Month-Day": "1973-12-28"
       },
       "geometry": {
         "type": "Point",
@@ -3265,8 +3257,7 @@
         "Responsible corporate entity": "Gulf",
         "General location": "Girard Point",
         "Street coordinates": "",
-        "Year-Month-Day": "1974-10-11",
-        "Precision level": "Precise"
+        "Year-Month-Day": "1974-10-11"
       },
       "geometry": {
         "type": "Point",
@@ -3387,7 +3378,7 @@
         "General location": "AOI-5",
         "Street coordinates": "",
         "Year-Month-Day": "1975-10-20",
-        "Precision level": "Precise"
+        "Symbol": ""
       },
       "geometry": {
         "type": "Point",
@@ -3507,8 +3498,7 @@
         "Responsible corporate entity": "National Heating and Power Company",
         "General location": "Bartrams North",
         "Street coordinates": "49th St and Schuylkill River",
-        "Year-Month-Day": "1978-02-04",
-        "Precision level": "Precise"
+        "Year-Month-Day": "1978-02-04"
       },
       "geometry": {
         "type": "Point",
@@ -3580,8 +3570,7 @@
         "Responsible corporate entity": "ARCO",
         "General location": "AOI-1",
         "Street coordinates": "",
-        "Year-Month-Day": "1983-08-07",
-        "Precision level": "Precise"
+        "Year-Month-Day": "1983-08-07"
       },
       "geometry": {
         "type": "Point",
@@ -3702,7 +3691,7 @@
         "General location": "Girard Point",
         "Street coordinates": "",
         "Year-Month-Day": "1986-08-10",
-        "Precision level": "Precise"
+        "Symbol": ""
       },
       "geometry": {
         "type": "Point",
@@ -3894,8 +3883,7 @@
         "Responsible corporate entity": "Chevron",
         "General location": "AOI-6",
         "Street coordinates": null,
-        "Year-Month-Day": "1992-09-01",
-        "Precision level": "Precise"
+        "Year-Month-Day": "1992-09-01"
       },
       "geometry": {
         "type": "Point",
@@ -3967,8 +3955,7 @@
         "Responsible corporate entity": "Chevron",
         "General location": "Girard Point",
         "Street coordinates": "",
-        "Year-Month-Day": "1993-10-21",
-        "Precision level": "Precise"
+        "Year-Month-Day": "1993-10-21"
       },
       "geometry": {
         "type": "Point",
@@ -4197,7 +4184,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Year": "{\n}\n",
+        "Year": 2000,
         "Month": "02",
         "Day": "02",
         "Description": "Leak of 192,000 gallons (crude oil) into John Heinz National Wildlife Refuge from ruptured pipeline.",
@@ -4209,7 +4196,7 @@
         "General location": "Tinicum",
         "Street coordinates": "",
         "Year-Month-Day": "2000-02-02",
-        "Precision level": "Precise"
+        "Symbol": ""
       },
       "geometry": {
         "type": "Point",
@@ -4329,8 +4316,7 @@
         "Responsible corporate entity": "PGW",
         "General location": "PGW at Point Breeze",
         "Street coordinates": "",
-        "Year-Month-Day": "2000-12-22",
-        "Precision level": "Precise"
+        "Year-Month-Day": "2000-12-22"
       },
       "geometry": {
         "type": "Point",
@@ -4450,8 +4436,7 @@
         "Responsible corporate entity": "Philadelphia Energy Solutions",
         "General location": "Girard Point",
         "Street coordinates": "3000 Penrose Ave",
-        "Year-Month-Day": "2015-05-22",
-        "Precision level": "Precise"
+        "Year-Month-Day": "2015-05-22"
       },
       "geometry": {
         "type": "Point",
