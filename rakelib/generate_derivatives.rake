@@ -56,12 +56,12 @@ task :generate_derivatives, [:thumbs_size, :small_size, :density, :missing, :com
     density: '300',
     missing: 'true',
     compress_originals: 'false',
-    input_dir: 'objects'
+    input_dir: '../../PetroImageTest'
   )
 
   # set the folder locations
   objects_dir = args.input_dir
-  thumb_image_dir = objects_dir + '/thumbs'
+  thumb_image_dir = objects_dir + '/thumbnail'
   small_image_dir = objects_dir + '/small'
 
   # Ensure that the output directories exist.
@@ -85,7 +85,7 @@ task :generate_derivatives, [:thumbs_size, :small_size, :density, :missing, :com
   CSV.open(list_name, 'w') do |csv|
     csv << field_names
 
-    # Iterate over all files in the objects directory.
+    # Iterate over all files in the source directory.
     Dir.glob(File.join(objects_dir, '*')).each do |filename|
       # Skip subdirectories and the README.md file.
       if File.directory?(filename) || File.basename(filename) == 'README.md' || File.basename(filename) == 'object_list.csv'
@@ -101,8 +101,8 @@ task :generate_derivatives, [:thumbs_size, :small_size, :density, :missing, :com
         next
       end
 
-      # Get the lowercase filename without any leading path and extension.
-      base_filename = File.basename(filename, '.*').downcase
+      # Get the filename without any leading path and extension.
+      base_filename = File.basename(filename, '.*')
 
       # Optimize the original image.
       if args.compress_originals == 'true'
