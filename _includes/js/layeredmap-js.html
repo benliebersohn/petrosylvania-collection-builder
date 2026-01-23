@@ -514,13 +514,12 @@ const redliningGrades = {
 // 2. Create style function that matches grades to colors
 function getRedliningStyle(feature) {
     const gradeColor = feature.properties.fill || '#cab2d6';
-    //console.log("feature: ", feature, " gradeColor: ", gradeColor, " feature.properties.fill: ", feature.properties.fill);
-
+    
     return {
-        color: '#555555',
-        weight: feature.properties['stroke-width'] || 2,
+        color: 'black',  // Changed from '#555555' to 'black'
+        weight: 1,  // Changed from feature.properties['stroke-width'] || 2 to make it thinner
         opacity: feature.properties['stroke-opacity'] || 1,
-        fillColor: gradeColor, // Use mapped color
+        fillColor: gradeColor,
         fillOpacity: feature.properties['fill-opacity'] || 0.5
     };
 }
@@ -560,8 +559,8 @@ loadGeoJSON(
         
         
         loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/redlining.geojson',
-                    overlays['HOLC "redlining map," 1937'], 
-                    function(feature) {
+                overlays['HOLC "redlining map," 1937'], 
+                function(feature) {
                         overlays['HOLC "redlining map," 1937'].on('add', function() {
                             legend.addTo(map);
                         });
@@ -570,15 +569,15 @@ loadGeoJSON(
                             map.removeControl(legend);
                         });
                         
-                        return {
-                            stroke: '#555555',
-                            weight: feature.properties['stroke-width'] || 2,
-                            opacity: feature.properties['stroke-opacity'] || 1,
-                            fillColor: feature.properties.fill || '#cab2d6',
-                            fillOpacity: feature.properties['fill-opacity'] || 0.5
-                        };
-                    }
-                   );
+                return {
+                    color: 'black',  // Changed from '#555555'
+                    weight: 1,  // Changed from feature.properties['stroke-width'] || 2
+                    opacity: feature.properties['stroke-opacity'] || 1,
+                    fillColor: feature.properties.fill || '#cab2d6',
+                    fillOpacity: feature.properties['fill-opacity'] || 0.5
+                };
+            }
+           );
         console.log("470s");
         
         loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson', 
