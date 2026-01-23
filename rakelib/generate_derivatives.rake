@@ -56,7 +56,7 @@ task :generate_derivatives, [:thumbs_size, :small_size, :density, :missing, :com
     density: '300',
     missing: 'true',
     compress_originals: 'false',
-    input_dir: '../../PetroImageTest'
+    input_dir: '../../PetroImageTest/CurrentBatch'
   )
 
   # set the folder locations
