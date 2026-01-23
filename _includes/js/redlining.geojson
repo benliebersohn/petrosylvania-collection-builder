@@ -1,6 +1,6 @@
 {
   "type": "FeatureCollection",
-  "name": "Phila_redlining",
+  "name": "redlining (2)",
   "crs": {
     "type": "name",
     "properties": {
@@ -14,14 +14,14 @@
         "area_id": 5724,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Best",
         "grade": "A",
         "label": "A1",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#76a865"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#80bf55"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -167,14 +167,14 @@
         "area_id": 5709,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Best",
         "grade": "A",
         "label": "A2",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#76a865"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#80bf55"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -280,14 +280,14 @@
         "area_id": 5716,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Best",
         "grade": "A",
         "label": "A3",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#76a865"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#80bf55"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -377,14 +377,14 @@
         "area_id": 5717,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Best",
         "grade": "A",
         "label": "A4",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#76a865"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#80bf55"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1074,14 +1074,14 @@
         "area_id": 5707,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Best",
         "grade": "A",
         "label": "A5",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#76a865"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#80bf55"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1155,14 +1155,14 @@
         "area_id": 5708,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Best",
         "grade": "A",
         "label": "A6",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#76a865"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#80bf55"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1256,14 +1256,14 @@
         "area_id": 5676,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Best",
         "grade": "A",
         "label": "A7",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#76a865"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#80bf55"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1393,14 +1393,14 @@
         "area_id": 5665,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Best",
         "grade": "A",
         "label": "A8",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#76a865"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#80bf55"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1562,14 +1562,14 @@
         "area_id": 5669,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Best",
         "grade": "A",
         "label": "A9",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#76a865"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#80bf55"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1799,14 +1799,14 @@
         "area_id": 5666,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1848,14 +1848,14 @@
         "area_id": 5728,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B1",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2113,14 +2113,14 @@
         "area_id": 5698,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B10",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2298,14 +2298,14 @@
         "area_id": 5696,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B11",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2367,14 +2367,14 @@
         "area_id": 5697,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B12",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2432,14 +2432,14 @@
         "area_id": 5701,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B13",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2541,14 +2541,14 @@
         "area_id": 5706,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B14",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2926,14 +2926,14 @@
         "area_id": 5693,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B15",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3019,14 +3019,14 @@
         "area_id": 5678,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B16",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3116,14 +3116,14 @@
         "area_id": 5673,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B17",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3201,14 +3201,14 @@
         "area_id": 5668,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B18",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3330,14 +3330,14 @@
         "area_id": 5664,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B18a",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3431,14 +3431,14 @@
         "area_id": 5661,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B19",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3568,14 +3568,14 @@
         "area_id": 5725,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B2",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3697,14 +3697,14 @@
         "area_id": 5657,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B20",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3838,14 +3838,14 @@
         "area_id": 5670,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B24",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3935,14 +3935,14 @@
         "area_id": 5723,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B3",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -4200,14 +4200,14 @@
         "area_id": 5722,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B4",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -4289,14 +4289,14 @@
         "area_id": 5715,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B5",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -4910,14 +4910,14 @@
         "area_id": 5719,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B6",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -5073,14 +5073,14 @@
         "area_id": 5710,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B7",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -5270,14 +5270,14 @@
         "area_id": 5713,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B8",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -5527,14 +5527,14 @@
         "area_id": 5714,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "B9",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -5640,14 +5640,14 @@
         "area_id": 5667,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Definitely Declining",
         "grade": "C",
         "label": "C",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#ffff00"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#fdf052"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -5797,14 +5797,14 @@
         "area_id": 5730,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Definitely Declining",
         "grade": "C",
         "label": "C1",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#ffff00"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#fdf052"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -5894,14 +5894,14 @@
         "area_id": 5695,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Definitely Declining",
         "grade": "C",
         "label": "C10",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#ffff00"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#fdf052"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -6269,14 +6269,14 @@
         "area_id": 5699,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Definitely Declining",
         "grade": "C",
         "label": "C11",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#ffff00"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#fdf052"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -6442,14 +6442,14 @@
         "area_id": 7271,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Definitely Declining",
         "grade": "C",
         "label": "C12",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#ffff00"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#fdf052"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -6515,14 +6515,14 @@
         "area_id": 5663,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Definitely Declining",
         "grade": "C",
         "label": "C13",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#ffff00"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#fdf052"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -6636,14 +6636,14 @@
         "area_id": 5659,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Definitely Declining",
         "grade": "C",
         "label": "C14",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#ffff00"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#fdf052"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -6859,14 +6859,14 @@
         "area_id": 5658,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Definitely Declining",
         "grade": "C",
         "label": "C15",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#ffff00"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#fdf052"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -6944,14 +6944,14 @@
         "area_id": 5734,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Definitely Declining",
         "grade": "C",
         "label": "C16",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#ffff00"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#fdf052"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -7005,14 +7005,14 @@
         "area_id": 5726,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Definitely Declining",
         "grade": "C",
         "label": "C2",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#ffff00"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#fdf052"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -7182,14 +7182,14 @@
         "area_id": 5712,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Definitely Declining",
         "grade": "C",
         "label": "C3",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#ffff00"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#fdf052"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -7279,14 +7279,14 @@
         "area_id": 5679,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": "true",
+        "city_survey": null,
         "category": "Definitely Declining",
         "grade": "C",
         "label": "C4",
-        "residential": "true",
-        "commercial": "false",
-        "industrial": "false",
-        "fill": "#ffff00"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#fdf052"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -7754,8 +7754,7 @@
             ]
           ]
         ]
-      },
-      "id": 43
+      }
     },
     {
       "type": "Feature",
@@ -7763,14 +7762,14 @@
         "area_id": 5672,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Definitely Declining",
         "grade": "C",
         "label": "C5",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#ffff00"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#fdf052"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -7904,14 +7903,14 @@
         "area_id": 5677,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Definitely Declining",
         "grade": "C",
         "label": "C6",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#ffff00"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#fdf052"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -8181,14 +8180,14 @@
         "area_id": 5685,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Definitely Declining",
         "grade": "C",
         "label": "C7",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#ffff00"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#fdf052"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -8358,14 +8357,14 @@
         "area_id": 5686,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Definitely Declining",
         "grade": "C",
         "label": "C8",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#ffff00"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#fdf052"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -8471,14 +8470,14 @@
         "area_id": 5702,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Definitely Declining",
         "grade": "C",
         "label": "C9",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#ffff00"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#fdf052"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -8560,14 +8559,14 @@
         "area_id": 5729,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D1",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -8633,14 +8632,14 @@
         "area_id": 5691,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D10",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -8758,14 +8757,14 @@
         "area_id": 5687,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D11",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -8831,14 +8830,14 @@
         "area_id": 5704,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D12",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -8994,14 +8993,14 @@
         "area_id": 5705,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D13",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -9123,14 +9122,14 @@
         "area_id": 5688,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D14",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -9172,14 +9171,14 @@
         "area_id": 5689,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D15",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -9249,14 +9248,14 @@
         "area_id": 5690,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D16",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -9358,14 +9357,14 @@
         "area_id": 5732,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D17",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -9443,14 +9442,14 @@
         "area_id": 5733,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": "null",
         "category": "Hazardous",
         "grade": "D",
         "label": "D18",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": "null",
+        "commercial": "null",
+        "industrial": "null",
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -9604,7 +9603,8 @@
             ]
           ]
         ]
-      }
+      },
+      "id": 58
     },
     {
       "type": "Feature",
@@ -9612,14 +9612,14 @@
         "area_id": 5735,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D19",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -9733,14 +9733,14 @@
         "area_id": 5727,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D2",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -9810,14 +9810,14 @@
         "area_id": 5662,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D20",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -10131,14 +10131,14 @@
         "area_id": 5660,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D21",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -10188,14 +10188,14 @@
         "area_id": 5656,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D22",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -10385,14 +10385,14 @@
         "area_id": 5655,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D23",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -10526,14 +10526,14 @@
         "area_id": 5721,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D3",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -10587,14 +10587,14 @@
         "area_id": 5680,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D4",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -10748,14 +10748,14 @@
         "area_id": 5681,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D4b",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -10793,14 +10793,14 @@
         "area_id": 5682,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D4c",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -10842,14 +10842,14 @@
         "area_id": 5683,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D4d",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -10887,14 +10887,14 @@
         "area_id": 5671,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D5",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -11004,14 +11004,14 @@
         "area_id": 5684,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D6",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -11145,14 +11145,14 @@
         "area_id": 5694,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D7",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -11310,14 +11310,14 @@
         "area_id": 5700,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D8",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -11383,14 +11383,14 @@
         "area_id": 5692,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Hazardous",
         "grade": "D",
         "label": "D9",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#d9838d"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#f59482"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -11508,14 +11508,14 @@
         "area_id": 5720,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Best",
         "grade": "A",
         "label": "E1",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#76a865"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#80bf55"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -11781,14 +11781,14 @@
         "area_id": 5718,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "E2",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -11838,14 +11838,14 @@
         "area_id": 5711,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "E3",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -12027,14 +12027,14 @@
         "area_id": 5703,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "E4",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -12356,14 +12356,14 @@
         "area_id": 7272,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Definitely Declining",
         "grade": "C",
         "label": "E5",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#ffff00"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#fdf052"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -12521,14 +12521,14 @@
         "area_id": 5675,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "E6",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -12678,14 +12678,14 @@
         "area_id": 5674,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Still Desirable",
         "grade": "B",
         "label": "E7",
-        "residential": true,
-        "commercial": false,
-        "industrial": false,
-        "fill": "#7cb5bd"
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
+        "fill": "#83c9c7"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -12771,13 +12771,13 @@
         "area_id": 11359,
         "city": "Philadelphia",
         "state": "PA",
-        "city_survey": true,
+        "city_survey": null,
         "category": "Industrial and Commercial ",
         "grade": null,
         "label": "Industrial and Commercial ",
-        "residential": false,
-        "commercial": true,
-        "industrial": true,
+        "residential": null,
+        "commercial": null,
+        "industrial": null,
         "fill": "#000000"
       },
       "geometry": {
