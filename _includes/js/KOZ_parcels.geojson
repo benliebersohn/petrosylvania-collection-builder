@@ -1,6 +1,82 @@
 {
   "type": "FeatureCollection",
+  "name": "koz update 1-23",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
   "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID": null,
+        "OPA": null,
+        "EXPIRATION": null,
+        "ADDRESS": null,
+        "OWNER1": null,
+        "OWNER2": null,
+        "BLDG_DESC": null,
+        "BLDG_CODE": null,
+        "BRT_ID": null,
+        "Shape__Are": null,
+        "Shape__Len": null
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -75.22394998059296,
+                39.89374898620014
+              ],
+              [
+                -75.22604211377056,
+                39.89452323247094
+              ],
+              [
+                -75.22582059371305,
+                39.89854539516718
+              ],
+              [
+                -75.22392536675417,
+                39.90519183298078
+              ],
+              [
+                -75.2207748600684,
+                39.90470092527587
+              ],
+              [
+                -75.21663981959419,
+                39.90460651962421
+              ],
+              [
+                -75.21659059281492,
+                39.90383238727167
+              ],
+              [
+                -75.21555683224723,
+                39.90071688776783
+              ],
+              [
+                -75.21400619274313,
+                39.89833768417874
+              ],
+              [
+                -75.21521224569076,
+                39.897695662599055
+              ],
+              [
+                -75.22394998059296,
+                39.89374898620014
+              ]
+            ]
+          ]
+        ]
+      }
+    },
     {
       "type": "Feature",
       "properties": {
@@ -11,7 +87,7 @@
         "OWNER1": "PHILADELPHIA AUTHORITY FO",
         "OWNER2": null,
         "BLDG_DESC": "OFF/BLD N/COMM W-PKG MASO",
-        "BLDG_CODE": "DE0",
+        "BLDG_CODE": null,
         "BRT_ID": 788010015,
         "Shape__Are": 2672019.62908936,
         "Shape__Len": 100015.095178197
@@ -14780,7 +14856,7 @@
         "OWNER1": "CRISTO REY PHILADELPHIA H",
         "OWNER2": null,
         "BLDG_DESC": "IND.WHSE MASONRY",
-        "BLDG_CODE": "LC0",
+        "BLDG_CODE": null,
         "BRT_ID": 884341805,
         "Shape__Are": 41779.7212524414,
         "Shape__Len": 1245.18473771958
@@ -14849,7 +14925,7 @@
         "OWNER1": "2301 W ALLEGHENY LP",
         "OWNER2": "PA LIMITED PARTNERSHIP",
         "BLDG_DESC": "IND. FACTORY MASONRY",
-        "BLDG_CODE": "LE0",
+        "BLDG_CODE": null,
         "BRT_ID": 884341815,
         "Shape__Are": 23798.5607910156,
         "Shape__Len": 722.79844165811
@@ -14942,7 +15018,7 @@
         "OWNER1": "1700 N AMERICAN ST. LLC",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885980640,
         "Shape__Are": 65316.8795166016,
         "Shape__Len": 1334.17194270898
@@ -14995,7 +15071,7 @@
         "OWNER1": "BRANDYWINE CIRA LP",
         "OWNER2": null,
         "BLDG_DESC": "OFF/BLDG COMM NO GAR MASO",
-        "BLDG_CODE": "DB0",
+        "BLDG_CODE": null,
         "BRT_ID": 883062400,
         "Shape__Are": 31583.2377929688,
         "Shape__Len": 763.927129652018
@@ -15040,7 +15116,7 @@
         "OWNER1": "PHILA AUTH & IND DEV",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885918440,
         "Shape__Are": 272717.302185059,
         "Shape__Len": 2585.67418644804
@@ -15149,7 +15225,7 @@
         "OWNER1": "PHILADELPHIA AUTHORITY FO",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885918840,
         "Shape__Are": 99045.1008911133,
         "Shape__Len": 1266.21105946909
@@ -15198,7 +15274,7 @@
         "OWNER1": "PHILA AUTHORITY IND DEV",
         "OWNER2": null,
         "BLDG_DESC": "IND.WHSE MASONRY",
-        "BLDG_CODE": "LC0",
+        "BLDG_CODE": null,
         "BRT_ID": 788006502,
         "Shape__Are": 474065.412231445,
         "Shape__Len": 6994.21968423883
@@ -15555,7 +15631,7 @@
         "OWNER1": "BASIN BRIDGE LLC",
         "OWNER2": null,
         "BLDG_DESC": "IND WHSE METAL",
-        "BLDG_CODE": "LC9",
+        "BLDG_CODE": null,
         "BRT_ID": 788006510,
         "Shape__Are": 137917.227661133,
         "Shape__Len": 1490.69240028916
@@ -15600,7 +15676,7 @@
         "OWNER1": "GPT BLUE GRASS ROAD OWNER",
         "OWNER2": null,
         "BLDG_DESC": "IND WHSE MAS.+OTHER",
-        "BLDG_CODE": "LC1",
+        "BLDG_CODE": null,
         "BRT_ID": 884233815,
         "Shape__Are": 1321208.06951904,
         "Shape__Len": 5259.74721122919
@@ -15725,7 +15801,7 @@
         "OWNER1": "AA UNIT #1 LLC",
         "OWNER2": null,
         "BLDG_DESC": "COM.CONDO.2STY MASONRY",
-        "BLDG_CODE": "6B0",
+        "BLDG_CODE": null,
         "BRT_ID": 884529000,
         "Shape__Are": 1569034.66833496,
         "Shape__Len": 5237.51604923871
@@ -15862,7 +15938,7 @@
         "OWNER1": "KIM FIVE CRESCENT DRIVE L",
         "OWNER2": null,
         "BLDG_DESC": "PARKING LOT COMMERCIAL",
-        "BLDG_CODE": "RB",
+        "BLDG_CODE": null,
         "BRT_ID": 885612920,
         "Shape__Are": 337832.857666016,
         "Shape__Len": 5072.12472957037
@@ -16043,7 +16119,7 @@
         "OWNER1": "PHILADELPHIA AUTORITY FOR",
         "OWNER2": null,
         "BLDG_DESC": "STORE 2 STY MASONRY",
-        "BLDG_CODE": "AB0",
+        "BLDG_CODE": null,
         "BRT_ID": 788043000,
         "Shape__Are": 7649.99188232422,
         "Shape__Len": 349.999810583256
@@ -16088,7 +16164,7 @@
         "OWNER1": "PHILA AUTH IND DEV",
         "OWNER2": null,
         "BLDG_DESC": "OFF/BLD N/COMM W-PKG MASO",
-        "BLDG_CODE": "DE0",
+        "BLDG_CODE": null,
         "BRT_ID": 788008310,
         "Shape__Are": 65094.5422363281,
         "Shape__Len": 1158.1438266759
@@ -16165,7 +16241,7 @@
         "OWNER1": "5101 SOUTH BROAD STREET A",
         "OWNER2": null,
         "BLDG_DESC": "OFF/BLD N/COMM W-PKG MASO",
-        "BLDG_CODE": "DE0",
+        "BLDG_CODE": null,
         "BRT_ID": 883813100,
         "Shape__Are": 150008.391418457,
         "Shape__Len": 1881.3263949817397
@@ -16248,7 +16324,7 @@
         "OWNER1": "L CRUZ DEVELOPMENT LLC",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885883880,
         "Shape__Are": 112387.487426758,
         "Shape__Len": 1763.54757277377
@@ -16325,7 +16401,7 @@
         "OWNER1": "L CRUZ DEVELOPMENT LLC",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND IND < ACRE",
-        "BLDG_CODE": "SI",
+        "BLDG_CODE": null,
         "BRT_ID": 885883920,
         "Shape__Are": 2608.74603271484,
         "Shape__Len": 338.304013318741
@@ -16386,7 +16462,7 @@
         "OWNER1": "TRUSTEES OF THE UNIVERSIT",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND COMM. ACRE+",
-        "BLDG_CODE": "SD",
+        "BLDG_CODE": null,
         "BRT_ID": 783094601,
         "Shape__Are": 110673.570373535,
         "Shape__Len": 1421.48623181204
@@ -16431,7 +16507,7 @@
         "OWNER1": "U S POSTAL SERVICE",
         "OWNER2": null,
         "BLDG_DESC": "MISC.POST OFF.MAS+OTHER",
-        "BLDG_CODE": "ZM1",
+        "BLDG_CODE": null,
         "BRT_ID": 783094650,
         "Shape__Are": 49772.2780151367,
         "Shape__Len": 1011.7595985855
@@ -16476,7 +16552,7 @@
         "OWNER1": "DREXEL INSTITUTE OF",
         "OWNER2": "TECHNOLOGY",
         "BLDG_DESC": "PARKING LOT COMMERCIAL",
-        "BLDG_CODE": "RB",
+        "BLDG_CODE": null,
         "BRT_ID": 885498560,
         "Shape__Are": 93414.4706420898,
         "Shape__Len": 1334.60370083059
@@ -16545,7 +16621,7 @@
         "OWNER1": "TRUSTEES OF THE",
         "OWNER2": "UNIV OF PENNSYLVANIA",
         "BLDG_DESC": "HEALTH FAC. HOSP MAS+OTHE",
-        "BLDG_CODE": "YA1",
+        "BLDG_CODE": null,
         "BRT_ID": 773740100,
         "Shape__Are": 212859.314880371,
         "Shape__Len": 2270.44530214621
@@ -16814,7 +16890,7 @@
         "OWNER1": "TRUSTEES OF THE",
         "OWNER2": "UNIV OF PENNSYLVANIA",
         "BLDG_DESC": "GAR.NO COMM.AREA MAS.+OTH",
-        "BLDG_CODE": "OB1",
+        "BLDG_CODE": null,
         "BRT_ID": 773740401,
         "Shape__Are": 145454.046325684,
         "Shape__Len": 1526.91404238901
@@ -16996,7 +17072,7 @@
         "OWNER1": "PNA-489 ASSOCIATES LP",
         "OWNER2": null,
         "BLDG_DESC": "IND. FACTORY MASONRY",
-        "BLDG_CODE": "LE0",
+        "BLDG_CODE": null,
         "BRT_ID": 788032200,
         "Shape__Are": 58507.9371948242,
         "Shape__Len": 970.729436336911
@@ -17045,7 +17121,7 @@
         "OWNER1": "PHILA AUTH FOR IND DEVELO",
         "OWNER2": null,
         "BLDG_DESC": "MISC. NOT CODED  MASONRY",
-        "BLDG_CODE": "ZZ0",
+        "BLDG_CODE": null,
         "BRT_ID": 788038305,
         "Shape__Are": 84858.7573852539,
         "Shape__Len": 1191.91576643153
@@ -17098,7 +17174,7 @@
         "OWNER1": "L/S ONE CRESCENT DRIVE LP",
         "OWNER2": null,
         "BLDG_DESC": "OFF/BD N/COM O/S PK METAL",
-        "BLDG_CODE": "DE9",
+        "BLDG_CODE": null,
         "BRT_ID": 883813200,
         "Shape__Are": 192280.910766602,
         "Shape__Len": 2018.46668908246
@@ -17211,7 +17287,7 @@
         "OWNER1": "L/S THREE CRESCENT LP",
         "OWNER2": null,
         "BLDG_DESC": "OFF/BD N/COM O/S PK METAL",
-        "BLDG_CODE": "DE9",
+        "BLDG_CODE": null,
         "BRT_ID": 883812800,
         "Shape__Are": 242588.597717285,
         "Shape__Len": 2249.03669880466
@@ -17336,7 +17412,7 @@
         "OWNER1": "KIM FIVE CRESCENT DRIVE L",
         "OWNER2": null,
         "BLDG_DESC": "OFF.BLDG W-COMM.AREA META",
-        "BLDG_CODE": "DB9",
+        "BLDG_CODE": null,
         "BRT_ID": 883812500,
         "Shape__Are": 219624.277404785,
         "Shape__Len": 2285.5476348223
@@ -17489,7 +17565,7 @@
         "OWNER1": "PHILADELPHIA AUTHORITY FO",
         "OWNER2": null,
         "BLDG_DESC": "IND.SHOP MASONRY",
-        "BLDG_CODE": "LD0",
+        "BLDG_CODE": null,
         "BRT_ID": 884159000,
         "Shape__Are": 552821.076904297,
         "Shape__Len": 3249.50463129501
@@ -17594,7 +17670,7 @@
         "OWNER1": "REDEVELOPMENT AUTHORITY",
         "OWNER2": "OF PHILADELPHIA",
         "BLDG_DESC": "VAC LAND COMM. < ACRE",
-        "BLDG_CODE": "SC",
+        "BLDG_CODE": null,
         "BRT_ID": 885484460,
         "Shape__Are": 102225.471069336,
         "Shape__Len": 1424.19486168302
@@ -17639,7 +17715,7 @@
         "OWNER1": "REDEVELOPMENT AUTHORITY",
         "OWNER2": "OF PHILADELPHIA",
         "BLDG_DESC": "VAC LAND COMM. < ACRE",
-        "BLDG_CODE": "SC",
+        "BLDG_CODE": null,
         "BRT_ID": 885484880,
         "Shape__Are": 67958.8005981445,
         "Shape__Len": 1071.30763362445
@@ -17684,7 +17760,7 @@
         "OWNER1": "REDEVELOPMENT AUTHORITY",
         "OWNER2": "OF PHILADELPHIA",
         "BLDG_DESC": "VAC LAND COMM. < ACRE",
-        "BLDG_CODE": "SC",
+        "BLDG_CODE": null,
         "BRT_ID": 885485860,
         "Shape__Are": 41780.7807617188,
         "Shape__Len": 818.28498598417
@@ -17729,7 +17805,7 @@
         "OWNER1": "PHILA ELECTRIC CO",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND COMM. < ACRE",
-        "BLDG_CODE": "SC",
+        "BLDG_CODE": null,
         "BRT_ID": 885625240,
         "Shape__Are": 78310.2354736328,
         "Shape__Len": 1126.7656148093
@@ -17778,7 +17854,7 @@
         "OWNER1": "REDEVELOPMENT AUTHORITY",
         "OWNER2": "OF PHILADELPHIA",
         "BLDG_DESC": "VAC LAND IND < ACRE",
-        "BLDG_CODE": "SI",
+        "BLDG_CODE": null,
         "BRT_ID": 885485040,
         "Shape__Are": 43622.6448364258,
         "Shape__Len": 835.846288176186
@@ -17823,7 +17899,7 @@
         "OWNER1": "PHILADELPHIA AUTHORITY FO",
         "OWNER2": null,
         "BLDG_DESC": "IND WHSE METAL",
-        "BLDG_CODE": "LC9",
+        "BLDG_CODE": null,
         "BRT_ID": 788044100,
         "Shape__Are": 286897.531860352,
         "Shape__Len": 2362.19380475621
@@ -17953,7 +18029,7 @@
         "OWNER1": "U O REAL ESTATE LLC",
         "OWNER2": null,
         "BLDG_DESC": "OFF/BLDG W/GAR.MASONRY",
-        "BLDG_CODE": "DC0",
+        "BLDG_CODE": null,
         "BRT_ID": 788008001,
         "Shape__Are": 46800.9095458984,
         "Shape__Len": 1000.57949720899
@@ -18006,7 +18082,7 @@
         "OWNER1": "A D PARK CORP",
         "OWNER2": null,
         "BLDG_DESC": "IND.WHSE MASONRY",
-        "BLDG_CODE": "LC0",
+        "BLDG_CODE": null,
         "BRT_ID": 884341390,
         "Shape__Are": 7411.39471435547,
         "Shape__Len": 359.339884479859
@@ -18067,7 +18143,7 @@
         "OWNER1": "PHILADELPHIA REGIONAL POR",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885900607,
         "Shape__Are": 1049235.97357178,
         "Shape__Len": 4798.72127925831
@@ -18204,7 +18280,7 @@
         "OWNER1": "SRD BREWERYTOWN LLC",
         "OWNER2": null,
         "BLDG_DESC": "SHOPPING CENTER STRIP",
-        "BLDG_CODE": "MD0",
+        "BLDG_CODE": null,
         "BRT_ID": 882748051,
         "Shape__Are": 92427.3759155273,
         "Shape__Len": 1434.10446075219
@@ -18257,7 +18333,7 @@
         "OWNER1": "BREWERYTOWN PYRAMID BLDG",
         "OWNER2": null,
         "BLDG_DESC": "APTS 51-100UNTS MASONRY",
-        "BLDG_CODE": "CB0",
+        "BLDG_CODE": null,
         "BRT_ID": 881070265,
         "Shape__Are": 12036.4067993164,
         "Shape__Len": 539.667083937928
@@ -18358,7 +18434,7 @@
         "OWNER1": "WHATAKER GODFREY",
         "OWNER2": "PROPERITIES LLC",
         "BLDG_DESC": "INDUS.CONDO",
-        "BLDG_CODE": 7,
+        "BLDG_CODE": null,
         "BRT_ID": 884116115,
         "Shape__Are": 45899.3238525391,
         "Shape__Len": 1118.24793728813
@@ -18467,7 +18543,7 @@
         "OWNER1": "TRUSTEES OF UNIVERSITY",
         "OWNER2": "OF PENNSYLVANIA",
         "BLDG_DESC": "HEALTH FAC.MED.LAB MASONR",
-        "BLDG_CODE": "YG0",
+        "BLDG_CODE": null,
         "BRT_ID": 773262100,
         "Shape__Are": 950283.393798828,
         "Shape__Len": 4384.97421831644
@@ -18865,7 +18941,7 @@
         "OWNER1": "INSULATORS AND ALLIED WOR",
         "OWNER2": null,
         "BLDG_DESC": "OFF/BLD N/COMM W-PKG MASO",
-        "BLDG_CODE": "DE0",
+        "BLDG_CODE": null,
         "BRT_ID": 883095120,
         "Shape__Are": 174055.527099609,
         "Shape__Len": 2091.8418690499
@@ -18962,7 +19038,7 @@
         "OWNER1": "PHLNY HOTEL PARTNERS LLC",
         "OWNER2": null,
         "BLDG_DESC": "HOTEL 5 STY MASONRY",
-        "BLDG_CODE": "FE0",
+        "BLDG_CODE": null,
         "BRT_ID": 883741600,
         "Shape__Are": 105654.815368652,
         "Shape__Len": 1412.7016599874203
@@ -19039,7 +19115,7 @@
         "OWNER1": "L/S 1200 INTREPID AVENUE",
         "OWNER2": null,
         "BLDG_DESC": "OF/BLD O/S PK N/COM MAS+O",
-        "BLDG_CODE": "DE1",
+        "BLDG_CODE": null,
         "BRT_ID": 883813500,
         "Shape__Are": 148233.270385742,
         "Shape__Len": 2008.5372999698498
@@ -19280,7 +19356,7 @@
         "OWNER1": "PHILADELPHIA AUTHORITY FO",
         "OWNER2": null,
         "BLDG_DESC": "OFF/BLD N/PKG N/COM MASON",
-        "BLDG_CODE": "DD0",
+        "BLDG_CODE": null,
         "BRT_ID": 788042500,
         "Shape__Are": 16780.0573730469,
         "Shape__Len": 513.377278095635
@@ -19329,7 +19405,7 @@
         "OWNER1": "BELL ATLANTIC PENNSYLVANI",
         "OWNER2": null,
         "BLDG_DESC": "PUB.UTIL. 1 STY MASONRY",
-        "BLDG_CODE": "NA0",
+        "BLDG_CODE": null,
         "BRT_ID": 774605505,
         "Shape__Are": 129824.356018066,
         "Shape__Len": 1445.64997880311
@@ -19378,7 +19454,7 @@
         "OWNER1": "ALTA INDUSTRIAL PROP INC",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 884897404,
         "Shape__Are": 326351.725402832,
         "Shape__Len": 2464.7488019771595
@@ -19431,7 +19507,7 @@
         "OWNER1": "ALTA INDUSTRIAL PROPERTIE",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885897401,
         "Shape__Are": 185818.10504150396,
         "Shape__Len": 2110.7351279892
@@ -19520,7 +19596,7 @@
         "OWNER1": "DREXEL UNIVERSITY",
         "OWNER2": null,
         "BLDG_DESC": "PD PKG LOT COMMERCIAL",
-        "BLDG_CODE": "RE",
+        "BLDG_CODE": null,
         "BRT_ID": 885734180,
         "Shape__Are": 8085.87579345703,
         "Shape__Len": 438.702243749654
@@ -19565,7 +19641,7 @@
         "OWNER1": "DREXEL UNIVERSITY",
         "OWNER2": null,
         "BLDG_DESC": "PD PKG LOT COMMERCIAL",
-        "BLDG_CODE": "RE",
+        "BLDG_CODE": null,
         "BRT_ID": 885734780,
         "Shape__Are": 27462.1739501953,
         "Shape__Len": 665.747738333806
@@ -19614,7 +19690,7 @@
         "OWNER1": "DREXEL UNIVERSITY",
         "OWNER2": null,
         "BLDG_DESC": "PD PKG LOT COMMERCIAL",
-        "BLDG_CODE": "RE",
+        "BLDG_CODE": null,
         "BRT_ID": 885734880,
         "Shape__Are": 42967.9204101563,
         "Shape__Len": 941.290283926826
@@ -20187,7 +20263,7 @@
         "OWNER1": "DREXEL UNIVERSITY",
         "OWNER2": null,
         "BLDG_DESC": "PD PKG LOT COMMERCIAL",
-        "BLDG_CODE": "RE",
+        "BLDG_CODE": null,
         "BRT_ID": 885732500,
         "Shape__Are": 75188.9236450195,
         "Shape__Len": 1297.79212144237
@@ -20968,7 +21044,7 @@
         "OWNER1": "PENN STATE UNIVERSITY",
         "OWNER2": null,
         "BLDG_DESC": "SCHOOL 2STY MASONRY",
-        "BLDG_CODE": "VB0",
+        "BLDG_CODE": null,
         "BRT_ID": 788040105,
         "Shape__Are": 43243.5152587891,
         "Shape__Len": 921.203090749483
@@ -21013,7 +21089,7 @@
         "OWNER1": "PHILADELPHIA AUTHORITY FO",
         "OWNER2": null,
         "BLDG_DESC": "IND. FACTORY MASONRY",
-        "BLDG_CODE": "LE0",
+        "BLDG_CODE": null,
         "BRT_ID": 788040200,
         "Shape__Are": 132451.9140625,
         "Shape__Len": 1464.34273785967
@@ -21058,7 +21134,7 @@
         "OWNER1": "PHILA AUTHORITY FOR",
         "OWNER2": "DEVELOPEMENT",
         "BLDG_DESC": "IND.SHOP MASONRY",
-        "BLDG_CODE": "LD0",
+        "BLDG_CODE": null,
         "BRT_ID": 788007017,
         "Shape__Are": 1349596.29150391,
         "Shape__Len": 41342.4783305848
@@ -23723,7 +23799,7 @@
         "OWNER1": "URBAN OUTFITTERS INC",
         "OWNER2": null,
         "BLDG_DESC": "IND.SHOP MASONRY",
-        "BLDG_CODE": "LD0",
+        "BLDG_CODE": null,
         "BRT_ID": 788007700,
         "Shape__Are": 176477.28515625,
         "Shape__Len": 2108.05540967846
@@ -24176,7 +24252,7 @@
         "OWNER1": "U O REAL ESTATE LLC",
         "OWNER2": null,
         "BLDG_DESC": "IND.SHOP MASONRY",
-        "BLDG_CODE": "LD0",
+        "BLDG_CODE": null,
         "BRT_ID": null,
         "Shape__Are": 22967.105651855505,
         "Shape__Len": 608.724244759981
@@ -24367,7 +24443,7 @@
         "OWNER1": "INDUSTRIAL METALS MANUFAC",
         "OWNER2": null,
         "BLDG_DESC": "IND.WHSE MASONRY",
-        "BLDG_CODE": "LC0",
+        "BLDG_CODE": null,
         "BRT_ID": 788007250,
         "Shape__Are": 428061.742248535,
         "Shape__Len": 2848.84714571842
@@ -24452,7 +24528,7 @@
         "OWNER1": "NAVARRO DC ASSETS LLC",
         "OWNER2": null,
         "BLDG_DESC": "OFF/BLD N/COMM W-PKG MASO",
-        "BLDG_CODE": "DE0",
+        "BLDG_CODE": null,
         "BRT_ID": 874990011,
         "Shape__Are": 1115963.51635742,
         "Shape__Len": 5421.34343401337
@@ -25713,7 +25789,7 @@
         "OWNER1": "CARDONE INDUSTRIES INC",
         "OWNER2": null,
         "BLDG_DESC": "IND. FACTORY MASONRY",
-        "BLDG_CODE": "LE0",
+        "BLDG_CODE": null,
         "BRT_ID": 884120510,
         "Shape__Are": 2121884.49365234,
         "Shape__Len": 7500.28228898298
@@ -25882,7 +25958,7 @@
         "OWNER1": "PHILA INDUST DEV CORP",
         "OWNER2": null,
         "BLDG_DESC": "IND WHSE MAS.+OTHER",
-        "BLDG_CODE": "LC1",
+        "BLDG_CODE": null,
         "BRT_ID": 788002012,
         "Shape__Are": 1895765.16693115,
         "Shape__Len": 22112.4348739821
@@ -26787,7 +26863,7 @@
         "OWNER1": "PHILADELPHIA REGIONAL POR",
         "OWNER2": null,
         "BLDG_DESC": "IND.WHSE MASONRY",
-        "BLDG_CODE": "LC0",
+        "BLDG_CODE": null,
         "BRT_ID": 885052675,
         "Shape__Are": 186452.211120605,
         "Shape__Len": 2016.01900684021
@@ -26844,7 +26920,7 @@
         "OWNER1": "LIBERTY PROPERTY PHILA",
         "OWNER2": "LIMITED PARTNERSHIP V",
         "BLDG_DESC": "IND. LT.MFG.MAS+OTHER",
-        "BLDG_CODE": "LB1",
+        "BLDG_CODE": null,
         "BRT_ID": 788012850,
         "Shape__Are": 351377.640441895,
         "Shape__Len": 2545.53009529607
@@ -26997,7 +27073,7 @@
         "OWNER1": "PIDC FINANCING CORPORATIO",
         "OWNER2": null,
         "BLDG_DESC": "OFF/BLD N/COMM W-PKG MASO",
-        "BLDG_CODE": "DE0",
+        "BLDG_CODE": null,
         "BRT_ID": 883812600,
         "Shape__Are": 111898.740600586,
         "Shape__Len": 1462.67884938755
@@ -27210,7 +27286,7 @@
         "OWNER1": "LIBERTY PROPERTY PHILA",
         "OWNER2": "LIMITED PARTNERSHIP V",
         "BLDG_DESC": "IND. LT.MFG.MAS+OTHER",
-        "BLDG_CODE": "LB1",
+        "BLDG_CODE": null,
         "BRT_ID": 788012705,
         "Shape__Are": 296046.863769531,
         "Shape__Len": 2306.59174080778
@@ -27331,7 +27407,7 @@
         "OWNER1": "L/S 4775 LEAGUE ISLAND BL",
         "OWNER2": null,
         "BLDG_DESC": "OFF/BLD N/COMM W-PKG MASO",
-        "BLDG_CODE": "DE0",
+        "BLDG_CODE": null,
         "BRT_ID": 874900030,
         "Shape__Are": 165246.05743408203,
         "Shape__Len": 2034.69360526391
@@ -27384,7 +27460,7 @@
         "OWNER1": "DANIEL VELORIC FOUNDATION",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND COMM. < ACRE",
-        "BLDG_CODE": "SC",
+        "BLDG_CODE": null,
         "BRT_ID": 885993720,
         "Shape__Are": 2011.79559326172,
         "Shape__Len": 240.657416303375
@@ -27433,7 +27509,7 @@
         "OWNER1": "DANIEL VELORIC FOUNDATION",
         "OWNER2": null,
         "BLDG_DESC": "IND.SHOP MASONRY",
-        "BLDG_CODE": "LD0",
+        "BLDG_CODE": null,
         "BRT_ID": 884920607,
         "Shape__Are": 10168.7857666016,
         "Shape__Len": 403.719091956969
@@ -27486,7 +27562,7 @@
         "OWNER1": "BRANDYWINE CIRA",
         "OWNER2": "POST OFFICE LP",
         "BLDG_DESC": "OFF/BLD N/PKG N/COM MASON",
-        "BLDG_CODE": "DD0",
+        "BLDG_CODE": null,
         "BRT_ID": 883063100,
         "Shape__Are": 220584.040222168,
         "Shape__Len": 1864.9324616019
@@ -27703,7 +27779,7 @@
         "OWNER1": "3020 MARKET OPERATING LP",
         "OWNER2": null,
         "BLDG_DESC": "OFF/BLD N/COMM W-PKG MASO",
-        "BLDG_CODE": "DE0",
+        "BLDG_CODE": null,
         "BRT_ID": 883071700,
         "Shape__Are": 72406.698059082,
         "Shape__Len": 1095.8319722513
@@ -27756,7 +27832,7 @@
         "OWNER1": "ACADEMIC PROPERTIES",
         "OWNER2": null,
         "BLDG_DESC": "PARKING LOT COMMERCIAL",
-        "BLDG_CODE": "RB",
+        "BLDG_CODE": null,
         "BRT_ID": 885827620,
         "Shape__Are": 57909.792175293,
         "Shape__Len": 952.5788584017702
@@ -27849,7 +27925,7 @@
         "OWNER1": "ACADEMIC PROPERTIES INC",
         "OWNER2": null,
         "BLDG_DESC": "PARKING LOT COMMERCIAL",
-        "BLDG_CODE": "RB",
+        "BLDG_CODE": null,
         "BRT_ID": 885501140,
         "Shape__Are": 31672.607299804695,
         "Shape__Len": 834.989480400968
@@ -27894,7 +27970,7 @@
         "OWNER1": "UNIVERSITY CITY SCIENCE C",
         "OWNER2": null,
         "BLDG_DESC": "PD PKG LOT COMMERCIAL",
-        "BLDG_CODE": "RE",
+        "BLDG_CODE": null,
         "BRT_ID": 885646662,
         "Shape__Are": 21225.3899536133,
         "Shape__Len": 601.602417675371
@@ -27959,7 +28035,7 @@
         "OWNER1": "UNIVERSITY CITY SCIENCE C",
         "OWNER2": null,
         "BLDG_DESC": "APTS 100 +  UNITS MASONRY",
-        "BLDG_CODE": "CC0",
+        "BLDG_CODE": null,
         "BRT_ID": 881115775,
         "Shape__Are": 40125.0633544922,
         "Shape__Len": 850.000667139117
@@ -28012,7 +28088,7 @@
         "OWNER1": "WEXFORD-UCSC II GP LLC",
         "OWNER2": null,
         "BLDG_DESC": "COM.CONDO.1STY MASONRY",
-        "BLDG_CODE": "6A0",
+        "BLDG_CODE": null,
         "BRT_ID": 883073670,
         "Shape__Are": 85430.7582397461,
         "Shape__Len": 1255.13503556684
@@ -28057,7 +28133,7 @@
         "OWNER1": "UNIV CITY SCIENCE CTR",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND RES < ACRE",
-        "BLDG_CODE": "SR",
+        "BLDG_CODE": null,
         "BRT_ID": 774688300,
         "Shape__Are": 22061.6766357422,
         "Shape__Len": 636.596977096881
@@ -28114,7 +28190,7 @@
         "OWNER1": "UNIVERSITY CITY",
         "OWNER2": "SCIENCE CENTER",
         "BLDG_DESC": "VAC LAND COMM. < ACRE",
-        "BLDG_CODE": "SC",
+        "BLDG_CODE": null,
         "BRT_ID": 885045600,
         "Shape__Are": 55592.0064086914,
         "Shape__Len": 947.0093737371051
@@ -28179,7 +28255,7 @@
         "OWNER1": "THE ENTERPRISE CENTER",
         "OWNER2": "COMMUNITY",
         "BLDG_DESC": "VAC LAND COMM. < ACRE",
-        "BLDG_CODE": "SC",
+        "BLDG_CODE": null,
         "BRT_ID": 885790940,
         "Shape__Are": 47189.9659423828,
         "Shape__Len": 868.999688124567
@@ -28224,7 +28300,7 @@
         "OWNER1": "DANIEL VELORIC FOUNDATION",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND COMM. < ACRE",
-        "BLDG_CODE": "SC",
+        "BLDG_CODE": null,
         "BRT_ID": 885869360,
         "Shape__Are": 30113.7753295898,
         "Shape__Len": 754.232649703011
@@ -28309,7 +28385,7 @@
         "OWNER1": "DANIEL VELORIC FOUNDATION",
         "OWNER2": null,
         "BLDG_DESC": "IND.SHOP MASONRY",
-        "BLDG_CODE": "LD0",
+        "BLDG_CODE": null,
         "BRT_ID": 884920603,
         "Shape__Are": 9374.73413085938,
         "Shape__Len": 393.486736226356
@@ -28374,7 +28450,7 @@
         "OWNER1": "DANIEL VELORIC FOUNDATION",
         "OWNER2": null,
         "BLDG_DESC": "IND.SHOP MASONRY",
-        "BLDG_CODE": "LD0",
+        "BLDG_CODE": null,
         "BRT_ID": 884351065,
         "Shape__Are": 4828.57122802734,
         "Shape__Len": 313.666372572171
@@ -28423,7 +28499,7 @@
         "OWNER1": "THE DANIEL VELORIC",
         "OWNER2": "FOUNDATION FOR ARTS & ED",
         "BLDG_DESC": "VAC LAND COMM. < ACRE",
-        "BLDG_CODE": "SC",
+        "BLDG_CODE": null,
         "BRT_ID": 885869410,
         "Shape__Are": 11825.5180053711,
         "Shape__Len": 435.009489386346
@@ -28476,7 +28552,7 @@
         "OWNER1": "PHILA AUTH IND DEV",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885923920,
         "Shape__Are": 576784.211425781,
         "Shape__Len": 3565.2471641332
@@ -28621,7 +28697,7 @@
         "OWNER1": "ORIGLIO PROPERTY HOLDING",
         "OWNER2": "LP",
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885924160,
         "Shape__Are": 1009742.2802734398,
         "Shape__Len": 4543.90219710203
@@ -28738,7 +28814,7 @@
         "OWNER1": "PAYNE C DOUGLAS",
         "OWNER2": null,
         "BLDG_DESC": "IND.WHSE MASONRY",
-        "BLDG_CODE": "LC0",
+        "BLDG_CODE": null,
         "BRT_ID": 884346945,
         "Shape__Are": 48368.5493774414,
         "Shape__Len": 1055.66259096575
@@ -28815,7 +28891,7 @@
         "OWNER1": "PHILA AUTH & IND DEV",
         "OWNER2": "SOMERTON IND PARK",
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885752920,
         "Shape__Are": 1245053.9934082,
         "Shape__Len": 7830.66908541667
@@ -28940,7 +29016,7 @@
         "OWNER1": "PHILA AUTH & IND DEV",
         "OWNER2": "SOMERTON IND PARK",
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885240560,
         "Shape__Are": 1568057.8817749,
         "Shape__Len": 6843.78968697325
@@ -29145,7 +29221,7 @@
         "OWNER1": "CITY OF PHILA",
         "OWNER2": "DEPT OF PUBLIC PROP",
         "BLDG_DESC": "SUP.MARK 1STY MASONRY",
-        "BLDG_CODE": "UA0",
+        "BLDG_CODE": null,
         "BRT_ID": 783382801,
         "Shape__Are": 30705.8174438477,
         "Shape__Len": 714.827326773832
@@ -29190,7 +29266,7 @@
         "OWNER1": "CITY OF PHILA",
         "OWNER2": "DEPT OF PUBLIC PROP",
         "BLDG_DESC": "MISC.SEPTA DEPOT MASONRY",
-        "BLDG_CODE": "ZO0",
+        "BLDG_CODE": null,
         "BRT_ID": 521090311,
         "Shape__Are": 24121.674621582,
         "Shape__Len": 642.3494124914531
@@ -29317,9 +29393,9 @@
         "EXPIRATION": 2023,
         "ADDRESS": "3144 W PASSYUNK AVE",
         "OWNER1": "PHILA ENERGY SOLUTIONS",
-        "OWNER2": null,
+        "OWNER2": "null",
         "BLDG_DESC": "IND.REFINERY METAL",
-        "BLDG_CODE": "LK9",
+        "BLDG_CODE": "null",
         "BRT_ID": 884097045,
         "Shape__Are": 14571698.6509399,
         "Shape__Len": 21211.8697465356
@@ -29936,7 +30012,8 @@
             ]
           ]
         ]
-      }
+      },
+      "id": 95
     },
     {
       "type": "Feature",
@@ -29948,7 +30025,7 @@
         "OWNER1": "RELTEVA LLC",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885821640,
         "Shape__Are": 5936989.08300781,
         "Shape__Len": 10709.182505287
@@ -30165,7 +30242,7 @@
         "OWNER1": "PHILA HOUSING AUTHORITY",
         "OWNER2": null,
         "BLDG_DESC": "STR/OFF+APTS 3STY MASONRY",
-        "BLDG_CODE": "Y50",
+        "BLDG_CODE": null,
         "BRT_ID": 871538600,
         "Shape__Are": 1276.89996337891,
         "Shape__Len": 176.809847604554
@@ -30210,7 +30287,7 @@
         "OWNER1": "PHILA HOUSING AUTHORITY",
         "OWNER2": null,
         "BLDG_DESC": "ROW W-OFF/STR 3STY MASONR",
-        "BLDG_CODE": "S50",
+        "BLDG_CODE": null,
         "BRT_ID": 871131000,
         "Shape__Are": 1259.52819824219,
         "Shape__Len": 176.91626394668
@@ -30255,7 +30332,7 @@
         "OWNER1": "PHILA AUTH IND DEV",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND COMM. < ACRE",
-        "BLDG_CODE": "SC",
+        "BLDG_CODE": null,
         "BRT_ID": 885754180,
         "Shape__Are": 2196866.63311768,
         "Shape__Len": 7191.08113773418
@@ -30328,7 +30405,7 @@
         "OWNER1": "L/S 100 DIAGONAL BLVD",
         "OWNER2": null,
         "BLDG_DESC": "OFF/BLDG COMM NO GAR MASO",
-        "BLDG_CODE": "DB0",
+        "BLDG_CODE": null,
         "BRT_ID": 883813700,
         "Shape__Are": 46874.1871337891,
         "Shape__Len": 937.6275617626271
@@ -30417,7 +30494,7 @@
         "OWNER1": "L/S 2001 ROUSE BLVD LP",
         "OWNER2": null,
         "BLDG_DESC": "OFF/BLD N/COMM W-PKG MASO",
-        "BLDG_CODE": "DE0",
+        "BLDG_CODE": null,
         "BRT_ID": 883813600,
         "Shape__Are": 191921.51385498,
         "Shape__Len": 1949.88284198984
@@ -30695,7 +30772,7 @@
         "OWNER1": "WATER LOGS LLC",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885920580,
         "Shape__Are": 558817.49798584,
         "Shape__Len": 2993.61460579386
@@ -30840,7 +30917,7 @@
         "OWNER1": "JACK BACHMANN LLC",
         "OWNER2": null,
         "BLDG_DESC": "IND WHSE MAS.+OTHER",
-        "BLDG_CODE": "LC1",
+        "BLDG_CODE": null,
         "BRT_ID": 884238080,
         "Shape__Are": 76591.4090576172,
         "Shape__Len": 1235.93661582867
@@ -30921,7 +30998,7 @@
         "OWNER1": "RELTEVA LLC",
         "OWNER2": null,
         "BLDG_DESC": "IND WHSE MAS.+OTHER",
-        "BLDG_CODE": "LC1",
+        "BLDG_CODE": null,
         "BRT_ID": 884237645,
         "Shape__Are": 60739.3344726563,
         "Shape__Len": 1069.54497697854
@@ -31030,7 +31107,7 @@
         "OWNER1": "AMTRAK",
         "OWNER2": null,
         "BLDG_DESC": "MISC.RR STA MASONRY",
-        "BLDG_CODE": "ZG0",
+        "BLDG_CODE": null,
         "BRT_ID": 875100371,
         "Shape__Are": 11514.3515014648,
         "Shape__Len": 424.486056696748
@@ -31103,7 +31180,7 @@
         "OWNER1": "PHILADELPHIA AUTHORITY FO",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885895040,
         "Shape__Are": 860020.5720825199,
         "Shape__Len": 3894.33405507671
@@ -31168,7 +31245,7 @@
         "OWNER1": "WHITAKER GODFREY",
         "OWNER2": "PROPERTIES LLC",
         "BLDG_DESC": "INDUS.CONDO",
-        "BLDG_CODE": 7,
+        "BLDG_CODE": null,
         "BRT_ID": 884116110,
         "Shape__Are": 438885.3427734381,
         "Shape__Len": 2780.61318171661
@@ -31349,7 +31426,7 @@
         "OWNER1": "PHILADELPHIA AUTHORITY FO",
         "OWNER2": null,
         "BLDG_DESC": "VACANT LAND BILLBOARD",
-        "BLDG_CODE": "SB",
+        "BLDG_CODE": null,
         "BRT_ID": 874584730,
         "Shape__Are": 1547853.45068359,
         "Shape__Len": 5738.54092611185
@@ -31478,7 +31555,7 @@
         "OWNER1": "DIETZ & WATSON INC",
         "OWNER2": null,
         "BLDG_DESC": "IND. LT.MFG.MAS+OTHER",
-        "BLDG_CODE": "LB1",
+        "BLDG_CODE": null,
         "BRT_ID": 884212395,
         "Shape__Are": 1822364.51049805,
         "Shape__Len": 5596.64776944384
@@ -31643,7 +31720,7 @@
         "OWNER1": "E & V ZAGRANICHNY LLC",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885883960,
         "Shape__Are": 114821.289550781,
         "Shape__Len": 1460.3526280803399
@@ -31712,7 +31789,7 @@
         "OWNER1": "PHILA AUTH & IND DEV",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885924100,
         "Shape__Are": 176799.196716309,
         "Shape__Len": 1764.95700263476
@@ -31757,7 +31834,7 @@
         "OWNER1": "TRUSTEES OF",
         "OWNER2": "THE UNIV OF PENN",
         "BLDG_DESC": "VAC LAND COMM. ACRE+",
-        "BLDG_CODE": "SD",
+        "BLDG_CODE": null,
         "BRT_ID": 885715940,
         "Shape__Are": 937520.498657227,
         "Shape__Len": 4514.82861170168
@@ -31950,7 +32027,7 @@
         "OWNER1": "CARDONE INDUSTRIES INC",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885894560,
         "Shape__Are": 492024.113708496,
         "Shape__Len": 3733.87672451521
@@ -32043,7 +32120,7 @@
         "OWNER1": "PHILA AUTHORITY IND",
         "OWNER2": "DEVELOPMENT",
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885074550,
         "Shape__Are": 299193.647644043,
         "Shape__Len": 2610.68043345036
@@ -32096,7 +32173,7 @@
         "OWNER1": "UMBRELLA FACTORY LP",
         "OWNER2": null,
         "BLDG_DESC": "APTS 100 +  UNITS MASONRY",
-        "BLDG_CODE": "CC0",
+        "BLDG_CODE": null,
         "BRT_ID": 881006775,
         "Shape__Are": 22780.6827392578,
         "Shape__Len": 653.820580228426
@@ -32190,7 +32267,7 @@
         "OWNER1": "PHILADELPHIA AUTHORITY FO",
         "OWNER2": null,
         "BLDG_DESC": "IND.WHSE MASONRY",
-        "BLDG_CODE": "LC0",
+        "BLDG_CODE": null,
         "BRT_ID": 788032300,
         "Shape__Are": 48587.1174926758,
         "Shape__Len": 895.096936622715
@@ -32336,7 +32413,7 @@
         "OWNER1": "U O REAL ESTATE LLC",
         "OWNER2": null,
         "BLDG_DESC": "ASSEMBLY PLANT MAS",
-        "BLDG_CODE": "LI0",
+        "BLDG_CODE": null,
         "BRT_ID": 788008400,
         "Shape__Are": 120873.312438965,
         "Shape__Len": 1741.77564153854
@@ -32421,7 +32498,7 @@
         "OWNER1": "URBAN OUTFITTERS INC",
         "OWNER2": null,
         "BLDG_DESC": "IND.SHOP MASONRY",
-        "BLDG_CODE": "LD0",
+        "BLDG_CODE": null,
         "BRT_ID": 788008100,
         "Shape__Are": 89975.8586425781,
         "Shape__Len": 1273.71693066797
@@ -32490,7 +32567,7 @@
         "OWNER1": "URBAN OUTFITTERS INC",
         "OWNER2": null,
         "BLDG_DESC": "IND.SHOP MASONRY",
-        "BLDG_CODE": "LD0",
+        "BLDG_CODE": null,
         "BRT_ID": 788008200,
         "Shape__Are": 4945.22045898438,
         "Shape__Len": 282.340202351465
@@ -32535,7 +32612,7 @@
         "OWNER1": "BUILDING 22 METALWORKS LL",
         "OWNER2": null,
         "BLDG_DESC": "IND.WHSE MASONRY",
-        "BLDG_CODE": "LC0",
+        "BLDG_CODE": null,
         "BRT_ID": 788008800,
         "Shape__Are": 57381.600769043,
         "Shape__Len": 1035.10137313197
@@ -32608,7 +32685,7 @@
         "OWNER1": "L/S 26TH STREET NORTH LP",
         "OWNER2": null,
         "BLDG_DESC": "IND. LT.MFG.MAS+OTHER",
-        "BLDG_CODE": "LB1",
+        "BLDG_CODE": null,
         "BRT_ID": 788003005,
         "Shape__Are": 338342.245605469,
         "Shape__Len": 2703.56712723007
@@ -32693,7 +32770,7 @@
         "OWNER1": "L/S 26TH STREET NORTH LP",
         "OWNER2": null,
         "BLDG_DESC": "OF/BLD O/S PK N/COM MAS+O",
-        "BLDG_CODE": "DE1",
+        "BLDG_CODE": null,
         "BRT_ID": 788003020,
         "Shape__Are": 171192.78900146502,
         "Shape__Len": 1768.62335584861
@@ -32778,7 +32855,7 @@
         "OWNER1": "L/S 26TH STREET NORTH LP",
         "OWNER2": null,
         "BLDG_DESC": "OF/BLD O/S PK N/COM MAS+O",
-        "BLDG_CODE": "DE1",
+        "BLDG_CODE": null,
         "BRT_ID": 788003055,
         "Shape__Are": 164245.305847168,
         "Shape__Len": 1755.88385478722
@@ -32851,7 +32928,7 @@
         "OWNER1": "L S 26TH STREET SOUTH LP",
         "OWNER2": null,
         "BLDG_DESC": "IND.WHSE MASONRY",
-        "BLDG_CODE": "LC0",
+        "BLDG_CODE": null,
         "BRT_ID": 788003100,
         "Shape__Are": 1035843.88708496,
         "Shape__Len": 4165.16598609499
@@ -32972,7 +33049,7 @@
         "OWNER1": "ABDALI WAHEDULLAH",
         "OWNER2": null,
         "BLDG_DESC": "IND.WHSE MASONRY",
-        "BLDG_CODE": "LC0",
+        "BLDG_CODE": null,
         "BRT_ID": 884460575,
         "Shape__Are": 84016.6429443359,
         "Shape__Len": 1488.18973668958
@@ -33057,7 +33134,7 @@
         "OWNER1": "PHILLY OFFICE 1 LLC",
         "OWNER2": null,
         "BLDG_DESC": "OFF/BLD N/PKG N/COM MASON",
-        "BLDG_CODE": "DD0",
+        "BLDG_CODE": null,
         "BRT_ID": 883073700,
         "Shape__Are": 25010.2810058594,
         "Shape__Len": 642.801521441482
@@ -33102,7 +33179,7 @@
         "OWNER1": "EXSTRA-SOUTH-49TH LLC",
         "OWNER2": null,
         "BLDG_DESC": "IND.WHSE MASONRY",
-        "BLDG_CODE": "LC0",
+        "BLDG_CODE": null,
         "BRT_ID": 884099901,
         "Shape__Are": 161927.234191895,
         "Shape__Len": 1939.3831129663597
@@ -33175,7 +33252,7 @@
         "OWNER1": "PHILADELPHIA AUTHORITY FO",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885891720,
         "Shape__Are": 43559.2086791992,
         "Shape__Len": 910.181679395736
@@ -33220,7 +33297,7 @@
         "OWNER1": "PHILADELPHIA AUTHORITY FO",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885891580,
         "Shape__Are": 453154.68206787104,
         "Shape__Len": 5145.972477653281
@@ -33637,7 +33714,7 @@
         "OWNER1": "PHILA AUTH & IND DEV",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND IND < ACRE",
-        "BLDG_CODE": "SI",
+        "BLDG_CODE": null,
         "BRT_ID": 885916780,
         "Shape__Are": 37664.22113037111,
         "Shape__Len": 823.676454666277
@@ -33686,7 +33763,7 @@
         "OWNER1": "PHILADELPHIA AUTHORITY FO",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885904660,
         "Shape__Are": 387346.092163086,
         "Shape__Len": 2792.86213050612
@@ -33775,7 +33852,7 @@
         "OWNER1": "CITY OF PHILA",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND COMM. < ACRE",
-        "BLDG_CODE": "SC",
+        "BLDG_CODE": null,
         "BRT_ID": 783775200,
         "Shape__Are": 125759.931213379,
         "Shape__Len": 1483.99958059671
@@ -33820,7 +33897,7 @@
         "OWNER1": "PHILADELPHIA AUTHORITY FO",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND INDUS. ACRE+",
-        "BLDG_CODE": "SJ",
+        "BLDG_CODE": null,
         "BRT_ID": 885904100,
         "Shape__Are": 69054.530456543,
         "Shape__Len": 1078.12974785997
@@ -33869,7 +33946,7 @@
         "OWNER1": "PHILADELPHIA AUTHORITY FO",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND IND < ACRE",
-        "BLDG_CODE": "SI",
+        "BLDG_CODE": null,
         "BRT_ID": 885905080,
         "Shape__Are": 235206.185241699,
         "Shape__Len": 2228.91827693834
@@ -33918,7 +33995,7 @@
         "OWNER1": "DANIEL VELORIC FOUNDATION",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND COMM. < ACRE",
-        "BLDG_CODE": "SC",
+        "BLDG_CODE": null,
         "BRT_ID": 885869420,
         "Shape__Are": 8050.04150390625,
         "Shape__Len": 370.176593058439
@@ -33975,7 +34052,7 @@
         "OWNER1": "COMMUNITY COLLEGE OF PHIL",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND COMM. < ACRE",
-        "BLDG_CODE": "SC",
+        "BLDG_CODE": null,
         "BRT_ID": 885869430,
         "Shape__Are": 6030.35064697266,
         "Shape__Len": 334.333629273819
@@ -34020,7 +34097,7 @@
         "OWNER1": "COMMUNITY COLLEGE OF PHIL",
         "OWNER2": null,
         "BLDG_DESC": "VAC LAND COMM. < ACRE",
-        "BLDG_CODE": "SC",
+        "BLDG_CODE": null,
         "BRT_ID": 885869440,
         "Shape__Are": 3664.04498291016,
         "Shape__Len": 293.000774635739
