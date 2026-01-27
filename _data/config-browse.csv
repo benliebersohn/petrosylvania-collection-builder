@@ -1,8 +1,8 @@
-field,display_name,btn,hidden,sort_name
-date,Date,,,Date Ascending
-date_desc,Date desc,,true,Date Descending
-creator,Creator,,,
-collection_type,Collection,true,,Collection
-genre_type,Genre,true,,Genre
-place_type,Location,true,,Location
-keyword,Keywords,true,,Keyword
+field,display_name,btn,hidden,sort_name,facet_name
+date,Date,,,Date Ascending,Date Ascending
+date_desc,Date desc,,true,Date Descending,Date Descending
+creator,Creator,,,,Creator
+collection_type,Collection,true,,Collection,Collection Type
+genre_type,Genre,true,,Genre,Genre Type
+place_type,Location,true,,Location,Location Type
+keyword,Keywords,true,,Keyword,Keyword

@@ -1,0 +1,7 @@
+field,index,display,display_name
+date,true,true,Date
+creator,true,false,Creator
+description,true,true,Description
+collection_type,true,true,Collection Type
+genre_type,true,true,Genre Type
+place_type,true,true,Place Type
