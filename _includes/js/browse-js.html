@@ -40,6 +40,15 @@ const validFields = [{% for f in fields %}"{{ f.field }}",{% endfor %}"title","d
 // Date field names - add your date fields here
 const dateFields = ['date', 'created', 'published', 'modified', 'issued', 'date_created', 'date_published'];
 
+// Define collection type field
+const collectionTypeField = ['collection_type'];
+
+//Define genre type field
+const genreTypeField = ['genre_type'];
+
+//Define place type field
+const placeTypeField = ['place_type'];
+
 // Cache DOM elements
 var loadingIcon, filterTextBox, browseItemsDiv;
 
@@ -76,18 +85,18 @@ function makeCard(obj) {
     card += '<p class="card-text">';
     {% for f in fields %}{% unless f.hidden == 'true' %}
     if(obj[{{ f.field | jsonify }}]){
-    {% if f.display_name %}card += '<strong>{{ f.display_name }}:</strong> ';{% endif %}
-    {% if f.btn == 'true' %}
-    var btns = obj[{{ f.field | jsonify }}].split(";");
-    for (var i = 0, len = btns.length; i < len; i++) {
-        if(btns[i] != "") {
-        card += '<a class="btn btn-sm btn-tertiary opacity-75 m-1 text-wrap" href="{{ page.url | relative_url }}#' + encodeURIComponent(btns[i].trim()) + '">' + btns[i].trim() + '</a>';
-        }
-    }
-    {% else %}
-    card += obj[{{ f.field | jsonify }}];
-    {% endif %}
-    {% unless forloop.last %}card += '<br>';{% endunless %}
+        {% if f.display_name %}card += '<strong>{{ f.display_name }}:</strong> ';{% endif %}
+        {% if f.btn == 'true' %}
+        const btns = obj[{{ f.field | jsonify }}].split(";");
+        btns.forEach(btn => {
+            if(btn.trim()) {
+                card += `<a class="btn btn-sm btn-tertiary opacity-75 m-1 text-wrap" href="{{ page.url | relative_url }}#{{ f.field }}:${encodeURIComponent(btn.trim())}">${btn.trim()}</a>`;
+            }
+        });
+        {% else %}
+        card += obj[{{ f.field | jsonify }}];
+        {% endif %}
+        {% unless forloop.last %}card += '<br>';{% endunless %}
     }
     {% endunless %}{% endfor %}
     card += '</p>';
@@ -98,8 +107,31 @@ function makeCard(obj) {
         card += `<p class="card-text"><small><a class="btn btn-sm btn-outline-secondary" href="{{ page.url | relative_url }}#display_template:${encodeURIComponent(obj.display_template)}">${obj.display_template.toUpperCase().replace("_"," ")} ${mediaIcon}</a></small></p>`;
     }
     
-    card += `<hr><a href="${itemHref}" class="btn btn-sm btn-light" title="link to ${obj.title}">View Full Record</a></div></div></div>`;
+    card += `<hr><a href="${itemHref}" class="btn btn-sm btn-secondary" title="link to ${obj.title}">View Full Record</a></div></div></div>`;
     return card;
+}
+
+// =============================================================================
+// COLLECTION, GENRE, PLACE TYPE UTILITY
+// =============================================================================
+
+/**
+ * Check if a field name is the collection_type field
+ */
+
+function isCollectionField(fieldName) {
+  if (!fieldName || typeof fieldName !== 'string') return false;
+  return collectionTypeField.includes(fieldName.toLowerCase());
+}
+
+function isGenreField(fieldName) {
+  if (!fieldName || typeof fieldName !== 'string') return false;
+  return genreTypeField.includes(fieldName.toLowerCase());
+}
+
+function isPlaceField(fieldName) {
+  if (!fieldName || typeof fieldName !== 'string') return false;
+  return placeTypeField.includes(fieldName.toLowerCase());
 }
 
 // =============================================================================
@@ -110,7 +142,8 @@ function makeCard(obj) {
  * Check if a field name represents a date field
  */
 function isDateField(fieldName) {
-    return dateFields.includes(fieldName.toLowerCase());
+  if (!fieldName || typeof fieldName !== 'string') return false;
+  return dateFields.includes(fieldName.toLowerCase());
 }
 
 /**
@@ -268,6 +301,30 @@ function itemMatches(item, field, query, startDate, endDate) {
         const fieldValues = item[field].toString().split(";");
         return fieldValues.some(value => isDateInRange(value.trim(), startDate, endDate));
     }
+
+    // Collection type field search
+    if (isCollectionField(field)) {
+        const q = (query || "").trim().toUpperCase();
+        if (!item[field]) return false;
+        const fieldValues = item[field].toString().split(";");
+        return fieldValues.some(value => value.trim().toUpperCase().includes(q));
+    }
+
+    // Genre type field search
+    if (isGenreField(field)) {
+        const q = (query || "").trim().toUpperCase();
+        if (!item[field]) return false;
+        const fieldValues = item[field].toString().split(";");
+        return fieldValues.some(value => value.trim().toUpperCase().includes(q));
+    }
+
+    // Place type field search
+    if (isPlaceField(field)) {
+        const q = (query || "").trim().toUpperCase();
+        if (!item[field]) return false;
+        const fieldValues = item[field].toString().split(";");
+        return fieldValues.some(value => value.trim().toUpperCase().includes(q));
+    }
     
     // Text search
     if (query && query !== "") {
@@ -296,7 +353,7 @@ function itemMatches(item, field, query, startDate, endDate) {
 /**
  * Basic filter - searches single field with single query
  */
-function filterItems(arr, query, field = "all", startDate = "", endDate = "") {
+function filterItems(arr, query, field = "all", startDate = "", endDate = "", value = "") {
     loadingIcon.classList.remove("d-none");
     
     let filteredItems = arr;
@@ -306,7 +363,7 @@ function filterItems(arr, query, field = "all", startDate = "", endDate = "") {
         filteredItems = arr.filter(item => itemMatches(item, field, query, startDate, endDate));
     }
     
-    updateDisplay(filteredItems, query, field, startDate, endDate);
+    updateDisplay(filteredItems, query, field, startDate, endDate, value);
     loadingIcon.classList.add("d-none");
 }
 
@@ -397,22 +454,76 @@ function updateDisplay(filteredItems, query = "", field = "", startDate = "", en
 // =============================================================================
 
 /**
- * Toggle between text and date inputs based on field selection
+ * Toggle between text, date, collection inputs based on field selection
  */
-function toggleDateInputs(fieldName, container) {
+function toggleInputs(fieldName, container) {
     const textInput = container.querySelector('.search-input, #filterTextBox');
     const dateInputs = container.querySelector('.date-range-inputs, #dateRangeInputs');
+    const collectionInput = container.querySelector('.collection-type-input, #collectionTypeInput');
+    const genreInput = container.querySelector('.genre-type-input, #genreTypeInput');
+    const placeInput = container.querySelector('.place-type-input, #placeTypeInput');
     
-    if (!textInput || !dateInputs) return;
+    if (!textInput || !dateInputs || !collectionInput || !genreInput || !placeInput) return;
     
     if (isDateField(fieldName)) {
         textInput.style.display = 'none';
         dateInputs.style.display = 'block';
         dateInputs.classList.add('active');
-    } else {
-        textInput.style.display = 'block';
+        collectionInput.classList.remove('active');
+        collectionInput.style.display = 'none';
+        genreInput.style.display = 'none';
+        genreInput.classList.remove('active');
+        placeInput.style.display = 'none';
+        placeInput.classList.remove('active');
+    } 
+
+    if (isCollectionField(fieldName)) {
+        textInput.style.display = 'none';
         dateInputs.style.display = 'none';
         dateInputs.classList.remove('active');
+        collectionInput.classList.add('active');
+        collectionInput.style.display = 'block';
+        genreInput.style.display = 'none';
+        genreInput.classList.remove('active');
+        placeInput.style.display = 'none';
+        placeInput.classList.remove('active');
+    }
+
+    if (isGenreField(fieldName)) {
+        textInput.style.display = 'none';
+        dateInputs.style.display = 'none';
+        dateInputs.classList.remove('active');
+        collectionInput.classList.remove('active');
+        collectionInput.style.display = 'none';
+        genreInput.style.display = 'block';
+        genreInput.classList.add('active');
+        placeInput.style.display = 'none';
+        placeInput.classList.remove('active');
+    }
+
+    if (isPlaceField(fieldName)) {
+        textInput.style.display = 'none';
+        dateInputs.style.display = 'none';
+        dateInputs.classList.remove('active');
+        collectionInput.classList.remove('active');
+        collectionInput.style.display = 'none';
+        genreInput.style.display = 'none';
+        genreInput.classList.remove('active');
+        placeInput.style.display = 'block';
+        placeInput.classList.add('active');
+    }
+
+    if (!isDateField(fieldName) && !isCollectionField(fieldName) && !isGenreField(fieldName) && !isPlaceField(fieldName)) {
+        textInput.style.display = 'block';
+        textInput.classList.add('active');
+        dateInputs.style.display = 'none';
+        dateInputs.classList.remove('active');
+        collectionInput.classList.remove('active');
+        collectionInput.style.display = 'none';
+        genreInput.style.display = 'none';
+        genreInput.classList.remove('active');
+        placeInput.style.display = 'none';
+        placeInput.classList.remove('active');
     }
 }
 
@@ -569,9 +680,24 @@ function addSearchRow(values = {}) {
     if (values.boolean) row.querySelector('.boolean-operator').value = values.boolean;
     if (values.field) {
         row.querySelector('.field-select').value = values.field;
-        toggleDateInputs(values.field, row);
     }
-    if (values.value && !isDateField(values.field)) {
+
+    // Always ensure inputs reflect the (possibly default) field
+    toggleInputs(values.field || 'all', row);
+
+    if (isCollectionField(values.field)) {
+        const colInput = row.querySelector('.collection-type-input');
+        if (colInput) colInput.value = values.value || '';
+    }
+    if (isGenreField(values.field)) {
+        const genreInput = row.querySelector('.genre-type-input');
+        if (genreInput) genreInput.value = values.value || '';    
+    }
+    if (isPlaceField(values.field)) {
+        const placeInput = row.querySelector('.place-type-input');
+        if (placeInput) placeInput.value = values.value || '';    
+    }
+    if (values.value && !isDateField(values.field) && !isCollectionField(values.field) && !isGenreField(values.field) && !isPlaceField(values.field)) {
         row.querySelector('.search-input').value = values.value;
     }
     if (values.startDate) {
@@ -589,7 +715,7 @@ function addSearchRow(values = {}) {
     }
     
     // Event handlers
-    row.querySelector('.field-select').addEventListener('change', e => toggleDateInputs(e.target.value, row));
+    row.querySelector('.field-select').addEventListener('change', e => toggleInputs(e.target.value, row));
     row.querySelector('.remove-row').addEventListener('click', () => {
         row.remove();
         if (searchRows.children.length === 1) {
@@ -598,7 +724,7 @@ function addSearchRow(values = {}) {
     });
     
     // Enter key handlers
-    ['.search-input', '.start-date', '.end-date'].forEach(selector => {
+    ['.search-input', '.start-date', '.end-date', '.collection-type-input', '.genre-type-input', '.place-type-input'].forEach(selector => {
         const input = row.querySelector(selector);
         if (input) {
             input.addEventListener('keypress', e => {
@@ -638,6 +764,34 @@ function submitAdvancedSearch(event) {
                 params.set(`v${index}`, `${startDate || ''} - ${endDate || ''}`.trim().replace(/^-\s*|-\s*$/g, ''));
                 if (startDate) params.set(`start${index}`, startDate);
                 if (endDate) params.set(`end${index}`, endDate);
+            }
+        } else if (isCollectionField(field)) {
+            const value = row.querySelector('.collection-type-input').value.trim();
+            if (value) {
+                params.set(`b${index}`, boolean);
+                params.set(`f${index}`, field);
+                params.set(`v${index}`, value);
+            }
+        } else if (isGenreField(field)) {
+            const value = row.querySelector('.genre-type-input').value.trim();
+            if (value) {
+                params.set(`b${index}`, boolean);
+                params.set(`f${index}`, field);
+                params.set(`v${index}`, value);
+            }
+        } else if (isPlaceField(field)) {
+            const value = row.querySelector('.place-type-input').value.trim();
+            if (value) {
+                params.set(`b${index}`, boolean);
+                params.set(`f${index}`, field);
+                params.set(`v${index}`, value);
+            }
+        } else if (isPlaceField(field)) {
+            const value = row.querySelector('.place-type-input').value.trim();
+            if (value) {
+                params.set(`b${index}`, boolean);
+                params.set(`f${index}`, field);
+                params.set(`v${index}`, value);
             }
         } else {
             const value = row.querySelector('.search-input').value.trim();
@@ -937,7 +1091,7 @@ function setupEventHandlers() {
             return;
         }
         
-        toggleDateInputs(field, document.querySelector('#browseFilter'));
+        toggleInputs(field, document.querySelector('#browseFilter'));
         document.querySelector("#selectedField").textContent = e.target.options[e.target.selectedIndex].text;
     });
     
