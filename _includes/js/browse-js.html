@@ -108,7 +108,7 @@ function makeCard(obj) {
 // =============================================================================
 
 /**
- * Check if a field name is the collection_type field
+ * Check if a field name is the collection_type, genre_type, or place_type field
  */
 
 function isCollectionField(fieldName) {
@@ -766,13 +766,6 @@ function submitAdvancedSearch(event) {
             }
         } else if (isGenreField(field)) {
             const value = row.querySelector('.genre-type-input').value.trim();
-            if (value) {
-                params.set(`b${index}`, boolean);
-                params.set(`f${index}`, field);
-                params.set(`v${index}`, value);
-            }
-        } else if (isPlaceField(field)) {
-            const value = row.querySelector('.place-type-input').value.trim();
             if (value) {
                 params.set(`b${index}`, boolean);
                 params.set(`f${index}`, field);
