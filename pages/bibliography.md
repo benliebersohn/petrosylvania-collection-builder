@@ -383,6 +383,7 @@ h3 {
     <p>Rudel, Thomas. “The Spirit of Black Lake: Full Employment, Civil
     Rights, and the Forgotten Early History of Environmental Justice.”
     <em>Modern American History</em> 1, no. 1 (March 2018): 45–66.</p>
+    <p>Purdy, Jedediah. “The Long Environmental Justice Movement.” <em>Ecology Law Quarterly</em> 44, no. 4 (2018): 809–64.
     <p>Schneider, Haley. “Public Futurity: The Rhetorics of Sustainability
     and Survival at the Former Philadelphia Energy Solutions Refinery.”
     <em>Quarterly Journal of Speech</em> 110, no. 2 (November 2023):
