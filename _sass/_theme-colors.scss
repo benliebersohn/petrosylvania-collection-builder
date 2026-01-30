@@ -29,7 +29,7 @@ $component-active-color:      $white !default;
 $component-active-bg:         $primary !default;
 
 $link-shade-percentage:                   20% !default;
-$link-hover-color:                        shift-color($link-color, $link-shade-percentage) !default;
+$link-hover-color:                        shift-color($link-color-base, $link-shade-percentage) !default;
 
 $btn-focus-width:             .25rem !default;
 
