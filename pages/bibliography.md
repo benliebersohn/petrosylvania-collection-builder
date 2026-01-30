@@ -418,4 +418,3 @@ h3 {
     <p>Zimring, Carl A. <em>Clean and White: A History of Environmental
     Racism in the United States</em>. New York, NY: New York University
     Press, 2016.</p>
-</div>
