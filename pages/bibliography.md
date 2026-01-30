@@ -31,36 +31,36 @@ h3 {
 
 ## From <a href="reference#summary">"Reckoning with Fossil Fuel in Philadelphia"</a>
 <div class="container">
-        <p>Adams, Carolyn T., Howard Gillette Jr., Andrew Heath, Charlene Mires, and Jean R. Soderlund, ed. <em>Greater Philadelphia: A New History for the Twenty-First Century</em>. 3 vols. Philadelphia: University of Pennsylvania Press, 2025.</p>
-        <p>Black, Brian, and Michael J. Chiarappa, ed. <em>Nature’s Entrepôt:
-        Philadelphia’s Urban Sphere and Its Environmental Thresholds</em>.
-        Pittsburgh, PA: University of Pittsburgh Press, 2012.</p>
-        <p>Hein, Carola, ed. <em>Oil Spaces: Exploring the Global
-        Petroleumscape</em>. New York, NY: Routledge, 2021.</p>
-        <p>Johnson, Bob. <em>Carbon Nation: Fossil Fuels in the Making of
-        American Culture</em>. Lawrence, KS: University of Kansas Press,
-        2014.</p>
-        <p>Jones, Christopher F. <em>Routes of Power: Energy and Modern
-        America</em>. Cambridge, MA: Harvard University Press, 2014.</p>
-        <p>Kahan, Paul. <em>Philadelphia: A Narrative History</em>.
-        Philadelphia: University of Pennsylvania Press, 2024.</p>
-        <p>Misrach, Richard, and Kate Orff. <em>Petrochemical America</em>. New
-        York, NY: Aperture, 2012.</p>
-        <p>Mitchell, Timothy. <em>Carbon Democracy: Political Power in the Age
-        of Oil</em>. London: Verso, 2013.</p>
-        <p>Pratt, Joseph A., Martin V. Melosi, and Kathleen A. Brosnan.
-        <em>Energy Capitals: Local Impact, Global Influence</em>. Pittsburgh,
-        PA: University of Pittsburgh Press, 2014.</p>
-        <p>Quivik, Fredric L. “Abundance, Dependence, and Trauma at
-        Philadelphia’s Point Breeze Petroleum Refinery: A Mirror on the History
-        of Pennsylvania’s Oil Industry.” <em>The Pennsylvania Magazine of
-        History and Biography</em> 139, no. 3 (2015): 265–92.</p>
-        <p>Sicotte, Diane. <em>From Workshop to Waste Magnet: Environmental
-        Inequality in the Philadelphia Region</em>. New Brunswick, NJ: Rutgers
-        University Press, 2016.</p>
-        <p>Simeone, Christine. <em>An Unrefined Ending: Lessons Learned from the
-        Creation and Closure of the Philadelphia Energy Solutions Refinery.</em>
-        Cambridge, MA: Union of Concerned Scientists, 2023.</p>
+    <p>Adams, Carolyn T., Howard Gillette Jr., Andrew Heath, Charlene Mires, and Jean R. Soderlund, ed. <em>Greater Philadelphia: A New History for the Twenty-First Century</em>. 3 vols. Philadelphia: University of Pennsylvania Press, 2025.</p>
+    <p>Black, Brian, and Michael J. Chiarappa, ed. <em>Nature’s Entrepôt:
+    Philadelphia’s Urban Sphere and Its Environmental Thresholds</em>.
+    Pittsburgh, PA: University of Pittsburgh Press, 2012.</p>
+    <p>Hein, Carola, ed. <em>Oil Spaces: Exploring the Global
+    Petroleumscape</em>. New York, NY: Routledge, 2021.</p>
+    <p>Johnson, Bob. <em>Carbon Nation: Fossil Fuels in the Making of
+    American Culture</em>. Lawrence, KS: University of Kansas Press,
+    2014.</p>
+    <p>Jones, Christopher F. <em>Routes of Power: Energy and Modern
+    America</em>. Cambridge, MA: Harvard University Press, 2014.</p>
+    <p>Kahan, Paul. <em>Philadelphia: A Narrative History</em>.
+    Philadelphia: University of Pennsylvania Press, 2024.</p>
+    <p>Misrach, Richard, and Kate Orff. <em>Petrochemical America</em>. New
+    York, NY: Aperture, 2012.</p>
+    <p>Mitchell, Timothy. <em>Carbon Democracy: Political Power in the Age
+    of Oil</em>. London: Verso, 2013.</p>
+    <p>Pratt, Joseph A., Martin V. Melosi, and Kathleen A. Brosnan.
+    <em>Energy Capitals: Local Impact, Global Influence</em>. Pittsburgh,
+    PA: University of Pittsburgh Press, 2014.</p>
+    <p>Quivik, Fredric L. “Abundance, Dependence, and Trauma at
+    Philadelphia’s Point Breeze Petroleum Refinery: A Mirror on the History
+    of Pennsylvania’s Oil Industry.” <em>The Pennsylvania Magazine of
+    History and Biography</em> 139, no. 3 (2015): 265–92.</p>
+    <p>Sicotte, Diane. <em>From Workshop to Waste Magnet: Environmental
+    Inequality in the Philadelphia Region</em>. New Brunswick, NJ: Rutgers
+    University Press, 2016.</p>
+    <p>Simeone, Christine. <em>An Unrefined Ending: Lessons Learned from the
+    Creation and Closure of the Philadelphia Energy Solutions Refinery.</em>
+    Cambridge, MA: Union of Concerned Scientists, 2023.</p>
 </div>
 
 ## From <a href="reference#penna-coal">"Pennsylvania Coal and Philadelphia"</a>
