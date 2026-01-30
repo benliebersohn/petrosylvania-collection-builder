@@ -59,6 +59,15 @@ a {
 #footer-credits {
     img { height: 40px; }
 }
+#footer-citation a.active, #footer-citation .show > a {
+    color: #fff;
+}
+
+#footer-citation a:hover {
+    color: white;
+}
+
+
 
 #footer-nav .nav-link.active, #footer-nav .show > .nav-link {
     color: #fff;
