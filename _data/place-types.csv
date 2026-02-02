@@ -1,32 +1,31 @@
-title,short
-AOI-01,AOI-01
-AOI-02,AOI-02
-AOI-03,AOI-03
-AOI-04,AOI-04
-AOI-05,AOI-05
-AOI-06,AOI-06
-AOI-07,AOI-07
-AOI-08,AOI-08
-AOI-09,AOI-09
-AOI-10,AOI-10
-AOI-11,AOI-11
-Bartram's North,Bartram%27s%20North
-Belmont Terminal,Belmont%20Terminal
-Bellwether District,Bellwether%20District
-Eastwick,Eastwick
-Gibson Point (Bartram's South),Gibson%20Point
-Girard Point refinery,Girard%20Point%20refinery
-Grays Ferry chemical works,Grays%20Ferry%20chemical%20works
-Grays Ferry neighborhood,Grays%20Ferry%20neighborhood
-Kingsessing,Kingsessing
-Naval Yard,Naval%20Yard
-Passyunk Ave gas works,Passyunk%20Ave%20gas%20works
-Passyunk Homes,Passyunk%20Homes
-Point Breeze neighborhood,Point%20Breeze%20neighborhood
-Point Breeze refinery,Point%20Breeze%20refinery
-Quartermaster Depot,Quartermaster%20Depot
-Refining Complex,Refining%20Complex
-Schuylkill Generating Station,Schuylkill%20Generating%20Station
-Schuylkill River,Schuylkill%20River
-Tinicum,Tinicum
-Tinicum (Heinz Refuge),Heinz%20Refuge
+title,display_name,short
+AOI-01,AOI-01,AOI-01
+AOI-02,AOI-02,AOI-02
+AOI-03,AOI-03,AOI-03
+AOI-04,AOI-04,AOI-04
+AOI-05,AOI-05,AOI-05
+AOI-06,AOI-06,AOI-06
+AOI-07,AOI-07,AOI-07
+AOI-08,AOI-08,AOI-08
+AOI-09,AOI-09,AOI-09
+AOI-10,AOI-10,AOI-10
+AOI-11,AOI-11,AOI-11
+Bartram's North,Bartram's North,Bartram%27s%20North
+Belmont Terminal,Belmont Terminal,Belmont%20Terminal
+Bellwether District,Bellwether District,Bellwether%20District
+Eastwick,Eastwick,Eastwick
+Gibson Point (Bartram's South),Gibson Point (Bartram's South),Gibson%20Point
+Girard Point refinery,Girard Point refinery,Girard%20Point%20refinery
+Grays Ferry chemical works,Grays Ferry chemical works,Grays%20Ferry%20chemical%20works
+Grays Ferry neighborhood,Grays Ferry neighborhood,Grays%20Ferry%20neighborhood
+Kingsessing,Kingsessing,Kingsessing
+Naval Yard,Naval Yard,Naval%20Yard
+Passyunk Ave gas works,Passyunk Ave gas works,Passyunk%20Ave%20gas%20works
+Passyunk Homes,Passyunk Homes,Passyunk%20Homes
+Point Breeze neighborhood,Point Breeze neighborhood,Point%20Breeze%20neighborhood
+Point Breeze refinery,Point Breeze refinery,Point%20Breeze%20refinery
+Quartermaster Depot,Quartermaster Depot,Quartermaster%20Depot
+Refining Complex,Refining Complex,Refining%20Complex
+Schuylkill Generating Station,Schuylkill Generating Station,Schuylkill%20Generating%20Station
+Schuylkill River,Schuylkill River,Schuylkill%20River
+Tinicum (Heinz Refuge),Tinicum (Heinz Refuge),Heinz%20Refuge
