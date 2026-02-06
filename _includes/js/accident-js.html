@@ -134,7 +134,7 @@ function updateAccidentCount(filteredFeatures) {
     console.log(`Non-injurious: ${nonInjuriousCount}, Injurious: ${injuriousCount}, Deadly: ${deadlyCount}`);
 }        
         // Fetch the external GeoJSON
-        fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/2026-01_Update/assets/js/AOIgeoData.geojson')
+        fetch('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/assets/js/AOIgeoData.geojson')
             .then(response => {
                 if (!response.ok) throw new Error('Network response failed');
                 return response.json();
