@@ -695,8 +695,8 @@ loadGeoJSON('assets/js/industrial_tracts.geojson',
         loadGeoJSON('assets/js/city_limits.geojson',
                     overlays["Philadelphia County"], {style: {color: 'black', weight:4, fillOpacity: 0}});
 
-        loadGeoJSON('assets/js/Political_Wards.geojson',
-                    overlays["Philadelphia Ward Boundaries"], {style: {color: 'black', weight:4, fillOpacity: 0}});
+        loadGeoJSON('assets/js/city_limits.geojson',
+                    overlays["Philadelphia Ward Boundaries"], {style: {color: 'black', weight:4}});
 
     map.createPane('labelPane').style.zIndex = 700; // Higher than tile layers
     
