@@ -410,14 +410,16 @@ function getStyle(feature) {
     };
 }
         // Function to load GeoJSON data
+        // Function to load GeoJSON data
 async function loadGeoJSON(url, targetLayer, options = {}) {
   try {
     const response = await fetch(url);
     const data = await response.json();
     
     const geoJsonLayer = L.geoJSON(data, {
-      style: options.style || {}, // Ensure style object exists
-      onEachFeature: options.onEachFeature
+      style: options.style || {},
+      onEachFeature: options.onEachFeature,
+      pointToLayer: options.pointToLayer  // ADD THIS LINE
     });
     
     if (targetLayer && targetLayer.addLayer) {
