@@ -338,7 +338,7 @@
             "Street labels": L.tileLayer('https://a.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {pane: 'topPane', attribution: 'CartoDB'}),
             "Areas of Interest (AOI)": L.layerGroup([aoiBoundaries, aoiLabels]),
             "Philadelphia County": L.layerGroup({attribution:'OpenDataPhilly'}),
-            "Political Ward Boundaries": L.layerGroup(),
+            "Political Wards": L.layerGroup(),
             "ZIP Codes, 2025": L.layerGroup(),
             "Zoning, 50+ percent industrial, 2025": L.layerGroup(),
             "Keystone Opportunity Zones, 2025": L.layerGroup(),
@@ -695,8 +695,8 @@ loadGeoJSON('assets/js/industrial_tracts.geojson',
         loadGeoJSON('assets/js/city_limits.geojson',
                     overlays["Philadelphia County"], {style: {color: 'black', weight:4, fillOpacity: 0}});
 
-        loadGeoJSON('assets/js/city_limits.geojson',
-                    overlays["Philadelphia Ward Boundaries"], {style: {color: 'black', weight:4}});
+        loadGeoJSON('assets/js/Political_Wards.geojson',
+                    overlays["Political Wards"], {style: {color: 'black', weight:4}});
 
     map.createPane('labelPane').style.zIndex = 700; // Higher than tile layers
     
