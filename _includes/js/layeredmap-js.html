@@ -695,7 +695,7 @@ loadGeoJSON('https://cdn.jsdelivr.net/gh/upenndigitalscholarship/petrodelphia/as
         loadGeoJSON('/assets/js/city_limits.geojson',
                     overlays["Philadelphia County"], {style: {color: 'black', weight:4, fillOpacity: 0}});
 
-        loadGeoJSON('/assets/js/Political_Wards.geojson',
+        loadGeoJSON('/assets/js/city_limits.geojson',
                     overlays["Political Ward Boundaries"], {style: {color: 'black', weight:2, fillOpacity: 0}});
 
     map.createPane('labelPane').style.zIndex = 700; // Higher than tile layers
