@@ -699,9 +699,34 @@ loadGeoJSON('assets/js/industrial_tracts.geojson',
         loadGeoJSON('assets/js/Political_Wards.geojson',
                     overlays["Political Wards"], {style: {color: 'black', weight:4}});
         
-        loadGeoJSON('assets/js/river_points.geojson',
-                    overlays["River Points"], {style: {color: 'black', weight:4}});
-        
+        // Function to create custom river point markers
+function createRiverPointMarker(feature, latlng) {
+    // Create a custom div icon for the marker
+    const markerHtml = `
+        <div class="river-point-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-label">${feature.properties.Name}</div>
+        </div>
+    `;
+    
+    const customIcon = L.divIcon({
+        html: markerHtml,
+        className: 'river-point-icon',
+        iconSize: [120, 40],  // Width, height
+        iconAnchor: [60, 20],  // Anchor point (center of label)
+        popupAnchor: [0, -20]
+    });
+    
+    return L.marker(latlng, { icon: customIcon });
+}
+
+// Load the GeoJSON with the custom pointToLayer function
+loadGeoJSON('assets/js/river_points.geojson',
+    overlays["River Points"], 
+    {
+        pointToLayer: createRiverPointMarker
+    }
+);        
 
     map.createPane('labelPane').style.zIndex = 700; // Higher than tile layers
     
