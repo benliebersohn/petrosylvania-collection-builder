@@ -41,7 +41,48 @@
             font-size: 12px;
             font-weight: 800;
         }
-        
+        /* River Point Marker Styles */
+        .river-point-icon {
+            background: transparent;
+            border: none;
+        }
+
+        .river-point-marker {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 6px 12px;
+            border-radius: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        .river-point-marker:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+
+        .marker-dot {
+            width: 12px;
+            height: 12px;
+            background: #2c3e50;
+            border-radius: 50%;
+            border: 2px solid #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .marker-label {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: #2c3e50;
+            white-space: nowrap;
+            letter-spacing: 0.3px;
+        }
         .custom-fullscreen {
             background: white;
             padding: 5px;
@@ -337,7 +378,9 @@
         const overlays = {
             "Street labels": L.tileLayer('https://a.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {pane: 'topPane', attribution: 'CartoDB'}),
             "Areas of Interest (AOI)": L.layerGroup([aoiBoundaries, aoiLabels]),
-            "Philadelphia County": L.layerGroup({attribution:'Open Data Philly'}),
+            "Philadelphia County": L.layerGroup({attribution:'OpenDataPhilly'}),
+            "Political Wards": L.layerGroup(),
+            "River Points": L.layerGroup(),
             "ZIP Codes, 2025": L.layerGroup(),
             "Zoning, 50+ percent industrial, 2025": L.layerGroup(),
             "Keystone Opportunity Zones, 2025": L.layerGroup(),
@@ -367,14 +410,16 @@ function getStyle(feature) {
     };
 }
         // Function to load GeoJSON data
+        // Function to load GeoJSON data
 async function loadGeoJSON(url, targetLayer, options = {}) {
   try {
     const response = await fetch(url);
     const data = await response.json();
     
     const geoJsonLayer = L.geoJSON(data, {
-      style: options.style || {}, // Ensure style object exists
-      onEachFeature: options.onEachFeature
+      style: options.style || {},
+      onEachFeature: options.onEachFeature,
+      pointToLayer: options.pointToLayer  // ADD THIS LINE
     });
     
     if (targetLayer && targetLayer.addLayer) {
@@ -397,7 +442,7 @@ async function loadZIPLayers() {
   try {
     // add ZIP code white lines (on bottom)
     const whiteOutlines = await loadGeoJSON(
-      'https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/zip_codes.geojson',
+      'assets/js/zip_codes.geojson',
       null,
       {
         style: {
@@ -412,7 +457,7 @@ async function loadZIPLayers() {
 
       //add ZIP code blue lines (on top) 
     const blueLines = await loadGeoJSON(
-      'https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/zip_codes.geojson',
+      'assets/js/zip_codes.geojson',
       null, // Don't auto-add to layer
       {
         style: { // Explicit style object
@@ -462,7 +507,7 @@ map.on('zoomend', function() { // make ZIP code labels disappear when zooming ou
         
 
 loadGeoJSON(
-    'https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/AOI_features_01.geojson',
+    'assets/js/AOI_features_01.geojson',
     aoiBoundaries,
     {
         style: function(feature) {
@@ -541,7 +586,7 @@ legend.onAdd = function(map) {
     return div;
 };
 loadGeoJSON(
-    'https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/redlining.geojson',
+    'assets/js/redlining.geojson',
     overlays['HOLC "redlining map," 1937'],
     {
         style: getRedliningStyle, // Applies the color coding
@@ -557,8 +602,8 @@ loadGeoJSON(
     }
 );
         
-        
-        loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/redlining.geojson',
+        /*
+        loadGeoJSON('assets/js/redlining.geojson',
                 overlays['HOLC "redlining map," 1937'], 
                 function(feature) {
                         overlays['HOLC "redlining map," 1937'].on('add', function() {
@@ -577,10 +622,10 @@ loadGeoJSON(
                     fillOpacity: feature.properties['fill-opacity'] || 0.5
                 };
             }
-           );
+           );*/ 
         console.log("470s");
         
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/FEMA_100yr_floodplain.geojson', 
+        loadGeoJSON('assets/js/FEMA_100yr_floodplain.geojson', 
                    overlays["FEMA, 100-year flood zone, 2025"], { 
                        style: {
                            color: 'blue', fillOpacity: 0.1
@@ -637,7 +682,7 @@ function addHatchPattern(layer, options = {}) {
 }
 
 // Updated industrial zoning with custom hatch
-loadGeoJSON('https://cdn.jsdelivr.net/gh/upenndigitalscholarship/petrodelphia/_includes/js/industrial_tracts.geojson', 
+loadGeoJSON('assets/js/industrial_tracts.geojson', 
            overlays["Zoning, 50+ percent industrial, 2025"], { 
                style: {
                    color: 'black',
@@ -661,39 +706,71 @@ loadGeoJSON('https://cdn.jsdelivr.net/gh/upenndigitalscholarship/petrodelphia/_i
                }
            });
         
-        loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/KOZ_parcels.geojson',
-                    overlays["Keystone Opportunity Zones, 2025"], {style: {color: '#7851A9', weight:1}});
+        loadGeoJSON('assets/js/KOZ_parcels.geojson',
+                    overlays["Keystone Opportunity Zones, 2025"], {style: {color: 'black', weight:2}});
 
-        loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/2Ft_SLR.geojson',
+        loadGeoJSON('assets/js/2Ft_SLR.geojson',
                     overlays["NOAA, 2-foot rise in sea level"], {style: {color: 'blue', weight:1}});
 
-        loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/4ftSLR.geojson',
+        loadGeoJSON('assets/js/4ftSLR.geojson',
                     overlays["NOAA, 4-foot rise in sea level"], {style: {color: 'blue', weight:1}});
         
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/1960_predominantly_AfAm.geojson',
-                    overlays["Census, 50+ percent Black, 1960"], {style: {color: '#add8e6', weight:1}});
+        loadGeoJSON('assets/js/1960_predominantly_AfAm.geojson',
+                    overlays["Census, 50+ percent Black, 1960"], {style: {color: '#aa00ff', weight:1}});
 
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/1980_predominant_afam.geojson',
-                    overlays["Census, 50+ percent Black, 1980"], {style: {color: 'add8e6', weight:1}});
+        loadGeoJSON('assets/js/1980_predominant_afam.geojson',
+                    overlays["Census, 50+ percent Black, 1980"], {style: {color: '#aa00ff', weight:1}});
 
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/1980_%3E25pctPoverty.geojson',
+        loadGeoJSON('assets/js/1980_25pctPoverty.geojson',
                     overlays["Census, 25+ percent children in poverty, 1980"], {style: {color: 'green', weight:1}});
 
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/predominantAfam_2000.geojson',
-                    overlays["Census, 50+ percent Black, 2000"], {style: {color: 'add8e6', weight:1}});
+        loadGeoJSON('assets/js/predominantAfam_2000.geojson',
+                    overlays["Census, 50+ percent Black, 2000"], {style: {color: '#aa00ff', weight:1}});
         
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/2000_%3E25pctPoverty.geojson',
+        loadGeoJSON('assets/js/2000_25pctPoverty.geojson',
                     overlays["Census, 25+ percent children in poverty, 2000"], {style: {color: 'green', weight:1}});
         
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/2020_pct_Afam.geojson',
-                    overlays["Census, 50+ percent Black, 2020"], {style: {color: 'add8e6', weight:1}});
+        loadGeoJSON('assets/js/2020_pct_Afam.geojson',
+                    overlays["Census, 50+ percent Black, 2020"], {style: {color: '#aa00ff', weight:1}});
 
-        loadGeoJSON('https://raw.githubusercontent.com/upenndigitalscholarship/petrodelphia/refs/heads/main/_includes/js/2020_%3E25pct%20under%20poverty%20line.geojson',
+        loadGeoJSON('assets/js/2020_25pctPoverty.geojson',
                     overlays["Census, 25+ percent children in poverty, 2020"], {style: {color: 'green', weight:1}});
 
-        loadGeoJSON('https://raw.githubusercontent.com/benliebersohn/petrosylvania-collection-builder/refs/heads/main/_includes/js/city_limits.geojson',
+        loadGeoJSON('assets/js/city_limits.geojson',
                     overlays["Philadelphia County"], {style: {color: 'black', weight:4, fillOpacity: 0}});
 
+        loadGeoJSON('assets/js/Political_Wards.geojson',
+                    overlays["Political Wards"], {style: {color: 'black', weight:4}});
+        
+        // Function to create custom river point markers
+        function createRiverPointMarker(feature, latlng) {
+            // Create a custom div icon for the marker
+            const markerHtml = `
+                <div class="river-point-marker">
+                    <div class="marker-dot"></div>
+                    <div class="marker-label">${feature.properties.Name}</div>
+                </div>
+            `;
+    
+            const customIcon = L.divIcon({
+                html: markerHtml,
+                className: 'river-point-icon',
+                iconSize: [120, 40],  // Width, height
+                iconAnchor: [60, 20],  // Anchor point (center of label)
+                popupAnchor: [0, -20]
+            });
+    
+            return L.marker(latlng, { icon: customIcon });
+        }
+
+        // Load the GeoJSON with the custom pointToLayer function
+        loadGeoJSON('assets/js/river_points.geojson',
+            overlays["River Points"], 
+            {
+                pointToLayer: createRiverPointMarker
+            }
+        );
+        
     map.createPane('labelPane').style.zIndex = 700; // Higher than tile layers
     
         // Create basemap control (right side)        
