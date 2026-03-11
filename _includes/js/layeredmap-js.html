@@ -97,6 +97,27 @@
             background: white;
             z-index: 1;
         }
+        /* River Point Label Styles */
+        .river-point-icon {
+            background: transparent;
+            border: none;
+        }
+
+        .river-point-label {
+            background: white;
+            padding: 6px 12px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            font-style: italic;
+            color: #2c3e50;
+            white-space: nowrap;
+            letter-spacing: 0.3px;
+        }
+
         .aoi-label {      
           position: absolute;
           text-align: center;
@@ -701,9 +722,23 @@ loadGeoJSON('assets/js/industrial_tracts.geojson',
         loadGeoJSON('assets/js/Political_Wards.geojson',
                     overlays["Political Wards"], {style: {color: 'black', weight:4}});
         
-        // Load the River Points GeoJSON
+        // Function to create custom river point labels
+        function createRiverPointLabel(feature, latlng) {
+            const labelHtml = `<div class="river-point-label">${feature.properties.Name}</div>`;
+            const customIcon = L.divIcon({
+                html: labelHtml,
+                className: 'river-point-icon',
+                iconSize: [120, 30],
+                iconAnchor: [60, 15],
+                popupAnchor: [0, -15]
+            });
+            return L.marker(latlng, { icon: customIcon });
+        }
+        
+        // Load the River Points GeoJSON with custom labels
         loadGeoJSON('assets/js/river_points.geojson',
-            overlays["River Points"]
+            overlays["River Points"],
+            { pointToLayer: createRiverPointLabel }
         );
         
     map.createPane('labelPane').style.zIndex = 700; // Higher than tile layers
