@@ -236,7 +236,7 @@
             detectRetina: false,
             noWrap: true
         });
-        var permanentOSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        var permanentOSM = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
             minZoom: 0,
             maxZoom: 19,
             // Keep this layer at the very bottom
@@ -261,12 +261,18 @@
             { name: "1895 Bromley", layer: L.tileLayer('https://mapwarper.net/mosaics/tile/2184/{z}/{x}/{y}.png', {
                  attribution: 'Free Library of Philadelphia'
             }), year: 1895 },
+            { name: "1897 Baist City Map", layer: L.tileLayer('https://mapwarper.net/maps/tile/104328/{z}/{x}/{y}.png', {
+                 attribution: 'Free Library of Philadelphia'
+            }), year: 1897 },
             { name: "1901 Bromley", layer: L.tileLayer('https://mapwarper.net/mosaics/tile/2272/{z}/{x}/{y}.png', {
                  attribution: 'Free Library of Philadelphia'
             }), year: 1901 },
             { name: "1910 Bromley", layer: L.tileLayer('https://mapwarper.net/mosaics/tile/2271/{z}/{x}/{y}.png', {
                  attribution: 'Free Library of Philadelphia'
             }), year: 1910 },
+            { name: "1914 Sewage Plan", layer: L.tileLayer('https://mapwarper.net/maps/tile/104320/{z}/{x}/{y}.png', {
+                 attribution: 'Free Library of Philadelphia'
+            }), year: 1914 },
             { name: "1920 USGS", layer: L.tileLayer('https://mapwarper.net/maps/tile/88561/{z}/{x}/{y}.png', {
                 attribution: 'USGS'
             }), year: 1920 },
@@ -354,17 +360,17 @@
         const aoiBoundaries = L.layerGroup()
 
         // Add default basemap
-        baseLayers["OpenStreetMap"].addTo(map);
+        baseLayers["ESRI StreetMap"].addTo(map);
         
         const overlays = {
             "Street labels": L.tileLayer('https://a.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {pane: 'topPane', attribution: 'CartoDB'}),
             "Areas of Interest (AOI)": L.layerGroup([aoiBoundaries, aoiLabels]),
             "Philadelphia County": L.layerGroup({attribution:'OpenDataPhilly'}),
-            "Political Wards": L.layerGroup(),
+            "Political Ward Boundaries, 2025": L.layerGroup(),
             "River Points": L.layerGroup(),
             "ZIP Codes, 2025": L.layerGroup(),
-            "Zoning, 50+ percent industrial, 2025": L.layerGroup(),
-            "Keystone Opportunity Zones, 2025": L.layerGroup(),
+            "Industrial zones": L.layerGroup(),
+            "Percent industrial, 2026": L.layerGroup(),
             'HOLC "redlining map," 1937': L.layerGroup(),
             "LNAPL plume, 1996A": L.tileLayer('https://mapwarper.net/maps/tile/88772/{z}/{x}/{y}.png', {attribution: 'US Army Corps of Engineers'}),
             "LNAPL plume, 1996B": L.tileLayer('https://mapwarper.net/maps/tile/88779/{z}/{x}/{y}.png'),
@@ -423,7 +429,7 @@ async function loadZIPLayers() {
   try {
     // add ZIP code white lines (on bottom)
     const whiteOutlines = await loadGeoJSON(
-      'assets/js/zip_codes.geojson',
+      '/assets/js/zip_codes.geojson',
       null,
       {
         style: {
@@ -438,7 +444,7 @@ async function loadZIPLayers() {
 
       //add ZIP code blue lines (on top) 
     const blueLines = await loadGeoJSON(
-      'assets/js/zip_codes.geojson',
+      '/assets/js/zip_codes.geojson',
       null, // Don't auto-add to layer
       {
         style: { // Explicit style object
@@ -488,7 +494,7 @@ map.on('zoomend', function() { // make ZIP code labels disappear when zooming ou
         
 
 loadGeoJSON(
-    'assets/js/AOI_features_01.geojson',
+    '/assets/js/AOI_features_01.geojson',
     aoiBoundaries,
     {
         style: function(feature) {
@@ -550,41 +556,105 @@ function getRedliningStyle(feature) {
     };
 }
 
-const legend = L.control({position: 'bottomleft'});
-legend.onAdd = function(map) {
-    var div = L.DomUtil.create('div', 'info legend');
-    var labels = ['<strong>Redlining Grades</strong>'];
+// Create a master legend that consolidates all layer legends
+const masterLegend = L.control({position: 'bottomleft'});
+let activeLegendSections = {}; // Track which legend sections are active
 
-    //make color squares and print text
-    for (var grade in redliningGrades) {
-        labels.push(
-            '<i style="background:' + redliningGrades[grade] + '; width: 18px; height: 18px; display: inline-block; margin-left: 5px;"></i> ' +
-            grade
-        );
+// Define legend sections for each layer
+const legendSections = {
+    'HOLC "redlining map," 1937': {
+        title: 'Redlining Grades',
+        items: []
+    },
+    "Industrial zones": {
+        title: 'Industrial Zones',
+        items: [
+            {color: 'rgba(128, 0, 128, 0.2)', label: 'Industrial Zoning', border: '1px solid purple'},
+            {color: 'rgba(128, 0, 128, 0.7)', label: 'Keystone Opportunity Zone', border: '1px solid purple'}
+        ]
+    },
+    "Percent industrial, 2026": {
+        title: 'Percent Industrial Zoning',
+        items: [
+            {color: 'rgba(128, 0, 128, 0)', label: '0%', border: '1px solid purple'},
+            {color: 'rgba(128, 0, 128, 0.2)', label: '0-20%', border: '1px solid purple'},
+            {color: 'rgba(128, 0, 128, 0.35)', label: '20-40%', border: '1px solid purple'},
+            {color: 'rgba(128, 0, 128, 0.5)', label: '40-60%', border: '1px solid purple'},
+            {color: 'rgba(128, 0, 128, 0.65)', label: '60-80%', border: '1px solid purple'},
+            {color: 'rgba(128, 0, 128, 0.8)', label: '80-100%', border: '1px solid purple'}
+        ]
+    }
+};
+
+// Populate redlining items
+for (var grade in redliningGrades) {
+    legendSections['HOLC "redlining map," 1937'].items.push({
+        color: redliningGrades[grade],
+        label: grade,
+        border: 'none'
+    });
+}
+
+// Function to update the master legend
+function updateMasterLegend() {
+    if (Object.keys(activeLegendSections).length === 0) {
+        if (map.hasLayer(masterLegend)) {
+            map.removeControl(masterLegend);
+        }
+        return;
     }
     
-    div.innerHTML = labels.join('<br>');
+    if (!map.hasLayer(masterLegend)) {
+        masterLegend.addTo(map);
+    }
+    
+    // Rebuild legend content
+    var legendContent = document.querySelector('.master-legend-content');
+    if (legendContent) {
+        var labels = [];
+        for (var layerName in activeLegendSections) {
+            if (activeLegendSections[layerName]) {
+                var section = legendSections[layerName];
+                labels.push('<strong>' + section.title + '</strong>');
+                section.items.forEach(function(item) {
+                    var borderStyle = item.border && item.border !== 'none' ? 'border: ' + item.border + ';' : '';
+                    labels.push(
+                        '<i style="background: ' + item.color + '; width: 18px; height: 18px; display: inline-block; margin-right: 8px;' + borderStyle + '"></i> ' +
+                        item.label
+                    );
+                });
+            }
+        }
+        legendContent.innerHTML = labels.join('<br>');
+    }
+}
+
+masterLegend.onAdd = function(map) {
+    var div = L.DomUtil.create('div', 'info legend master-legend');
+    div.innerHTML = '<div class="master-legend-content"></div>';
     return div;
 };
+
+// Layer toggle handlers
+overlays['HOLC "redlining map," 1937'].on('add', function() {
+    activeLegendSections['HOLC "redlining map," 1937'] = true;
+    updateMasterLegend();
+});
+overlays['HOLC "redlining map," 1937'].on('remove', function() {
+    delete activeLegendSections['HOLC "redlining map," 1937'];
+    updateMasterLegend();
+});
+
 loadGeoJSON(
-    'assets/js/redlining.geojson',
+    '/assets/js/redlining.geojson',
     overlays['HOLC "redlining map," 1937'],
     {
-        style: getRedliningStyle, // Applies the color coding
-        onEachFeature: function(feature, layer) {
-            // Toggle legend with layer visibility
-            overlays['HOLC "redlining map," 1937'].on('add', function() {
-                legend.addTo(map);
-            });
-            overlays['HOLC "redlining map," 1937'].on('remove', function() {
-                map.removeControl(legend);
-            });
-        }
+        style: getRedliningStyle
     }
 );
         
         /*
-        loadGeoJSON('assets/js/redlining.geojson',
+        loadGeoJSON('/assets/js/redlining.geojson',
                 overlays['HOLC "redlining map," 1937'], 
                 function(feature) {
                         overlays['HOLC "redlining map," 1937'].on('add', function() {
@@ -606,7 +676,7 @@ loadGeoJSON(
            );*/ 
         console.log("470s");
         
-        loadGeoJSON('assets/js/FEMA_100yr_floodplain.geojson', 
+        loadGeoJSON('/assets/js/FEMA_100yr_floodplain.geojson', 
                    overlays["FEMA, 100-year flood zone, 2025"], { 
                        style: {
                            color: 'blue', fillOpacity: 0.1
@@ -662,66 +732,105 @@ function addHatchPattern(layer, options = {}) {
     }
 }
 
-// Updated industrial zoning with custom hatch
-loadGeoJSON('assets/js/industrial_tracts.geojson', 
-           overlays["Zoning, 50+ percent industrial, 2025"], { 
+// Load industrial zoning (more opaque purple)
+loadGeoJSON('/assets/js/industrial_tracts_trimmed.geojson', 
+           overlays["Industrial zones"], { 
                style: {
-                   color: 'black',
+                   color: 'purple',
                    weight: 1,
-                   fillColor: 'black', // Fallback color
-                   fillOpacity: 1
-               },
-               onEachFeature: function(feature, layer) {
-                   // Add hatch pattern after layer is added to map
-                   layer.on('add', function() {
-                       setTimeout(() => {
-                           addHatchPattern(layer, {
-                               angle: 45,
-                               spacing: 8,
-                               weight: 2,
-                               color: 'black',
-                               opacity: 0.7
-                           });
-                       }, 100);
+                   fillColor: 'purple',
+                           fillOpacity: 0.2
+                       }
                    });
-               }
-           });
         
-        loadGeoJSON('assets/js/KOZ_parcels.geojson',
-                    overlays["Keystone Opportunity Zones, 2025"], {style: {color: 'black', weight:2}});
+        // Load Keystone Opportunity Zones (less opaque purple)
+        loadGeoJSON('/assets/js/KOZ_parcels.geojson',
+                    overlays["Industrial zones"], {style: {color: 'purple', weight: 2, fillColor: 'purple', fillOpacity: 0.8}});
 
-        loadGeoJSON('assets/js/2Ft_SLR.geojson',
+        // Toggle Industrial zones legend with master legend
+        overlays["Industrial zones"].on('add', function() {
+            activeLegendSections["Industrial zones"] = true;
+            updateMasterLegend();
+        });
+        overlays["Industrial zones"].on('remove', function() {
+            delete activeLegendSections["Industrial zones"];
+            updateMasterLegend();
+        });
+
+        // Define style function for percent industrial choropleth
+        function getPercentIndustrialStyle(feature) {
+            const value = feature.properties.Industrial_MixedUse_Zoning_BaseDistricts_pc;
+            let opacity = 0;
+            
+            if (value === 0) {
+                opacity = 0; // Transparent
+            } else if (value <= 20) {
+                opacity = 0.2;
+            } else if (value <= 40) {
+                opacity = 0.35;
+            } else if (value <= 60) {
+                opacity = 0.5;
+            } else if (value <= 80) {
+                opacity = 0.65;
+            } else {
+                opacity = 0.8;
+            }
+            
+            return {
+                color: 'purple',
+                weight: 0,
+                fillColor: 'purple',
+                fillOpacity: opacity
+            };
+        }
+
+        // Load percent industrial layer
+        loadGeoJSON('/assets/js/Pct_industrial_1000ft_grid.geojson',
+                    overlays["Percent industrial, 2026"],
+                    {style: getPercentIndustrialStyle});
+
+        // Toggle percent industrial legend with master legend
+        overlays["Percent industrial, 2026"].on('add', function() {
+            activeLegendSections["Percent industrial, 2026"] = true;
+            updateMasterLegend();
+        });
+        overlays["Percent industrial, 2026"].on('remove', function() {
+            delete activeLegendSections["Percent industrial, 2026"];
+            updateMasterLegend();
+        });
+
+        loadGeoJSON('/assets/js/2Ft_SLR.geojson',
                     overlays["NOAA, 2-foot rise in sea level"], {style: {color: 'blue', weight:1}});
 
-        loadGeoJSON('assets/js/4ftSLR.geojson',
+        loadGeoJSON('/assets/js/4ftSLR.geojson',
                     overlays["NOAA, 4-foot rise in sea level"], {style: {color: 'blue', weight:1}});
         
-        loadGeoJSON('assets/js/1960_predominantly_AfAm.geojson',
+        loadGeoJSON('/assets/js/1960_predominantly_AfAm.geojson',
                     overlays["Census, 50+ percent Black, 1960"], {style: {color: '#aa00ff', weight:1}});
 
-        loadGeoJSON('assets/js/1980_predominant_afam.geojson',
+        loadGeoJSON('/assets/js/1980_predominant_afam.geojson',
                     overlays["Census, 50+ percent Black, 1980"], {style: {color: '#aa00ff', weight:1}});
 
-        loadGeoJSON('assets/js/1980_25pctPoverty.geojson',
+        loadGeoJSON('/assets/js/1980_25pctPoverty.geojson',
                     overlays["Census, 25+ percent children in poverty, 1980"], {style: {color: 'green', weight:1}});
 
-        loadGeoJSON('assets/js/predominantAfam_2000.geojson',
+        loadGeoJSON('/assets/js/predominantAfam_2000.geojson',
                     overlays["Census, 50+ percent Black, 2000"], {style: {color: '#aa00ff', weight:1}});
         
-        loadGeoJSON('assets/js/2000_25pctPoverty.geojson',
+        loadGeoJSON('/assets/js/2000_25pctPoverty.geojson',
                     overlays["Census, 25+ percent children in poverty, 2000"], {style: {color: 'green', weight:1}});
         
-        loadGeoJSON('assets/js/2020_pct_Afam.geojson',
+        loadGeoJSON('/assets/js/2020_pct_Afam.geojson',
                     overlays["Census, 50+ percent Black, 2020"], {style: {color: '#aa00ff', weight:1}});
 
-        loadGeoJSON('assets/js/2020_25pctPoverty.geojson',
+        loadGeoJSON('/assets/js/2020_25pctPoverty.geojson',
                     overlays["Census, 25+ percent children in poverty, 2020"], {style: {color: 'green', weight:1}});
 
-        loadGeoJSON('assets/js/city_limits.geojson',
+        loadGeoJSON('/assets/js/city_limits.geojson',
                     overlays["Philadelphia County"], {style: {color: 'black', weight:4, fillOpacity: 0}});
 
-        loadGeoJSON('assets/js/Political_Wards.geojson',
-                    overlays["Political Wards"], {style: {color: 'black', weight:4}});
+        loadGeoJSON('/assets/js/Political_Wards.geojson',
+                    overlays["Political Ward Boundaries, 2025"], {style: {color: 'black', weight:4}});
         
         // Function to create custom river point labels
         function createRiverPointLabel(feature, latlng) {
@@ -737,7 +846,7 @@ loadGeoJSON('assets/js/industrial_tracts.geojson',
         }
         
         // Load the River Points GeoJSON with custom labels
-        loadGeoJSON('assets/js/river_points.geojson',
+        loadGeoJSON('/assets/js/river_points.geojson',
             overlays["River Points"],
             { pointToLayer: createRiverPointLabel }
         );
@@ -806,13 +915,13 @@ loadGeoJSON('assets/js/industrial_tracts.geojson',
 
 // Define layer descriptions (add this new object for info pane or popup)
 const layerDescriptions = {
-    "Zoning, 50+ percent industrial, 2025": "Areas where more than half the land is designated for industrial use according to 2025 zoning regulations.",
+    "Industrial zones": "Areas where more than half the land is designated for industrial use (darker purple) and state-designated Keystone Opportunity Zones with tax incentives (lighter purple).",
+    "Percent industrial, 2026": "Percentage of industrial and mixed-use zoning by 1000-foot grid cells, showing concentration of industrial zoning across the study area.",
     "HOLC \"redlining map,\" 1937": "Historical maps that color-coded neighborhoods by perceived investment risk.",
     "FEMA, 100-year flood zone, 2025": "Areas with a 1% annual chance of flooding according to FEMA models.",
     "ZIP Codes, 2025": "Current US Postal Service ZIP code boundaries.",
     "Areas of Interest (AOI)": "Key locations selected for detailed study in this research project.",
     "Philadelphia County": "Philadelphia county boundaries.",
-    "Keystone Opportunity Zones, 2025": "State-designated areas with tax incentives for business development.",
     "LNAPL plume, 1996A": "Light non-aqueous phase liquid contamination plumes from 1996 surveys.",
     "LNAPL plume, 1996B": "Light non-aqueous phase liquid contamination plumes from 1996 surveys.",
     "LNAPL plume, 1996C": "Light non-aqueous phase liquid contamination plumes from 1996 surveys.",
