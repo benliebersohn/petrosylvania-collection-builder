@@ -145,7 +145,6 @@
             background: white;
             border-radius: 5px;
             border: 1px solid #ccc;
-            box-shadow: 0 1px 5px rgba(0,0,0,0.2);
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -178,11 +177,10 @@
         #basemaps-section {
             display: none; /* Hidden by default if needed */
             width: auto;
-            max-width: 200px;
+            max-width: 280px;
             background: white;
             border-radius: 5px;
             border: 1px solid #ccc;
-            box-shadow: 0 1px 5px rgba(0,0,0,0.2);
             overflow: hidden;
         }
 
@@ -209,7 +207,7 @@
             border: none;
             box-shadow: none;
             background: transparent;
-            max-height: none;
+            max-height: calc(80vh - 60px);
             overflow-y: auto;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
@@ -1047,8 +1045,9 @@ loadGeoJSON('/assets/js/industrial_tracts_trimmed.geojson',
             return container;
         }
 
-        // Apply collapsible functionality to basemap control
+        // Apply collapsible functionality to both panels
         makeCollapsible(basemapControl);
+        makeCollapsible(overlayControl);
         
         // Add legend collapse/expand functionality
         const legendSection = document.getElementById('legend-section');
