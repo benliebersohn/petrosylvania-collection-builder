@@ -54,49 +54,7 @@
             background: #f4f4f4;
         }
         
-        /* Right control (top position) */
-        .leaflet-right .leaflet-control {
-            margin-right: 10px;
-            margin-top: 10px;
-        }
-        /* Left control (positioned below right control) */
-        .leaflet-left .leaflet-control {
-            margin-right: 50px;
-            margin-top: 10px; /* Adjust this value based on right control's height */
-            clear: both; /* Ensures it stays below */
-        }
-        /* Add a scrollbar and limit the size of the basemap control. */
-        .scrollable-basemap-control {
-            /* Parent container - NO overflow here */
-            overflow: visible;
-        }
-        .scrollable-basemap-control .leaflet-control-layers-list {
-          max-height: 80vh;
-          overflow-y: scroll;
-          padding-right: 5px; /* Prevent text clipping */
-            /* Chrome WebKit Scrollbar */
-            &::-webkit-scrollbar {
-            width: 12px;
-            background: rgba(0,0,0,0.05);
-            }
-            &::-webkit-scrollbar-thumb {
-                background: #666;
-                border-radius: 8px;
-                border: 2px solid #f1f1f1;
-            }
-        }
-        /* Ensure the control header stays fixed */
-        .scrollable-basemap-control .leaflet-control-layers-list {
-            max-height: calc(80vh - 40px); /* Account for header */
-            overflow-y: scroll;
-        }
-        /* Keep the expand/collapse button accessible */
-        .scrollable-basemap-control .leaflet-control-layers-toggle {
-            position: sticky;
-            top: 0;
-            background: white;
-            z-index: 1;
-        }
+
         /* River Point Label Styles */
         .river-point-icon {
             background: transparent;
@@ -154,40 +112,7 @@
             justify-content: center;
             }
 
-        /* Collapsible control styles */
-        .collapsible-control {
-            transition: all 0.3s ease;
-        }
-        
-        .collapsible-control.collapsed .leaflet-control-layers-list {
-            display: none;
-        }
-        
-        .collapsible-control .collapse-toggle {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 20px;
-            height: 20px;
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 2px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 14px;
-            z-index: 1000;
-        }
-        
-        .collapsible-control.collapsed .collapse-toggle::after {
-            content: '+';
-        }
-        
-        .collapsible-control:not(.collapsed) .collapse-toggle::after {
-            content: '−';
-        }
+
 
         /* Hatch pattern for industrial zoning */
         .hatch-pattern {
@@ -199,16 +124,232 @@
                 black 10px
             );
         }
+
+        /* Left dashboard layout */
+        #left-dashboard {
+            position: fixed;
+            left: 10px;
+            top: 10px;
+            width: 280px;
+            height: calc(90vh - 20px);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 400;
+            pointer-events: none; /* Allow clicks to pass through to map */
+        }
+
+        .dashboard-section {
+            pointer-events: auto; /* Re-enable clicks for sections */
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        #overlays-section {
+            flex-grow: 1;
+            min-height: 150px;
+            overflow-y: auto;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        #overlays-section .leaflet-control-layers-list {
+            border: none;
+            box-shadow: none;
+            background: transparent;
+            max-height: none; /* Remove max-height constraint */
+            overflow: visible;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        #overlays-section .leaflet-control-layers {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Base Maps panel styling (unified with overlays) */
+        #basemaps-section {
+            display: none; /* Hidden by default if needed */
+            width: 280px;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        #basemaps-section.active {
+            display: block;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            height: calc(90vh - 20px);
+            max-height: 80vh;
+            z-index: 400;
+        }
+
+        #basemaps-section .leaflet-control-layers {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-height: none;
+            overflow: visible;
+        }
+
+        #basemaps-section .leaflet-control-layers-list {
+            border: none;
+            box-shadow: none;
+            background: transparent;
+            max-height: none;
+            overflow-y: auto;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Legend section at bottom */
+        #legend-section {
+            flex-shrink: 0;
+            border-top: 1px solid #eee;
+            padding: 10px;
+            max-height: 40vh; /* Max height to prevent taking too much space */
+            overflow-y: auto;
+            display: none; /* Hidden by default, shown only when legend layers are active */
+            position: relative;
+        }
+
+        #legend-section.active {
+            display: block;
+        }
+
+        /* Collapsed state: fixed height to show only header */
+        #legend-section.collapsed {
+            max-height: 38px;
+            overflow: hidden;
+            padding: 5px 10px;
+        }
+
+        /* Expanded state: allow content to flow */
+        #legend-section:not(.collapsed) {
+            display: block;
+            padding: 0 10px 10px 10px;
+        }
+
+        /* Position header absolutely when expanded to save space */
+        #legend-section:not(.collapsed) .legend-header {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: auto;
+            margin: 0;
+            background: transparent;
+            justify-content: flex-end;
+        }
+
+        /* Hide legend header when collapsed (show full header) */
+        #legend-section.collapsed .legend-header {
+            position: static;
+            margin-bottom: 0;
+        }
+
+        /* Hide legend text when expanded */
+        #legend-section:not(.collapsed) .legend-header span {
+            display: none;
+        }
+
+        .legend-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            user-select: none;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .legend-toggle {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        #legend-section.collapsed .legend-toggle::after {
+            content: '+';
+        }
+
+        #legend-section:not(.collapsed) .legend-toggle::after {
+            content: '−';
+        }
+
+        .master-legend-content {
+            font-size: 13px;
+            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .master-legend-content i {
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        /* Scrollbar styling - unified for all panels */
+        #overlays-section::-webkit-scrollbar,
+        #basemaps-section::-webkit-scrollbar,
+        #legend-section::-webkit-scrollbar {
+            width: 10px;
+            background: rgba(0,0,0,0.05);
+        }
+
+        #overlays-section::-webkit-scrollbar-thumb,
+        #basemaps-section::-webkit-scrollbar-thumb,
+        #legend-section::-webkit-scrollbar-thumb {
+            background: #999;
+            border-radius: 5px;
+            border: 2px solid white;
+        }
+
+        #overlays-section::-webkit-scrollbar-thumb:hover,
+        #basemaps-section::-webkit-scrollbar-thumb:hover,
+        #legend-section::-webkit-scrollbar-thumb:hover {
+            background: #666;
+        }
     </style>
 </head>
 <body>
     <div id="map"></div>
+    
+    <!-- Right Dashboard: Base Maps -->
+    <div id="basemaps-section" class="dashboard-section"></div>
+    
+    <!-- Left Dashboard: Overlays and Legend -->
+    <div id="left-dashboard">
+        <div id="overlays-section" class="dashboard-section"></div>
+        <div id="legend-section" class="dashboard-section collapsed">
+            <div class="legend-header">
+                <span>Legend</span>
+                <div class="legend-toggle"></div>
+            </div>
+            <div class="master-legend-content"></div>
+        </div>
+    </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.js"></script>
 
     <script>
-        console.log("170s");
+
         // Initialize the map on the lower schuylkill river
         const map = L.map('map',{attributionControl: false}).setView([39.917359, -75.204920], 14);
         //create a top pane for the AOI labels,
@@ -397,7 +538,6 @@ function getStyle(feature) {
     };
 }
         // Function to load GeoJSON data
-        // Function to load GeoJSON data
 async function loadGeoJSON(url, targetLayer, options = {}) {
   try {
     const response = await fetch(url);
@@ -419,7 +559,7 @@ async function loadGeoJSON(url, targetLayer, options = {}) {
     return null;
   }
 }
-console.log('reached zipcodelabels part');
+
 
         // section for rendering ZIP lines (blue lines with white buffer)
 const zipCodeLabels = L.layerGroup();//.addTo(map); // Add to map immediately
@@ -440,7 +580,7 @@ async function loadZIPLayers() {
       }
     );
     zipCodeLayers.addLayer(whiteOutlines); // 
-    console.log('added whiteOutlines');
+
 
       //add ZIP code blue lines (on top) 
     const blueLines = await loadGeoJSON(
@@ -468,7 +608,7 @@ async function loadZIPLayers() {
       }
     );
     zipCodeLayers.addLayer(blueLines);
-    console.log('added blueLines');
+
     
   } catch (error) {
     console.error("ZIP code loading failed:", error);
@@ -527,7 +667,7 @@ loadGeoJSON(
             layer._label = label;
         }
     }
-).then(() => {
+}).then(() => {
     // 5. Add to map AFTER loading (triggers proper control state)
     //aoiBoundaries.addTo(map);
     //aoiLabels.addTo(map);
@@ -557,7 +697,6 @@ function getRedliningStyle(feature) {
 }
 
 // Create a master legend that consolidates all layer legends
-const masterLegend = L.control({position: 'bottomleft'});
 let activeLegendSections = {}; // Track which legend sections are active
 
 // Define legend sections for each layer
@@ -595,21 +734,24 @@ for (var grade in redliningGrades) {
     });
 }
 
-// Function to update the master legend
+// Function to update the master legend in dashboard
 function updateMasterLegend() {
+    const legendSection = document.getElementById('legend-section');
+    const legendContent = document.querySelector('.master-legend-content');
+    
     if (Object.keys(activeLegendSections).length === 0) {
-        if (map.hasLayer(masterLegend)) {
-            map.removeControl(masterLegend);
-        }
+        // No active legends - hide the section completely
+        legendSection.classList.remove('active');
+        legendSection.classList.add('collapsed');
+        legendContent.innerHTML = '';
         return;
     }
     
-    if (!map.hasLayer(masterLegend)) {
-        masterLegend.addTo(map);
-    }
+    // Active legends exist - show and expand the section
+    legendSection.classList.add('active');
+    legendSection.classList.remove('collapsed');
     
     // Rebuild legend content
-    var legendContent = document.querySelector('.master-legend-content');
     if (legendContent) {
         var labels = [];
         for (var layerName in activeLegendSections) {
@@ -629,12 +771,6 @@ function updateMasterLegend() {
     }
 }
 
-masterLegend.onAdd = function(map) {
-    var div = L.DomUtil.create('div', 'info legend master-legend');
-    div.innerHTML = '<div class="master-legend-content"></div>';
-    return div;
-};
-
 // Layer toggle handlers
 overlays['HOLC "redlining map," 1937'].on('add', function() {
     activeLegendSections['HOLC "redlining map," 1937'] = true;
@@ -652,29 +788,7 @@ loadGeoJSON(
         style: getRedliningStyle
     }
 );
-        
-        /*
-        loadGeoJSON('/assets/js/redlining.geojson',
-                overlays['HOLC "redlining map," 1937'], 
-                function(feature) {
-                        overlays['HOLC "redlining map," 1937'].on('add', function() {
-                            legend.addTo(map);
-                        });
-                        
-                        overlays['HOLC "redlining map," 1937'].on('remove', function() {
-                            map.removeControl(legend);
-                        });
-                        
-                return {
-                    color: 'black',  // Changed from '#555555'
-                    weight: 1,  // Changed from feature.properties['stroke-width'] || 2
-                    opacity: feature.properties['stroke-opacity'] || 1,
-                    fillColor: feature.properties.fill || '#cab2d6',
-                    fillOpacity: feature.properties['fill-opacity'] || 0.5
-                };
-            }
-           );*/ 
-        console.log("470s");
+
         
         loadGeoJSON('/assets/js/FEMA_100yr_floodplain.geojson', 
                    overlays["FEMA, 100-year flood zone, 2025"], { 
@@ -853,36 +967,62 @@ loadGeoJSON('/assets/js/industrial_tracts_trimmed.geojson',
         
     map.createPane('labelPane').style.zIndex = 700; // Higher than tile layers
     
-        // Create basemap control (right side)        
-        const overlayControl = L.control.layers(null, overlays, {
-            collapsed: false,
-            position: 'topleft'
-        }).addTo(map);
-        
+        // Create basemap control and add to map to generate container
         const basemapControl = L.control.layers(baseLayers, null, {
             collapsed: false,
             position: 'topright',
             autoZIndex: false // Prevents z-index shuffling
         }).addTo(map);
-        const basemapContainer = basemapControl.getContainer();
-        L.DomUtil.addClass(basemapContainer, 'scrollable-basemap-control');   
         
-        function addControlLabel(control, title) {
-            const container = control.getContainer();
-            const label = L.DomUtil.create('h4', 'control-label', container);
-            label.textContent = title;
-            L.DomUtil.addClass(container, 'labeled-control');
-    
-    // Move the label to be the first child of the container
-            container.insertBefore(label, container.firstChild);
-    
-        return container;
+        // Get the basemap control container and prepare for dashboard
+        const basemapContainer = basemapControl.getContainer();
+        
+        // Remove default positioning styles
+        basemapContainer.style.position = 'static';
+        basemapContainer.style.top = 'auto';
+        basemapContainer.style.right = 'auto';
+        basemapContainer.style.margin = '0';
+        
+        // Add label to basemap control
+        const basemapLabel = L.DomUtil.create('h4', 'control-label', basemapContainer);
+        basemapLabel.textContent = 'Base Maps';
+        basemapContainer.insertBefore(basemapLabel, basemapContainer.firstChild);
+        
+        // Move basemap control into dashboard (remove from map default position)
+        const basemapsSectionDiv = document.getElementById('basemaps-section');
+        if (basemapsSectionDiv) {
+            basemapsSectionDiv.appendChild(basemapContainer);
+            basemapsSectionDiv.classList.add('active');
         }
-// 
-        addControlLabel(overlayControl, 'Overlays');
-        addControlLabel(basemapControl, 'Base Maps');
 
-        // Make controls collapsible
+        // Create overlay control and add to map to generate container
+        const overlayControl = L.control.layers(null, overlays, {
+            collapsed: false,
+            position: 'topleft'
+        }).addTo(map);
+        
+        // Get the overlay control container and prepare for dashboard
+        const overlayContainer = overlayControl.getContainer();
+        L.DomUtil.addClass(overlayContainer, 'leaflet-control-layers-expanded');
+        
+        // Remove default positioning styles
+        overlayContainer.style.position = 'static';
+        overlayContainer.style.top = 'auto';
+        overlayContainer.style.left = 'auto';
+        overlayContainer.style.margin = '0';
+        
+        // Add label to overlay control
+        const overlayLabel = L.DomUtil.create('h4', 'control-label', overlayContainer);
+        overlayLabel.textContent = 'Overlays';
+        overlayContainer.insertBefore(overlayLabel, overlayContainer.firstChild);
+        
+        // Move overlay control into dashboard (remove from map default position)
+        const overlaysSectionDiv = document.getElementById('overlays-section');
+        if (overlaysSectionDiv) {
+            overlaysSectionDiv.appendChild(overlayContainer);
+        }
+
+        // Make basemap control collapsible
         function makeCollapsible(control) {
             const container = control.getContainer();
             L.DomUtil.addClass(container, 'collapsible-control');
@@ -905,9 +1045,24 @@ loadGeoJSON('/assets/js/industrial_tracts_trimmed.geojson',
             return container;
         }
 
-        // Apply collapsible functionality to both controls
-        makeCollapsible(overlayControl);
+        // Apply collapsible functionality to basemap control
         makeCollapsible(basemapControl);
+        
+        // Add legend collapse/expand functionality
+        const legendSection = document.getElementById('legend-section');
+        const legendHeader = legendSection.querySelector('.legend-header');
+        
+        // Toggle from header (when collapsed/visible)
+        legendHeader.addEventListener('click', function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            
+            if (legendSection.classList.contains('collapsed')) {
+                legendSection.classList.remove('collapsed');
+            } else {
+                legendSection.classList.add('collapsed');
+            }
+        });
 
         map.on('baselayerchange', function() {
             permanentOSM.bringToBack(); // Force OSM behind current basemap
@@ -952,6 +1107,7 @@ labelStyle.textContent = `
         font-size: 14px;
         font-weight: bold;
         color: #444;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 `;
 document.head.appendChild(labelStyle);
