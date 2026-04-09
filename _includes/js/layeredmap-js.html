@@ -5,9 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script>
+        // Suppress livereload.js errors - it may not be available but isn't critical
+        window.addEventListener('error', function(event) {
+            if (event.filename && event.filename.includes('livereload.js')) {
+                event.preventDefault();
+            }
+        }, true);
+    </script>
     <style>
 
         #map {
@@ -33,18 +38,18 @@
             border: 1px solid #999;
         }
         .aoi-number {
-            font-weight: 800;
+            font-weight: 600;
             font-size: 16px;
         }
         .area-name {
             font-size: 12px;
-            font-weight: 800;
+            font-weight: 600;
         }
 
         .custom-fullscreen {
             background: white;
             padding: 5px;
-            border-radius: 4px;
+            border-radius: 1px;
             border: 2px solid rgba(0,0,0,0.2);
             cursor: pointer;
         }
@@ -56,11 +61,16 @@
         /* Combined zoom + fullscreen control */
         .leaflet-control-combined {
             background: white;
-            border-radius: 4px;
+            border-radius: 1px;
             border: 1px solid #ccc;
             display: flex;
             flex-direction: row;
             gap: 0;
+            padding: 0 !important;
+            margin: 0 !important;
+            bottom: 0px !important;
+             right: 0px !important;
+             z-index: 1000;
         }
         
         .control-button {
@@ -95,21 +105,6 @@
             background: transparent;
             border: none;
         }
-
-        .river-point-label {
-            background: white;
-            padding: 2px 6px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            font-family: system-ui, sans-serif;
-            font-size: 13px;
-            font-weight: 400;
-            color: #000000;
-            white-space: nowrap;
-            letter-spacing: 0.3px;
-            display: inline-block;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
         
         .river-point-label-left {
             /* Default: label extends to the right from the point */
@@ -122,88 +117,75 @@
         }
 
         .aoi-label {      
+          -webkit-text-stroke: 1px rgba(255, 255, 255, 0.34); /* Improves readability */
           position: absolute;
           text-align: center;
           transform: translate(-50%, -50%);
           pointer-events: none;
-          font-family: 'Roboto', sans-serif;
-          font-weight: 800;
-          text-shadow: 0 0 2px white; /* Improves readability */
+          font-family: 'system-ui', sans-serif;
+          font-weight: 650;
+          color: black;
         }
-        
-        .aoi-label-name {
-            font-family: system-ui, sans-serif; /* Google fonts sans-serif */
-            color: black;
-            font-weight: 800;
-            font-size: 14px;
-            text-align: center;
-            /* White text stroke */
-            -webkit-text-stroke: 1px white;
-        }    
-        .zip-code-label {
+
+        .river-point-label {
+            background: white;
+            padding: 2px 6px;
+            border-radius: 1px;
+            border: 1px solid #ccc;
             font-family: system-ui, sans-serif;
             font-size: 13px;
             font-weight: 400;
             color: #000000;
-            background: white;
-            padding: 2px 6px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            text-align: center;
+            white-space: nowrap;
             letter-spacing: 0.3px;
             display: inline-block;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            white-space: nowrap;
+        }
+
+        .zip-code-label {
+            font-family: system-ui, sans-serif !important;
+            font-size: 13px !important;
+            font-weight: 400 !important;
+            color: #000000 !important;
+            background: white !important;
+            padding: 2px 6px !important;
+            border-radius: 1px !important;
+            border: 1px solid #ccc !important;
+            letter-spacing: 0.3px !important;
+            display: inline-block !important;
+            white-space: nowrap !important;
+            width: auto !important;
+            height: auto !important;
             }
 
-        /* Left dashboard layout */
-        #left-dashboard {
-            position: fixed;
-            left: 10px;
-            top: 10px;
+        /* Leaflet control styling for custom panels */
+        .leaflet-control-custom-panel {
+            background: white !important;
+            border-radius: 1px;
+            border: 1px solid #ccc !important;
+            display: flex;
+            flex-direction: column;
+            max-height: 70vh;
             width: auto;
             max-width: 500px;
-            height: calc(80vh - 20px);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            min-width: 200px;
+            overflow: hidden;
             z-index: 400;
-            pointer-events: none; /* Allow clicks to pass through to map */
         }
 
-        .dashboard-section {
-            pointer-events: auto; /* Re-enable clicks for sections */
-            background: white;
+        /* Overlays control */
+        .leaflet-control-overlays-panel {
+            max-height: 60vh;
+            border: 1px solid #ccc !important;
+            fill: solid white !important;
             border-radius: 1px;
-            border: 1px solid #999;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
+            padding: 0 !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+            background: white !important;
         }
 
-        #overlays-section {
-            flex-grow: 0;
-            height: auto;
-            max-height: calc(60vh - 20px);
-            overflow: hidden;
-            font-family: system-ui, sans-serif;
-            display: flex;
-            flex-direction: column;
-        }
-
-        #overlays-section .leaflet-control-layers-list {
-            border: none;
-            box-shadow: none;
-            background: transparent;
-            max-height: none; /* Remove max-height constraint */
-            overflow-y: auto;
-            font-family: system-ui, sans-serif;
-            flex-grow: 1;
-            min-height: 0;
-        }
-
-        #overlays-section .leaflet-control-layers {
-            background: transparent;
+        .leaflet-control-overlays-panel .leaflet-control-layers {
+            background: white !important;
             border: none;
             box-shadow: none;
             font-family: system-ui, sans-serif;
@@ -212,66 +194,98 @@
             flex-direction: column;
             height: 100%;
             min-height: 0;
-        }
-
-        /* Base Maps panel styling (unified with overlays) */
-        #basemaps-section {
-            display: none; /* Hidden by default if needed */
             width: auto;
-            max-width: 200px;
-            background: white;
+        }
+
+        .leaflet-control-overlays-panel .leaflet-control-layers-list {
+            border: none !important;
+            box-shadow: none !important;
+            background: white !important;
+            max-height: 100% !important;
+            overflow-y: auto !important;
+            font-family: system-ui, sans-serif;
+            flex-grow: 1;
+            min-height: 0;
+            padding: 5px !important;
+            fill: white !important;
+        }
+
+        /* Base Maps control */
+        .leaflet-control-basemaps-panel {
+            height: calc(90vh - 26px) !important;
+            border: black solid 1px !important;
             border-radius: 1px;
-            border: 1px solid #999;
-            overflow: hidden;
+            padding: 0 !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+            background: white !important;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            box-sizing: border-box !important;
+            width: 100% !important;
         }
 
-        #basemaps-section.active {
-            display: block;
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            max-height: calc(80vh - 20px);
-            height: auto;
-            z-index: 400;
-            overflow: hidden;
+        /* Ensure outer Leaflet wrapper for basemaps doesn't constrain it */
+        .leaflet-top.leaflet-right {
+            width: auto !important;
+            height: auto !important;
+            max-height: none !important;
         }
 
-        #basemaps-section .leaflet-control-layers {
-            background: transparent;
+        .leaflet-control-basemaps-panel .leaflet-control-layers {
+            background: white !important;
             border: none;
             box-shadow: none;
             font-family: system-ui, sans-serif;
             max-height: none;
-            overflow: visible;
+            overflow: hidden;
             width: auto !important;
-            min-width: 0;
+            min-width: 200px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 0;
+            flex-grow: 1;
         }
 
-        #basemaps-section .leaflet-control-layers-list {
-            border: none;
-            box-shadow: none;
-            background: transparent;
-            max-height: none;
-            overflow-y: auto;
-            font-family: system-ui, sans-serif;
+        .leaflet-control-basemaps-panel .leaflet-control-layers-list {
+            border: none !important;
+            box-shadow: none !important;
+            background: white !important;
+            max-height: none !important;
+            overflow-y: auto !important;
+            font-family: system-ui, sans-serif !important;
             width: auto !important;
-            white-space: nowrap;
-            display: inline-block;
+            white-space: nowrap !important;
+            flex-grow: 1 !important;
+            min-height: 0 !important;
+            padding: 1px 1px 1px 5px !important;
         }
 
-        #basemaps-section .control-label {
+        .leaflet-control-basemaps-panel .control-label {
             max-width: 330px;
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
 
+        .leaflet-control-basemaps-panel .leaflet-control-layers-base {
+            border: none !important;
+        }
+
+        /* Override Leaflet default 2px border on touch devices */
+        .leaflet-touch .leaflet-control-basemaps-panel,
+        .leaflet-control-basemaps-panel.leaflet-control-layers {
+            border: 1px solid #ccc !important;
+        }
+
         /* Collapse/Toggle button styling - unified for all panels */
         .collapse-toggle,
         .legend-toggle {
-            width: 14px;
-            height: 14px;
-            background: #ffffff;
-            border: 1px solid #999;
+            width: 18px;
+            height: 18px;
+            background: white;
+            border: 1px solid #ccc;
             border-radius: 2px;
             cursor: pointer;
             display: flex;
@@ -279,11 +293,11 @@
             justify-content: center;
             font-size: 10px;
             font-weight: bold;
-            color: #555;
+            color: #555 !important;
             padding: 0;
             transition: background-color 0.2s;
             flex-shrink: 0;
-            transform: translateY(4px);
+            transform: translateY(0px);
             line-height: 1;
             user-select: none;
         }
@@ -308,8 +322,10 @@
             align-items: center;
             gap: 8px;
             margin: 0;
-            padding: 0 10px 8px 10px;
-            border-bottom: 1px solid #BEBEBE;
+            padding: 6px 8px 6px 8px !important;
+            border-bottom: 1px solid #999;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 1) !important;
         }
 
         /* Collapsed state for control containers */
@@ -333,78 +349,40 @@
             overflow: hidden !important;
         }
 
-        /* Legend section at bottom */
-        #legend-section {
-            flex-shrink: 0;
-            border-top: 1px solid #999;
-            max-height: 40vh; /* Max height to prevent taking too much space */
-            display: none; /* Hidden by default, shown only when legend layers are active */
-            position: relative;
+        /* Legend control */
+        .leaflet-control-legend-panel {
+            max-height: 50vh;
+            bottom: -10px !important;
+            left: -10px !important;
+        }
+
+        .leaflet-control-legend-panel .leaflet-control-layers.legend-control {
+            background: transparent;
+            border: none;
+            font-family: system-ui, sans-serif;
+            overflow: visible;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            height: 100%;
+            min-height: 0;
+            box-shadow: none;
+            width: auto;
         }
 
-        #legend-section.active {
-            display: flex;
+        .leaflet-control-legend-panel .leaflet-control-layers.legend-control.collapsed {
+            max-height: 32px !important;
+            overflow: hidden !important;
         }
 
-        /* Collapsed state: fixed height to show only header */
-        #legend-section.collapsed {
-            max-height: 38px;
+        .leaflet-control-legend-panel .leaflet-control-layers.legend-control.collapsed .master-legend-content {
+            display: none !important;
         }
 
-        /* Expanded state: allow content to flow */
-        #legend-section:not(.collapsed) {
-            display: flex;
-        }
-
-        #legend-section .legend-header {
-            flex-shrink: 0;
-        }
-
-        #legend-section .master-legend-content {
+        .leaflet-control-legend-panel .master-legend-content {
             flex-grow: 1;
             overflow-y: auto;
             padding: 0 10px 10px 10px;
             min-height: 0;
-        }
-
-        #legend-section.collapsed .master-legend-content {
-            display: none;
-        }
-
-        .legend-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 8px;
-            margin: 0;
-            padding: 0 10px 8px 10px;
-            border-bottom: 1px solid #BEBEBE;
-            font-size: 16px;
-            font-weight: bold;
-            color: #333;
-            font-family: system-ui, sans-serif;
-            letter-spacing: 0.75px;
-            cursor: pointer;
-            user-select: none;
-            flex-shrink: 0;
-        }
-
-        #legend-section.collapsed .legend-toggle::after {
-            content: '+';
-        }
-
-        #legend-section:not(.collapsed) .legend-toggle::after {
-            content: '−';
-        }
-
-        .master-legend-content {
-            font-size: 13px;
-            line-height: 1.6;
-            font-family: system-ui, sans-serif;
-            box-sizing: border-box;
         }
 
         .master-legend-content i {
@@ -414,7 +392,7 @@
 
         .legend-separator {
             height: 1px;
-            background-color: #ccc;
+            background-color: #999;
             margin: 8px 0;
         }
 
@@ -461,33 +439,27 @@
 </head>
 <body>
     <div id="map"></div>
-    
-    <!-- Right Dashboard: Base Maps -->
-    <div id="basemaps-section" class="dashboard-section"></div>
-    
-    <!-- Left Dashboard: Overlays and Legend -->
-    <div id="left-dashboard">
-        <div id="overlays-section" class="dashboard-section"></div>
-        <div id="legend-section" class="dashboard-section collapsed">
-            <h4 class="legend-header">
-                <span>Legend</span>
-                <div class="legend-toggle"></div>
-            </h4>
-            <div class="master-legend-content"></div>
-        </div>
-    </div>
-
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.js"></script>
+    <script src="https://unpkg.com/esri-leaflet@3.0.10/dist/esri-leaflet.js"></script>
 
     <script>
+        // Wait for stylesheets to load before initializing map
+        // This prevents "Layout was forced before page was fully loaded" warning
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeMap);
+        } else {
+            // DOM is already ready (script loaded after DOMContentLoaded)
+            initializeMap();
+        }
 
-        // Initialize the map on the lower schuylkill river
-        const map = L.map('map',{attributionControl: false, zoomControl: false}).setView([39.917359, -75.204920], 14);
-        //create a top pane for the AOI labels,
-        L.control.attribution({position: 'bottomleft'}).addTo(map);
+        function initializeMap() {
+            // Initialize the map on the lower schuylkill river
+            const map = L.map('map',{attributionControl: false, zoomControl: false}).setView([39.917359, -75.204920], 14);
+            //create a top pane for the AOI labels,
+            L.control.attribution({position: 'bottomleft'}).addTo(map);
 
-        map.attributionControl.setPrefix()
+            map.attributionControl.setPrefix()
         
         // Create custom combined zoom + fullscreen control
         const CombinedControl = L.Control.extend({
@@ -537,7 +509,7 @@
             { name: "1867 Barnes", layer: L.tileLayer('https://mapwarper.net/mosaics/tile/2278/{z}/{x}/{y}.png', {
                  attribution: 'Free Library of Philadelphia'
             }), year: 1867 },
-            { name: "1876 Hopkins", layer: L.tileLayer('https://mapwarper.net/mosaics/tile/2272/{z}/{x}/{y}.png', {
+            { name: "1876 Hopkins", layer: L.tileLayer('https://mapwarper.net/mosaics/tile/2465/{z}/{x}/{y}.png', {
                  attribution: 'Free Library of Philadelphia'
             }), year: 1876 },
             { name: "1892 Waterfront", layer: L.tileLayer('https://mapwarper.net/maps/tile/91523/{z}/{x}/{y}.png', {
@@ -606,14 +578,20 @@
             { name: "1995 USGS", layer: L.tileLayer('https://mapwarper.net/maps/tile/88568/{z}/{x}/{y}.png', {
                 attribution: 'USGS'
             }), year: 1995 },
-            { name: "2019 satellite", layer: L.tileLayer.wms('https://imagery.pasda.psu.edu/arcgis/services/pasda/PhiladelphiaImagery2019/MapServer/WMSServer?', {
-                layers: '1',
+            { name: "2019 satellite", layer: L.tileLayer.wms('https://imagery.pasda.psu.edu/arcgis/services/pasda/PhiladelphiaImagery2019/MapServer/WMSServer', {
+                layers: '2',
                 format: 'image/png',
                 transparent: true,
                 attribution: 'Delaware Valley Regional Planning Comission',
+                crossOrigin: 'anonymous',
+                version: '1.3.0'
             }), year: 2019 },
             { name: "2019 USGS", layer: L.tileLayer('https://mapwarper.net/maps/tile/88569/{z}/{x}/{y}.png', {
                 attribution: 'USGS'
+            }), year: 2019 },
+            { name: "2019 aerial", layer: L.esri.tiledMapLayer({
+                url: 'https://tiles.arcgis.com/tiles/fLeGjb7u4uXqeF9q/arcgis/rest/services/CityImagery_2019_3in/MapServer',
+                attribution: 'Esri - Philadelphia 2019 Imagery'
             }), year: 2019 },
             { name: "2023 USGS", layer: L.tileLayer('https://mapwarper.net/maps/tile/88570/{z}/{x}/{y}.png', {
                 attribution: 'USGS'
@@ -659,7 +637,7 @@
             "ZIP Codes, 2025": L.layerGroup(),
             "Industrial zones": L.layerGroup(),
             "Percent industrial, 2026": L.layerGroup(),
-            'HOLC "redlining map," 1937': L.layerGroup(),
+            'HOLC "redlining" map, 1937': L.layerGroup(),
             "LNAPL plume, 1996A": L.tileLayer('https://mapwarper.net/maps/tile/88772/{z}/{x}/{y}.png', {attribution: 'US Army Corps of Engineers'}),
             "LNAPL plume, 1996B": L.tileLayer('https://mapwarper.net/maps/tile/88779/{z}/{x}/{y}.png'),
             "LNAPL plume, 1996C": L.tileLayer('https://mapwarper.net/maps/tile/88816/{z}/{x}/{y}.png'),
@@ -745,7 +723,8 @@ async function loadZIPLayers() {
             icon: L.divIcon({
               className: 'zip-code-label',
               html: `<div><b>${feature.properties.CODE}</b></div>`,
-              iconSize: [36, 20]
+              iconSize: null,  // Auto-size to content
+              iconAnchor: null  // Center the icon
             }),
             interactive: false
           });
@@ -845,11 +824,11 @@ overlays["Areas of Interest (AOI)"] = L.layerGroup([aoiBoundaries, aoiLabels]).a
 
         // 1. Define color mapping (keep existing)
 const redliningGrades = {
-    'A = First grade': '#76a865',
-    'B = Second grade': '#7cb5bd',
-    'C = Third grade': '#ffff00',
-    'D = Fourth grade': '#d9838d',
-    'Industrial or commercial': '#999999',
+    'A = "1st grade"': '#76a865',
+    'B = "Second grade"': '#7cb5bd',
+    'C = "Third grade"': '#ffff00',
+    'D = "Fourth grade"': '#d9838d',
+    '"Industrial or commercial"': '#525252',
 };
 
 // 2. Create style function that matches grades to colors
@@ -857,7 +836,7 @@ function getRedliningStyle(feature) {
     const gradeColor = feature.properties.fill || '#cab2d6';
     
     return {
-        color: 'black',  // Changed from '#555555' to 'black'
+        color: 'black',
         weight: 1,  // Changed from feature.properties['stroke-width'] || 2 to make it thinner
         opacity: feature.properties['stroke-opacity'] || 1,
         fillColor: gradeColor,
@@ -870,15 +849,15 @@ let activeLegendSections = {}; // Track which legend sections are active
 
 // Define legend sections for each layer
 const legendSections = {
-    'HOLC "redlining map," 1937': {
+    'HOLC "redlining" map, 1937': {
         title: 'Redlining Grades',
         items: []
     },
     "Industrial zones": {
         title: 'Industrial Zones',
         items: [
-            {color: 'rgba(128, 0, 128, 0.2)', label: 'Industrial Zoning', border: '1px solid purple'},
-            {color: 'rgba(128, 0, 128, 0.7)', label: 'Keystone Opportunity Zone', border: '1px solid purple'}
+            {color: 'rgba(128, 0, 128, 0.2)', label: 'Industrial Zoning', border: '1px solid black'},
+            {color: 'rgba(128, 0, 128, 0.7)', label: 'Keystone Opportunity Zone', border: '1px solid black'}
         ]
     },
     "Percent industrial, 2026": {
@@ -896,7 +875,7 @@ const legendSections = {
 
 // Populate redlining items
 for (var grade in redliningGrades) {
-    legendSections['HOLC "redlining map," 1937'].items.push({
+    legendSections['HOLC "redlining" map, 1937'].items.push({
         color: redliningGrades[grade],
         label: grade,
         border: 'none'
@@ -905,20 +884,25 @@ for (var grade in redliningGrades) {
 
 // Function to update the master legend in dashboard
 function updateMasterLegend() {
-    const legendSection = document.getElementById('legend-section');
-    const legendContent = document.querySelector('.master-legend-content');
+    const legendContainer = window._legendContainer;
+    const legendControl = window._legendControl;
+    const legendContent = window._legendContent;
     
     if (Object.keys(activeLegendSections).length === 0) {
-        // No active legends - hide the section completely
-        legendSection.classList.remove('active');
-        legendSection.classList.add('collapsed');
+        // No active legends - hide the entire panel and collapse
+        if (legendContainer) {
+            legendContainer.style.display = 'none';
+        }
+        legendControl.classList.add('collapsed');
         legendContent.innerHTML = '';
         return;
     }
     
     // Active legends exist - show and expand the section
-    legendSection.classList.add('active');
-    legendSection.classList.remove('collapsed');
+    if (legendContainer) {
+        legendContainer.style.display = 'block';
+    }
+    legendControl.classList.remove('collapsed');
     
     // Rebuild legend content
     if (legendContent) {
@@ -950,18 +934,18 @@ function updateMasterLegend() {
 }
 
 // Layer toggle handlers
-overlays['HOLC "redlining map," 1937'].on('add', function() {
-    activeLegendSections['HOLC "redlining map," 1937'] = true;
+overlays['HOLC "redlining" map, 1937'].on('add', function() {
+    activeLegendSections['HOLC "redlining" map, 1937'] = true;
     updateMasterLegend();
 });
-overlays['HOLC "redlining map," 1937'].on('remove', function() {
-    delete activeLegendSections['HOLC "redlining map," 1937'];
+overlays['HOLC "redlining" map, 1937'].on('remove', function() {
+    delete activeLegendSections['HOLC "redlining" map, 1937'];
     updateMasterLegend();
 });
 
 loadGeoJSON(
     '/assets/js/redlining.geojson',
-    overlays['HOLC "redlining map," 1937'],
+    overlays['HOLC "redlining" map, 1937'],
     {
         style: getRedliningStyle
     }
@@ -971,59 +955,10 @@ loadGeoJSON(
         loadGeoJSON('/assets/js/FEMA_100yr_floodplain.geojson', 
                    overlays["FEMA, 100-year flood zone, 2025"], { 
                        style: {
-                           color: 'blue', fillOpacity: 0.1
+                           color: '#440154', fillOpacity: 0.09, weight:1.3
                        }
                    });
         
-// Custom hatch pattern function. CDN issues prevented the use of the leaflet.hatch plugin, so this is a custom SVG implemementation.
-function addHatchPattern(layer, options = {}) {
-    const angle = options.angle || 45;
-    const spacing = options.spacing || 10;
-    const weight = options.weight || 2;
-    const color = options.color || 'black';
-    const opacity = options.opacity || 0.7;
-    
-    // Create SVG pattern
-    const patternId = 'hatch-' + Math.random().toString(36).substr(2, 9);
-    const svgNS = "http://www.w3.org/2000/svg";
-    
-    const pattern = document.createElementNS(svgNS, "pattern");
-    pattern.setAttribute("id", patternId);
-    pattern.setAttribute("patternUnits", "userSpaceOnUse");
-    pattern.setAttribute("width", spacing);
-    pattern.setAttribute("height", spacing);
-    pattern.setAttribute("patternTransform", `rotate(${angle})`);
-    
-    const line = document.createElementNS(svgNS, "line");
-    line.setAttribute("x1", "0");
-    line.setAttribute("y1", "0");
-    line.setAttribute("x2", "0");
-    line.setAttribute("y2", spacing);
-    line.setAttribute("stroke", color);
-    line.setAttribute("stroke-width", weight);
-    line.setAttribute("opacity", opacity);
-    
-    pattern.appendChild(line);
-    
-    // Add to SVG defs or create if doesn't exist
-    let defs = document.getElementById('hatch-defs');
-    if (!defs) {
-        defs = document.createElementNS(svgNS, "defs");
-        defs.setAttribute("id", "hatch-defs");
-        const svg = document.createElementNS(svgNS, "svg");
-        svg.setAttribute("style", "position: absolute; width: 0; height: 0;");
-        svg.appendChild(defs);
-        document.body.appendChild(svg);
-    }
-    defs.appendChild(pattern);
-    
-    // Apply pattern to layer
-    const element = layer.getElement();
-    if (element) {
-        element.style.fill = `url(#${patternId})`;
-    }
-}
-
 // Load industrial zoning (more opaque purple)
 loadGeoJSON('/assets/js/industrial_tracts_trimmed.geojson', 
            overlays["Industrial zones"], { 
@@ -1092,37 +1027,37 @@ loadGeoJSON('/assets/js/industrial_tracts_trimmed.geojson',
         });
 
         loadGeoJSON('/assets/js/2Ft_SLR.geojson',
-                    overlays["NOAA, 2-foot rise in sea level"], {style: {color: 'blue', weight:1}});
+                    overlays["NOAA, 2-foot rise in sea level"], {style: {color: '#3b528b', weight:1, fillOpacity: .6}});
 
         loadGeoJSON('/assets/js/4ftSLR.geojson',
-                    overlays["NOAA, 4-foot rise in sea level"], {style: {color: 'blue', weight:1}});
+                    overlays["NOAA, 4-foot rise in sea level"], {style: {color: '#08306b', weight:.5, fillOpacity: .2}});
         
         loadGeoJSON('/assets/js/1960_predominantly_AfAm.geojson',
-                    overlays["Census, 50+ percent Black, 1960"], {style: {color: '#aa00ff', weight:1}});
+                    overlays["Census, 50+ percent Black, 1960"], {style: {color: '#21918c', weight:1, fillOpacity: 0.2}});
 
         loadGeoJSON('/assets/js/1980_predominant_afam.geojson',
-                    overlays["Census, 50+ percent Black, 1980"], {style: {color: '#aa00ff', weight:1}});
+                    overlays["Census, 50+ percent Black, 1980"], {style: {color: '#21918c', weight:1, fillOpacity: 0.2}});
 
         loadGeoJSON('/assets/js/1980_25pctPoverty.geojson',
-                    overlays["Census, 25+ percent children in poverty, 1980"], {style: {color: 'green', weight:1}});
+                    overlays["Census, 25+ percent children in poverty, 1980"], {style: {color: '#a0da39', weight:1, fillOpacity: 0.2}});
 
         loadGeoJSON('/assets/js/predominantAfam_2000.geojson',
-                    overlays["Census, 50+ percent Black, 2000"], {style: {color: '#aa00ff', weight:1}});
+                    overlays["Census, 50+ percent Black, 2000"], {style: {color: '#21918c', weight:1, fillOpacity: 0.2}});
         
         loadGeoJSON('/assets/js/2000_25pctPoverty.geojson',
-                    overlays["Census, 25+ percent children in poverty, 2000"], {style: {color: 'green', weight:1}});
+                    overlays["Census, 25+ percent children in poverty, 2000"], {style: {color: '#a0da39', weight:1, fillOpacity: 0.2}});
         
         loadGeoJSON('/assets/js/2020_pct_Afam.geojson',
-                    overlays["Census, 50+ percent Black, 2020"], {style: {color: '#aa00ff', weight:1}});
+                    overlays["Census, 50+ percent Black, 2020"], {style: {color: '#21918c', weight:1, fillOpacity: 0.2}});
 
         loadGeoJSON('/assets/js/2020_25pctPoverty.geojson',
-                    overlays["Census, 25+ percent children in poverty, 2020"], {style: {color: 'green', weight:1}});
+                    overlays["Census, 25+ percent children in poverty, 2020"], {style: {color: '#a0da39', weight:1, fillOpacity: 0.2}});
 
         loadGeoJSON('/assets/js/city_limits.geojson',
-                    overlays["Philadelphia County"], {style: {color: 'black', weight:4, fillOpacity: 0}});
+                    overlays["Philadelphia County"], {style: {color: '#222', weight:4, fillOpacity: 0}});
 
         loadGeoJSON('/assets/js/Political_Wards.geojson',
-                    overlays["Political Ward Boundaries, 2025"], {style: {color: 'black', weight:4}});
+                    overlays["Political Ward Boundaries, 2025"], {style: {color: '#343', weight:2, fillOpacity:0}});
         
         // Function to create custom river point labels
         function createRiverPointLabel(feature, latlng) {
@@ -1155,14 +1090,32 @@ loadGeoJSON('/assets/js/industrial_tracts_trimmed.geojson',
             autoZIndex: false // Prevents z-index shuffling
         }).addTo(map);
         
-        // Get the basemap control container and prepare for dashboard
-        const basemapContainer = basemapControl.getContainer();
+        // Hide "Percent industrial, 2026" layer from UI (keep in codebase for future use)
+        const overlaysForControl = Object.fromEntries(
+            Object.entries(overlays).filter(([key]) => key !== "Percent industrial, 2026")
+        );
+
+        // Create overlay control and add to map to generate container
+        const overlayControl = L.control.layers(null, overlaysForControl, {
+            collapsed: false,
+            position: 'topleft'
+        }).addTo(map);
         
-        // Remove default positioning styles
-        basemapContainer.style.position = 'static';
-        basemapContainer.style.top = 'auto';
-        basemapContainer.style.right = 'auto';
-        basemapContainer.style.margin = '0';
+        // Get the basemap control container and style it
+        const basemapContainer = basemapControl.getContainer();
+        L.DomUtil.addClass(basemapContainer, 'leaflet-control-basemaps-panel');
+        L.DomUtil.addClass(basemapContainer, 'leaflet-control-layers-expanded');
+        
+        // Force the basemap container to expand
+        basemapContainer.style.height = '60vh';
+        basemapContainer.style.display = 'flex';
+        basemapContainer.style.flexDirection = 'column';
+        
+        // Also style the outer Leaflet wrapper to not constrain the height
+        if (basemapContainer.parentElement) {
+            basemapContainer.parentElement.style.height = 'auto';
+            basemapContainer.parentElement.style.maxHeight = 'none';
+        }
         
         // Add label to basemap control
         const basemapLabelContainer = L.DomUtil.create('div', 'control-label-container', basemapContainer);
@@ -1173,38 +1126,25 @@ loadGeoJSON('/assets/js/industrial_tracts_trimmed.geojson',
         
         // Add collapse event listener
         basemapCollapseBtn.addEventListener('click', function(e) {
-            console.log('Basemap collapse button clicked');
-            console.log('basemapContainer before toggle:', L.DomUtil.hasClass(basemapContainer, 'collapsed'));
             e.stopPropagation();
             e.preventDefault();
             basemapContainer.classList.toggle('collapsed');
-            console.log('basemapContainer after toggle:', L.DomUtil.hasClass(basemapContainer, 'collapsed'));
         });
         
         basemapContainer.insertBefore(basemapLabelContainer, basemapContainer.firstChild);
         
-        // Move basemap control into dashboard (remove from map default position)
-        const basemapsSectionDiv = document.getElementById('basemaps-section');
-        if (basemapsSectionDiv) {
-            basemapsSectionDiv.appendChild(basemapContainer);
-            basemapsSectionDiv.classList.add('active');
-        }
-
-        // Create overlay control and add to map to generate container
-        const overlayControl = L.control.layers(null, overlays, {
-            collapsed: false,
-            position: 'topleft'
-        }).addTo(map);
-        
-        // Get the overlay control container and prepare for dashboard
+        // Get the overlay control container and style it
         const overlayContainer = overlayControl.getContainer();
+        L.DomUtil.addClass(overlayContainer, 'leaflet-control-overlays-panel');
         L.DomUtil.addClass(overlayContainer, 'leaflet-control-layers-expanded');
         
-        // Remove default positioning styles
         overlayContainer.style.position = 'static';
         overlayContainer.style.top = 'auto';
         overlayContainer.style.left = 'auto';
         overlayContainer.style.margin = '0';
+        overlayContainer.style.background = 'transparent';
+        overlayContainer.style.border = 'none';
+        overlayContainer.style.boxShadow = 'none';
         
         // Add label to overlay control
         const overlayLabelContainer = L.DomUtil.create('div', 'control-label-container', overlayContainer);
@@ -1215,38 +1155,52 @@ loadGeoJSON('/assets/js/industrial_tracts_trimmed.geojson',
         
         // Add collapse event listener
         overlayCollapseBtn.addEventListener('click', function(e) {
-            console.log('Overlay collapse button clicked');
-            console.log('overlayContainer before toggle:', L.DomUtil.hasClass(overlayContainer, 'collapsed'));
             e.stopPropagation();
             e.preventDefault();
             overlayContainer.classList.toggle('collapsed');
-            console.log('overlayContainer after toggle:', L.DomUtil.hasClass(overlayContainer, 'collapsed'));
         });
         
         overlayContainer.insertBefore(overlayLabelContainer, overlayContainer.firstChild);
         
-        // Move overlay control into dashboard (remove from map default position)
-        const overlaysSectionDiv = document.getElementById('overlays-section');
-        if (overlaysSectionDiv) {
-            overlaysSectionDiv.appendChild(overlayContainer);
-        }
-        
-        // Add legend collapse/expand functionality
-        const legendSection = document.getElementById('legend-section');
-        const legendHeader = legendSection.querySelector('.legend-header');
-        
-        // Toggle from header (when collapsed/visible)
-        legendHeader.addEventListener('click', function(e) {
-            e.stopPropagation();
-            e.preventDefault();
-            
-            if (legendSection.classList.contains('collapsed')) {
-                legendSection.classList.remove('collapsed');
-            } else {
-                legendSection.classList.add('collapsed');
+        // Create Legend control
+        const LegendControl = L.Control.extend({
+            options: {
+                position: 'bottomleft'
+            },
+            onAdd: function(map) {
+                const container = L.DomUtil.create('div', 'leaflet-control leaflet-control-custom-panel leaflet-control-legend-panel');
+                
+                const legendControl = L.DomUtil.create('div', 'leaflet-control-layers legend-control collapsed', container);
+                const legendLabelContainer = L.DomUtil.create('div', 'control-label-container', legendControl);
+                const legendLabel = L.DomUtil.create('h4', 'control-label', legendLabelContainer);
+                legendLabel.textContent = 'Legend';
+                const legendCollapseBtn = L.DomUtil.create('div', 'collapse-toggle', legendLabelContainer);
+                legendCollapseBtn.title = 'Toggle Legend';
+                legendControl.insertBefore(legendLabelContainer, legendControl.firstChild);
+                const legendContent = L.DomUtil.create('div', 'master-legend-content', legendControl);
+                
+                // Make header clickable for collapse/expand
+                legendCollapseBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    legendControl.classList.toggle('collapsed');
+                });
+                
+                // Store references for updates (both outer container and inner control)
+                window._legendContainer = container;
+                window._legendControl = legendControl;
+                window._legendContent = legendContent;
+                
+                // Initially hide the panel
+                container.style.display = 'none';
+                
+                return container;
             }
         });
-
+        
+        // Add Legend control to map
+        new LegendControl({position: 'bottomleft'}).addTo(map);
+        
         map.on('baselayerchange', function() {
             permanentOSM.bringToBack(); // Force OSM behind current basemap
         });
@@ -1255,6 +1209,78 @@ loadGeoJSON('/assets/js/industrial_tracts_trimmed.geojson',
         window.addEventListener('resize', function() {
             map.invalidateSize();
         });
+
+        // Dynamic sizing: Overlays panel shrinks/grows based on Legend height
+        function updateOverlaysPanelHeight() {
+            const mapEl = document.getElementById('map');
+            const overlaysPanel = document.querySelector('.leaflet-control-overlays-panel');
+            const overlaysList = overlaysPanel ? overlaysPanel.querySelector('.leaflet-control-layers-list') : null;
+            const overlaysControl = overlaysPanel ? overlaysPanel.querySelector('.leaflet-control-layers') : null;
+            const legendPanel = document.querySelector('.leaflet-control-legend-panel');
+            const attribution = document.querySelector('.leaflet-control-attribution');
+            
+            if (!mapEl || !overlaysPanel) {
+                console.log('Sizing: Missing mapEl or overlaysPanel');
+                return;
+            }
+            
+            // Get viewport height
+            const mapHeight = mapEl.clientHeight;
+            
+            // Get legend height (only if visible)
+            let legendHeight = 0;
+            if (legendPanel && legendPanel.style.display !== 'none') {
+                legendHeight = legendPanel.offsetHeight;
+            }
+            
+            // Get attribution height
+            const attributionHeight = attribution ? attribution.offsetHeight : 20;
+            
+            // Get overlays header height
+            const overlaysHeader = overlaysPanel.querySelector('.control-label-container');
+            const headerHeight = overlaysHeader ? overlaysHeader.offsetHeight : 40;
+            
+            // Calculate available height for overlays with 10px buffer between panels
+            const buffer = 10;
+            const calculatedHeight = mapHeight - legendHeight - attributionHeight - buffer - headerHeight;
+            
+            // Apply the calculated height with a minimum of 150px to keep usable
+            const minHeight = 120;
+            const finalHeight = Math.max(calculatedHeight, minHeight);
+            
+            // Apply to outer panel
+            overlaysPanel.style.setProperty('max-height', (finalHeight + headerHeight) + 'px', 'important');
+            
+            // Apply to inner list to make it scrollable
+            if (overlaysList) {
+                overlaysList.style.setProperty('max-height', finalHeight + 'px', 'important');
+            }
+            
+            console.log('Overlays size: finalHeight=' + finalHeight + 'px, total=' + (finalHeight + headerHeight) + 'px (header=' + headerHeight + 'px, legend=' + legendHeight + 'px, map=' + mapHeight + 'px, attribution=' + attributionHeight + 'px)');
+        }
+        
+        // Update on load
+        setTimeout(updateOverlaysPanelHeight, 500);
+        
+        // Update on window resize
+        window.addEventListener('resize', updateOverlaysPanelHeight);
+        
+        // Update when legend expands/collapses
+        const legendCollapseObserver = setInterval(() => {
+            const legendPanel = document.querySelector('.leaflet-control-legend-panel');
+            if (legendPanel) {
+                clearInterval(legendCollapseObserver);
+                // Monitor for class changes (collapse/expand)
+                const legendControl = legendPanel.querySelector('.legend-control');
+                if (legendControl) {
+                    const observer = new MutationObserver(updateOverlaysPanelHeight);
+                    observer.observe(legendControl, { attributes: true, attributeFilter: ['class'] });
+                    // Also update when legend container visibility changes
+                    const containerObserver = new MutationObserver(updateOverlaysPanelHeight);
+                    containerObserver.observe(legendPanel, { attributes: true, attributeFilter: ['style'] });
+                }
+            }
+        }, 100);
 
 // Define layer descriptions (add this new object for info pane or popup)
 const layerDescriptions = {
@@ -1294,7 +1320,7 @@ labelStyle.textContent = `
         margin: 0;
         padding: 0;
         font-size: 16px;
-        font-weight: bold;
+        font-weight: 650;
         color: #333;
         font-family: system-ui, sans-serif;
         letter-spacing: 0.75px;
@@ -1302,6 +1328,7 @@ labelStyle.textContent = `
     }
 `;
 document.head.appendChild(labelStyle);
+        } // End initializeMap function
 
     </script>
 </body>
