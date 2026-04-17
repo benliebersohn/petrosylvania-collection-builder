@@ -396,6 +396,23 @@
             margin: 8px 0;
         }
 
+        .leaflet-control-attribution {
+           background: white !important;
+           border: 1px solid #ccc !important;
+           border-radius: 1px;
+           padding: 2px 2px !important;
+           font-family: system-ui, sans-serif;
+           font-size: 10px !important;
+           font-weight: 400 !important;
+           color: #000000 !important;
+           letter-spacing: 0.3px !important;
+           display: inline-block !important;
+           white-space: nowrap !important;
+           bottom: 0px !important;
+           left: 0px !important;
+           z-index: 500;
+        }
+
         /* Scrollbar styling - unified for all panels */
         .leaflet-control-layers-list::-webkit-scrollbar,
         .master-legend-content::-webkit-scrollbar {
@@ -631,7 +648,7 @@
         const overlays = {
             "Street labels": L.tileLayer('https://a.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {pane: 'topPane', attribution: 'CartoDB'}),
             "Areas of Interest (AOI)": L.layerGroup([aoiBoundaries, aoiLabels]),
-            "Philadelphia County": L.layerGroup({attribution:'OpenDataPhilly'}),
+            "Philadelphia County": L.layerGroup(),
             "Political Ward Boundaries, 2025": L.layerGroup(),
             "River Points": L.layerGroup(),
             "ZIP Codes, 2025": L.layerGroup(),
@@ -639,9 +656,9 @@
             "Percent industrial, 2026": L.layerGroup(),
             'HOLC "redlining" map, 1937': L.layerGroup(),
             "LNAPL plume, 1996A": L.tileLayer('https://mapwarper.net/maps/tile/88772/{z}/{x}/{y}.png', {attribution: 'US Army Corps of Engineers'}),
-            "LNAPL plume, 1996B": L.tileLayer('https://mapwarper.net/maps/tile/88779/{z}/{x}/{y}.png'),
-            "LNAPL plume, 1996C": L.tileLayer('https://mapwarper.net/maps/tile/88816/{z}/{x}/{y}.png'),
-            "LNAPL plume, 1996D": L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}.png'),
+            "LNAPL plume, 1996B": L.tileLayer('https://mapwarper.net/maps/tile/88779/{z}/{x}/{y}.png', {attribution: 'US Army Corps of Engineers'}),
+            "LNAPL plume, 1996C": L.tileLayer('https://mapwarper.net/maps/tile/88816/{z}/{x}/{y}.png', {attribution: 'US Army Corps of Engineers'}),
+            "LNAPL plume, 1996D": L.tileLayer('https://mapwarper.net/maps/tile/88817/{z}/{x}/{y}.png', {attribution: 'US Army Corps of Engineers'}),
             "Census, 50+ percent Black, 1960": L.layerGroup(),
             "Census, 50+ percent Black, 1980": L.layerGroup(),
             "Census, 50+ percent Black, 2000": L.layerGroup(),
@@ -676,6 +693,11 @@ async function loadGeoJSON(url, targetLayer, options = {}) {
     
     if (targetLayer && targetLayer.addLayer) {
       targetLayer.addLayer(geoJsonLayer);
+    }
+    
+    // Add attribution if provided
+    if (options.attribution && map && map.attributionControl) {
+      map.attributionControl.addAttribution(options.attribution);
     }
     
     return geoJsonLayer;
@@ -1027,37 +1049,37 @@ loadGeoJSON('/assets/js/industrial_tracts_trimmed.geojson',
         });
 
         loadGeoJSON('/assets/js/2Ft_SLR.geojson',
-                    overlays["NOAA, 2-foot rise in sea level"], {style: {color: '#3b528b', weight:1, fillOpacity: .6}});
+                    overlays["NOAA, 2-foot rise in sea level"], {style: {color: '#3b528b', weight:1, fillOpacity: .6}, attribution: 'NOAA Sea Level Rise Viewer'});
 
         loadGeoJSON('/assets/js/4ftSLR.geojson',
-                    overlays["NOAA, 4-foot rise in sea level"], {style: {color: '#08306b', weight:.5, fillOpacity: .2}});
+                    overlays["NOAA, 4-foot rise in sea level"], {style: {color: '#08306b', weight:.5, fillOpacity: .2}, attribution: 'NOAA Sea Level Rise Viewer'});
         
         loadGeoJSON('/assets/js/1960_predominantly_AfAm.geojson',
-                    overlays["Census, 50+ percent Black, 1960"], {style: {color: '#21918c', weight:1, fillOpacity: 0.2}});
+                    overlays["Census, 50+ percent Black, 1960"], {style: {color: '#21918c', weight:1, fillOpacity: 0.2}, attribution: 'US Census Bureau'});
 
         loadGeoJSON('/assets/js/1980_predominant_afam.geojson',
-                    overlays["Census, 50+ percent Black, 1980"], {style: {color: '#21918c', weight:1, fillOpacity: 0.2}});
+                    overlays["Census, 50+ percent Black, 1980"], {style: {color: '#21918c', weight:1, fillOpacity: 0.2}, attribution: 'US Census Bureau'});
 
         loadGeoJSON('/assets/js/1980_25pctPoverty.geojson',
-                    overlays["Census, 25+ percent children in poverty, 1980"], {style: {color: '#a0da39', weight:1, fillOpacity: 0.2}});
+                    overlays["Census, 25+ percent children in poverty, 1980"], {style: {color: '#a0da39', weight:1, fillOpacity: 0.2}, attribution: 'US Census Bureau'});
 
         loadGeoJSON('/assets/js/predominantAfam_2000.geojson',
-                    overlays["Census, 50+ percent Black, 2000"], {style: {color: '#21918c', weight:1, fillOpacity: 0.2}});
+                    overlays["Census, 50+ percent Black, 2000"], {style: {color: '#21918c', weight:1, fillOpacity: 0.2}, attribution: 'US Census Bureau'});
         
         loadGeoJSON('/assets/js/2000_25pctPoverty.geojson',
-                    overlays["Census, 25+ percent children in poverty, 2000"], {style: {color: '#a0da39', weight:1, fillOpacity: 0.2}});
+                    overlays["Census, 25+ percent children in poverty, 2000"], {style: {color: '#a0da39', weight:1, fillOpacity: 0.2}, attribution: 'US Census Bureau'});
         
         loadGeoJSON('/assets/js/2020_pct_Afam.geojson',
-                    overlays["Census, 50+ percent Black, 2020"], {style: {color: '#21918c', weight:1, fillOpacity: 0.2}});
+                    overlays["Census, 50+ percent Black, 2020"], {style: {color: '#21918c', weight:1, fillOpacity: 0.2}, attribution: 'US Census Bureau'});
 
         loadGeoJSON('/assets/js/2020_25pctPoverty.geojson',
-                    overlays["Census, 25+ percent children in poverty, 2020"], {style: {color: '#a0da39', weight:1, fillOpacity: 0.2}});
+                    overlays["Census, 25+ percent children in poverty, 2020"], {style: {color: '#a0da39', weight:1, fillOpacity: 0.2}, attribution: 'US Census Bureau'});
 
         loadGeoJSON('/assets/js/city_limits.geojson',
-                    overlays["Philadelphia County"], {style: {color: '#222', weight:4, fillOpacity: 0}});
+                    overlays["Philadelphia County"], {style: {color: '#222', weight:4, fillOpacity: 0}, attribution: 'Data &copy; City of Philadelphia'});
 
         loadGeoJSON('/assets/js/Political_Wards.geojson',
-                    overlays["Political Ward Boundaries, 2025"], {style: {color: '#343', weight:2, fillOpacity:0}});
+                    overlays["Political Ward Boundaries, 2025"], {style: {color: '#343', weight:2, fillOpacity:0}, attribution:  'Data &copy; City of Philadelphia'});
         
         // Function to create custom river point labels
         function createRiverPointLabel(feature, latlng) {

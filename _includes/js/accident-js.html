@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.css" />
     <!-- Choose your style: accident-style-clean.css (sharp/modern) or accident-style-original.css (rounded/soft) -->
-    <link rel="stylesheet" href="accident-style-clean.css" />
+    <link rel="stylesheet" href="/assets/css/accident-style-clean.css" />
     
 </head>
 <body>
@@ -18,27 +18,52 @@
 
     <script>
         // Initialize a map with a view set to S Philly at city-scale 13
-        const map = L.map('map').setView([39.921276, -75.189891], 13);
+        const map = L.map('map', { attributionControl: false, zoomControl: false }).setView([39.921276, -75.189891], 13);
         
         // Add OSM
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">ESRI</a>'
         }).addTo(map);
         
-        // Set attribution control
-        map.attributionControl.setPrefix(false);
+        // Add attribution control positioned at bottom left (matching layeredmap-js.html)
+        L.control.attribution({position: 'bottomleft'}).addTo(map);
+        map.attributionControl.setPrefix();
         
-        // Add fullscreen control
-		map.addControl(new L.Control.FullScreen({
-			position: 'topleft',
-			title: 'View Fullscreen', // Add tooltips
-			titleCancel: 'Exit Fullscreen' //
-		}));
+        // Create custom combined zoom + fullscreen control (matching layeredmap-js.html)
+        const CombinedControl = L.Control.extend({
+            onAdd: function(map) {
+                const container = L.DomUtil.create('div', 'leaflet-control leaflet-control-combined');
+                container.innerHTML = '<button class="control-button zoom-in" title="Zoom in">+</button>' +
+                                      '<button class="control-button zoom-out" title="Zoom out">\u2212</button>' +
+                                      '<button class="control-button fullscreen-btn" title="Fullscreen">\u26f6</button>';
+                
+                L.DomEvent.on(container.querySelector('.zoom-in'), 'click', () => map.zoomIn());
+                L.DomEvent.on(container.querySelector('.zoom-out'), 'click', () => map.zoomOut());
+                L.DomEvent.on(container.querySelector('.fullscreen-btn'), 'click', () => {
+                    if (document.fullscreenElement) {
+                        document.exitFullscreen();
+                    } else {
+                        document.getElementById('map').requestFullscreen();
+                    }
+                });
+                return container;
+            }
+        });
+        
+        new CombinedControl({position: 'bottomright'}).addTo(map);
 		
         // Create a layer group for accident dots
         const pointsLayer = L.layerGroup().addTo(map);
         
-        // Define a customized slider for time selection
+        // Function to calculate marker radius based on zoom level
+        function getScaledRadius(zoom) {
+            // Base radius at zoom 13, scales up/down with zoom
+            // Adjust the multiplier to control how much the dots scale
+            const baseZoom = 13;
+            const baseRadius = 5;
+            const scaleFactor = 0.66; // Adjust this for more/less scaling
+            return Math.max(2, baseRadius + (zoom - baseZoom) * scaleFactor);
+        }
         const SliderControl = L.Control.extend({
             options: {
                 position: 'topright'
@@ -112,12 +137,11 @@ function updateAccidentCount(filteredFeatures) {
 					feature.id = `accident-${index}`; // Add a unique ID
 				});
 				
-			    // Calculate center from all data points
+			    // Set map view to fit bounds of all data points in AOIgeodata.geojson
 				const tempLayer = L.geoJSON(geojsonData);
     			const bounds = tempLayer.getBounds();
     			if (bounds.isValid()) {
-        			const center = bounds.getCenter();
-        			map.setView(center, 13); // Center on data with zoom level 13
+        			map.fitBounds(bounds, { padding: [50, 50] }); // Fit map to layer bounds with padding
     			}
 				// Extract all valid years from features
             const years = [];
@@ -165,7 +189,6 @@ function updateAccidentCount(filteredFeatures) {
             });
             
             // Function to filter and display points
-			// Function to filter and display points
 function updatePointsByYear(yearRange) {
     // Clear existing points
     pointsLayer.clearLayers();
@@ -179,6 +202,9 @@ function updatePointsByYear(yearRange) {
     
     // Update accident count
     updateAccidentCount(filteredFeatures);
+    
+    // Get current zoom level for scaling
+    const currentZoom = map.getZoom();
     
     // Add filtered features to map
     L.geoJSON({
@@ -194,9 +220,9 @@ function updatePointsByYear(yearRange) {
                 color = "#ff7800"; // Orange for injuries
             }
             
-            // Create the marker
+            // Create the marker with zoom-scaled radius
             return L.circleMarker(latlng, {
-                radius: 6,
+                radius: getScaledRadius(currentZoom),
                 fillColor: color,
                 color: "#000",
                 weight: 1,
@@ -234,6 +260,12 @@ function updatePointsByYear(yearRange) {
             // Update display when slider changes
             slider.noUiSlider.on('update', function(values) {
                 const yearRange = values.map(Number);
+                updatePointsByYear(yearRange);
+            });
+            
+            // Update marker sizes when zoom changes
+            map.on('zoomend', function() {
+                const yearRange = slider.noUiSlider.get().map(Number);
                 updatePointsByYear(yearRange);
             });
         }
