@@ -214,10 +214,9 @@ function updatePointsByYear(yearRange) {
     
     // Filter features by year
     const filteredFeatures = geojsonData.features.filter(feature => {
-        return feature.properties.Year && 
-               !isNaN(feature.properties.Year) &&
-               feature.properties.Year >= yearRange[0] && 
-               feature.properties.Year <= yearRange[1];
+        const year = feature.properties.Year;
+        const yearNum = Number(year);
+        return year && !isNaN(yearNum) && yearNum >= yearRange[0] && yearNum <= yearRange[1];
     });
     
     // Update accident count
