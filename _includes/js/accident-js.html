@@ -4,51 +4,9 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- Choose your style: accident-style-clean.css (sharp/modern) or accident-style-original.css (rounded/soft) -->
+    <link rel="stylesheet" href="accident-style-clean.css" />
     
-    <style>
-        
-        #map { 
-            width: 100%;
-            height: 100vh;
-            position: relative;
-        }
-
-        .slider-control {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 5px 5px 30px 5px;
-            border-radius: 3px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-        }
-        
-        #year-slider {
-            width: 400px;
-            margin: 10px;
-        }
-        
-        .noUi-horizontal .noUi-tooltip {
-            bottom: -32px;
-            top: auto;
-        }
-
-        .noUi-tooltip {
-            font-family: 'Roboto', sans-serif;
-            font-size: 14px;
-            background: #333;
-            color: white;
-            padding: 3px 6px;
-            border-radius: 3px;
-            bottom: -32px;
-            top: auto;
-        }
-        
-        .leaflet-popup-content {
-			font-family: 'Roboto', sans-serif;
-            max-width: 300px;
-        }
-
-        
-    </style>
 </head>
 <body>
     <div id="map"></div>
