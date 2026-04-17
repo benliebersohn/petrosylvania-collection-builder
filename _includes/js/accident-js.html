@@ -10,13 +10,17 @@
 </head>
 <body>
     <div id="map"></div>
-	<!-- libraries are for leaflet, the time-selection slider, and fullscreen mode -->
+	<!-- libraries are for leaflet, the time-selection slider, fullscreen mode, and chart.js -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
  
 
     <script>
+        // Chart object (initialized after DOM loads)
+        let accidentChart = null;
+
         // Initialize a map with a view set to S Philly at city-scale 13
         const map = L.map('map', { attributionControl: false, zoomControl: false }).setView([39.921276, -75.189891], 13);
         
@@ -59,9 +63,9 @@
         function getScaledRadius(zoom) {
             // Base radius at zoom 13, scales up/down with zoom
             // Adjust the multiplier to control how much the dots scale
-            const baseZoom = 13;
-            const baseRadius = 5;
-            const scaleFactor = 0.66; // Adjust this for more/less scaling
+            const baseZoom = 13; 
+            const baseRadius = 4; // Base radius at zoom 13
+            const scaleFactor = .75; // Adjust this for more/less scaling
             return Math.max(2, baseRadius + (zoom - baseZoom) * scaleFactor);
         }
         const SliderControl = L.Control.extend({
@@ -87,9 +91,60 @@
         const sliderControl = new SliderControl();
         map.addControl(sliderControl);
 
+        // Define a customized chart control
+        const ChartControl = L.Control.extend({
+            options: {
+                position: 'topleft'
+            },
+            
+            onAdd: function(map) {
+                const container = L.DomUtil.create('div', 'chart-control');
+                
+                // Prevent map click events from being intercepted by the chart
+                L.DomEvent.disableClickPropagation(container);
+                
+                container.innerHTML = `
+                    <div style="background: white; border: 1px solid #ccc; padding: 8px; border-radius: 2px; width: 240px;">
+                        <h4 style="margin: 0 0 6px 0; font-size: 12px; text-align: center; color: #333; font-weight: 600;">Accident Severity</h4>
+                        <canvas id="accidentChart" style="display: block; height: 110px;"></canvas>
+                    </div>
+                `;
+                return container;
+            }
+        });
+        
+        // Add the chart control to the map
+        const chartControl = new ChartControl();
+        map.addControl(chartControl);
+
 				
         
-// update count display and print to console for debugging
+// Calculate nice round intervals for chart scales
+function calculateNiceInterval(maxValue) {
+    if (maxValue <= 0) return 1;
+    
+    // Find the order of magnitude
+    const magnitude = Math.pow(10, Math.floor(Math.log10(maxValue)));
+    
+    // Divide max by magnitude to get a normalized value (1-10)
+    const normalized = maxValue / magnitude;
+    
+    // Choose a nice interval based on the normalized value
+    let interval;
+    if (normalized <= 1.5) {
+        interval = 0.2 * magnitude;
+    } else if (normalized <= 2) {
+        interval = 0.25 * magnitude;
+    } else if (normalized <= 5) {
+        interval = 0.5 * magnitude;
+    } else {
+        interval = 1 * magnitude;
+    }
+    
+    return Math.ceil(interval);
+}
+
+// update count display and update the chart
 function updateAccidentCount(filteredFeatures) {
     const count = filteredFeatures.length;
 
@@ -112,7 +167,31 @@ function updateAccidentCount(filteredFeatures) {
         }
     });
 
-    // Just log to console (no DOM updates since we removed the text summary)
+    // Update the chart
+    if (accidentChart) {
+        accidentChart.data.datasets[0].data = [nonInjuriousCount, injuriousCount, deadlyCount];
+        
+        // Calculate max value and nice interval
+        const maxValue = Math.max(nonInjuriousCount, injuriousCount, deadlyCount);
+        let niceInterval = calculateNiceInterval(maxValue);
+        // Cap the chart max at 100
+        let niceMax = Math.min(100, Math.ceil(maxValue / niceInterval) * niceInterval);
+        
+        // When capping at 100, ensure stepSize divides evenly into 100 to guarantee 100 is a tick
+        if (niceMax === 100) {
+            // Find a step size that divides 100 evenly and is close to our calculated interval
+            const divisorsOf100 = [50, 25, 20, 10, 5, 2, 1];
+            niceInterval = divisorsOf100.find(d => d <= niceInterval) || 1;
+        }
+        
+        // Update chart scale
+        accidentChart.options.scales.x.ticks.stepSize = niceInterval;
+        accidentChart.options.scales.x.max = niceMax;
+        
+        accidentChart.update();
+    }
+
+    // Log to console for debugging
     console.log(`Accidents displayed: ${count}`);
     console.log(`Non-injurious: ${nonInjuriousCount}, Injurious: ${injuriousCount}, Deadly: ${deadlyCount}`);
 }        
@@ -184,6 +263,65 @@ function updateAccidentCount(filteredFeatures) {
                     },
                     from: function(value) {
                         return Math.round(value);
+                    }
+                }
+            });
+            
+            // Initialize the chart
+            const ctx = document.getElementById('accidentChart').getContext('2d');
+            accidentChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Non-Injurious', 'Injurious', 'Deadly'],
+                    datasets: [{
+                        label: 'Accidents',
+                        data: [0, 0, 0],
+                        backgroundColor: [
+                            '#3388ff', // Blue for non-injurious
+                            '#ff7800', // Orange for injurious
+                            '#ff0000'  // Red for deadly
+                        ],
+                        borderColor: [
+                            '#0056b3',
+                            '#cc5200',
+                            '#cc0000'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.x + ' accidents';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1,
+                                font: {
+                                    size: 10
+                                }
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                font: {
+                                    size: 10
+                                }
+                            }
+                        }
                     }
                 }
             });
