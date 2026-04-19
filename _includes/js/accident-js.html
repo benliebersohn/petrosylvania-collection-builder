@@ -25,10 +25,17 @@
         const map = L.map('map', { attributionControl: false, zoomControl: false }).setView([39.921276, -75.189891], 13);
         
         // Add OSM
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">ESRI</a>'
-        }).addTo(map);
+        //L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+        //    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">CARTO (OpenStreetMap data)</a>'
+        //}).addTo(map);
         
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png' + (L.Browser.retina ? '@2x.png' : '.png'), {
+            attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 20,
+            minZoom: 0
+        }).addTo(map);
+
         // Add attribution control positioned at bottom left (matching layeredmap-js.html)
         L.control.attribution({position: 'bottomleft'}).addTo(map);
         map.attributionControl.setPrefix();
@@ -232,7 +239,7 @@ function updateAccidentCount(filteredFeatures) {
             });
             
             if (years.length === 0) {
-                console.error('No valid years found in GeoJSON properties');
+                console.error('No valid years found in GeoJSON properties!');
                 return;
             }
             
@@ -277,21 +284,21 @@ function updateAccidentCount(filteredFeatures) {
                         label: 'Accidents',
                         data: [0, 0, 0],
                         backgroundColor: [
-                            '#3388ff', // Blue for non-injurious
-                            '#ff7800', // Orange for injurious
-                            '#ff0000'  // Red for deadly
+                            'rgba(52, 152, 219, 0.7)', // Blue for non-injurious
+                            'rgba(230, 126, 34, 0.7)', // Orange for injurious
+                            'rgba(231, 76, 60, 0.7)'   // Red for deadly
                         ],
                         borderColor: [
-                            '#0056b3',
-                            '#cc5200',
-                            '#cc0000'
+                            'rgba(52, 152, 219, 1)', // Darker blue for non-injurious
+                            'rgba(230, 126, 34, 1)', // Darker orange for injurious
+                            'rgba(231, 76, 60, 1)'   // Darker red for deadly
                         ],
-                        borderWidth: 1
+                        borderWidth: 1, // Optional: add borders to bars
                     }]
                 },
                 options: {
                     indexAxis: 'y',
-                    responsive: true,
+                    responsive: false,
                     maintainAspectRatio: true,
                     plugins: {
                         legend: {
