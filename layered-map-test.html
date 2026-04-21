@@ -30,15 +30,14 @@
             background-color: white;
             padding: 10px;
             border-radius: 5px;
-            border: 1px solid #ccc;
-            box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+            border: 1px solid #999;
         }
         .aoi-number {
             font-weight: 800;
             font-size: 16px;
         }
         .area-name {
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 800;
         }
 
@@ -54,6 +53,42 @@
             background: #f4f4f4;
         }
         
+        /* Combined zoom + fullscreen control */
+        .leaflet-control-combined {
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            display: flex;
+            flex-direction: row;
+            gap: 0;
+        }
+        
+        .control-button {
+            width: 26px;
+            height: 26px;
+            border: none;
+            background: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+            padding: 0;
+            line-height: 26px;
+            text-align: center;
+            transition: background-color 0.2s;
+        }
+        
+        .control-button:not(:last-child) {
+            border-right: 1px solid #ddd;
+        }
+        
+        .control-button:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .control-button:active {
+            background-color: #e0e0e0;
+        }
 
         /* River Point Label Styles */
         .river-point-icon {
@@ -65,8 +100,7 @@
             background: white;
             padding: 6px 12px;
             border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            border: 1px solid #999;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             font-size: 13px;
             font-weight: 600;
@@ -84,9 +118,10 @@
           pointer-events: none;
           font-family: 'Roboto', sans-serif;
           font-weight: 800;
-          text-shadow: 0 0 2px white; /* Improves readability */
+          text-shadow: 0 0 2px rgb(255, 255, 255); /* Improves readability */
+          font-size: 14px; /* Base size at zoom 14 */
         }
-        
+
         .aoi-label-name {
             font-family: 'Roboto', sans-serif; /* Google fonts sans-serif */
             color: black;
@@ -144,17 +179,20 @@
             pointer-events: auto; /* Re-enable clicks for sections */
             background: white;
             border-radius: 5px;
-            border: 1px solid #ccc;
+            border: 1px solid #999;
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
 
         #overlays-section {
-            flex-grow: 1;
-            min-height: 150px;
-            overflow-y: auto;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            flex-grow: 0;
+            height: auto;
+            max-height: none;
+            overflow: hidden;
+            font-family: system-ui, sans-serif;
+            display: flex;
+            flex-direction: column;
         }
 
         #overlays-section .leaflet-control-layers-list {
@@ -162,15 +200,19 @@
             box-shadow: none;
             background: transparent;
             max-height: none; /* Remove max-height constraint */
-            overflow: visible;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-y: auto;
+            font-family: system-ui, sans-serif;
+            flex-grow: 1;
         }
 
         #overlays-section .leaflet-control-layers {
             background: transparent;
             border: none;
             box-shadow: none;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: system-ui, sans-serif;
+            overflow: visible;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Base Maps panel styling (unified with overlays) */
@@ -180,7 +222,7 @@
             max-width: 280px;
             background: white;
             border-radius: 5px;
-            border: 1px solid #ccc;
+            border: 1px solid #999;
             overflow: hidden;
         }
 
@@ -215,7 +257,7 @@
         /* Legend section at bottom */
         #legend-section {
             flex-shrink: 0;
-            border-top: 1px solid #eee;
+            border-top: 1px solid #999;
             padding: 10px;
             max-height: 40vh; /* Max height to prevent taking too much space */
             overflow-y: auto;
@@ -244,6 +286,7 @@
         #legend-section:not(.collapsed) .legend-header {
             position: absolute;
             top: 10px;
+            bottom: 10px;
             right: 10px;
             width: auto;
             margin: 0;
@@ -262,17 +305,25 @@
             display: none;
         }
 
+        /* Hide master legend content when collapsed */
+        #legend-section.collapsed .master-legend-content {
+            display: none;
+        }
+
         .legend-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: bold;
+            margin: 0 0 8px 0;
             font-size: 14px;
-            margin-bottom: 8px;
+            font-weight: bold;
+            color: #444;
+            font-family: system-ui, sans-serif;
+            letter-spacing: 1px;
             cursor: pointer;
             user-select: none;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
+        
 
         .legend-toggle {
             width: 20px;
@@ -304,24 +355,27 @@
             margin-right: 8px;
         }
 
+        .legend-separator {
+            height: 2px;
+            background-color: #ccc;
+            margin: 8px 0;
+        }
+
         /* Scrollbar styling - unified for all panels */
-        #overlays-section::-webkit-scrollbar,
-        #basemaps-section::-webkit-scrollbar,
+        .leaflet-control-layers-list::-webkit-scrollbar,
         #legend-section::-webkit-scrollbar {
             width: 10px;
             background: rgba(0,0,0,0.05);
         }
 
-        #overlays-section::-webkit-scrollbar-thumb,
-        #basemaps-section::-webkit-scrollbar-thumb,
+        .leaflet-control-layers-list::-webkit-scrollbar-thumb,
         #legend-section::-webkit-scrollbar-thumb {
             background: #999;
             border-radius: 5px;
             border: 2px solid white;
         }
 
-        #overlays-section::-webkit-scrollbar-thumb:hover,
-        #basemaps-section::-webkit-scrollbar-thumb:hover,
+        .leaflet-control-layers-list::-webkit-scrollbar-thumb:hover,
         #legend-section::-webkit-scrollbar-thumb:hover {
             background: #666;
         }
@@ -337,10 +391,10 @@
     <div id="left-dashboard">
         <div id="overlays-section" class="dashboard-section"></div>
         <div id="legend-section" class="dashboard-section collapsed">
-            <div class="legend-header">
+            <h4 class="legend-header control-label">
                 <span>Legend</span>
                 <div class="legend-toggle"></div>
-            </div>
+            </h4>
             <div class="master-legend-content"></div>
         </div>
     </div>
@@ -351,19 +405,34 @@
     <script>
 
         // Initialize the map on the lower schuylkill river
-        const map = L.map('map',{attributionControl: false}).setView([39.917359, -75.204920], 14);
+        const map = L.map('map',{attributionControl: false, zoomControl: false}).setView([39.917359, -75.204920], 14);
         //create a top pane for the AOI labels,
-        L.control.attribution({position: 'bottomright'}).addTo(map);
+        L.control.attribution({position: 'bottomleft'}).addTo(map);
 
         map.attributionControl.setPrefix()
         
-        map.addControl(new L.Control.FullScreen({
-            position: 'bottomleft',
-            title: {
-                'false': 'View Fullscreen',
-                'true': 'Exit Fullscreen'
+        // Create custom combined zoom + fullscreen control
+        const CombinedControl = L.Control.extend({
+            onAdd: function(map) {
+                const container = L.DomUtil.create('div', 'leaflet-control leaflet-control-combined');
+                container.innerHTML = '<button class="control-button zoom-in" title="Zoom in">+</button>' +
+                                      '<button class="control-button zoom-out" title="Zoom out">−</button>' +
+                                      '<button class="control-button fullscreen-btn" title="Fullscreen">⛶</button>';
+                
+                L.DomEvent.on(container.querySelector('.zoom-in'), 'click', () => map.zoomIn());
+                L.DomEvent.on(container.querySelector('.zoom-out'), 'click', () => map.zoomOut());
+                L.DomEvent.on(container.querySelector('.fullscreen-btn'), 'click', () => {
+                    if (document.fullscreenElement) {
+                        document.exitFullscreen();
+                    } else {
+                        document.getElementById('map').requestFullscreen();
+                    }
+                });
+                return container;
             }
-        }));
+        });
+        
+        new CombinedControl({position: 'bottomright'}).addTo(map);
 
         map.createPane('topPane').style.zIndex = 650;
         //map.attributionControl.setPrefix(false)
@@ -390,7 +459,7 @@
             { name: "1867 Barnes", layer: L.tileLayer('https://mapwarper.net/mosaics/tile/2278/{z}/{x}/{y}.png', {
                  attribution: 'Free Library of Philadelphia'
             }), year: 1867 },
-            { name: "1876 Hopkins", layer: L.tileLayer('https://mapwarper.net/mosaics/tile/2272/{z}/{x}/{y}.png', {
+            { name: "1876 Hopkins", layer: L.tileLayer('https://mapwarper.net/mosaics/tile/2465/{z}/{x}/{y}.png', {
                  attribution: 'Free Library of Philadelphia'
             }), year: 1876 },
             { name: "1892 Waterfront", layer: L.tileLayer('https://mapwarper.net/maps/tile/91523/{z}/{x}/{y}.png', {
@@ -459,11 +528,13 @@
             { name: "1995 USGS", layer: L.tileLayer('https://mapwarper.net/maps/tile/88568/{z}/{x}/{y}.png', {
                 attribution: 'USGS'
             }), year: 1995 },
-            { name: "2019 satellite", layer: L.tileLayer.wms('https://imagery.pasda.psu.edu/arcgis/services/pasda/PhiladelphiaImagery2019/MapServer/WMSServer?', {
-                layers: '1',
+            { name: "2019 satellite", layer: L.tileLayer.wms('https://imagery.pasda.psu.edu/arcgis/services/pasda/PhiladelphiaImagery2019/MapServer/WMSServer', {
+                layers: '3',
                 format: 'image/png',
                 transparent: true,
                 attribution: 'Delaware Valley Regional Planning Comission',
+                crossOrigin: 'anonymous',
+                version: '1.3.0'
             }), year: 2019 },
             { name: "2019 USGS", layer: L.tileLayer('https://mapwarper.net/maps/tile/88569/{z}/{x}/{y}.png', {
                 attribution: 'USGS'
@@ -675,6 +746,39 @@ loadGeoJSON(
 
 overlays["Areas of Interest (AOI)"] = L.layerGroup([aoiBoundaries, aoiLabels]).addTo(map);
 
+        // Make AOI labels responsive to zoom level
+        function updateAOILabelSizes() {
+            const zoom = map.getZoom();
+            const baseZoom = 14;
+            const baseSize = 14; // Base font size at zoom 14
+            const scaleFactor = 1.15; // Multiplier per zoom level
+            const newSize = baseSize * Math.pow(scaleFactor, zoom - baseZoom);
+            
+            // Debug: Check what we're selecting
+            const labels = document.querySelectorAll('.aoi-label > div');
+            console.log(`Zoom: ${zoom}, Font size: ${newSize.toFixed(1)}px, Labels found: ${labels.length}`);
+            
+            // Target the inner div inside each .aoi-label container
+            labels.forEach((textDiv, idx) => {
+                textDiv.setAttribute('style', `font-size: ${newSize.toFixed(1)}px !important; font-weight: 800 !important;`);
+                if (idx === 0) console.log('First label text:', textDiv.textContent, 'Parent:', textDiv.parentElement);
+            });
+            
+            // Also check parent container sizing
+            const containers = document.querySelectorAll('.aoi-label');
+            if (containers.length > 0 && labels.length === 0) {
+                console.warn('Found .aoi-label containers but no inner divs. Check HTML structure.');
+                console.log('First container HTML:', containers[0].innerHTML);
+            }
+        }
+        
+        map.on('zoom', updateAOILabelSizes);
+        // Initial update on map load
+        updateAOILabelSizes();
+        
+        // Also update when layers load (for dynamic content)
+        aoiLabels.on('layeradd', updateAOILabelSizes);
+
         // 1. Define color mapping (keep existing)
 const redliningGrades = {
     'A = "best"': '#76a865',
@@ -754,8 +858,13 @@ function updateMasterLegend() {
     // Rebuild legend content
     if (legendContent) {
         var labels = [];
+        var sectionCount = 0;
         for (var layerName in activeLegendSections) {
             if (activeLegendSections[layerName]) {
+                // Add separator between sections (but not before first section)
+                if (sectionCount > 0) {
+                    labels.push('<div class="legend-separator"></div>');
+                }
                 var section = legendSections[layerName];
                 labels.push('<strong>' + section.title + '</strong>');
                 section.items.forEach(function(item) {
@@ -765,9 +874,13 @@ function updateMasterLegend() {
                         item.label
                     );
                 });
+                sectionCount++;
             }
         }
-        legendContent.innerHTML = labels.join('<br>');
+        // Join labels with <br>, but handle separator specially
+        legendContent.innerHTML = labels.map(function(label) {
+            return label.includes('legend-separator') ? label : label;
+        }).join('<br>').replace(/<br><div class="legend-separator"><\/div><br>/g, '<div class="legend-separator"></div>');
     }
 }
 
@@ -1108,7 +1221,8 @@ labelStyle.textContent = `
         font-size: 14px;
         font-weight: bold;
         color: #444;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: system-ui, sans-serif;
+        letter-spacing: 1px;
     }
 `;
 document.head.appendChild(labelStyle);

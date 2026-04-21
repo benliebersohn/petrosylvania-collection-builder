@@ -4,7 +4,8 @@
     {
       "type": "Feature",
       "properties": {
-        "Name": "Yankee Point"
+        "Name": "Yankee Point",
+        "River Bank": "L"
       },
       "geometry": {
         "type": "Point",
@@ -17,7 +18,8 @@
     {
       "type": "Feature",
       "properties": {
-        "Name": "Point Breeze"
+        "Name": "Point Breeze",
+        "River Bank": "R"
       },
       "geometry": {
         "type": "Point",
@@ -30,7 +32,8 @@
     {
       "type": "Feature",
       "properties": {
-        "Name": "Girard Point"
+        "Name": "Girard Point",
+        "River Bank": "L"
       },
       "geometry": {
         "type": "Point",
@@ -43,7 +46,8 @@
     {
       "type": "Feature",
       "properties": {
-        "Name": "Harkness Point"
+        "Name": "Harkness Point",
+        "River Bank": "R"
       },
       "geometry": {
         "type": "Point",
