@@ -32,6 +32,7 @@ jobs:
     runs-on: ubuntu-22.04 # change back to 'ubuntu-latest' when this runner image is resolved: https://github.com/actions/runner-images/issues/10636
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+      BUNDLE_GEMFILE: ${{ github.workspace }}/Gemfile
     steps:
       - name: Checkout
         uses: actions/checkout@v4
