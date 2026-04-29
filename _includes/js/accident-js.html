@@ -398,6 +398,30 @@ function updatePointsByYear(yearRange) {
     // Get current zoom level for scaling
     const currentZoom = map.getZoom();
     
+    // Function to create a diamond-shaped marker
+    function createDiamondMarker(feature, latlng, radius, color) {
+        // Create diamond as an SVG icon
+        const svgSize = radius * 2 + 4;
+        const center = radius + 2;
+        
+        // SVG for diamond shape
+        const svgString = `
+            <svg width="${svgSize}" height="${svgSize}" viewBox="0 0 ${svgSize} ${svgSize}" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="${center},2 ${center + radius},${center} ${center},${center + radius} ${center - radius},${center}" 
+                         fill="${color}" stroke="black" stroke-width="1" opacity="0.8" fill-opacity="0.8"/>
+            </svg>
+        `;
+        
+        const svgIcon = L.icon({
+            iconUrl: 'data:image/svg+xml;base64,' + btoa(svgString),
+            iconSize: [svgSize, svgSize],
+            iconAnchor: [svgSize / 2, svgSize / 2],
+            popupAnchor: [0, -svgSize / 2]
+        });
+        
+        return L.marker(latlng, { icon: svgIcon }).bindPopup(createPopupContent(feature));
+    }
+    
     // Add filtered features to map
     L.geoJSON({
         type: "FeatureCollection",
@@ -412,15 +436,23 @@ function updatePointsByYear(yearRange) {
                 color = "#ff7800"; // Orange for injuries
             }
             
-            // Create the marker with zoom-scaled radius
-            return L.circleMarker(latlng, {
-                radius: getScaledRadius(currentZoom),
-                fillColor: color,
-                color: "#000",
-                weight: 1,
-                opacity: 0.7,
-                fillOpacity: 0.8
-            }).bindPopup(createPopupContent(feature));
+            // Check marker type (default to circle if not specified)
+            const markerType = feature.properties.marker || 'circle';
+            
+            if (markerType === 'diamond') {
+                // Create diamond marker with zoom-scaled radius
+                return createDiamondMarker(feature, latlng, getScaledRadius(currentZoom), color);
+            } else {
+                // Create circle marker (default)
+                return L.circleMarker(latlng, {
+                    radius: getScaledRadius(currentZoom),
+                    fillColor: color,
+                    color: "#000",
+                    weight: 1,
+                    opacity: 0.7,
+                    fillOpacity: 0.8
+                }).bindPopup(createPopupContent(feature));
+            }
         }
     }).addTo(pointsLayer);
 }
