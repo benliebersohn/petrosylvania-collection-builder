@@ -10,7 +10,7 @@ source "https://rubygems.org"
 # uncomment gem "github-pages" 
 # and delete the lines below.
 
-gem "jekyll"
+gem "jekyll", "~> 4.4.0"
 
 gem "webrick", "~> 1.7"
 
