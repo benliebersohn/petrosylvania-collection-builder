@@ -14,19 +14,3 @@ vendor/
 
 # temporarily ignore gemfile.lock
 # Gemfile.lock
-
-# Developer/local setup scripts and utilities
-download_pasda_imagery.py
-extract_arcgis_tiles.py
-geotiff_to_mapwarper.py
-requirements-geotiff.txt
-Dockerfile
-docker-compose.yml
-DOCKER_SETUP.md
-GEOTIFF_CONVERTER_QUICKREF.md
-GEOTIFF_CONVERTER_README.md
-setup-windows.bat
-restart-service.bat
-restart-service.ps1
-WINDOWS_SETUP_GUIDE.md
-layered-map-test.html
