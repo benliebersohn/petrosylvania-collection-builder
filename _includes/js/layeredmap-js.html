@@ -157,6 +157,22 @@
             height: auto !important;
             }
 
+        .ward-label {
+            font-family: system-ui, sans-serif !important;
+            font-size: 12px !important;
+            font-weight: 600 !important;
+            color: #333333 !important;
+            background: white !important;
+            padding: 3px 6px !important;
+            border-radius: 1px !important;
+            border: 1px solid #666 !important;
+            letter-spacing: 0.2px !important;
+            display: inline-block !important;
+            white-space: nowrap !important;
+            width: auto !important;
+            height: auto !important;
+            }
+
         /* Leaflet control styling for custom panels */
         .leaflet-control-custom-panel {
             background: white !important;
@@ -1078,8 +1094,29 @@ loadGeoJSON('{{ site.baseurl }}/assets/js/industrial_tracts_trimmed.geojson',
         loadGeoJSON('{{ site.baseurl }}/assets/js/city_limits.geojson',
                     overlays["Philadelphia County"], {style: {color: '#222', weight:4, fillOpacity: 0}, attribution: 'Data &copy; City of Philadelphia'});
 
+        // Load Political Wards with labels showing ward numbers
         loadGeoJSON('{{ site.baseurl }}/assets/js/Political_Wards.geojson',
-                    overlays["Political Ward Boundaries, 2025"], {style: {color: '#343', weight:2, fillOpacity:0}, attribution:  'Data &copy; City of Philadelphia'});
+                    overlays["Political Ward Boundaries, 2025"], 
+                    {
+                        style: {color: '#343', weight:2, fillOpacity:0},
+                        attribution:  'Data &copy; City of Philadelphia',
+                        onEachFeature: function(feature, layer) {
+                            if (feature.properties.ward_num) {
+                                const labelText = 'Ward ' + feature.properties.ward_num;
+                                const bounds = layer.getBounds();
+                                const center = bounds.getCenter();
+                                const label = L.marker(center, {
+                                    pane: 'labelPane',
+                                    icon: L.divIcon({
+                                        className: 'ward-label',
+                                        html: '<div>' + labelText + '</div>',
+                                        iconSize: null,
+                                        iconAnchor: null
+                                    })
+                                }).addTo(map);
+                            }
+                        }
+                    });}
         
         // Function to create custom river point labels
         function createRiverPointLabel(feature, latlng) {
