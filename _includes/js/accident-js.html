@@ -224,7 +224,7 @@ function updateAccidentCount(filteredFeatures) {
     console.log(`Non-injurious: ${nonInjuriousCount}, Injurious: ${injuriousCount}, Deadly: ${deadlyCount}`);
 }        
         // Fetch the external GeoJSON
-        fetch('/assets/js/AOIgeoData.geojson')
+        fetch('{{ site.baseurl }}/assets/js/AOIgeoData.geojson')
             .then(response => {
                 if (!response.ok) throw new Error('Network response failed');
                 return response.json();

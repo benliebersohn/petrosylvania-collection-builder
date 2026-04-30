@@ -716,7 +716,7 @@ async function loadZIPLayers() {
   try {
     // add ZIP code white lines (on bottom)
     const whiteOutlines = await loadGeoJSON(
-      '/assets/js/zip_codes.geojson',
+      '{{ site.baseurl }}/assets/js/zip_codes.geojson',
       null,
       {
         style: {
@@ -731,7 +731,7 @@ async function loadZIPLayers() {
 
       //add ZIP code blue lines (on top) 
     const blueLines = await loadGeoJSON(
-      '/assets/js/zip_codes.geojson',
+      '{{ site.baseurl }}/assets/js/zip_codes.geojson',
       null, // Don't auto-add to layer
       {
         style: { // Explicit style object
@@ -782,7 +782,7 @@ map.on('zoomend', function() { // make ZIP code labels disappear when zooming ou
         
 
 loadGeoJSON(
-    '/assets/js/AOI_features_01.geojson',
+    '{{ site.baseurl }}/assets/js/AOI_features_01.geojson',
     aoiBoundaries,
     {
         style: function(feature) {
@@ -966,7 +966,7 @@ overlays['HOLC "redlining" map, 1937'].on('remove', function() {
 });
 
 loadGeoJSON(
-    '/assets/js/redlining.geojson',
+    '{{ site.baseurl }}/assets/js/redlining.geojson',
     overlays['HOLC "redlining" map, 1937'],
     {
         style: getRedliningStyle
@@ -974,7 +974,7 @@ loadGeoJSON(
 );
 
         
-        loadGeoJSON('/assets/js/FEMA_100yr_floodplain.geojson', 
+        loadGeoJSON('{{ site.baseurl }}/assets/js/FEMA_100yr_floodplain.geojson', 
                    overlays["FEMA, 100-year flood zone, 2025"], { 
                        style: {
                            color: '#440154', fillOpacity: 0.09, weight:1.3
@@ -982,7 +982,7 @@ loadGeoJSON(
                    });
         
 // Load industrial zoning (more opaque purple)
-loadGeoJSON('/assets/js/industrial_tracts_trimmed.geojson', 
+loadGeoJSON('{{ site.baseurl }}/assets/js/industrial_tracts_trimmed.geojson', 
            overlays["Industrial zones"], { 
                style: {
                    color: 'purple',
@@ -993,7 +993,7 @@ loadGeoJSON('/assets/js/industrial_tracts_trimmed.geojson',
                    });
         
         // Load Keystone Opportunity Zones (less opaque purple)
-        loadGeoJSON('/assets/js/KOZ_parcels.geojson',
+        loadGeoJSON('{{ site.baseurl }}/assets/js/KOZ_parcels.geojson',
                     overlays["Industrial zones"], {style: {color: 'purple', weight: 2, fillColor: 'purple', fillOpacity: 0.8}});
 
         // Toggle Industrial zones legend with master legend
@@ -1034,7 +1034,7 @@ loadGeoJSON('/assets/js/industrial_tracts_trimmed.geojson',
         }
 
         // Load percent industrial layer
-        loadGeoJSON('/assets/js/Pct_industrial_1000ft_grid.geojson',
+        loadGeoJSON('{{ site.baseurl }}/assets/js/Pct_industrial_1000ft_grid.geojson',
                     overlays["Percent industrial, 2026"],
                     {style: getPercentIndustrialStyle});
 
@@ -1048,37 +1048,37 @@ loadGeoJSON('/assets/js/industrial_tracts_trimmed.geojson',
             updateMasterLegend();
         });
 
-        loadGeoJSON('/assets/js/2Ft_SLR.geojson',
+        loadGeoJSON('{{ site.baseurl }}/assets/js/2Ft_SLR.geojson',
                     overlays["NOAA, 2-foot rise in sea level"], {style: {color: '#3b528b', weight:1, fillOpacity: .6}, attribution: 'NOAA Sea Level Rise Viewer'});
 
-        loadGeoJSON('/assets/js/4ftSLR.geojson',
+        loadGeoJSON('{{ site.baseurl }}/assets/js/4ftSLR.geojson',
                     overlays["NOAA, 4-foot rise in sea level"], {style: {color: '#08306b', weight:.5, fillOpacity: .2}, attribution: 'NOAA Sea Level Rise Viewer'});
         
-        loadGeoJSON('/assets/js/1960_predominantly_AfAm.geojson',
+        loadGeoJSON('{{ site.baseurl }}/assets/js/1960_predominantly_AfAm.geojson',
                     overlays["Census, 50+ percent Black, 1960"], {style: {color: '#21918c', weight:1, fillOpacity: 0.2}, attribution: 'US Census Bureau'});
 
-        loadGeoJSON('/assets/js/1980_predominant_afam.geojson',
+        loadGeoJSON('{{ site.baseurl }}/assets/js/1980_predominant_afam.geojson',
                     overlays["Census, 50+ percent Black, 1980"], {style: {color: '#21918c', weight:1, fillOpacity: 0.2}, attribution: 'US Census Bureau'});
 
-        loadGeoJSON('/assets/js/1980_25pctPoverty.geojson',
+        loadGeoJSON('{{ site.baseurl }}/assets/js/1980_25pctPoverty.geojson',
                     overlays["Census, 25+ percent children in poverty, 1980"], {style: {color: '#a0da39', weight:1, fillOpacity: 0.2}, attribution: 'US Census Bureau'});
 
-        loadGeoJSON('/assets/js/predominantAfam_2000.geojson',
+        loadGeoJSON('{{ site.baseurl }}/assets/js/predominantAfam_2000.geojson',
                     overlays["Census, 50+ percent Black, 2000"], {style: {color: '#21918c', weight:1, fillOpacity: 0.2}, attribution: 'US Census Bureau'});
         
-        loadGeoJSON('/assets/js/2000_25pctPoverty.geojson',
+        loadGeoJSON('{{ site.baseurl }}/assets/js/2000_25pctPoverty.geojson',
                     overlays["Census, 25+ percent children in poverty, 2000"], {style: {color: '#a0da39', weight:1, fillOpacity: 0.2}, attribution: 'US Census Bureau'});
         
-        loadGeoJSON('/assets/js/2020_pct_Afam.geojson',
+        loadGeoJSON('{{ site.baseurl }}/assets/js/2020_pct_Afam.geojson',
                     overlays["Census, 50+ percent Black, 2020"], {style: {color: '#21918c', weight:1, fillOpacity: 0.2}, attribution: 'US Census Bureau'});
 
-        loadGeoJSON('/assets/js/2020_25pctPoverty.geojson',
+        loadGeoJSON('{{ site.baseurl }}/assets/js/2020_25pctPoverty.geojson',
                     overlays["Census, 25+ percent children in poverty, 2020"], {style: {color: '#a0da39', weight:1, fillOpacity: 0.2}, attribution: 'US Census Bureau'});
 
-        loadGeoJSON('/assets/js/city_limits.geojson',
+        loadGeoJSON('{{ site.baseurl }}/assets/js/city_limits.geojson',
                     overlays["Philadelphia County"], {style: {color: '#222', weight:4, fillOpacity: 0}, attribution: 'Data &copy; City of Philadelphia'});
 
-        loadGeoJSON('/assets/js/Political_Wards.geojson',
+        loadGeoJSON('{{ site.baseurl }}/assets/js/Political_Wards.geojson',
                     overlays["Political Ward Boundaries, 2025"], {style: {color: '#343', weight:2, fillOpacity:0}, attribution:  'Data &copy; City of Philadelphia'});
         
         // Function to create custom river point labels
@@ -1098,7 +1098,7 @@ loadGeoJSON('/assets/js/industrial_tracts_trimmed.geojson',
         }
         
         // Load the River Points GeoJSON with custom labels
-        loadGeoJSON('/assets/js/river_points.geojson',
+        loadGeoJSON('{{ site.baseurl }}/assets/js/river_points.geojson',
             overlays["River Points"],
             { pointToLayer: createRiverPointLabel }
         );
