@@ -6,7 +6,7 @@
 
 /* The container - matching the white background of your Overlays menu */
 .slider-control {
-    background: #ececec;
+    background: white;
     padding: 12px 16px;
     border-radius: 2px;
     border: 1px solid #999;
