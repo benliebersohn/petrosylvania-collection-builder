@@ -1094,6 +1094,10 @@ loadGeoJSON('{{ site.baseurl }}/assets/js/industrial_tracts_trimmed.geojson',
         loadGeoJSON('{{ site.baseurl }}/assets/js/city_limits.geojson',
                     overlays["Philadelphia County"], {style: {color: '#222', weight:4, fillOpacity: 0}, attribution: 'Data &copy; City of Philadelphia'});
 
+        // Create a separate layer group for ward labels that will be part of the ward boundaries layer
+        const wardLabelsLayer = L.layerGroup();
+        overlays["Political Ward Boundaries, 2025"].addLayer(wardLabelsLayer);
+
         // Load Political Wards with labels showing ward numbers
         loadGeoJSON('{{ site.baseurl }}/assets/js/Political_Wards.geojson',
                     overlays["Political Ward Boundaries, 2025"], 
@@ -1113,7 +1117,7 @@ loadGeoJSON('{{ site.baseurl }}/assets/js/industrial_tracts_trimmed.geojson',
                                         iconSize: null,
                                         iconAnchor: null
                                     })
-                                }).addTo(map);
+                                }).addTo(wardLabelsLayer);
                             }
                         }
                     });
