@@ -6,7 +6,7 @@
 
 /* The container - matching the white background of your Overlays menu */
 .slider-control {
-    background: rgba(255, 255, 255, 1);
+    background: #ececec;
     padding: 12px 16px;
     border-radius: 2px;
     border: 1px solid #999;
@@ -98,8 +98,8 @@
 }
 
 .year-value {
-    color: #999;
-    background: white;
+    color: #333;
+    background: #ececec;
     border: 1px solid #999;
     border-radius: 2px;
     padding: 4px 8px;
