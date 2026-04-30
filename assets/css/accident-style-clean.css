@@ -1,4 +1,4 @@
-﻿#map { 
+#map { 
     width: 100%;
     height: 90vh;
     position: relative;
@@ -13,20 +13,38 @@
 }
 
 #year-slider {
-    width: 400px; /* Responsive width */
+    width: 400px;
     margin: 0;
-    height: 8px; /* Thinner track for a precise look */
+    height: 8px;
     border: 1px solid #ccc;
     background: #f0f0f0;
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 }
 
-/* The Selected Range - using the checkbox blue from your screenshot */
+/* noUiSlider track styling */
+.noUi-target {
+    width: 100%;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    height: 8px;
+}
+
+.noUi-track {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+    border-radius: 0;
+    height: 100%;
+}
+
+/* 'The Selected Range' track color */
 .noUi-connect {
     background: #0075FF; 
 }
 
-/* The Handles - slender, vertical, and professional */
+/* The Handles */
 .noUi-horizontal .noUi-handle {
     width: 20px;
     height: 22px;
@@ -44,7 +62,7 @@
     display: none;
 }
 
-/* Tooltips - mimicking the clean, "serious" label style */
+/* Selected value box */
 .noUi-horizontal .noUi-tooltip {
     bottom: -30px; /* Position below the handle with a bit of spacing */
     top: auto;
@@ -63,7 +81,7 @@
     max-width: 300px;
 }
 
-/* Attribution control styling - matching layeredmap-js.html */
+/* Attribution control styling minimalist theme */
 .leaflet-control-attribution {
     background: white !important;
     border: 1px solid #ccc !important;
@@ -81,7 +99,7 @@
     z-index: 500;
 }
 
-/* Compact fullscreen button - matching layeredmap-js.html style */
+/* Compact fullscreen button */
 .custom-fullscreen {
     background: white;
     padding: 5px;
@@ -94,7 +112,7 @@
     background: #f4f4f4;
 }
 
-/* Combined zoom + fullscreen control - matching layeredmap-js.html style */
+/* Combined zoom + fullscreen control */
 .leaflet-control-combined {
     background: white;
     border-radius: 1px;
