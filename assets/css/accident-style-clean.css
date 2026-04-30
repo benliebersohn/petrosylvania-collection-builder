@@ -6,48 +6,96 @@
 
 /* The container - matching the white background of your Overlays menu */
 .slider-control {
-    background: rgba(255, 255, 255, 1); /* Semi-transparent white */
-    padding: 16px 20px 16px 20px; /* TRBL Extra bottom padding for the tooltips */
+    background: rgba(255, 255, 255, 1);
+    padding: 12px 16px;
     border-radius: 2px;
     border: 1px solid #999;
+    min-width: 300px;
 }
 
-#year-slider {
-    width: 400px; /* Responsive width */
+.year-range-label {
+    font-size: 0.85em;
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.dual-range-slider {
+    position: relative;
+    margin: 16px 0 12px 0;
+}
+
+.range-track {
+    width: 100%;
+    height: 5px;
+    background: #ddd;
+    border-radius: 3px;
+    position: relative;
+    margin-top: 12px;
+}
+
+.range-fill {
+    position: absolute;
+    height: 5px;
+    background: #0075FF;
+    border-radius: 3px;
+    pointer-events: none;
+}
+
+.range-inputs {
+    position: relative;
+}
+
+.range-inputs input {
+    position: absolute;
+    width: 100%;
+    height: 0;
+    top: 12px;
+    left: 0;
+    pointer-events: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0;
     margin: 0;
-    height: 8px; /* Thinner track for a precise look */
-    border: 1px solid #ccc;
-    background: #f0f0f0;
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 }
 
-/* The Selected Range - using the checkbox blue from your screenshot */
-.noUi-connect {
-    background: #0075FF; 
+.range-inputs input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #0075FF;
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
-/* The Handles - slender, vertical, and professional */
-.noUi-horizontal .noUi-handle {
-    width: 20px;
-    height: 22px;
-    right: -10px; /* Half of width to center */
-    top: -9px;
-    background: #fdfdfd;
-    border: 1px solid #7a7a7a;
-    border-radius: 2px;
-    cursor: ew-resize;
+.range-inputs input::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: #0075FF;
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
-/* Remove the default noUiSlider "decorative lines" on handles */
-.noUi-handle::before,
-.noUi-handle::after {
-    display: none;
+.year-values {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 0.9em;
+    font-weight: bold;
 }
 
-/* Tooltips - mimicking the clean, "serious" label style */
-.noUi-horizontal .noUi-tooltip {
-    bottom: -30px; /* Position below the handle with a bit of spacing */
-    top: auto;
+.year-value {
+    color: #0075FF;
+}
     font-family: system-ui, sans-serif;
     font-size: 14px;
     font-weight: 500;

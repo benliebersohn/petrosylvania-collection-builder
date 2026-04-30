@@ -2,17 +2,15 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.css" />
     <!-- Choose your style: accident-style-clean.css (sharp/modern) or accident-style-original.css (rounded/soft) -->
-    <link rel="stylesheet" href="/assets/css/accident-style-clean.css" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/accident-style-clean.css" />
     
 </head>
 <body>
     <div id="map"></div>
-	<!-- libraries are for leaflet, the time-selection slider, fullscreen mode, and chart.js -->
+	<!-- libraries are for leaflet, fullscreen mode, and chart.js -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -89,9 +87,22 @@
                 // Prevent map click events from being intercepted by the slider
                 L.DomEvent.disableClickPropagation(container);
                 
-                // Add content to the control - add summaries of dots on map?
+                // Add content to the control - use native HTML5 range inputs
                 container.innerHTML = `
-                    <div id="year-slider"></div>
+                    <div class="year-range-label">Year Range</div>
+                    <div class="dual-range-slider">
+                        <div class="range-track">
+                            <div class="range-fill" id="range-fill"></div>
+                        </div>
+                        <div class="range-inputs">
+                            <input type="range" id="year-start" min="1800" max="2024" value="1800">
+                            <input type="range" id="year-end" min="1800" max="2024" value="2024">
+                        </div>
+                    </div>
+                    <div class="year-values">
+                        <span id="year-start-value" class="year-value">1800</span>
+                        <span id="year-end-value" class="year-value">2024</span>
+                    </div>
                 `;
                 return container;
             }
@@ -275,25 +286,56 @@ function updateAccidentCount(filteredFeatures) {
             }
 
             // Initialize slider with numeric values
-            const slider = document.getElementById('year-slider');
-            noUiSlider.create(slider, {
-                start: [minYear, maxYear],
-                connect: true,
-                range: {
-                    'min': minYear,
-                    'max': maxYear
-                },
-                step: 1,
-                tooltips: [true, true],
-                format: {
-                    to: function(value) {
-                        return Math.round(value);
-                    },
-                    from: function(value) {
-                        return Math.round(value);
-                    }
+            const yearStart = document.getElementById('year-start');
+            const yearEnd = document.getElementById('year-end');
+            const rangeFill = document.getElementById('range-fill');
+            const yearStartValue = document.getElementById('year-start-value');
+            const yearEndValue = document.getElementById('year-end-value');
+            
+            // Set slider min/max to data range
+            yearStart.min = minYear;
+            yearStart.max = maxYear;
+            yearStart.value = minYear;
+            yearEnd.min = minYear;
+            yearEnd.max = maxYear;
+            yearEnd.value = maxYear;
+            
+            // Update display values
+            yearStartValue.textContent = minYear;
+            yearEndValue.textContent = maxYear;
+            
+            // Function to update range fill position
+            function updateRangeFill() {
+                const start = parseInt(yearStart.value);
+                const end = parseInt(yearEnd.value);
+                const range = maxYear - minYear;
+                const fillStart = ((start - minYear) / range) * 100;
+                const fillEnd = ((end - minYear) / range) * 100;
+                rangeFill.style.left = fillStart + '%';
+                rangeFill.style.width = (fillEnd - fillStart) + '%';
+            }
+            
+            // Event listeners for range inputs
+            yearStart.addEventListener('input', function() {
+                if (parseInt(yearStart.value) > parseInt(yearEnd.value)) {
+                    yearStart.value = yearEnd.value;
                 }
+                yearStartValue.textContent = yearStart.value;
+                updateRangeFill();
+                updateAccidentDisplay([parseInt(yearStart.value), parseInt(yearEnd.value)]);
             });
+            
+            yearEnd.addEventListener('input', function() {
+                if (parseInt(yearEnd.value) < parseInt(yearStart.value)) {
+                    yearEnd.value = yearStart.value;
+                }
+                yearEndValue.textContent = yearEnd.value;
+                updateRangeFill();
+                updateAccidentDisplay([parseInt(yearStart.value), parseInt(yearEnd.value)]);
+            });
+            
+            // Initial range fill
+            updateRangeFill();
             
             // Initialize the chart
             const ctx = document.getElementById('accidentChart').getContext('2d');
@@ -480,17 +522,19 @@ function updatePointsByYear(yearRange) {
 
             // Initial display with all points
             updatePointsByYear([minYear, maxYear]);
-
-            // Update display when slider changes
-            slider.noUiSlider.on('update', function(values) {
-                const yearRange = values.map(Number);
+            
+            // Define updateAccidentDisplay function for slider changes
+            function updateAccidentDisplay(yearRange) {
                 updatePointsByYear(yearRange);
-            });
+                // Update chart based on year range
+                updateChart(yearRange);
+            }
             
             // Update marker sizes when zoom changes
             map.on('zoomend', function() {
-                const yearRange = slider.noUiSlider.get().map(Number);
-                updatePointsByYear(yearRange);
+                const start = parseInt(yearStart.value);
+                const end = parseInt(yearEnd.value);
+                updatePointsByYear([start, end]);
             });
         }
     </script>
