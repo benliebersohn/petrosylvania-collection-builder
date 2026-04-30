@@ -1,4 +1,4 @@
-﻿{
+{
   "type": "FeatureCollection",
   "name": "industrial_accidents",
   "crs": {
@@ -4711,17 +4711,17 @@
     {
       "type": "Feature",
       "properties": {
-        "Year": 1929,
+        "Year": "1929",
         "Month": "08",
-        "Day": 11,
+        "Day": "11",
         "Description": "Lightning-caused explosion burns some 20,000 gallons of kerosene and 40,000 gallons of gasoline.",
         "Injurious?": "N",
         "Deadly?": "N",
-        "Injured (minimum)": 0,
-        "Dead (minimum)": 0,
+        "Injured (minimum)": "0",
+        "Dead (minimum)": "0",
         "Responsible corporate entity": "Atlantic Refining",
         "General Location": "Atlantic at Point Breeze",
-        "Street coordinates": "null",
+        "Street coordinates": null,
         "Year-Month-Day": "1929-08-11",
         "marker": "circle"
       },
@@ -4731,8 +4731,7 @@
           -75.20608061460703,
           39.91650783800845
         ]
-      },
-      "id": 188
+      }
     },
     {
       "type": "Feature",
@@ -4762,17 +4761,17 @@
     {
       "type": "Feature",
       "properties": {
-        "Year": "1969",
+        "Year": 1969,
         "Month": "09",
         "Day": "07",
-        "Description": "Five-alarm fire destroys three phenol tanks and five extractor towers.\n",
+        "Description": "Five-alarm fire destroys three phenol tanks and five extractor towers.",
         "Injurious?": "Y",
         "Deadly?": "Y",
-        "Injured (minimum)": "2",
-        "Dead (minimum)": "1",
+        "Injured (minimum)": 2,
+        "Dead (minimum)": 1,
         "Responsible corporate entity": "ARCO",
         "General Location": "AOI-8",
-        "Street coordinates": "28th St and Passyunk Ave\n",
+        "Street coordinates": "28th St and Passyunk Ave",
         "Year-Month-Day": "1969-09-07",
         "marker": "circle"
       },
@@ -4782,7 +4781,8 @@
           -75.194,
           39.92024355700692
         ]
-      }
+      },
+      "id": 190
     }
   ]
 }
