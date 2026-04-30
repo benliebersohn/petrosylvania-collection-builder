@@ -1,4 +1,4 @@
-#map { 
+﻿#map { 
     width: 100%;
     height: 90vh;
     position: relative;
@@ -10,46 +10,23 @@
     padding: 16px 20px 16px 20px; /* TRBL Extra bottom padding for the tooltips */
     border-radius: 2px;
     border: 1px solid #999;
-    min-width: 420px;
-    box-sizing: border-box;
 }
 
 #year-slider {
-    width: 100%;
-    min-width: 400px;
+    width: 400px; /* Responsive width */
     margin: 0;
-    height: 8px;
-    display: block;
-    box-sizing: border-box;
+    height: 8px; /* Thinner track for a precise look */
+    border: 1px solid #ccc;
+    background: #f0f0f0;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 }
 
-/* noUiSlider track styling */
-.noUi-target {
-    width: 100% !important;
-    min-width: 400px !important;
-    background: #f0f0f0 !important;
-    border: 1px solid #ccc !important;
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) !important;
-    height: 8px !important;
-    border-radius: 0 !important;
-    display: block !important;
-}
-
-.noUi-track {
-    width: 100% !important;
-    background: #f0f0f0 !important;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    height: 100% !important;
-}
-
-/* 'The Selected Range' track color */
+/* The Selected Range - using the checkbox blue from your screenshot */
 .noUi-connect {
     background: #0075FF; 
 }
 
-/* The Handles */
+/* The Handles - slender, vertical, and professional */
 .noUi-horizontal .noUi-handle {
     width: 20px;
     height: 22px;
@@ -67,7 +44,7 @@
     display: none;
 }
 
-/* Selected value box */
+/* Tooltips - mimicking the clean, "serious" label style */
 .noUi-horizontal .noUi-tooltip {
     bottom: -30px; /* Position below the handle with a bit of spacing */
     top: auto;
@@ -86,7 +63,7 @@
     max-width: 300px;
 }
 
-/* Attribution control styling minimalist theme */
+/* Attribution control styling - matching layeredmap-js.html */
 .leaflet-control-attribution {
     background: white !important;
     border: 1px solid #ccc !important;
@@ -104,7 +81,7 @@
     z-index: 500;
 }
 
-/* Compact fullscreen button */
+/* Compact fullscreen button - matching layeredmap-js.html style */
 .custom-fullscreen {
     background: white;
     padding: 5px;
@@ -117,7 +94,7 @@
     background: #f4f4f4;
 }
 
-/* Combined zoom + fullscreen control */
+/* Combined zoom + fullscreen control - matching layeredmap-js.html style */
 .leaflet-control-combined {
     background: white;
     border-radius: 1px;
